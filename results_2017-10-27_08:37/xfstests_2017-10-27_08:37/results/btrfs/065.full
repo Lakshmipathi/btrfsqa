@@ -1,0 +1,87 @@
+Test -m single -d single
+Run fsstress -p 20 -n 100 -d /mnt/scratch/stressdir
+Start subvolume worker: 1651
+Start replace worker: 1656
+Wait for fsstress to exit and kill all background workers
+dev_pool=/dev/xvdd /dev/xvde /dev/xvdf
+free_dev=/dev/xvdg, src_dev=/dev/xvdd
+Replacing /dev/xvdd with /dev/xvdg
+Replacing /dev/xvde with /dev/xvdd
+Replacing /dev/xvdf with /dev/xvde
+Scrub the filesystem
+scrub done for 05d4d75c-64c4-4889-a8f5-10dc9257bdb0
+	scrub started at Fri Oct 27 08:35:08 2017 and finished after 00:00:00
+	total bytes scrubbed: 32.10MiB with 0 errors
+Test -m raid0 -d raid0
+Run fsstress -p 20 -n 100 -d /mnt/scratch/stressdir
+Start subvolume worker: 1838
+Start replace worker: 1839
+Wait for fsstress to exit and kill all background workers
+dev_pool=/dev/xvdd /dev/xvde /dev/xvdf
+free_dev=/dev/xvdg, src_dev=/dev/xvdd
+Replacing /dev/xvdd with /dev/xvdg
+Scrub the filesystem
+scrub done for b365b18a-d13e-4645-9019-ac5e0a54663a
+	scrub started at Fri Oct 27 08:35:13 2017 and finished after 00:00:00
+	total bytes scrubbed: 41.32MiB with 0 errors
+Test -m raid1 -d raid0
+Run fsstress -p 20 -n 100 -d /mnt/scratch/stressdir
+Start subvolume worker: 1990
+Start replace worker: 1996
+Wait for fsstress to exit and kill all background workers
+dev_pool=/dev/xvdd /dev/xvde /dev/xvdf
+free_dev=/dev/xvdg, src_dev=/dev/xvdd
+Replacing /dev/xvdd with /dev/xvdg
+Scrub the filesystem
+scrub done for da445758-5a2b-434f-acf5-3c24d17c2e8f
+	scrub started at Fri Oct 27 08:35:17 2017 and finished after 00:00:00
+	total bytes scrubbed: 34.89MiB with 0 errors
+Test -m raid1 -d raid1
+Run fsstress -p 20 -n 100 -d /mnt/scratch/stressdir
+Start subvolume worker: 2135
+Start replace worker: 2138
+Wait for fsstress to exit and kill all background workers
+dev_pool=/dev/xvdd /dev/xvde /dev/xvdf
+free_dev=/dev/xvdg, src_dev=/dev/xvdd
+Replacing /dev/xvdd with /dev/xvdg
+Replacing /dev/xvde with /dev/xvdd
+Scrub the filesystem
+scrub done for c601903a-01f3-4d2d-93ad-bc0f259fe0fa
+	scrub started at Fri Oct 27 08:35:27 2017 and finished after 00:00:00
+	total bytes scrubbed: 59.95MiB with 0 errors
+Test -m raid10 -d raid10
+Run fsstress -p 20 -n 100 -d /mnt/scratch/stressdir
+Start subvolume worker: 2338
+Start replace worker: 2339
+Wait for fsstress to exit and kill all background workers
+dev_pool=/dev/xvdd /dev/xvde /dev/xvdf
+free_dev=/dev/xvdg, src_dev=/dev/xvdd
+Replacing /dev/xvdd with /dev/xvdg
+Scrub the filesystem
+scrub done for 159f6d24-6730-4631-b80c-4740fb498ea6
+	scrub started at Fri Oct 27 08:35:35 2017 and finished after 00:00:00
+	total bytes scrubbed: 66.72MiB with 0 errors
+Test -m raid5 -d raid5
+Run fsstress -p 20 -n 100 -d /mnt/scratch/stressdir
+Start subvolume worker: 2481
+Start replace worker: 2487
+Wait for fsstress to exit and kill all background workers
+dev_pool=/dev/xvdd /dev/xvde /dev/xvdf
+free_dev=/dev/xvdg, src_dev=/dev/xvdd
+Replacing /dev/xvdd with /dev/xvdg
+Scrub the filesystem
+scrub done for c8773bbf-9969-44ec-b402-c7ae50eef84c
+	scrub started at Fri Oct 27 08:35:40 2017 and finished after 00:00:01
+	total bytes scrubbed: 36.05MiB with 0 errors
+Test -m raid6 -d raid6
+Run fsstress -p 20 -n 100 -d /mnt/scratch/stressdir
+Start subvolume worker: 2635
+Start replace worker: 2640
+Wait for fsstress to exit and kill all background workers
+dev_pool=/dev/xvdd /dev/xvde /dev/xvdf
+free_dev=/dev/xvdg, src_dev=/dev/xvdd
+Replacing /dev/xvdd with /dev/xvdg
+Scrub the filesystem
+scrub done for 3f3237ae-f39d-45be-8f66-a961847dfd5d
+	scrub started at Fri Oct 27 08:35:47 2017 and finished after 00:00:03
+	total bytes scrubbed: 33.98MiB with 0 errors
