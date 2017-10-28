@@ -1,4 +1,4 @@
 theme: jekyll-theme-cayman
 future: true
-title: [BTRFSQA]
-description: [BTRFS nightly test run results with latest Kernel, Btrfsprogs and fstests]
+title: BTRFSQA
+description: Nightly Test run results with latest Kernel, Btrfsprogs and fstests
