@@ -11,6 +11,7 @@ Once tests are completed it uploads the log into github repo along with asciinem
 Test machine details:
 ================
 Linux Distro: Fedora-26 AWS EC2 instance.
+
 Drives: Unformatted 6 devices available for use. They are from /dev/xvdb to /dev/xvdg. Each device has 20GB disk space.
 
 How to add new scripts?
