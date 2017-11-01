@@ -35,12 +35,13 @@ Sample script: scripts/000_mkdir_test:
 Using your Github/AWS accounts:
 ==============================
 If you prefer to setup this script inside your org. using your account. 
-You need to :
+Ensure host machine has python-fabric and boto installed. Then you need to:
 
- - Place your aws .pem file under config and then edit config/aws_auth.json 
+ - Place your aws .pem file under config and then edit setup/config/aws_auth.json 
     with your AWS credentials.
- - Edit config/netrc and config/github.json with your github credentials.
-  Optionally, edit config/ec2.json if you like to use different EC2 instance.
+ - Edit setup/config/netrc and github.json with your github credentials.
+  Optionally, edit setup/config/ec2.json if you like to use different EC2 instance.
+ 
 
 Author:
 ======
