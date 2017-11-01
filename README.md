@@ -4,7 +4,7 @@ What it does?
 ============
 It launches vm on cloud and installs btrfs-devel kernel and then runs btrfsprogs/xfstests-btrfs tests. Basic idea is to create BTRFS community driven test script and tools. Hopefully will be adding more user test scripts.
 
-Once tests are completed it uploads the log into github repo along with asciinema screencasting. Then updates [BTRFSQA][1]  with ppropriate status and links.
+Once tests are completed it uploads the log into github repo along with asciinema screencasting. Then updates [BTRFSQA][1]  with appropriate status and links.
 
 [1]: http://lakshmipathi.github.io/btrfsqa/ 
 
