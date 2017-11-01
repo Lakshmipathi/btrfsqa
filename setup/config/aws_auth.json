@@ -1,0 +1,6 @@
+{
+"secret" : "PLACE YOUR SECRET HERE",
+"key" : "PLACE KEY HERE",
+"pem_file":"path/to/pem/file",
+"region" : "us-west-2"
+}

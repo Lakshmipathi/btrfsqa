@@ -1,0 +1,24 @@
+#!/bin/bash
+set -xe 
+
+#!/bin/bash
+set -xe 
+echo "Installing dependencies.."
+sudo yum -q -y install acl attr automake bc dbench dump e2fsprogs fio gawk gcc indent libtool lvm2 make psmisc quota sed xfsdump xfsprogs libacl-devel libattr-devel libaio-devel libuuid-devel xfsprogs-devel 
+echo "Installing dependencies..done"
+
+# Clone repo
+git clone https://github.com/kdave/xfstests.git
+# Start the build
+cd ~/xfstests && make && sudo make install
+
+# Prepare env and setup local.config
+sudo mkdir -p /mnt/test && sudo mkdir -p /mnt/scratch
+sudo mkfs.btrfs /dev/xvdb
+cp -v ~/btrfsqe/local.config ~/xfstests
+
+# Run tests
+cd ~/xfstests && sudo ./check "tests/btrfs/00[1-5]"
+
+#
+touch ~/btrfsqe/003_xfstests.completed

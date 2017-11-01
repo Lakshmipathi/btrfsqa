@@ -1,0 +1,106 @@
+{
+    "tags": {
+        "Name": "BTRFS TEST BED",
+        "Project": "BTRFS-QA"
+    },
+ 
+    "spot-request": {
+        "price": 0.175,
+        "image_id": "ami-2c1c0f55",
+        "count": 1,
+        "type": "one-time",
+        "valid_from": null,
+        "valid_until": null,
+        "launch_group": null,
+        "availability_zone_group": "",
+        "key_name": "container",
+        "user_data": null,
+        "addressing_type": null,
+        "instance_type": "r4.large",
+        "placement": null,
+        "kernel_id": null,
+        "ramdisk_id": null,
+        "monitoring_enabled": false,
+        "subnet_id": "subnet-89ad42ec",
+        "placement_group": null,
+        "instance_profile_arn": null,
+        "instance_profile_name": null,
+        "security_group_ids":null,
+        "ebs_optimized": false
+    },
+ 
+    "block-device-mapping": {
+        "/dev/xvdc": {
+            "ephemeral_name": null,
+            "no_device": false,
+            "volume_id": null,
+            "snapshot_id": null,
+            "status": null,
+            "attach_time": null,
+            "delete_on_termination": true,
+            "size": 20,
+            "volume_type": "standard",
+            "iops": null
+        },
+        "/dev/xvdd": {
+            "ephemeral_name": null,
+            "no_device": false,
+            "volume_id": null,
+            "snapshot_id": null,
+            "status": null,
+            "attach_time": null,
+            "delete_on_termination": true,
+            "size": 20,
+            "volume_type": "standard",
+            "iops": null
+        },
+        "/dev/xvde": {
+            "ephemeral_name": null,
+            "no_device": false,
+            "volume_id": null,
+            "snapshot_id": null,
+            "status": null,
+            "attach_time": null,
+            "delete_on_termination": true,
+            "size": 20,
+            "volume_type": "standard",
+            "iops": null
+        },
+        "/dev/xvdf": {
+            "ephemeral_name": null,
+            "no_device": false,
+            "volume_id": null,
+            "snapshot_id": null,
+            "status": null,
+            "attach_time": null,
+            "delete_on_termination": true,
+            "size": 20,
+            "volume_type": "standard",
+            "iops": null
+        },
+        "/dev/xvdg": {
+            "ephemeral_name": null,
+            "no_device": false,
+            "volume_id": null,
+            "snapshot_id": null,
+            "status": null,
+            "attach_time": null,
+            "delete_on_termination": true,
+            "size": 20,
+            "volume_type": "standard",
+            "iops": null
+        },
+        "/dev/xvdb": {
+            "ephemeral_name": null,
+            "no_device": false,
+            "volume_id": null,
+            "snapshot_id": null,
+            "status": null,
+            "attach_time": null,
+            "delete_on_termination": true,
+            "size": 20,
+            "volume_type": "standard",
+            "iops": null
+        }
+    }
+}

@@ -1,0 +1,26 @@
+#!/bin/bash
+set -xe
+echo "Installing dependencies.."
+sudo yum install -q -y unzip wget openssl-devel gcc make libtool automake bc
+echo "Installing dependencies..done"
+
+sudo modprobe btrfs # if we use localmodconfig
+wget https://github.com/kdave/btrfs-devel/archive/misc-next.zip
+unzip -qq  misc-next.zip
+
+cp -v ~/btrfsqe/kernel.config ~/btrfs-devel-misc-next/.config
+cd ~/btrfs-devel-misc-next/ && make -s -j8 && sudo make modules_install && sudo make install
+
+# Update bootloader
+grub2-editenv list
+grubcfg="/etc/grub2.cfg"
+grep ^menuentry $grubcfg | cut -d "'" -f2
+new_kernel=`grep ^menuentry $grubcfg | cut -d "'" -f2 | head -n1`
+sudo grub2-set-default "${new_kernel}"
+sudo grub2-mkconfig -o $grubcfg 
+grub2-editenv list
+
+rm -rf ~/misc-next.zip ~/btrfs-devel-misc-next
+
+# 
+touch ~/btrfsqe/001_btrfsdevel.completed

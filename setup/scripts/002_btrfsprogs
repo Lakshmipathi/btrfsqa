@@ -1,0 +1,22 @@
+#!/bin/bash
+set -xe 
+
+echo "Installing dependencies.."
+sudo yum install -q -y automake e2fsprogs-libs e2fsprogs-devel \
+libblkid-devel zlib-devel lzo-devel asciidoc xmlto which \
+findutils xz gcc make libtool attr
+echo "Installing dependencies..done"
+
+# Clone repo
+git clone https://github.com/kdave/btrfs-progs.git 
+
+# Build
+cd ~/btrfs-progs && ./autogen.sh && \
+./configure --prefix /usr CFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib"  \
+&& make && sudo make install
+
+# Run tests
+cd ~/btrfs-progs && make test
+
+#
+touch ~/btrfsqe/002_btrfsprogs.completed
