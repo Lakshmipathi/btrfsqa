@@ -1,0 +1,2126 @@
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/001-bad-file-extent-bytenr
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+ref mismatch on [12845056 1048576] extent item 1, found 0
+Incorrect local backref count on 12845056 root 5 owner 257 offset 0 found 0 wanted 1 back 0x2509f30
+Backref disk bytenr does not match extent record, bytenr=12845056, ref bytenr=0
+backpointer mismatch on [12845056 1048576]
+owner ref check failed [12845056 1048576]
+ref mismatch on [755944791 1048576] extent item 0, found 1
+Data backref 755944791 root 5 owner 257 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 755944791 root 5 owner 257 offset 0 found 1 wanted 0 back 0x25095f0
+backpointer mismatch on [755944791 1048576]
+bad extent [755944791, 756993367), type mismatch with chunk
+checking free space cache
+checking fs roots
+root 5 inode 257 errors 1000, some csum missing
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: 17442351-31aa-45fa-9503-90fd48874c3e
+cache and super generation don't match, space cache will be invalidated
+found 2392064 bytes used, error(s) found
+total csum bytes: 1024
+total tree bytes: 32768
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 24211
+file data blocks allocated: 1310720
+ referenced 1310720
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+ref mismatch on [12845056 1048576] extent item 1, found 0
+Incorrect local backref count on 12845056 root 5 owner 257 offset 0 found 0 wanted 1 back 0x1726f30
+Backref disk bytenr does not match extent record, bytenr=12845056, ref bytenr=0
+backpointer mismatch on [12845056 1048576]
+owner ref check failed [12845056 1048576]
+attempting to repair backref discrepency for bytenr 12845056
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: 17442351-31aa-45fa-9503-90fd48874c3e
+cache and super generation don't match, space cache will be invalidated
+found 3735552 bytes used, no error found
+total csum bytes: 2048
+total tree bytes: 65536
+total fs tree bytes: 16384
+total extent tree bytes: 8192
+btree space waste bytes: 48422
+file data blocks allocated: 2621440
+ referenced 2621440
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: 17442351-31aa-45fa-9503-90fd48874c3e
+cache and super generation don't match, space cache will be invalidated
+found 1343488 bytes used, no error found
+total csum bytes: 1024
+total tree bytes: 32768
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 24211
+file data blocks allocated: 1310720
+ referenced 1310720
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/002-bad-transid
+restoring image default_case.img
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+Ignoring transid failure
+testing image default_case.img.restored
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+Ignoring transid failure
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+ERROR: transid errors in file system
+Checking filesystem on ./default_case.img.restored
+UUID: e0da4603-3bc7-4678-8e1d-d4913cff33e3
+cache and super generation don't match, space cache will be invalidated
+found 1343488 bytes used, error(s) found
+total csum bytes: 1024
+total tree bytes: 32768
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 24211
+file data blocks allocated: 1310720
+ referenced 1310720
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+parent transid verify failed on 29360128 wanted 9 found 755944791
+Ignoring transid failure
+checking extents
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+extent buffer leak: start 29360128 len 4096
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: e0da4603-3bc7-4678-8e1d-d4913cff33e3
+cache and super generation don't match, space cache will be invalidated
+Recowing metadata block 29360128
+found 1343488 bytes used, no error found
+total csum bytes: 1024
+total tree bytes: 32768
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 24211
+file data blocks allocated: 1310720
+ referenced 1310720
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: e0da4603-3bc7-4678-8e1d-d4913cff33e3
+cache and super generation don't match, space cache will be invalidated
+found 1343488 bytes used, no error found
+total csum bytes: 1024
+total tree bytes: 32768
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 24211
+file data blocks allocated: 1310720
+ referenced 1310720
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/003-shift-offsets
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+incorrect offsets 15018 9387
+bad block 29360128
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+incorrect offsets 15018 9387
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: 96ab8688-d6d5-44b0-849e-63720c2c79db
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 65536
+total fs tree bytes: 0
+total extent tree bytes: 16384
+btree space waste bytes: 59474
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+incorrect offsets 15018 9387
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: 96ab8688-d6d5-44b0-849e-63720c2c79db
+Shifting item nr 28 by 5631 bytes in block 29376512
+Shifting item nr 29 by 5631 bytes in block 29376512
+Shifting item nr 30 by 5631 bytes in block 29376512
+Shifting item nr 31 by 5631 bytes in block 29376512
+Shifting item nr 32 by 5631 bytes in block 29376512
+Shifting item nr 33 by 5631 bytes in block 29376512
+Shifting item nr 34 by 5631 bytes in block 29376512
+Shifting item nr 35 by 5631 bytes in block 29376512
+Shifting item nr 36 by 5631 bytes in block 29376512
+Shifting item nr 37 by 5631 bytes in block 29376512
+Shifting item nr 38 by 5631 bytes in block 29376512
+Shifting item nr 39 by 5631 bytes in block 29376512
+Shifting item nr 40 by 5631 bytes in block 29376512
+Shifting item nr 41 by 5631 bytes in block 29376512
+Shifting item nr 42 by 5631 bytes in block 29376512
+Shifting item nr 43 by 5631 bytes in block 29376512
+Shifting item nr 44 by 5631 bytes in block 29376512
+Shifting item nr 45 by 5631 bytes in block 29376512
+Shifting item nr 46 by 5631 bytes in block 29376512
+Shifting item nr 47 by 5631 bytes in block 29376512
+Shifting item nr 48 by 5631 bytes in block 29376512
+Shifting item nr 49 by 5631 bytes in block 29376512
+Shifting item nr 50 by 5631 bytes in block 29376512
+Shifting item nr 51 by 5631 bytes in block 29376512
+Shifting item nr 52 by 5631 bytes in block 29376512
+Shifting item nr 53 by 5631 bytes in block 29376512
+Shifting item nr 54 by 5631 bytes in block 29376512
+Shifting item nr 55 by 5631 bytes in block 29376512
+Shifting item nr 56 by 5631 bytes in block 29376512
+cache and super generation don't match, space cache will be invalidated
+found 786432 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 196608
+total fs tree bytes: 32768
+total extent tree bytes: 32768
+btree space waste bytes: 178837
+file data blocks allocated: 524288
+ referenced 524288
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: 96ab8688-d6d5-44b0-849e-63720c2c79db
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 119363
+file data blocks allocated: 262144
+ referenced 262144
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/004-no-dir-index
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+root 5 root dir 256 error
+root 5 inode 256 errors 200, dir isize wrong
+	unresolved ref dir 256 index 10 namelen 1 name 8 filetype 1 errors 2, no dir index
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: fb9086d2-33f3-4765-a14e-d8a87e3b2ba3
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 119419
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+repairing missing dir index item for inode 265
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: fb9086d2-33f3-4765-a14e-d8a87e3b2ba3
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 119419
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: fb9086d2-33f3-4765-a14e-d8a87e3b2ba3
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 119363
+file data blocks allocated: 262144
+ referenced 262144
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/005-bad-item-offset
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+incorrect offsets 15521 755944822
+bad block 29360128
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+incorrect offsets 15521 755944822
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: f3c14d4b-6623-4f79-8078-a323161f616c
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 65536
+total fs tree bytes: 0
+total extent tree bytes: 16384
+btree space waste bytes: 59474
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+incorrect offsets 15521 755944822
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+repairing missing dir index item for inode 265
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: f3c14d4b-6623-4f79-8078-a323161f616c
+Deleting bogus item [256,96,10] at slot 21 on block 29376512
+Shifting item nr 21 by 31 bytes in block 29376512
+Shifting item nr 22 by 31 bytes in block 29376512
+Shifting item nr 23 by 31 bytes in block 29376512
+Shifting item nr 24 by 31 bytes in block 29376512
+Shifting item nr 25 by 31 bytes in block 29376512
+Shifting item nr 26 by 31 bytes in block 29376512
+Shifting item nr 27 by 31 bytes in block 29376512
+Shifting item nr 28 by 31 bytes in block 29376512
+Shifting item nr 29 by 31 bytes in block 29376512
+Shifting item nr 30 by 31 bytes in block 29376512
+Shifting item nr 31 by 31 bytes in block 29376512
+Shifting item nr 32 by 31 bytes in block 29376512
+Shifting item nr 33 by 31 bytes in block 29376512
+Shifting item nr 34 by 31 bytes in block 29376512
+Shifting item nr 35 by 31 bytes in block 29376512
+Shifting item nr 36 by 31 bytes in block 29376512
+Shifting item nr 37 by 31 bytes in block 29376512
+Shifting item nr 38 by 31 bytes in block 29376512
+Shifting item nr 39 by 31 bytes in block 29376512
+Shifting item nr 40 by 31 bytes in block 29376512
+Shifting item nr 41 by 31 bytes in block 29376512
+Shifting item nr 42 by 31 bytes in block 29376512
+Shifting item nr 43 by 31 bytes in block 29376512
+Shifting item nr 44 by 31 bytes in block 29376512
+Shifting item nr 45 by 31 bytes in block 29376512
+Shifting item nr 46 by 31 bytes in block 29376512
+Shifting item nr 47 by 31 bytes in block 29376512
+Shifting item nr 48 by 31 bytes in block 29376512
+Shifting item nr 49 by 31 bytes in block 29376512
+Shifting item nr 50 by 31 bytes in block 29376512
+Shifting item nr 51 by 31 bytes in block 29376512
+Shifting item nr 52 by 31 bytes in block 29376512
+Shifting item nr 53 by 31 bytes in block 29376512
+Shifting item nr 54 by 31 bytes in block 29376512
+Shifting item nr 55 by 31 bytes in block 29376512
+cache and super generation don't match, space cache will be invalidated
+found 786432 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 196608
+total fs tree bytes: 32768
+total extent tree bytes: 32768
+btree space waste bytes: 178893
+file data blocks allocated: 524288
+ referenced 524288
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: f3c14d4b-6623-4f79-8078-a323161f616c
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 119363
+file data blocks allocated: 262144
+ referenced 262144
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/006-bad-root-items
+extracting image default_case.tar.xz
+testing image test.img
+checking extents
+ref mismatch on [30785536 16384] extent item 0, found 1
+Tree backref 30785536 parent 265 root 265 not found in extent tree
+backpointer mismatch on [30785536 16384]
+ref mismatch on [30900224 16384] extent item 1, found 0
+Backref 30900224 root 265 not referenced back 0x2239180
+Incorrect global backref count on 30900224 found 1 wanted 0
+backpointer mismatch on [30900224 16384]
+owner ref check failed [30900224 16384]
+root item for root 265, current bytenr 30785536, current gen 14, current level 0, new bytenr 30900224, new gen 15, new level 0
+Found 1 roots with an outdated root item.
+Please run a filesystem check with the option --repair to fix them.
+Checking filesystem on test.img
+UUID: 98180bd5-23b9-4d3c-b4bc-438e5bb5cd42
+############### /home/fedora/btrfs-progs/btrfs check --repair test.img
+checking extents
+ref mismatch on [30785536 16384] extent item 0, found 1
+Tree backref 30785536 parent 265 root 265 not found in extent tree
+backpointer mismatch on [30785536 16384]
+adding new tree backref on start 30785536 len 16384 parent 0 root 265
+Repaired extent references for 30785536
+ref mismatch on [30900224 16384] extent item 1, found 0
+Backref 30900224 root 265 not referenced back 0x10c0180
+Incorrect global backref count on 30900224 found 1 wanted 0
+backpointer mismatch on [30900224 16384]
+owner ref check failed [30900224 16384]
+repair deleting extent record: key 30900224 168 16384
+Repaired extent references for 30900224
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on test.img
+UUID: 98180bd5-23b9-4d3c-b4bc-438e5bb5cd42
+cache and super generation don't match, space cache will be invalidated
+found 2461696 bytes used, no error found
+total csum bytes: 932
+total tree bytes: 606208
+total fs tree bytes: 507904
+total extent tree bytes: 16384
+btree space waste bytes: 307683
+file data blocks allocated: 16584704
+ referenced 14213120
+############### /home/fedora/btrfs-progs/btrfs check test.img
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on test.img
+UUID: 98180bd5-23b9-4d3c-b4bc-438e5bb5cd42
+cache and super generation don't match, space cache will be invalidated
+found 2445312 bytes used, no error found
+total csum bytes: 932
+total tree bytes: 606208
+total fs tree bytes: 507904
+total extent tree bytes: 16384
+btree space waste bytes: 307683
+file data blocks allocated: 16584704
+ referenced 14213120
+extracting image skinny_case.tar.xz
+testing image test.img
+checking extents
+Data backref 12582912 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12582912 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x878780
+Incorrect local backref count on 12582912 root 270 owner 262 offset 385024 found 0 wanted 1 back 0x871450
+Backref disk bytenr does not match extent record, bytenr=12582912, ref bytenr=0
+backpointer mismatch on [12582912 24576]
+Data backref 12611584 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12611584 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x8703a0
+Incorrect local backref count on 12611584 root 270 owner 262 offset 2371584 found 0 wanted 1 back 0x871840
+Backref disk bytenr does not match extent record, bytenr=12611584, ref bytenr=0
+backpointer mismatch on [12611584 4096]
+Data backref 12615680 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12615680 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x870400
+Incorrect local backref count on 12615680 root 270 owner 262 offset 2682880 found 0 wanted 1 back 0x871a30
+Backref disk bytenr does not match extent record, bytenr=12615680, ref bytenr=0
+backpointer mismatch on [12615680 28672]
+Data backref 12644352 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12644352 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x8705f0
+Incorrect local backref count on 12644352 root 270 owner 272 offset 1544192 found 0 wanted 1 back 0x871c20
+Backref disk bytenr does not match extent record, bytenr=12644352, ref bytenr=0
+backpointer mismatch on [12644352 4096]
+Data backref 12648448 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12648448 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x8787e0
+Incorrect local backref count on 12648448 root 270 owner 262 offset 614400 found 0 wanted 1 back 0x871ed0
+Backref disk bytenr does not match extent record, bytenr=12648448, ref bytenr=0
+backpointer mismatch on [12648448 24576]
+Data backref 12738560 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12738560 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x8702e0
+Incorrect local backref count on 12738560 root 270 owner 262 offset 2338816 found 0 wanted 1 back 0x872b80
+Backref disk bytenr does not match extent record, bytenr=12738560, ref bytenr=0
+backpointer mismatch on [12738560 4096]
+Data backref 12742656 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12742656 parent 32079872 owner 0 offset 0 found 3 wanted 0 back 0x8786c0
+Incorrect local backref count on 12742656 root 270 owner 262 offset 233472 found 0 wanted 3 back 0x872e30
+Backref disk bytenr does not match extent record, bytenr=12742656, ref bytenr=0
+backpointer mismatch on [12742656 380928]
+Data backref 13123584 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 13123584 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x8788a0
+Incorrect local backref count on 13123584 root 270 owner 262 offset 638976 found 0 wanted 1 back 0x8731a0
+Backref disk bytenr does not match extent record, bytenr=13123584, ref bytenr=0
+backpointer mismatch on [13123584 233472]
+Data backref 13357056 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 13357056 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x870160
+Incorrect local backref count on 13357056 root 270 owner 262 offset 1323008 found 0 wanted 1 back 0x873510
+Backref disk bytenr does not match extent record, bytenr=13357056, ref bytenr=0
+backpointer mismatch on [13357056 1019904]
+Data backref 14376960 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 14376960 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x878900
+Incorrect local backref count on 14376960 root 270 owner 262 offset 872448 found 0 wanted 1 back 0x873880
+Backref disk bytenr does not match extent record, bytenr=14376960, ref bytenr=0
+backpointer mismatch on [14376960 450560]
+Data backref 14827520 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 14827520 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x878840
+Incorrect local backref count on 14827520 root 270 owner 262 offset 634880 found 0 wanted 1 back 0x873bf0
+Backref disk bytenr does not match extent record, bytenr=14827520, ref bytenr=0
+backpointer mismatch on [14827520 4096]
+Data backref 14831616 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 14831616 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x8701c0
+Incorrect local backref count on 14831616 root 270 owner 262 offset 1732608 found 0 wanted 1 back 0x873f60
+Backref disk bytenr does not match extent record, bytenr=14831616, ref bytenr=0
+backpointer mismatch on [14831616 4096]
+Data backref 14839808 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 14839808 parent 32079872 owner 0 offset 0 found 2 wanted 0 back 0x870220
+Incorrect local backref count on 14839808 root 270 owner 262 offset 1736704 found 0 wanted 2 back 0x874460
+Backref disk bytenr does not match extent record, bytenr=14839808, ref bytenr=0
+backpointer mismatch on [14839808 602112]
+Data backref 15441920 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 15441920 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x870340
+Incorrect local backref count on 15441920 root 270 owner 262 offset 2342912 found 0 wanted 1 back 0x874710
+Backref disk bytenr does not match extent record, bytenr=15441920, ref bytenr=0
+backpointer mismatch on [15441920 32768]
+ref mismatch on [15474688 905216] extent item 0, found 1
+Data backref 15474688 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 15474688 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x870530
+backpointer mismatch on [15474688 905216]
+Data backref 16379904 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 16379904 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x870590
+Incorrect local backref count on 16379904 root 270 owner 272 offset 913408 found 0 wanted 1 back 0x874bb0
+Backref disk bytenr does not match extent record, bytenr=16379904, ref bytenr=0
+backpointer mismatch on [16379904 634880]
+Data backref 17014784 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 17014784 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x870280
+Incorrect local backref count on 17014784 root 270 owner 262 offset 2166784 found 0 wanted 1 back 0x874f80
+Backref disk bytenr does not match extent record, bytenr=17014784, ref bytenr=0
+backpointer mismatch on [17014784 118784]
+Data backref 17133568 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 17133568 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x878720
+Incorrect local backref count on 17133568 root 270 owner 262 offset 360448 found 0 wanted 1 back 0x875170
+Backref disk bytenr does not match extent record, bytenr=17133568, ref bytenr=0
+backpointer mismatch on [17133568 20480]
+Incorrect local backref count on 17219584 root 270 owner 281 offset 860160 found 0 wanted 1 back 0x875300
+Backref disk bytenr does not match extent record, bytenr=17219584, ref bytenr=0
+Data backref 17219584 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 17219584 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x870650
+backpointer mismatch on [17219584 131072]
+ref mismatch on [32079872 16384] extent item 0, found 1
+Tree backref 32079872 parent 270 root 270 not found in extent tree
+backpointer mismatch on [32079872 16384]
+ref mismatch on [32096256 16384] extent item 0, found 1
+Tree backref 32096256 parent 270 root 270 not found in extent tree
+backpointer mismatch on [32096256 16384]
+ref mismatch on [32145408 16384] extent item 0, found 1
+Tree backref 32145408 parent 270 root 270 not found in extent tree
+backpointer mismatch on [32145408 16384]
+ref mismatch on [32358400 16384] extent item 1, found 0
+Backref 32358400 root 270 not referenced back 0x877610
+Incorrect global backref count on 32358400 found 1 wanted 0
+backpointer mismatch on [32358400 16384]
+owner ref check failed [32358400 16384]
+ref mismatch on [32374784 16384] extent item 1, found 0
+Backref 32374784 root 270 not referenced back 0x877710
+Incorrect global backref count on 32374784 found 1 wanted 0
+backpointer mismatch on [32374784 16384]
+owner ref check failed [32374784 16384]
+ref mismatch on [32440320 16384] extent item 1, found 0
+Backref 32440320 root 270 not referenced back 0x877910
+Incorrect global backref count on 32440320 found 1 wanted 0
+backpointer mismatch on [32440320 16384]
+owner ref check failed [32440320 16384]
+root item for root 270, current bytenr 32145408, current gen 20, current level 1, new bytenr 32358400, new gen 21, new level 1
+Found 1 roots with an outdated root item.
+Please run a filesystem check with the option --repair to fix them.
+Checking filesystem on test.img
+UUID: 3857c23d-4219-4600-a636-ac7707dc4ff3
+############### /home/fedora/btrfs-progs/btrfs check --repair test.img
+checking extents
+Data backref 12582912 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12582912 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x2301780
+Incorrect local backref count on 12582912 root 270 owner 262 offset 385024 found 0 wanted 1 back 0x22fa450
+Backref disk bytenr does not match extent record, bytenr=12582912, ref bytenr=0
+backpointer mismatch on [12582912 24576]
+repair deleting extent record: key 12582912 168 24576
+adding new data backref on 12582912 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 12582912 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 12582912 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 12582912 parent 30883840 owner 0 offset 0 found 1
+Repaired extent references for 12582912
+Data backref 12611584 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12611584 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f93a0
+Incorrect local backref count on 12611584 root 270 owner 262 offset 2371584 found 0 wanted 1 back 0x22fa840
+Backref disk bytenr does not match extent record, bytenr=12611584, ref bytenr=0
+backpointer mismatch on [12611584 4096]
+repair deleting extent record: key 12611584 168 4096
+adding new data backref on 12611584 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 12611584 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 12611584 parent 31326208 owner 0 offset 0 found 1
+Repaired extent references for 12611584
+Data backref 12615680 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12615680 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f9400
+Incorrect local backref count on 12615680 root 270 owner 262 offset 2682880 found 0 wanted 1 back 0x22faa30
+Backref disk bytenr does not match extent record, bytenr=12615680, ref bytenr=0
+backpointer mismatch on [12615680 28672]
+repair deleting extent record: key 12615680 168 28672
+adding new data backref on 12615680 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 12615680 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 12615680 parent 31326208 owner 0 offset 0 found 1
+Repaired extent references for 12615680
+Data backref 12644352 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12644352 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f95f0
+Incorrect local backref count on 12644352 root 270 owner 272 offset 1544192 found 0 wanted 1 back 0x22fac20
+Backref disk bytenr does not match extent record, bytenr=12644352, ref bytenr=0
+backpointer mismatch on [12644352 4096]
+repair deleting extent record: key 12644352 168 4096
+adding new data backref on 12644352 parent 32899072 owner 0 offset 0 found 1
+adding new data backref on 12644352 parent 32653312 owner 0 offset 0 found 1
+adding new data backref on 12644352 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 12644352 root 5 owner 272 offset 1544192 found 1
+adding new data backref on 12644352 parent 32342016 owner 0 offset 0 found 1
+Repaired extent references for 12644352
+Data backref 12648448 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12648448 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x23017e0
+Incorrect local backref count on 12648448 root 270 owner 262 offset 614400 found 0 wanted 1 back 0x22faed0
+Backref disk bytenr does not match extent record, bytenr=12648448, ref bytenr=0
+backpointer mismatch on [12648448 24576]
+repair deleting extent record: key 12648448 168 24576
+adding new data backref on 12648448 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 12648448 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 12648448 parent 30883840 owner 0 offset 0 found 1
+adding new data backref on 12648448 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 12648448 root 264 owner 262 offset 614400 found 1
+adding new data backref on 12648448 root 263 owner 262 offset 614400 found 1
+adding new data backref on 12648448 root 261 owner 262 offset 614400 found 1
+adding new data backref on 12648448 root 259 owner 262 offset 614400 found 1
+adding new data backref on 12648448 root 260 owner 262 offset 614400 found 1
+adding new data backref on 12648448 root 257 owner 262 offset 614400 found 1
+adding new data backref on 12648448 root 258 owner 262 offset 614400 found 1
+adding new data backref on 12648448 root 262 owner 262 offset 614400 found 1
+Repaired extent references for 12648448
+Data backref 12738560 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12738560 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f92e0
+Incorrect local backref count on 12738560 root 270 owner 262 offset 2338816 found 0 wanted 1 back 0x22fbb80
+Backref disk bytenr does not match extent record, bytenr=12738560, ref bytenr=0
+backpointer mismatch on [12738560 4096]
+repair deleting extent record: key 12738560 168 4096
+adding new data backref on 12738560 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 12738560 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 12738560 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 12738560 root 264 owner 262 offset 2338816 found 1
+adding new data backref on 12738560 parent 30883840 owner 0 offset 0 found 1
+Repaired extent references for 12738560
+Data backref 12742656 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 12742656 parent 32079872 owner 0 offset 0 found 3 wanted 0 back 0x23016c0
+Incorrect local backref count on 12742656 root 270 owner 262 offset 233472 found 0 wanted 3 back 0x22fbe30
+Backref disk bytenr does not match extent record, bytenr=12742656, ref bytenr=0
+backpointer mismatch on [12742656 380928]
+repair deleting extent record: key 12742656 168 380928
+adding new data backref on 12742656 parent 32079872 owner 0 offset 0 found 3
+adding new data backref on 12742656 parent 31817728 owner 0 offset 0 found 3
+adding new data backref on 12742656 parent 30883840 owner 0 offset 0 found 2
+adding new data backref on 12742656 parent 31326208 owner 0 offset 0 found 2
+adding new data backref on 12742656 root 264 owner 262 offset 233472 found 1
+adding new data backref on 12742656 root 262 owner 262 offset 233472 found 1
+adding new data backref on 12742656 root 263 owner 262 offset 233472 found 1
+Repaired extent references for 12742656
+Data backref 13123584 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 13123584 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x23018a0
+Incorrect local backref count on 13123584 root 270 owner 262 offset 638976 found 0 wanted 1 back 0x22fc1a0
+Backref disk bytenr does not match extent record, bytenr=13123584, ref bytenr=0
+backpointer mismatch on [13123584 233472]
+repair deleting extent record: key 13123584 168 233472
+adding new data backref on 13123584 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 13123584 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 13123584 parent 30883840 owner 0 offset 0 found 1
+adding new data backref on 13123584 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 13123584 root 264 owner 262 offset 638976 found 1
+adding new data backref on 13123584 root 262 owner 262 offset 638976 found 1
+adding new data backref on 13123584 root 263 owner 262 offset 638976 found 1
+Repaired extent references for 13123584
+Data backref 13357056 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 13357056 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f9160
+Incorrect local backref count on 13357056 root 270 owner 262 offset 1323008 found 0 wanted 1 back 0x22fc510
+Backref disk bytenr does not match extent record, bytenr=13357056, ref bytenr=0
+backpointer mismatch on [13357056 1019904]
+repair deleting extent record: key 13357056 168 1019904
+adding new data backref on 13357056 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 13357056 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 13357056 parent 30883840 owner 0 offset 0 found 1
+adding new data backref on 13357056 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 13357056 root 264 owner 262 offset 1323008 found 1
+adding new data backref on 13357056 root 262 owner 262 offset 1323008 found 1
+adding new data backref on 13357056 root 263 owner 262 offset 1323008 found 1
+Repaired extent references for 13357056
+Data backref 14376960 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 14376960 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x2301900
+Incorrect local backref count on 14376960 root 270 owner 262 offset 872448 found 0 wanted 1 back 0x22fc880
+Backref disk bytenr does not match extent record, bytenr=14376960, ref bytenr=0
+backpointer mismatch on [14376960 450560]
+repair deleting extent record: key 14376960 168 450560
+adding new data backref on 14376960 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 14376960 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 14376960 parent 30883840 owner 0 offset 0 found 1
+adding new data backref on 14376960 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 14376960 root 264 owner 262 offset 872448 found 1
+adding new data backref on 14376960 root 262 owner 262 offset 872448 found 1
+adding new data backref on 14376960 root 263 owner 262 offset 872448 found 1
+Repaired extent references for 14376960
+Data backref 14827520 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 14827520 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x2301840
+Incorrect local backref count on 14827520 root 270 owner 262 offset 634880 found 0 wanted 1 back 0x22fcbf0
+Backref disk bytenr does not match extent record, bytenr=14827520, ref bytenr=0
+backpointer mismatch on [14827520 4096]
+repair deleting extent record: key 14827520 168 4096
+adding new data backref on 14827520 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 14827520 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 14827520 parent 30883840 owner 0 offset 0 found 1
+adding new data backref on 14827520 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 14827520 root 264 owner 262 offset 634880 found 1
+adding new data backref on 14827520 root 262 owner 262 offset 634880 found 1
+adding new data backref on 14827520 root 263 owner 262 offset 634880 found 1
+Repaired extent references for 14827520
+Data backref 14831616 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 14831616 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f91c0
+Incorrect local backref count on 14831616 root 270 owner 262 offset 1732608 found 0 wanted 1 back 0x22fcf60
+Backref disk bytenr does not match extent record, bytenr=14831616, ref bytenr=0
+backpointer mismatch on [14831616 4096]
+repair deleting extent record: key 14831616 168 4096
+adding new data backref on 14831616 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 14831616 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 14831616 parent 30883840 owner 0 offset 0 found 1
+adding new data backref on 14831616 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 14831616 root 264 owner 262 offset 1732608 found 1
+adding new data backref on 14831616 root 262 owner 262 offset 1732608 found 1
+adding new data backref on 14831616 root 263 owner 262 offset 1732608 found 1
+Repaired extent references for 14831616
+Data backref 14839808 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 14839808 parent 32079872 owner 0 offset 0 found 2 wanted 0 back 0x22f9220
+Incorrect local backref count on 14839808 root 270 owner 262 offset 1736704 found 0 wanted 2 back 0x22fd460
+Backref disk bytenr does not match extent record, bytenr=14839808, ref bytenr=0
+backpointer mismatch on [14839808 602112]
+repair deleting extent record: key 14839808 168 602112
+adding new data backref on 14839808 parent 32079872 owner 0 offset 0 found 2
+adding new data backref on 14839808 parent 31326208 owner 0 offset 0 found 2
+adding new data backref on 14839808 parent 31817728 owner 0 offset 0 found 2
+adding new data backref on 14839808 root 264 owner 262 offset 1736704 found 1
+adding new data backref on 14839808 parent 30883840 owner 0 offset 0 found 1
+Repaired extent references for 14839808
+Data backref 15441920 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 15441920 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f9340
+Incorrect local backref count on 15441920 root 270 owner 262 offset 2342912 found 0 wanted 1 back 0x22fd710
+Backref disk bytenr does not match extent record, bytenr=15441920, ref bytenr=0
+backpointer mismatch on [15441920 32768]
+repair deleting extent record: key 15441920 168 32768
+adding new data backref on 15441920 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 15441920 parent 31326208 owner 0 offset 0 found 1
+adding new data backref on 15441920 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 15441920 root 264 owner 262 offset 2342912 found 1
+adding new data backref on 15441920 parent 30883840 owner 0 offset 0 found 1
+Repaired extent references for 15441920
+ref mismatch on [15474688 905216] extent item 0, found 1
+Data backref 15474688 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 15474688 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f9530
+backpointer mismatch on [15474688 905216]
+repair deleting extent record: key 15474688 168 905216
+adding new data backref on 15474688 parent 32079872 owner 0 offset 0 found 1
+Repaired extent references for 15474688
+Data backref 16379904 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 16379904 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f9590
+Incorrect local backref count on 16379904 root 270 owner 272 offset 913408 found 0 wanted 1 back 0x22fdbb0
+Backref disk bytenr does not match extent record, bytenr=16379904, ref bytenr=0
+backpointer mismatch on [16379904 634880]
+repair deleting extent record: key 16379904 168 634880
+adding new data backref on 16379904 parent 32899072 owner 0 offset 0 found 1
+adding new data backref on 16379904 parent 32653312 owner 0 offset 0 found 1
+adding new data backref on 16379904 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 16379904 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 16379904 parent 32342016 owner 0 offset 0 found 1
+adding new data backref on 16379904 parent 30883840 owner 0 offset 0 found 1
+adding new data backref on 16379904 root 5 owner 272 offset 913408 found 1
+adding new data backref on 16379904 parent 31326208 owner 0 offset 0 found 1
+Repaired extent references for 16379904
+Data backref 17014784 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 17014784 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f9280
+Incorrect local backref count on 17014784 root 270 owner 262 offset 2166784 found 0 wanted 1 back 0x22fdf80
+Backref disk bytenr does not match extent record, bytenr=17014784, ref bytenr=0
+backpointer mismatch on [17014784 118784]
+repair deleting extent record: key 17014784 168 118784
+adding new data backref on 17014784 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 17014784 parent 31817728 owner 0 offset 0 found 1
+adding new data backref on 17014784 parent 31326208 owner 0 offset 0 found 1
+Repaired extent references for 17014784
+Data backref 17133568 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 17133568 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x2301720
+Incorrect local backref count on 17133568 root 270 owner 262 offset 360448 found 0 wanted 1 back 0x22fe170
+Backref disk bytenr does not match extent record, bytenr=17133568, ref bytenr=0
+backpointer mismatch on [17133568 20480]
+repair deleting extent record: key 17133568 168 20480
+adding new data backref on 17133568 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 17133568 parent 31817728 owner 0 offset 0 found 1
+Repaired extent references for 17133568
+Incorrect local backref count on 17219584 root 270 owner 281 offset 860160 found 0 wanted 1 back 0x22fe300
+Backref disk bytenr does not match extent record, bytenr=17219584, ref bytenr=0
+Data backref 17219584 parent 32079872 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 17219584 parent 32079872 owner 0 offset 0 found 1 wanted 0 back 0x22f9650
+backpointer mismatch on [17219584 131072]
+repair deleting extent record: key 17219584 168 131072
+adding new data backref on 17219584 parent 33243136 owner 0 offset 0 found 1
+adding new data backref on 17219584 parent 32931840 owner 0 offset 0 found 1
+adding new data backref on 17219584 parent 32342016 owner 0 offset 0 found 1
+adding new data backref on 17219584 root 5 owner 281 offset 860160 found 1
+adding new data backref on 17219584 parent 32079872 owner 0 offset 0 found 1
+adding new data backref on 17219584 parent 32653312 owner 0 offset 0 found 1
+Repaired extent references for 17219584
+ref mismatch on [32079872 16384] extent item 0, found 1
+Tree backref 32079872 parent 270 root 270 not found in extent tree
+backpointer mismatch on [32079872 16384]
+adding new tree backref on start 32079872 len 16384 parent 0 root 270
+Repaired extent references for 32079872
+ref mismatch on [32096256 16384] extent item 0, found 1
+Tree backref 32096256 parent 270 root 270 not found in extent tree
+backpointer mismatch on [32096256 16384]
+adding new tree backref on start 32096256 len 16384 parent 0 root 270
+Repaired extent references for 32096256
+ref mismatch on [32145408 16384] extent item 0, found 1
+Tree backref 32145408 parent 270 root 270 not found in extent tree
+backpointer mismatch on [32145408 16384]
+adding new tree backref on start 32145408 len 16384 parent 0 root 270
+Repaired extent references for 32145408
+ref mismatch on [32358400 16384] extent item 1, found 0
+Backref 32358400 root 270 not referenced back 0x2300610
+Incorrect global backref count on 32358400 found 1 wanted 0
+backpointer mismatch on [32358400 16384]
+owner ref check failed [32358400 16384]
+repair deleting extent record: key 32358400 169 1
+Repaired extent references for 32358400
+ref mismatch on [32374784 16384] extent item 1, found 0
+Backref 32374784 root 270 not referenced back 0x2300710
+Incorrect global backref count on 32374784 found 1 wanted 0
+backpointer mismatch on [32374784 16384]
+owner ref check failed [32374784 16384]
+repair deleting extent record: key 32374784 169 0
+Repaired extent references for 32374784
+ref mismatch on [32440320 16384] extent item 1, found 0
+Backref 32440320 root 270 not referenced back 0x2300910
+Incorrect global backref count on 32440320 found 1 wanted 0
+backpointer mismatch on [32440320 16384]
+owner ref check failed [32440320 16384]
+repair deleting extent record: key 32440320 169 0
+Repaired extent references for 32440320
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on test.img
+UUID: 3857c23d-4219-4600-a636-ac7707dc4ff3
+cache and super generation don't match, space cache will be invalidated
+found 7245824 bytes used, no error found
+total csum bytes: 660
+total tree bytes: 786432
+total fs tree bytes: 688128
+total extent tree bytes: 16384
+btree space waste bytes: 459600
+file data blocks allocated: 35536896
+ referenced 25890816
+############### /home/fedora/btrfs-progs/btrfs check test.img
+checking extents
+ref mismatch on [15474688 905216] extent item 1, found 4
+Data backref 15474688 parent 31817728 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 15474688 parent 31817728 owner 0 offset 0 found 1 wanted 0 back 0x16212f0
+Data backref 15474688 parent 30883840 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 15474688 parent 30883840 owner 0 offset 0 found 1 wanted 0 back 0x161e710
+Data backref 15474688 parent 31326208 owner 0 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 15474688 parent 31326208 owner 0 offset 0 found 1 wanted 0 back 0x1623b80
+backpointer mismatch on [15474688 905216]
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on test.img
+UUID: 3857c23d-4219-4600-a636-ac7707dc4ff3
+cache and super generation don't match, space cache will be invalidated
+found 6291456 bytes used, no error found
+total csum bytes: 660
+total tree bytes: 786432
+total fs tree bytes: 688128
+total extent tree bytes: 16384
+btree space waste bytes: 459860
+file data blocks allocated: 35536896
+ referenced 25890816
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/007-bad-offset-snapshots
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+incorrect offsets 12621 755944842
+bad block 29425664
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+incorrect offsets 12621 755944842
+root 5 inode 257 errors 200, dir isize wrong
+root 5 inode 258 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 2 namelen 4 name .git filetype 2 errors 4, no inode ref
+root 5 inode 1872 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 3 namelen 10 name .gitignore filetype 1 errors 4, no inode ref
+root 5 inode 1873 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 4 namelen 7 name COPYING filetype 1 errors 4, no inode ref
+root 5 inode 1874 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 5 namelen 13 name Documentation filetype 2 errors 4, no inode ref
+root 5 inode 1907 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 6 namelen 7 name INSTALL filetype 1 errors 4, no inode ref
+root 5 inode 1908 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 7 namelen 8 name Makefile filetype 1 errors 4, no inode ref
+root 5 inode 1909 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 8 namelen 9 name backref.c filetype 1 errors 4, no inode ref
+root 5 inode 1910 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 9 namelen 9 name backref.h filetype 1 errors 4, no inode ref
+root 5 inode 1911 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 10 namelen 3 name bcp filetype 1 errors 4, no inode ref
+root 5 inode 1912 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 11 namelen 8 name bitops.h filetype 1 errors 4, no inode ref
+root 5 inode 1913 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 12 namelen 17 name btrfs-calc-size.c filetype 1 errors 4, no inode ref
+root 5 inode 1914 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 13 namelen 15 name btrfs-convert.c filetype 1 errors 4, no inode ref
+root 5 inode 1915 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 14 namelen 21 name btrfs-corrupt-block.c filetype 1 errors 4, no inode ref
+root 5 inode 1916 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 15 namelen 11 name btrfs-crc.c filetype 1 errors 4, no inode ref
+root 5 inode 1917 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 16 namelen 18 name btrfs-debug-tree.c filetype 1 errors 4, no inode ref
+root 5 inode 1918 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 17 namelen 17 name btrfs-find-root.c filetype 1 errors 4, no inode ref
+root 5 inode 1919 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 18 namelen 17 name btrfs-fragments.c filetype 1 errors 4, no inode ref
+root 5 inode 1920 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 19 namelen 13 name btrfs-image.c filetype 1 errors 4, no inode ref
+root 5 inode 1921 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 20 namelen 12 name btrfs-list.c filetype 1 errors 4, no inode ref
+root 5 inode 1922 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 21 namelen 12 name btrfs-list.h filetype 1 errors 4, no inode ref
+root 5 inode 1923 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 22 namelen 19 name btrfs-map-logical.c filetype 1 errors 4, no inode ref
+root 5 inode 1924 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 23 namelen 20 name btrfs-select-super.c filetype 1 errors 4, no inode ref
+root 5 inode 1925 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 24 namelen 18 name btrfs-show-super.c filetype 1 errors 4, no inode ref
+root 5 inode 1926 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 25 namelen 16 name btrfs-zero-log.c filetype 1 errors 4, no inode ref
+root 5 inode 1927 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 26 namelen 7 name btrfs.c filetype 1 errors 4, no inode ref
+root 5 inode 1928 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 27 namelen 9 name btrfsck.h filetype 1 errors 4, no inode ref
+root 5 inode 1929 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 28 namelen 11 name btrfstune.c filetype 1 errors 4, no inode ref
+root 5 inode 1930 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 29 namelen 15 name chunk-recover.c filetype 1 errors 4, no inode ref
+root 5 inode 1931 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 30 namelen 14 name cmds-balance.c filetype 1 errors 4, no inode ref
+root 5 inode 1932 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 31 namelen 12 name cmds-check.c filetype 1 errors 4, no inode ref
+root 5 inode 1933 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 32 namelen 13 name cmds-device.c filetype 1 errors 4, no inode ref
+root 5 inode 1934 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 33 namelen 17 name cmds-filesystem.c filetype 1 errors 4, no inode ref
+root 5 inode 1935 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 34 namelen 14 name cmds-inspect.c filetype 1 errors 4, no inode ref
+root 5 inode 1936 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 35 namelen 15 name cmds-property.c filetype 1 errors 4, no inode ref
+root 5 inode 1937 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 36 namelen 13 name cmds-qgroup.c filetype 1 errors 4, no inode ref
+root 5 inode 1938 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 37 namelen 12 name cmds-quota.c filetype 1 errors 4, no inode ref
+root 5 inode 1939 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 38 namelen 14 name cmds-receive.c filetype 1 errors 4, no inode ref
+root 5 inode 1940 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 39 namelen 14 name cmds-replace.c filetype 1 errors 4, no inode ref
+root 5 inode 1941 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 40 namelen 13 name cmds-rescue.c filetype 1 errors 4, no inode ref
+root 5 inode 1942 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 41 namelen 14 name cmds-restore.c filetype 1 errors 4, no inode ref
+root 5 inode 1943 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 42 namelen 12 name cmds-scrub.c filetype 1 errors 4, no inode ref
+root 5 inode 1944 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 43 namelen 11 name cmds-send.c filetype 1 errors 4, no inode ref
+root 5 inode 1945 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 44 namelen 16 name cmds-subvolume.c filetype 1 errors 4, no inode ref
+root 5 inode 1946 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 45 namelen 10 name commands.h filetype 1 errors 4, no inode ref
+root 5 inode 1947 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 46 namelen 8 name crc32c.c filetype 1 errors 4, no inode ref
+root 5 inode 1948 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 47 namelen 8 name crc32c.h filetype 1 errors 4, no inode ref
+root 5 inode 1949 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 48 namelen 7 name ctree.c filetype 1 errors 4, no inode ref
+root 5 inode 1950 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 49 namelen 7 name ctree.h filetype 1 errors 4, no inode ref
+root 5 inode 1951 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 50 namelen 10 name dir-item.c filetype 1 errors 4, no inode ref
+root 5 inode 1952 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 51 namelen 10 name dir-test.c filetype 1 errors 4, no inode ref
+root 5 inode 1953 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 52 namelen 9 name disk-io.c filetype 1 errors 4, no inode ref
+root 5 inode 1954 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 53 namelen 9 name disk-io.h filetype 1 errors 4, no inode ref
+root 5 inode 1955 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 54 namelen 14 name extent-cache.c filetype 1 errors 4, no inode ref
+root 5 inode 1956 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 55 namelen 14 name extent-cache.h filetype 1 errors 4, no inode ref
+root 5 inode 1957 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 56 namelen 13 name extent-tree.c filetype 1 errors 4, no inode ref
+root 5 inode 1958 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 57 namelen 11 name extent_io.c filetype 1 errors 4, no inode ref
+root 5 inode 1959 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 58 namelen 11 name extent_io.h filetype 1 errors 4, no inode ref
+root 5 inode 1960 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 59 namelen 11 name file-item.c filetype 1 errors 4, no inode ref
+root 5 inode 1961 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 60 namelen 18 name free-space-cache.c filetype 1 errors 4, no inode ref
+root 5 inode 1962 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 61 namelen 18 name free-space-cache.h filetype 1 errors 4, no inode ref
+root 5 inode 1963 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 62 namelen 10 name fsck.btrfs filetype 1 errors 4, no inode ref
+root 5 inode 1964 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 63 namelen 6 name hash.h filetype 1 errors 4, no inode ref
+root 5 inode 1965 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 64 namelen 8 name hasher.c filetype 1 errors 4, no inode ref
+root 5 inode 1966 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 65 namelen 6 name help.c filetype 1 errors 4, no inode ref
+root 5 inode 1967 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 66 namelen 12 name inode-item.c filetype 1 errors 4, no inode ref
+root 5 inode 1968 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 67 namelen 11 name inode-map.c filetype 1 errors 4, no inode ref
+root 5 inode 1969 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 68 namelen 12 name ioctl-test.c filetype 1 errors 4, no inode ref
+root 5 inode 1970 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 69 namelen 7 name ioctl.h filetype 1 errors 4, no inode ref
+root 5 inode 1971 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 70 namelen 12 name kerncompat.h filetype 1 errors 4, no inode ref
+root 5 inode 1972 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 71 namelen 6 name list.h filetype 1 errors 4, no inode ref
+root 5 inode 1973 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 72 namelen 11 name list_sort.c filetype 1 errors 4, no inode ref
+root 5 inode 1974 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 73 namelen 11 name list_sort.h filetype 1 errors 4, no inode ref
+root 5 inode 1975 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 74 namelen 6 name math.h filetype 1 errors 4, no inode ref
+root 5 inode 1976 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 75 namelen 6 name mkfs.c filetype 1 errors 4, no inode ref
+root 5 inode 1977 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 76 namelen 12 name print-tree.c filetype 1 errors 4, no inode ref
+root 5 inode 1978 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 77 namelen 12 name print-tree.h filetype 1 errors 4, no inode ref
+root 5 inode 1979 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 78 namelen 7 name props.c filetype 1 errors 4, no inode ref
+root 5 inode 1980 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 79 namelen 7 name props.h filetype 1 errors 4, no inode ref
+root 5 inode 1981 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 80 namelen 15 name qgroup-verify.c filetype 1 errors 4, no inode ref
+root 5 inode 1982 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 81 namelen 15 name qgroup-verify.h filetype 1 errors 4, no inode ref
+root 5 inode 1983 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 82 namelen 8 name qgroup.c filetype 1 errors 4, no inode ref
+root 5 inode 1984 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 83 namelen 8 name qgroup.h filetype 1 errors 4, no inode ref
+root 5 inode 1985 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 84 namelen 12 name quick-test.c filetype 1 errors 4, no inode ref
+root 5 inode 1986 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 85 namelen 12 name radix-tree.c filetype 1 errors 4, no inode ref
+root 5 inode 1987 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 86 namelen 12 name radix-tree.h filetype 1 errors 4, no inode ref
+root 5 inode 1988 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 87 namelen 7 name raid6.c filetype 1 errors 4, no inode ref
+root 5 inode 1989 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 88 namelen 13 name random-test.c filetype 1 errors 4, no inode ref
+root 5 inode 1990 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 89 namelen 8 name rbtree.c filetype 1 errors 4, no inode ref
+root 5 inode 1991 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 90 namelen 8 name rbtree.h filetype 1 errors 4, no inode ref
+root 5 inode 1992 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 91 namelen 18 name rbtree_augmented.h filetype 1 errors 4, no inode ref
+root 5 inode 1993 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 92 namelen 8 name repair.c filetype 1 errors 4, no inode ref
+root 5 inode 1994 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 93 namelen 8 name repair.h filetype 1 errors 4, no inode ref
+root 5 inode 1995 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 94 namelen 11 name root-tree.c filetype 1 errors 4, no inode ref
+root 5 inode 1996 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 95 namelen 13 name send-stream.c filetype 1 errors 4, no inode ref
+root 5 inode 1997 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 96 namelen 13 name send-stream.h filetype 1 errors 4, no inode ref
+root 5 inode 1998 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 97 namelen 11 name send-test.c filetype 1 errors 4, no inode ref
+root 5 inode 1999 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 98 namelen 12 name send-utils.c filetype 1 errors 4, no inode ref
+root 5 inode 2000 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 99 namelen 12 name send-utils.h filetype 1 errors 4, no inode ref
+root 5 inode 2001 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 6 name send.h filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2002 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 11 name show-blocks filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2003 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 15 name super-recover.c filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2004 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 5 name tests filetype 2 errors 6, no dir index, no inode ref
+root 5 inode 2013 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 13 name transaction.h filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2014 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 7 name ulist.c filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2015 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 7 name ulist.h filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2016 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 11 name utils-lib.c filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2017 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 7 name utils.c filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2018 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 7 name utils.h filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2019 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 11 name uuid-tree.c filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2020 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 10 name version.sh filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2021 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 9 name volumes.c filetype 1 errors 6, no dir index, no inode ref
+root 5 inode 2022 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 0 namelen 9 name volumes.h filetype 1 errors 6, no dir index, no inode ref
+root 258 inode 257 errors 200, dir isize wrong
+root 258 inode 258 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 2 namelen 4 name .git filetype 2 errors 4, no inode ref
+root 258 inode 265 errors 1, no inode item
+	unresolved ref dir 262 index 4 namelen 17 name commit-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 258 inode 266 errors 2000, link count wrong
+	unresolved ref dir 262 index 5 namelen 21 name pre-applypatch.sample filetype 0 errors 3, no dir item, no dir index
+root 258 inode 267 errors 2000, link count wrong
+	unresolved ref dir 262 index 6 namelen 13 name update.sample filetype 0 errors 3, no dir item, no dir index
+root 258 inode 268 errors 2000, link count wrong
+	unresolved ref dir 262 index 7 namelen 18 name post-update.sample filetype 0 errors 3, no dir item, no dir index
+root 258 inode 269 errors 2000, link count wrong
+	unresolved ref dir 262 index 8 namelen 25 name prepare-commit-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 258 inode 270 errors 2000, link count wrong
+	unresolved ref dir 262 index 9 namelen 21 name applypatch-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 258 inode 271 errors 2000, link count wrong
+	unresolved ref dir 262 index 10 namelen 17 name pre-commit.sample filetype 0 errors 3, no dir item, no dir index
+root 258 inode 272 errors 2000, link count wrong
+	unresolved ref dir 258 index 4 namelen 11 name description filetype 0 errors 3, no dir item, no dir index
+root 258 inode 273 errors 2000, link count wrong
+	unresolved ref dir 258 index 5 namelen 4 name info filetype 0 errors 3, no dir item, no dir index
+root 258 inode 275 errors 2000, link count wrong
+	unresolved ref dir 258 index 6 namelen 8 name branches filetype 0 errors 3, no dir item, no dir index
+root 258 inode 283 errors 2000, link count wrong
+	unresolved ref dir 258 index 19 namelen 7 name objects filetype 0 errors 3, no dir item, no dir index
+root 258 inode 1855 errors 2000, link count wrong
+	unresolved ref dir 258 index 25 namelen 11 name packed-refs filetype 0 errors 3, no dir item, no dir index
+root 258 inode 1856 errors 2000, link count wrong
+	unresolved ref dir 259 index 4 namelen 7 name remotes filetype 0 errors 3, no dir item, no dir index
+root 258 inode 1859 errors 2000, link count wrong
+	unresolved ref dir 258 index 26 namelen 4 name logs filetype 0 errors 3, no dir item, no dir index
+root 258 inode 1864 errors 2000, link count wrong
+	unresolved ref dir 258 index 28 namelen 4 name HEAD filetype 0 errors 3, no dir item, no dir index
+root 258 inode 1865 errors 2000, link count wrong
+	unresolved ref dir 260 index 3 namelen 6 name master filetype 0 errors 3, no dir item, no dir index
+root 258 inode 1870 errors 2000, link count wrong
+	unresolved ref dir 258 index 32 namelen 6 name config filetype 0 errors 3, no dir item, no dir index
+root 258 inode 1871 errors 2000, link count wrong
+	unresolved ref dir 258 index 34 namelen 5 name index filetype 0 errors 3, no dir item, no dir index
+	unresolved ref dir 257 index 100 namelen 6 name send.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 101 namelen 11 name show-blocks filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 102 namelen 15 name super-recover.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 103 namelen 5 name tests filetype 2 errors 2, no dir index
+	unresolved ref dir 257 index 104 namelen 13 name transaction.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 105 namelen 7 name ulist.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 106 namelen 7 name ulist.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 107 namelen 11 name utils-lib.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 108 namelen 7 name utils.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 109 namelen 7 name utils.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 110 namelen 11 name uuid-tree.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 111 namelen 10 name version.sh filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 112 namelen 9 name volumes.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 113 namelen 9 name volumes.h filetype 1 errors 2, no dir index
+root 259 inode 257 errors 200, dir isize wrong
+root 259 inode 258 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 2 namelen 4 name .git filetype 2 errors 4, no inode ref
+root 259 inode 265 errors 1, no inode item
+	unresolved ref dir 262 index 4 namelen 17 name commit-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 259 inode 266 errors 2000, link count wrong
+	unresolved ref dir 262 index 5 namelen 21 name pre-applypatch.sample filetype 0 errors 3, no dir item, no dir index
+root 259 inode 267 errors 2000, link count wrong
+	unresolved ref dir 262 index 6 namelen 13 name update.sample filetype 0 errors 3, no dir item, no dir index
+root 259 inode 268 errors 2000, link count wrong
+	unresolved ref dir 262 index 7 namelen 18 name post-update.sample filetype 0 errors 3, no dir item, no dir index
+root 259 inode 269 errors 2000, link count wrong
+	unresolved ref dir 262 index 8 namelen 25 name prepare-commit-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 259 inode 270 errors 2000, link count wrong
+	unresolved ref dir 262 index 9 namelen 21 name applypatch-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 259 inode 271 errors 2000, link count wrong
+	unresolved ref dir 262 index 10 namelen 17 name pre-commit.sample filetype 0 errors 3, no dir item, no dir index
+root 259 inode 272 errors 2000, link count wrong
+	unresolved ref dir 258 index 4 namelen 11 name description filetype 0 errors 3, no dir item, no dir index
+root 259 inode 273 errors 2000, link count wrong
+	unresolved ref dir 258 index 5 namelen 4 name info filetype 0 errors 3, no dir item, no dir index
+root 259 inode 275 errors 2000, link count wrong
+	unresolved ref dir 258 index 6 namelen 8 name branches filetype 0 errors 3, no dir item, no dir index
+root 259 inode 283 errors 2000, link count wrong
+	unresolved ref dir 258 index 19 namelen 7 name objects filetype 0 errors 3, no dir item, no dir index
+root 259 inode 1855 errors 2000, link count wrong
+	unresolved ref dir 258 index 25 namelen 11 name packed-refs filetype 0 errors 3, no dir item, no dir index
+root 259 inode 1856 errors 2000, link count wrong
+	unresolved ref dir 259 index 4 namelen 7 name remotes filetype 0 errors 3, no dir item, no dir index
+root 259 inode 1859 errors 2000, link count wrong
+	unresolved ref dir 258 index 26 namelen 4 name logs filetype 0 errors 3, no dir item, no dir index
+root 259 inode 1864 errors 2000, link count wrong
+	unresolved ref dir 258 index 28 namelen 4 name HEAD filetype 0 errors 3, no dir item, no dir index
+root 259 inode 1865 errors 2000, link count wrong
+	unresolved ref dir 260 index 3 namelen 6 name master filetype 0 errors 3, no dir item, no dir index
+root 259 inode 1870 errors 2000, link count wrong
+	unresolved ref dir 258 index 32 namelen 6 name config filetype 0 errors 3, no dir item, no dir index
+root 259 inode 1871 errors 2000, link count wrong
+	unresolved ref dir 258 index 34 namelen 5 name index filetype 0 errors 3, no dir item, no dir index
+	unresolved ref dir 257 index 100 namelen 6 name send.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 101 namelen 11 name show-blocks filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 102 namelen 15 name super-recover.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 103 namelen 5 name tests filetype 2 errors 2, no dir index
+	unresolved ref dir 257 index 104 namelen 13 name transaction.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 105 namelen 7 name ulist.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 106 namelen 7 name ulist.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 107 namelen 11 name utils-lib.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 108 namelen 7 name utils.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 109 namelen 7 name utils.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 110 namelen 11 name uuid-tree.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 111 namelen 10 name version.sh filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 112 namelen 9 name volumes.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 113 namelen 9 name volumes.h filetype 1 errors 2, no dir index
+root 260 inode 257 errors 200, dir isize wrong
+root 260 inode 258 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 2 namelen 4 name .git filetype 2 errors 4, no inode ref
+root 260 inode 265 errors 1, no inode item
+	unresolved ref dir 262 index 4 namelen 17 name commit-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 260 inode 266 errors 2000, link count wrong
+	unresolved ref dir 262 index 5 namelen 21 name pre-applypatch.sample filetype 0 errors 3, no dir item, no dir index
+root 260 inode 267 errors 2000, link count wrong
+	unresolved ref dir 262 index 6 namelen 13 name update.sample filetype 0 errors 3, no dir item, no dir index
+root 260 inode 268 errors 2000, link count wrong
+	unresolved ref dir 262 index 7 namelen 18 name post-update.sample filetype 0 errors 3, no dir item, no dir index
+root 260 inode 269 errors 2000, link count wrong
+	unresolved ref dir 262 index 8 namelen 25 name prepare-commit-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 260 inode 270 errors 2000, link count wrong
+	unresolved ref dir 262 index 9 namelen 21 name applypatch-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 260 inode 271 errors 2000, link count wrong
+	unresolved ref dir 262 index 10 namelen 17 name pre-commit.sample filetype 0 errors 3, no dir item, no dir index
+root 260 inode 272 errors 2000, link count wrong
+	unresolved ref dir 258 index 4 namelen 11 name description filetype 0 errors 3, no dir item, no dir index
+root 260 inode 273 errors 2000, link count wrong
+	unresolved ref dir 258 index 5 namelen 4 name info filetype 0 errors 3, no dir item, no dir index
+root 260 inode 275 errors 2000, link count wrong
+	unresolved ref dir 258 index 6 namelen 8 name branches filetype 0 errors 3, no dir item, no dir index
+root 260 inode 283 errors 2000, link count wrong
+	unresolved ref dir 258 index 19 namelen 7 name objects filetype 0 errors 3, no dir item, no dir index
+root 260 inode 1855 errors 2000, link count wrong
+	unresolved ref dir 258 index 25 namelen 11 name packed-refs filetype 0 errors 3, no dir item, no dir index
+root 260 inode 1856 errors 2000, link count wrong
+	unresolved ref dir 259 index 4 namelen 7 name remotes filetype 0 errors 3, no dir item, no dir index
+root 260 inode 1859 errors 2000, link count wrong
+	unresolved ref dir 258 index 26 namelen 4 name logs filetype 0 errors 3, no dir item, no dir index
+root 260 inode 1864 errors 2000, link count wrong
+	unresolved ref dir 258 index 28 namelen 4 name HEAD filetype 0 errors 3, no dir item, no dir index
+root 260 inode 1865 errors 2000, link count wrong
+	unresolved ref dir 260 index 3 namelen 6 name master filetype 0 errors 3, no dir item, no dir index
+root 260 inode 1870 errors 2000, link count wrong
+	unresolved ref dir 258 index 32 namelen 6 name config filetype 0 errors 3, no dir item, no dir index
+root 260 inode 1871 errors 2000, link count wrong
+	unresolved ref dir 258 index 34 namelen 5 name index filetype 0 errors 3, no dir item, no dir index
+	unresolved ref dir 257 index 100 namelen 6 name send.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 101 namelen 11 name show-blocks filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 102 namelen 15 name super-recover.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 103 namelen 5 name tests filetype 2 errors 2, no dir index
+	unresolved ref dir 257 index 104 namelen 13 name transaction.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 105 namelen 7 name ulist.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 106 namelen 7 name ulist.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 107 namelen 11 name utils-lib.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 108 namelen 7 name utils.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 109 namelen 7 name utils.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 110 namelen 11 name uuid-tree.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 111 namelen 10 name version.sh filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 112 namelen 9 name volumes.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 113 namelen 9 name volumes.h filetype 1 errors 2, no dir index
+root 261 inode 257 errors 200, dir isize wrong
+root 261 inode 258 errors 2001, no inode item, link count wrong
+	unresolved ref dir 257 index 2 namelen 4 name .git filetype 2 errors 4, no inode ref
+root 261 inode 265 errors 1, no inode item
+	unresolved ref dir 262 index 4 namelen 17 name commit-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 261 inode 266 errors 2000, link count wrong
+	unresolved ref dir 262 index 5 namelen 21 name pre-applypatch.sample filetype 0 errors 3, no dir item, no dir index
+root 261 inode 267 errors 2000, link count wrong
+	unresolved ref dir 262 index 6 namelen 13 name update.sample filetype 0 errors 3, no dir item, no dir index
+root 261 inode 268 errors 2000, link count wrong
+	unresolved ref dir 262 index 7 namelen 18 name post-update.sample filetype 0 errors 3, no dir item, no dir index
+root 261 inode 269 errors 2000, link count wrong
+	unresolved ref dir 262 index 8 namelen 25 name prepare-commit-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 261 inode 270 errors 2000, link count wrong
+	unresolved ref dir 262 index 9 namelen 21 name applypatch-msg.sample filetype 0 errors 3, no dir item, no dir index
+root 261 inode 271 errors 2000, link count wrong
+	unresolved ref dir 262 index 10 namelen 17 name pre-commit.sample filetype 0 errors 3, no dir item, no dir index
+root 261 inode 272 errors 2000, link count wrong
+	unresolved ref dir 258 index 4 namelen 11 name description filetype 0 errors 3, no dir item, no dir index
+root 261 inode 273 errors 2000, link count wrong
+	unresolved ref dir 258 index 5 namelen 4 name info filetype 0 errors 3, no dir item, no dir index
+root 261 inode 275 errors 2000, link count wrong
+	unresolved ref dir 258 index 6 namelen 8 name branches filetype 0 errors 3, no dir item, no dir index
+root 261 inode 283 errors 2000, link count wrong
+	unresolved ref dir 258 index 19 namelen 7 name objects filetype 0 errors 3, no dir item, no dir index
+root 261 inode 1855 errors 2000, link count wrong
+	unresolved ref dir 258 index 25 namelen 11 name packed-refs filetype 0 errors 3, no dir item, no dir index
+root 261 inode 1856 errors 2000, link count wrong
+	unresolved ref dir 259 index 4 namelen 7 name remotes filetype 0 errors 3, no dir item, no dir index
+root 261 inode 1859 errors 2000, link count wrong
+	unresolved ref dir 258 index 26 namelen 4 name logs filetype 0 errors 3, no dir item, no dir index
+root 261 inode 1864 errors 2000, link count wrong
+	unresolved ref dir 258 index 28 namelen 4 name HEAD filetype 0 errors 3, no dir item, no dir index
+root 261 inode 1865 errors 2000, link count wrong
+	unresolved ref dir 260 index 3 namelen 6 name master filetype 0 errors 3, no dir item, no dir index
+root 261 inode 1870 errors 2000, link count wrong
+	unresolved ref dir 258 index 32 namelen 6 name config filetype 0 errors 3, no dir item, no dir index
+root 261 inode 1871 errors 2000, link count wrong
+	unresolved ref dir 258 index 34 namelen 5 name index filetype 0 errors 3, no dir item, no dir index
+	unresolved ref dir 257 index 100 namelen 6 name send.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 101 namelen 11 name show-blocks filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 102 namelen 15 name super-recover.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 103 namelen 5 name tests filetype 2 errors 2, no dir index
+	unresolved ref dir 257 index 104 namelen 13 name transaction.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 105 namelen 7 name ulist.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 106 namelen 7 name ulist.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 107 namelen 11 name utils-lib.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 108 namelen 7 name utils.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 109 namelen 7 name utils.h filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 110 namelen 11 name uuid-tree.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 111 namelen 10 name version.sh filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 112 namelen 9 name volumes.c filetype 1 errors 2, no dir index
+	unresolved ref dir 257 index 113 namelen 9 name volumes.h filetype 1 errors 2, no dir index
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: a20df58c-defd-462a-9604-84f9631e274b
+cache and super generation don't match, space cache will be invalidated
+found 23080960 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 147456
+total fs tree bytes: 16384
+total extent tree bytes: 81920
+btree space waste bytes: 70537
+file data blocks allocated: 524288
+ referenced 524288
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+incorrect offsets 12621 755944842
+incorrect offsets 12621 755944842
+incorrect offsets 12621 755944842
+incorrect offsets 12621 755944842
+incorrect offsets 12621 755944842
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+repairing missing dir index item for inode 270
+repairing missing dir index item for inode 270
+repairing missing dir index item for inode 270
+repairing missing dir index item for inode 270
+repairing missing dir index item for inode 270
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: a20df58c-defd-462a-9604-84f9631e274b
+Deleting bogus item [262,96,9] at slot 75 on block 29507584
+Shifting item nr 75 by 51 bytes in block 29507584
+Shifting item nr 76 by 51 bytes in block 29507584
+Shifting item nr 77 by 51 bytes in block 29507584
+Shifting item nr 78 by 51 bytes in block 29507584
+Shifting item nr 79 by 51 bytes in block 29507584
+Shifting item nr 80 by 51 bytes in block 29507584
+Shifting item nr 81 by 51 bytes in block 29507584
+Shifting item nr 82 by 51 bytes in block 29507584
+Shifting item nr 83 by 51 bytes in block 29507584
+Shifting item nr 84 by 51 bytes in block 29507584
+Deleting bogus item [262,96,9] at slot 75 on block 29556736
+Shifting item nr 75 by 51 bytes in block 29556736
+Shifting item nr 76 by 51 bytes in block 29556736
+Shifting item nr 77 by 51 bytes in block 29556736
+Shifting item nr 78 by 51 bytes in block 29556736
+Shifting item nr 79 by 51 bytes in block 29556736
+Shifting item nr 80 by 51 bytes in block 29556736
+Shifting item nr 81 by 51 bytes in block 29556736
+Shifting item nr 82 by 51 bytes in block 29556736
+Shifting item nr 83 by 51 bytes in block 29556736
+Shifting item nr 84 by 51 bytes in block 29556736
+Deleting bogus item [262,96,9] at slot 75 on block 29523968
+Shifting item nr 75 by 51 bytes in block 29523968
+Shifting item nr 76 by 51 bytes in block 29523968
+Shifting item nr 77 by 51 bytes in block 29523968
+Shifting item nr 78 by 51 bytes in block 29523968
+Shifting item nr 79 by 51 bytes in block 29523968
+Shifting item nr 80 by 51 bytes in block 29523968
+Shifting item nr 81 by 51 bytes in block 29523968
+Shifting item nr 82 by 51 bytes in block 29523968
+Shifting item nr 83 by 51 bytes in block 29523968
+Shifting item nr 84 by 51 bytes in block 29523968
+Deleting bogus item [262,96,9] at slot 75 on block 29605888
+Shifting item nr 75 by 51 bytes in block 29605888
+Shifting item nr 76 by 51 bytes in block 29605888
+Shifting item nr 77 by 51 bytes in block 29605888
+Shifting item nr 78 by 51 bytes in block 29605888
+Shifting item nr 79 by 51 bytes in block 29605888
+Shifting item nr 80 by 51 bytes in block 29605888
+Shifting item nr 81 by 51 bytes in block 29605888
+Shifting item nr 82 by 51 bytes in block 29605888
+Shifting item nr 83 by 51 bytes in block 29605888
+Shifting item nr 84 by 51 bytes in block 29605888
+Deleting bogus item [262,96,9] at slot 75 on block 29638656
+Shifting item nr 75 by 51 bytes in block 29638656
+Shifting item nr 76 by 51 bytes in block 29638656
+Shifting item nr 77 by 51 bytes in block 29638656
+Shifting item nr 78 by 51 bytes in block 29638656
+Shifting item nr 79 by 51 bytes in block 29638656
+Shifting item nr 80 by 51 bytes in block 29638656
+Shifting item nr 81 by 51 bytes in block 29638656
+Shifting item nr 82 by 51 bytes in block 29638656
+Shifting item nr 83 by 51 bytes in block 29638656
+Shifting item nr 84 by 51 bytes in block 29638656
+cache and super generation don't match, space cache will be invalidated
+found 138715136 bytes used, no error found
+total csum bytes: 94140
+total tree bytes: 16367616
+total fs tree bytes: 15253504
+total extent tree bytes: 491520
+btree space waste bytes: 2700975
+file data blocks allocated: 99627008
+ referenced 99627008
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: a20df58c-defd-462a-9604-84f9631e274b
+cache and super generation don't match, space cache will be invalidated
+found 23146496 bytes used, no error found
+total csum bytes: 18828
+total tree bytes: 3342336
+total fs tree bytes: 3145728
+total extent tree bytes: 81920
+btree space waste bytes: 570442
+file data blocks allocated: 19836928
+ referenced 19836928
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/008-bad-dir-index-name
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+	unresolved ref dir 256 index 3 namelen 1 name 1 filetype 1 errors 2, no dir index
+	unresolved ref dir 256 index 3 namelen 1 name 2 filetype 1 errors 5, no dir item, no inode ref
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: 1d2dc2e4-1ddb-4e6d-a106-a538f8f65b7b
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 119363
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+Deleting bad dir index [256,96,3] root 5
+repairing missing dir index item for inode 258
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: 1d2dc2e4-1ddb-4e6d-a106-a538f8f65b7b
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 119363
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: 1d2dc2e4-1ddb-4e6d-a106-a538f8f65b7b
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 119363
+file data blocks allocated: 262144
+ referenced 262144
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/009-no-dir-item-or-index
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+root 5 inode 257 errors 200, dir isize wrong
+root 5 inode 258 errors 2000, link count wrong
+	unresolved ref dir 257 index 2 namelen 4 name .git filetype 0 errors 3, no dir item, no dir index
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: 6d565d40-f76f-487d-b85a-935c377a2901
+cache and super generation don't match, space cache will be invalidated
+found 32079872 bytes used, error(s) found
+total csum bytes: 26496
+total tree bytes: 4423680
+total fs tree bytes: 4210688
+total extent tree bytes: 98304
+btree space waste bytes: 771158
+file data blocks allocated: 27656192
+ referenced 27656192
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+adding missing dir index/item pair for inode 258
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: 6d565d40-f76f-487d-b85a-935c377a2901
+cache and super generation don't match, space cache will be invalidated
+found 32079872 bytes used, no error found
+total csum bytes: 26496
+total tree bytes: 4423680
+total fs tree bytes: 4210688
+total extent tree bytes: 98304
+btree space waste bytes: 771158
+file data blocks allocated: 27656192
+ referenced 27656192
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: 6d565d40-f76f-487d-b85a-935c377a2901
+cache and super generation don't match, space cache will be invalidated
+found 32079872 bytes used, no error found
+total csum bytes: 26496
+total tree bytes: 4423680
+total fs tree bytes: 4210688
+total extent tree bytes: 98304
+btree space waste bytes: 771040
+file data blocks allocated: 27656192
+ referenced 27656192
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/010-no-rootdir-inode-item
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+root 5 root dir 256 error
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: 0293a4a1-12cf-4de5-88fd-635fee300f96
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 123905
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+root 5 inode 256 recreating inode item, this may be incomplete, please check permissions and content after the fsck completes.
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: 0293a4a1-12cf-4de5-88fd-635fee300f96
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 123905
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: 0293a4a1-12cf-4de5-88fd-635fee300f96
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 123720
+file data blocks allocated: 262144
+ referenced 262144
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/011-no-inode-item
+restoring image default_case.img
+testing image default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+root 5 inode 257 errors 2001, no inode item, link count wrong
+	unresolved ref dir 256 index 2 namelen 3 name foo filetype 1 errors 0
+ERROR: errors found in fs roots
+Checking filesystem on ./default_case.img.restored
+UUID: 30a7acac-9dfc-45fd-8ca8-d59a095f060a
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 123905
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check --repair ./default_case.img.restored
+checking extents
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+root 5 inode 257 recreating inode item, this may be incomplete, please check permissions and content after the fsck completes.
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on ./default_case.img.restored
+UUID: 30a7acac-9dfc-45fd-8ca8-d59a095f060a
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 123905
+file data blocks allocated: 262144
+ referenced 262144
+############### /home/fedora/btrfs-progs/btrfs check ./default_case.img.restored
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on ./default_case.img.restored
+UUID: 30a7acac-9dfc-45fd-8ca8-d59a095f060a
+cache and super generation don't match, space cache will be invalidated
+found 393216 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 123720
+file data blocks allocated: 262144
+ referenced 262144
+=== Entering /home/fedora/btrfs-progs/tests/fsck-tests/012-leaf-corruption
+generating leaf_corrupt_no_data_ext.btrfs-image
+testing image test.img
+checking extents
+checksum verify failed on 4206592 found 90F0CF74 wanted 00000000
+checksum verify failed on 4206592 found 90F0CF74 wanted 00000000
+Csum didn't match
+checksum verify failed on 20905984 found 10A557EE wanted 00000000
+checksum verify failed on 20905984 found 10A557EE wanted 00000000
+Csum didn't match
+owner ref check failed [4206592 4096]
+owner ref check failed [20905984 4096]
+checking free space cache
+checking fs roots
+checksum verify failed on 4206592 found 90F0CF74 wanted 00000000
+checksum verify failed on 4206592 found 90F0CF74 wanted 00000000
+Csum didn't match
+root 5 inode 1862 errors 2001, no inode item, link count wrong
+	unresolved ref dir 1861 index 2 namelen 9 name install.d filetype 2 errors 4, no inode ref
+root 5 inode 1863 errors 2001, no inode item, link count wrong
+	unresolved ref dir 258 index 254 namelen 3 name gdb filetype 2 errors 4, no inode ref
+root 5 inode 1865 errors 2001, no inode item, link count wrong
+	unresolved ref dir 258 index 255 namelen 8 name iptables filetype 2 errors 4, no inode ref
+root 5 inode 1869 errors 2001, no inode item, link count wrong
+	unresolved ref dir 258 index 256 namelen 4 name snmp filetype 2 errors 4, no inode ref
+root 5 inode 1871 errors 2001, no inode item, link count wrong
+	unresolved ref dir 258 index 257 namelen 10 name machine-id filetype 1 errors 4, no inode ref
+root 5 inode 1872 errors 2001, no inode item, link count wrong
+	unresolved ref dir 258 index 258 namelen 7 name adjtime filetype 1 errors 4, no inode ref
+root 5 inode 1873 errors 2001, no inode item, link count wrong
+	unresolved ref dir 256 index 4 namelen 4 name test filetype 2 errors 4, no inode ref
+ERROR: errors found in fs roots
+Checking filesystem on test.img
+UUID: f34746c3-4255-47f5-a1dd-e640b7389e84
+cache and super generation don't match, space cache will be invalidated
+The following tree block(s) is corrupted in tree 5:
+	tree block bytenr: 20725760, level: 1, node key: (1862, 1, 0)
+found 16621568 bytes used, error(s) found
+total csum bytes: 14212
+total tree bytes: 2060288
+total fs tree bytes: 1945600
+total extent tree bytes: 73728
+btree space waste bytes: 504339
+file data blocks allocated: 14553088
+ referenced 14553088
+############### /home/fedora/btrfs-progs/btrfs check --repair test.img
+checking extents
+checksum verify failed on 4206592 found 90F0CF74 wanted 00000000
+checksum verify failed on 4206592 found 90F0CF74 wanted 00000000
+Csum didn't match
+checksum verify failed on 20905984 found 10A557EE wanted 00000000
+checksum verify failed on 20905984 found 10A557EE wanted 00000000
+Csum didn't match
+owner ref check failed [4206592 4096]
+repair deleting extent record: key 4206592 168 4096
+adding new tree backref on start 4206592 len 4096 parent 0 root 5
+Repaired extent references for 4206592
+owner ref check failed [20905984 4096]
+repair deleting extent record: key 20905984 168 4096
+adding new tree backref on start 20905984 len 4096 parent 0 root 5
+Repaired extent references for 20905984
+Fixed 0 roots.
+checking free space cache
+checking fs roots
+checksum verify failed on 4206592 found 90F0CF74 wanted 00000000
+checksum verify failed on 4206592 found 90F0CF74 wanted 00000000
+Csum didn't match
+Deleting bad dir index [1861,96,2] root 5
+Deleting bad dir index [258,96,254] root 5
+Deleting bad dir index [258,96,255] root 5
+Deleting bad dir index [258,96,256] root 5
+Deleting bad dir index [258,96,257] root 5
+Deleting bad dir index [258,96,258] root 5
+Deleting bad dir index [256,96,4] root 5
+checksum verify failed on 20905984 found 10A557EE wanted 00000000
+checksum verify failed on 20905984 found 10A557EE wanted 00000000
+Csum didn't match
+Deleting bad dir index [1873,96,4] root 5
+repairing missing dir index item for inode 1873
+Deleting bad dir index [1877,96,52] root 5
+Deleting bad dir index [1877,96,43] root 5
+Deleting bad dir index [1877,96,65] root 5
+Deleting bad dir index [1877,96,118] root 5
+Deleting bad dir index [1877,96,105] root 5
+Deleting bad dir index [1877,96,78] root 5
+Deleting bad dir index [1877,96,19] root 5
+Deleting bad dir index [1877,96,73] root 5
+Deleting bad dir index [1877,96,102] root 5
+Deleting bad dir index [1877,96,113] root 5
+Deleting bad dir index [1877,96,62] root 5
+Deleting bad dir index [1877,96,48] root 5
+Deleting bad dir index [1877,96,55] root 5
+Deleting bad dir index [1877,96,128] root 5
+Deleting bad dir index [1877,96,81] root 5
+Deleting bad dir index [1877,96,94] root 5
+Deleting bad dir index [1877,96,45] root 5
+Deleting bad dir index [1877,96,125] root 5
+Deleting bad dir index [1877,96,58] root 5
+Deleting bad dir index [1877,96,103] root 5
+Deleting bad dir index [1877,96,72] root 5
+Deleting bad dir index [1877,96,63] root 5
+Deleting bad dir index [1877,96,112] root 5
+Deleting bad dir index [1877,96,84] root 5
+Deleting bad dir index [1877,96,91] root 5
+Deleting bad dir index [1877,96,119] root 5
+Deleting bad dir index [1877,96,79] root 5
+Deleting bad dir index [1877,96,7] root 5
+Deleting bad dir index [1877,96,35] root 5
+Deleting bad dir index [1877,96,28] root 5
+Deleting bad dir index [1877,96,13] root 5
+Deleting bad dir index [1877,96,100] root 5
+Deleting bad dir index [1877,96,12] root 5
+Deleting bad dir index [1877,96,6] root 5
+Deleting bad dir index [1877,96,38] root 5
+Deleting bad dir index [1877,96,25] root 5
+Deleting bad dir index [1877,96,69] root 5
+Deleting bad dir index [1877,96,109] root 5
+Deleting bad dir index [1877,96,90] root 5
+Deleting bad dir index [1877,96,22] root 5
+Deleting bad dir index [1877,96,33] root 5
+Deleting bad dir index [1877,96,15] root 5
+Deleting bad dir index [1877,96,59] root 5
+Deleting bad dir index [1877,96,49] root 5
+Deleting bad dir index [1877,96,129] root 5
+Deleting bad dir index [1877,96,18] root 5
+Deleting bad dir index [1877,96,23] root 5
+Deleting bad dir index [1877,96,32] root 5
+Deleting bad dir index [1877,96,4] root 5
+Deleting bad dir index [1877,96,17] root 5
+Deleting bad dir index [1877,96,24] root 5
+Deleting bad dir index [1877,96,3] root 5
+Deleting bad dir index [1877,96,31] root 5
+Deleting bad dir index [1877,96,50] root 5
+Deleting bad dir index [1877,96,60] root 5
+Deleting bad dir index [1877,96,21] root 5
+Deleting bad dir index [1877,96,2] root 5
+Deleting bad dir index [1877,96,34] root 5
+Deleting bad dir index [1877,96,16] root 5
+Deleting bad dir index [1877,96,70] root 5
+Deleting bad dir index [1877,96,110] root 5
+Deleting bad dir index [1877,96,11] root 5
+Deleting bad dir index [1877,96,37] root 5
+Deleting bad dir index [1877,96,5] root 5
+Deleting bad dir index [1877,96,26] root 5
+Deleting bad dir index [1877,96,89] root 5
+Deleting bad dir index [1877,96,36] root 5
+Deleting bad dir index [1877,96,8] root 5
+Deleting bad dir index [1877,96,27] root 5
+Deleting bad dir index [1877,96,14] root 5
+Deleting bad dir index [1877,96,120] root 5
+Deleting bad dir index [1877,96,80] root 5
+Deleting bad dir index [1877,96,99] root 5
+Deleting bad dir index [1877,96,46] root 5
+Deleting bad dir index [1877,96,126] root 5
+Deleting bad dir index [1877,96,57] root 5
+Deleting bad dir index [1877,96,104] root 5
+Deleting bad dir index [1877,96,71] root 5
+Deleting bad dir index [1877,96,64] root 5
+Deleting bad dir index [1877,96,111] root 5
+Deleting bad dir index [1877,96,83] root 5
+Deleting bad dir index [1877,96,92] root 5
+Deleting bad dir index [1877,96,74] root 5
+Deleting bad dir index [1877,96,101] root 5
+Deleting bad dir index [1877,96,114] root 5
+Deleting bad dir index [1877,96,61] root 5
+Deleting bad dir index [1877,96,47] root 5
+Deleting bad dir index [1877,96,56] root 5
+Deleting bad dir index [1877,96,127] root 5
+Deleting bad dir index [1877,96,20] root 5
+Deleting bad dir index [1877,96,82] root 5
+Deleting bad dir index [1877,96,93] root 5
+Deleting bad dir index [1877,96,98] root 5
+Deleting bad dir index [1877,96,85] root 5
+Deleting bad dir index [1877,96,124] root 5
+Deleting bad dir index [1877,96,51] root 5
+Deleting bad dir index [1877,96,44] root 5
+Deleting bad dir index [1877,96,66] root 5
+Deleting bad dir index [1877,96,117] root 5
+Deleting bad dir index [1877,96,106] root 5
+Deleting bad dir index [1877,96,77] root 5
+Deleting bad dir index [1877,96,9] root 5
+Deleting bad dir index [1877,96,30] root 5
+Deleting bad dir index [1877,96,95] root 5
+Deleting bad dir index [1877,96,88] root 5
+Deleting bad dir index [1877,96,40] root 5
+Deleting bad dir index [1877,96,116] root 5
+Deleting bad dir index [1877,96,67] root 5
+Deleting bad dir index [1877,96,76] root 5
+Deleting bad dir index [1877,96,107] root 5
+Deleting bad dir index [1877,96,54] root 5
+Deleting bad dir index [1877,96,121] root 5
+Deleting bad dir index [1877,96,41] root 5
+Deleting bad dir index [1877,96,10] root 5
+Deleting bad dir index [1877,96,29] root 5
+Deleting bad dir index [1877,96,39] root 5
+Deleting bad dir index [1877,96,42] root 5
+Deleting bad dir index [1877,96,53] root 5
+Deleting bad dir index [1877,96,68] root 5
+Deleting bad dir index [1877,96,75] root 5
+Deleting bad dir index [1877,96,86] root 5
+Deleting bad dir index [1877,96,87] root 5
+Deleting bad dir index [1877,96,96] root 5
+Deleting bad dir index [1877,96,97] root 5
+Deleting bad dir index [1877,96,108] root 5
+Deleting bad dir index [1877,96,115] root 5
+Deleting bad dir index [1877,96,122] root 5
+Deleting bad dir index [1877,96,123] root 5
+	unresolved ref dir 1874 index 2 namelen 4 name file filetype 1 errors 0
+	unresolved ref dir 1875 index 164 namelen 13 name file.keep.163 filetype 1 errors 0
+	unresolved ref dir 1875 index 3 namelen 11 name file.keep.2 filetype 1 errors 0
+	unresolved ref dir 1875 index 171 namelen 13 name file.keep.170 filetype 1 errors 0
+	unresolved ref dir 1875 index 157 namelen 13 name file.keep.156 filetype 1 errors 0
+	unresolved ref dir 1875 index 146 namelen 13 name file.keep.145 filetype 1 errors 0
+	unresolved ref dir 1875 index 110 namelen 13 name file.keep.109 filetype 1 errors 0
+	unresolved ref dir 1875 index 50 namelen 12 name file.keep.49 filetype 1 errors 0
+	unresolved ref dir 1875 index 24 namelen 12 name file.keep.23 filetype 1 errors 0
+	unresolved ref dir 1875 index 31 namelen 12 name file.keep.30 filetype 1 errors 0
+	unresolved ref dir 1875 index 17 namelen 12 name file.keep.16 filetype 1 errors 0
+	unresolved ref dir 1875 index 120 namelen 13 name file.keep.119 filetype 1 errors 0
+	unresolved ref dir 1875 index 156 namelen 13 name file.keep.155 filetype 1 errors 0
+	unresolved ref dir 1875 index 147 namelen 13 name file.keep.146 filetype 1 errors 0
+	unresolved ref dir 1875 index 2 namelen 11 name file.keep.1 filetype 1 errors 0
+	unresolved ref dir 1875 index 161 namelen 13 name file.keep.160 filetype 1 errors 0
+	unresolved ref dir 1875 index 16 namelen 12 name file.keep.15 filetype 1 errors 0
+	unresolved ref dir 1875 index 21 namelen 12 name file.keep.20 filetype 1 errors 0
+	unresolved ref dir 1875 index 34 namelen 12 name file.keep.33 filetype 1 errors 0
+	unresolved ref dir 1875 index 60 namelen 12 name file.keep.59 filetype 1 errors 0
+	unresolved ref dir 1875 index 37 namelen 12 name file.keep.36 filetype 1 errors 0
+	unresolved ref dir 1875 index 26 namelen 12 name file.keep.25 filetype 1 errors 0
+	unresolved ref dir 1875 index 11 namelen 12 name file.keep.10 filetype 1 errors 0
+	unresolved ref dir 1875 index 70 namelen 12 name file.keep.69 filetype 1 errors 0
+	unresolved ref dir 1875 index 130 namelen 13 name file.keep.129 filetype 1 errors 0
+	unresolved ref dir 1875 index 89 namelen 12 name file.keep.88 filetype 1 errors 0
+	unresolved ref dir 1875 index 166 namelen 13 name file.keep.165 filetype 1 errors 0
+	unresolved ref dir 1875 index 5 namelen 11 name file.keep.4 filetype 1 errors 0
+	unresolved ref dir 1875 index 144 namelen 13 name file.keep.143 filetype 1 errors 0
+	unresolved ref dir 1875 index 151 namelen 13 name file.keep.150 filetype 1 errors 0
+	unresolved ref dir 1875 index 80 namelen 12 name file.keep.79 filetype 1 errors 0
+	unresolved ref dir 1875 index 14 namelen 12 name file.keep.13 filetype 1 errors 0
+	unresolved ref dir 1875 index 36 namelen 12 name file.keep.35 filetype 1 errors 0
+	unresolved ref dir 1875 index 27 namelen 12 name file.keep.26 filetype 1 errors 0
+	unresolved ref dir 1875 index 141 namelen 13 name file.keep.140 filetype 1 errors 0
+	unresolved ref dir 1875 index 154 namelen 13 name file.keep.153 filetype 1 errors 0
+	unresolved ref dir 1875 index 8 namelen 11 name file.keep.7 filetype 1 errors 0
+	unresolved ref dir 1875 index 167 namelen 13 name file.keep.166 filetype 1 errors 0
+	unresolved ref dir 1875 index 99 namelen 12 name file.keep.98 filetype 1 errors 0
+	unresolved ref dir 1875 index 140 namelen 13 name file.keep.139 filetype 1 errors 0
+	unresolved ref dir 1875 index 71 namelen 12 name file.keep.70 filetype 1 errors 0
+	unresolved ref dir 1875 index 64 namelen 12 name file.keep.63 filetype 1 errors 0
+	unresolved ref dir 1875 index 46 namelen 12 name file.keep.45 filetype 1 errors 0
+	unresolved ref dir 1875 index 57 namelen 12 name file.keep.56 filetype 1 errors 0
+	unresolved ref dir 1875 index 150 namelen 13 name file.keep.149 filetype 1 errors 0
+	unresolved ref dir 1875 index 83 namelen 12 name file.keep.82 filetype 1 errors 0
+	unresolved ref dir 1875 index 131 namelen 13 name file.keep.130 filetype 1 errors 0
+	unresolved ref dir 1875 index 124 namelen 13 name file.keep.123 filetype 1 errors 0
+	unresolved ref dir 1875 index 92 namelen 12 name file.keep.91 filetype 1 errors 0
+	unresolved ref dir 1875 index 106 namelen 13 name file.keep.105 filetype 1 errors 0
+	unresolved ref dir 1875 index 117 namelen 13 name file.keep.116 filetype 1 errors 0
+	unresolved ref dir 1875 index 20 namelen 12 name file.keep.19 filetype 1 errors 0
+	unresolved ref dir 1875 index 47 namelen 12 name file.keep.46 filetype 1 errors 0
+	unresolved ref dir 1875 index 56 namelen 12 name file.keep.55 filetype 1 errors 0
+	unresolved ref dir 1875 index 74 namelen 12 name file.keep.73 filetype 1 errors 0
+	unresolved ref dir 1875 index 61 namelen 12 name file.keep.60 filetype 1 errors 0
+	unresolved ref dir 1875 index 107 namelen 13 name file.keep.106 filetype 1 errors 0
+	unresolved ref dir 1875 index 116 namelen 13 name file.keep.115 filetype 1 errors 0
+	unresolved ref dir 1875 index 134 namelen 13 name file.keep.133 filetype 1 errors 0
+	unresolved ref dir 1875 index 82 namelen 12 name file.keep.81 filetype 1 errors 0
+	unresolved ref dir 1875 index 93 namelen 12 name file.keep.92 filetype 1 errors 0
+	unresolved ref dir 1875 index 121 namelen 13 name file.keep.120 filetype 1 errors 0
+	unresolved ref dir 1875 index 160 namelen 13 name file.keep.159 filetype 1 errors 0
+	unresolved ref dir 1875 index 126 namelen 13 name file.keep.125 filetype 1 errors 0
+	unresolved ref dir 1875 index 98 namelen 12 name file.keep.97 filetype 1 errors 0
+	unresolved ref dir 1875 index 85 namelen 12 name file.keep.84 filetype 1 errors 0
+	unresolved ref dir 1875 index 137 namelen 13 name file.keep.136 filetype 1 errors 0
+	unresolved ref dir 1875 index 111 namelen 13 name file.keep.110 filetype 1 errors 0
+	unresolved ref dir 1875 index 104 namelen 13 name file.keep.103 filetype 1 errors 0
+	unresolved ref dir 1875 index 170 namelen 13 name file.keep.169 filetype 1 errors 0
+	unresolved ref dir 1875 index 9 namelen 11 name file.keep.8 filetype 1 errors 0
+	unresolved ref dir 1875 index 30 namelen 12 name file.keep.29 filetype 1 errors 0
+	unresolved ref dir 1875 index 66 namelen 12 name file.keep.65 filetype 1 errors 0
+	unresolved ref dir 1875 index 77 namelen 12 name file.keep.76 filetype 1 errors 0
+	unresolved ref dir 1875 index 51 namelen 12 name file.keep.50 filetype 1 errors 0
+	unresolved ref dir 1875 index 44 namelen 12 name file.keep.43 filetype 1 errors 0
+	unresolved ref dir 1875 index 114 namelen 13 name file.keep.113 filetype 1 errors 0
+	unresolved ref dir 1875 index 101 namelen 13 name file.keep.100 filetype 1 errors 0
+	unresolved ref dir 1875 index 95 namelen 12 name file.keep.94 filetype 1 errors 0
+	unresolved ref dir 1875 index 127 namelen 13 name file.keep.126 filetype 1 errors 0
+	unresolved ref dir 1875 index 136 namelen 13 name file.keep.135 filetype 1 errors 0
+	unresolved ref dir 1875 index 88 namelen 12 name file.keep.87 filetype 1 errors 0
+	unresolved ref dir 1875 index 54 namelen 12 name file.keep.53 filetype 1 errors 0
+	unresolved ref dir 1875 index 41 namelen 12 name file.keep.40 filetype 1 errors 0
+	unresolved ref dir 1875 index 67 namelen 12 name file.keep.66 filetype 1 errors 0
+	unresolved ref dir 1875 index 76 namelen 12 name file.keep.75 filetype 1 errors 0
+	unresolved ref dir 1875 index 40 namelen 12 name file.keep.39 filetype 1 errors 0
+	unresolved ref dir 1875 index 113 namelen 13 name file.keep.112 filetype 1 errors 0
+	unresolved ref dir 1875 index 102 namelen 13 name file.keep.101 filetype 1 errors 0
+	unresolved ref dir 1875 index 128 namelen 13 name file.keep.127 filetype 1 errors 0
+	unresolved ref dir 1875 index 96 namelen 12 name file.keep.95 filetype 1 errors 0
+	unresolved ref dir 1875 index 87 namelen 12 name file.keep.86 filetype 1 errors 0
+	unresolved ref dir 1875 index 135 namelen 13 name file.keep.134 filetype 1 errors 0
+	unresolved ref dir 1875 index 39 namelen 12 name file.keep.38 filetype 1 errors 0
+	unresolved ref dir 1875 index 53 namelen 12 name file.keep.52 filetype 1 errors 0
+	unresolved ref dir 1875 index 42 namelen 12 name file.keep.41 filetype 1 errors 0
+	unresolved ref dir 1875 index 68 namelen 12 name file.keep.67 filetype 1 errors 0
+	unresolved ref dir 1875 index 75 namelen 12 name file.keep.74 filetype 1 errors 0
+	unresolved ref dir 1875 index 169 namelen 13 name file.keep.168 filetype 1 errors 0
+	unresolved ref dir 1875 index 10 namelen 11 name file.keep.9 filetype 1 errors 0
+	unresolved ref dir 1875 index 97 namelen 12 name file.keep.96 filetype 1 errors 0
+	unresolved ref dir 1875 index 125 namelen 13 name file.keep.124 filetype 1 errors 0
+	unresolved ref dir 1875 index 138 namelen 13 name file.keep.137 filetype 1 errors 0
+	unresolved ref dir 1875 index 86 namelen 12 name file.keep.85 filetype 1 errors 0
+	unresolved ref dir 1875 index 112 namelen 13 name file.keep.111 filetype 1 errors 0
+	unresolved ref dir 1875 index 103 namelen 13 name file.keep.102 filetype 1 errors 0
+	unresolved ref dir 1875 index 65 namelen 12 name file.keep.64 filetype 1 errors 0
+	unresolved ref dir 1875 index 78 namelen 12 name file.keep.77 filetype 1 errors 0
+	unresolved ref dir 1875 index 52 namelen 12 name file.keep.51 filetype 1 errors 0
+	unresolved ref dir 1875 index 43 namelen 12 name file.keep.42 filetype 1 errors 0
+	unresolved ref dir 1875 index 29 namelen 12 name file.keep.28 filetype 1 errors 0
+	unresolved ref dir 1875 index 48 namelen 12 name file.keep.47 filetype 1 errors 0
+	unresolved ref dir 1875 index 55 namelen 12 name file.keep.54 filetype 1 errors 0
+	unresolved ref dir 1875 index 73 namelen 12 name file.keep.72 filetype 1 errors 0
+	unresolved ref dir 1875 index 62 namelen 12 name file.keep.61 filetype 1 errors 0
+	unresolved ref dir 1875 index 19 namelen 12 name file.keep.18 filetype 1 errors 0
+	unresolved ref dir 1875 index 159 namelen 13 name file.keep.158 filetype 1 errors 0
+	unresolved ref dir 1875 index 108 namelen 13 name file.keep.107 filetype 1 errors 0
+	unresolved ref dir 1875 index 115 namelen 13 name file.keep.114 filetype 1 errors 0
+	unresolved ref dir 1875 index 81 namelen 12 name file.keep.80 filetype 1 errors 0
+	unresolved ref dir 1875 index 133 namelen 13 name file.keep.132 filetype 1 errors 0
+	unresolved ref dir 1875 index 122 namelen 13 name file.keep.121 filetype 1 errors 0
+	unresolved ref dir 1875 index 94 namelen 12 name file.keep.93 filetype 1 errors 0
+	unresolved ref dir 1875 index 72 namelen 12 name file.keep.71 filetype 1 errors 0
+	unresolved ref dir 1875 index 63 namelen 12 name file.keep.62 filetype 1 errors 0
+	unresolved ref dir 1875 index 45 namelen 12 name file.keep.44 filetype 1 errors 0
+	unresolved ref dir 1875 index 58 namelen 12 name file.keep.57 filetype 1 errors 0
+	unresolved ref dir 1875 index 132 namelen 13 name file.keep.131 filetype 1 errors 0
+	unresolved ref dir 1875 index 84 namelen 12 name file.keep.83 filetype 1 errors 0
+	unresolved ref dir 1875 index 91 namelen 12 name file.keep.90 filetype 1 errors 0
+	unresolved ref dir 1875 index 123 namelen 13 name file.keep.122 filetype 1 errors 0
+	unresolved ref dir 1875 index 105 namelen 13 name file.keep.104 filetype 1 errors 0
+	unresolved ref dir 1875 index 118 namelen 13 name file.keep.117 filetype 1 errors 0
+	unresolved ref dir 1875 index 149 namelen 13 name file.keep.148 filetype 1 errors 0
+	unresolved ref dir 1875 index 13 namelen 12 name file.keep.12 filetype 1 errors 0
+	unresolved ref dir 1875 index 35 namelen 12 name file.keep.34 filetype 1 errors 0
+	unresolved ref dir 1875 index 28 namelen 12 name file.keep.27 filetype 1 errors 0
+	unresolved ref dir 1875 index 79 namelen 12 name file.keep.78 filetype 1 errors 0
+	unresolved ref dir 1875 index 100 namelen 12 name file.keep.99 filetype 1 errors 0
+	unresolved ref dir 1875 index 139 namelen 13 name file.keep.138 filetype 1 errors 0
+	unresolved ref dir 1875 index 142 namelen 13 name file.keep.141 filetype 1 errors 0
+	unresolved ref dir 1875 index 153 namelen 13 name file.keep.152 filetype 1 errors 0
+	unresolved ref dir 1875 index 7 namelen 11 name file.keep.6 filetype 1 errors 0
+	unresolved ref dir 1875 index 168 namelen 13 name file.keep.167 filetype 1 errors 0
+	unresolved ref dir 1875 index 69 namelen 12 name file.keep.68 filetype 1 errors 0
+	unresolved ref dir 1875 index 38 namelen 12 name file.keep.37 filetype 1 errors 0
+	unresolved ref dir 1875 index 25 namelen 12 name file.keep.24 filetype 1 errors 0
+	unresolved ref dir 1875 index 12 namelen 12 name file.keep.11 filetype 1 errors 0
+	unresolved ref dir 1875 index 165 namelen 13 name file.keep.164 filetype 1 errors 0
+	unresolved ref dir 1875 index 6 namelen 11 name file.keep.5 filetype 1 errors 0
+	unresolved ref dir 1875 index 143 namelen 13 name file.keep.142 filetype 1 errors 0
+	unresolved ref dir 1875 index 152 namelen 13 name file.keep.151 filetype 1 errors 0
+	unresolved ref dir 1875 index 129 namelen 13 name file.keep.128 filetype 1 errors 0
+	unresolved ref dir 1875 index 90 namelen 12 name file.keep.89 filetype 1 errors 0
+	unresolved ref dir 1875 index 155 namelen 13 name file.keep.154 filetype 1 errors 0
+	unresolved ref dir 1875 index 148 namelen 13 name file.keep.147 filetype 1 errors 0
+	unresolved ref dir 1875 index 162 namelen 13 name file.keep.161 filetype 1 errors 0
+	unresolved ref dir 1875 index 119 namelen 13 name file.keep.118 filetype 1 errors 0
+	unresolved ref dir 1875 index 59 namelen 12 name file.keep.58 filetype 1 errors 0
+	unresolved ref dir 1875 index 15 namelen 12 name file.keep.14 filetype 1 errors 0
+	unresolved ref dir 1875 index 22 namelen 12 name file.keep.21 filetype 1 errors 0
+	unresolved ref dir 1875 index 33 namelen 12 name file.keep.32 filetype 1 errors 0
+	unresolved ref dir 1875 index 109 namelen 13 name file.keep.108 filetype 1 errors 0
+	unresolved ref dir 1875 index 163 namelen 13 name file.keep.162 filetype 1 errors 0
+	unresolved ref dir 1875 index 4 namelen 11 name file.keep.3 filetype 1 errors 0
+	unresolved ref dir 1875 index 158 namelen 13 name file.keep.157 filetype 1 errors 0
+	unresolved ref dir 1875 index 145 namelen 13 name file.keep.144 filetype 1 errors 0
+	unresolved ref dir 1875 index 23 namelen 12 name file.keep.22 filetype 1 errors 0
+	unresolved ref dir 1875 index 32 namelen 12 name file.keep.31 filetype 1 errors 0
+	unresolved ref dir 1875 index 18 namelen 12 name file.keep.17 filetype 1 errors 0
+	unresolved ref dir 1875 index 49 namelen 12 name file.keep.48 filetype 1 errors 0
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on test.img
+UUID: f34746c3-4255-47f5-a1dd-e640b7389e84
+cache and super generation don't match, space cache will be invalidated
+The following tree block(s) is corrupted in tree 5:
+	tree block bytenr: 20725760, level: 1, node key: (1862, 1, 0)
+Try to repair the btree for root 5
+Btree for root 5 is fixed
+The following tree block(s) is corrupted in tree 5:
+	tree block bytenr: 14266368, level: 1, node key: (1876, 12, 1877)
+Try to repair the btree for root 5
+Btree for root 5 is fixed
+reset isize for dir 258 root 5
+reset isize for dir 1861 root 5
+Trying to rebuild inode:1862
+Moving file 'install.d' to 'lost+found' dir since it has no valid backref
+Fixed the nlink of inode 1862
+Trying to rebuild inode:1863
+Moving file 'gdb' to 'lost+found' dir since it has no valid backref
+Fixed the nlink of inode 1863
+Trying to rebuild inode:1865
+Moving file 'iptables' to 'lost+found' dir since it has no valid backref
+Fixed the nlink of inode 1865
+Trying to rebuild inode:1869
+Moving file 'snmp' to 'lost+found' dir since it has no valid backref
+Fixed the nlink of inode 1869
+Trying to rebuild inode:1871
+Moving file 'machine-id' to 'lost+found' dir since it has no valid backref
+Fixed the nlink of inode 1871
+Trying to rebuild inode:1872
+Moving file 'adjtime' to 'lost+found' dir since it has no valid backref
+Fixed the nlink of inode 1872
+reset isize for dir 1873 root 5
+Fixed the nlink of inode 1876
+Trying to rebuild inode:1877
+Moving file 'del' to 'lost+found' dir since it has no valid backref
+Fixed the nlink of inode 1877
+found 16621568 bytes used, no error found
+total csum bytes: 14212
+total tree bytes: 2060288
+total fs tree bytes: 1945600
+total extent tree bytes: 73728
+btree space waste bytes: 504339
+file data blocks allocated: 14553088
+ referenced 14553088
+############### /home/fedora/btrfs-progs/btrfs check test.img
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on test.img
+UUID: f34746c3-4255-47f5-a1dd-e640b7389e84
+cache and super generation don't match, space cache will be invalidated
+found 16621568 bytes used, no error found
+total csum bytes: 14212
+total tree bytes: 2068480
+total fs tree bytes: 1953792
+total extent tree bytes: 73728
+btree space waste bytes: 526328
+file data blocks allocated: 14553088
+ referenced 14553088
+inode 1862 not recovered correctly
+test failed for case 012-leaf-corruption
