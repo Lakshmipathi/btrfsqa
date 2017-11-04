@@ -17,6 +17,11 @@ sudo mkdir -p /mnt/test && sudo mkdir -p /mnt/scratch
 sudo mkfs.btrfs /dev/xvdb
 cp -v ~/btrfsqe/local.config ~/xfstests
 
+# Run 011 with smaller file and counts
+sed -i "s/fssize=2048/fssize=64/" ~/xfstests/tests/btrfs/011
+sed -i "s/bs=1M/bs=512K/" ~/xfstests/tests/btrfs/011
+
+
 # Run tests
 cd ~/xfstests && sudo ./check "tests/btrfs/00[1-5]"
 

@@ -4,7 +4,7 @@ set -xe
 echo "Installing dependencies.."
 sudo yum install -q -y automake e2fsprogs-libs e2fsprogs-devel \
 libblkid-devel zlib-devel lzo-devel asciidoc xmlto which \
-findutils xz gcc make libtool attr
+findutils xz gcc make libtool attr libzstd libzstd-devel
 echo "Installing dependencies..done"
 
 # Clone repo
