@@ -1,5 +1,0 @@
-QA output created by 146
-umount: /mnt/scratch: target is busy.
-device-mapper: reload ioctl on error-test failed: Device or resource busy
-Command failed
-failed to create dm linear device

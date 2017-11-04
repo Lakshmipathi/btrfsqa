@@ -1,4 +1,0 @@
-QA output created by 004
-umount: /mnt/scratch: target is busy.
-failed to unmount /dev/xvdc
-rm: cannot remove '/tmp/6082.running': No such file or directory

@@ -1,4 +1,0 @@
-QA output created by 007
-umount: /mnt/scratch: target is busy.
-failed to unmount /dev/xvdc
-*** unmount
