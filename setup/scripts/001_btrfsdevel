@@ -8,6 +8,14 @@ sudo modprobe btrfs # if we use localmodconfig
 wget https://github.com/kdave/btrfs-devel/archive/misc-next.zip
 unzip -qq  misc-next.zip
 
+# apply patch https://patchwork.kernel.org/patch/10038011/
+cd ~/btrfs-devel-misc-next/ && wget https://patchwork.kernel.org/patch/10038011/raw/
+mv index.html /tmp/sanity.diff
+sleep 2 
+sudo yum install patch -y
+patch -p1 < /tmp/sanity.diff
+# apply patch done
+
 cp -v ~/btrfsqe/kernel.config ~/btrfs-devel-misc-next/.config
 cd ~/btrfs-devel-misc-next/ && make -s -j8 && sudo make modules_install && sudo make install
 
