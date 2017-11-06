@@ -28,11 +28,10 @@ sudo grub2-set-default "${new_kernel}"
 sudo grub2-mkconfig -o $grubcfg 
 grub2-editenv list
 
-rm -rf ~/misc-next.zip ~/btrfs-devel-misc-next
-
 # 
 if [ -f ~/btrfs-devel-misc-next/arch/x86/boot/bzImage ];
 then
 touch ~/btrfsqe/001_btrfsdevel.completed
 fi
 
+rm -rf ~/misc-next.zip ~/btrfs-devel-misc-next

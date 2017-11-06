@@ -8,7 +8,7 @@ findutils xz gcc make libtool attr libzstd libzstd-devel
 echo "Installing dependencies..done"
 
 # Clone repo
-git clone https://github.com/kdave/btrfs-progs.git 
+git clone https://github.com/kdave/btrfs-progs.git -b devel
 
 # Build
 cd ~/btrfs-progs && ./autogen.sh && \
