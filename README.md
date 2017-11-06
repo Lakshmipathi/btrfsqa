@@ -31,7 +31,9 @@ Sample script: scripts/000_mkdir_test:
   sudo mount /dev/xdb /mnt
   sudo mkdir -v /mnt/testdir &> /tmp/logs/mkdir.log
   #indicate script completed.
-  touch ~/btrfsqe/000_mkdir_test.completed  
+  if [ -d /tmp/i ]; then 
+  	touch ~/btrfsqe/000_mkdir_test.completed; 
+  fi
   ```
 
 Using your Github/AWS accounts:
