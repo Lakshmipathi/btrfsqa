@@ -1,0 +1,1356 @@
+*** mkfs -dsize=2097152000
+
+btrfs-progs v4.13.3-72-g7141063a
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               61290972-1f87-42d7-a632-5fe70e952f89
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.95GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     1.95GiB  /dev/xvdc
+
+# _scratch_mount
+# ./ltp/fsstress -d /mnt/scratch -w -p 1 -n 2000
+seed = 1509596900
+# /bin/btrfs subvolume snapshot /mnt/scratch /mnt/scratch/snap1
+Create a snapshot of '/mnt/scratch' in '/mnt/scratch/snap1'
+# _scratch_unmount
+# _scratch_mount -o compress=lzo
+# ./ltp/fsstress -d /mnt/scratch -p 1 -n 4000 -z -f chown=3 -f link=1 -f mkdir=2 -f mknod=2 -f rename=2 -f setxattr=1 -f symlink=2
+seed = 1509256608
+# ./ltp/fsstress -d /mnt/scratch/next -w -p 1 -n 2000
+seed = 1509138690
+# _scratch_unmount
+# _scratch_mount -o atime
+background fsstress
+# ./ltp/fsstress -d /mnt/scratch/bgnoise -n 999
+background noise by 13847
+seed = 1509045309
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/d15/f2e is 3397267 (830 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:        0..       0:       3323..      3323:      1:             shared
+   1:      226..     226:       3597..      3597:      1:       3549: shared
+   2:      341..     349:      64997..     65005:      9:       3712: shared
+   3:      425..     443:      60338..     60356:     19:      65081: shared
+   4:      444..     444:      58615..     58615:      1:      60357: shared
+   5:      445..     445:      59194..     59194:      1:      58616: shared
+   6:      465..     499:      68831..     68865:     35:      59214: unwritten,shared
+   7:      500..     510:      65855..     65865:     11:      68866: shared
+   8:      511..     624:      68866..     68979:    114:      65866: unwritten,shared
+   9:      664..     681:      60908..     60925:     18:      69019: shared
+  10:      682..     682:      59223..     59223:      1:      60926: shared
+  11:      684..     718:      65265..     65299:     35:      59225: unwritten,shared
+  12:      719..     828:      65102..     65211:    110:      65300: unwritten,shared
+  13:      829..     829:      65212..     65212:      1:             shared,eof
+  14:      830..     842:      65213..     65225:     13:             unwritten,shared,eof
+  15:      968..    1157:      69095..     69284:    190:      65351: last,unwritten,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e: 14 extents found
+after filter: 13611008#4096#0#shared 14733312#4096#925696#shared 266227712#36864#1396736#shared 247144448#77824#1740800#shared 240087040#4096#1818624#shared 242458624#4096#1822720#shared 281931776#143360#1904640#unwritten,shared 269742080#45056#2048000#shared 282075136#466944#2093056#unwritten,shared 249479168#73728#2719744#shared 242577408#4096#2793472#shared 267325440#143360#2801664#unwritten,shared 266657792#450560#2945024#unwritten,shared 267108352#4096#3395584#shared,eof 267112448#53248#3399680#unwritten,shared,eof 283013120#778240#3964928#last,unwritten,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 13611008 /mnt/scratch
+inode 294 offset 0 root 258
+inode 294 offset 0 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 14733312 /mnt/scratch
+inode 294 offset 925696 root 258
+inode 294 offset 925696 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 266227712 /mnt/scratch
+inode 294 offset 1396736 root 258
+inode 294 offset 1396736 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 247144448 /mnt/scratch
+inode 294 offset 1740800 root 258
+inode 294 offset 1740800 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 240087040 /mnt/scratch
+inode 294 offset 1818624 root 258
+inode 294 offset 1818624 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 242458624 /mnt/scratch
+inode 294 offset 1822720 root 258
+inode 294 offset 1822720 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 281931776 /mnt/scratch
+inode 294 offset 1904640 root 258
+inode 294 offset 1904640 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 269742080 /mnt/scratch
+inode 294 offset 2048000 root 258
+inode 294 offset 2048000 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 282075136 /mnt/scratch
+inode 294 offset 2093056 root 258
+inode 294 offset 2093056 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 249479168 /mnt/scratch
+inode 294 offset 2719744 root 258
+inode 294 offset 2719744 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 242577408 /mnt/scratch
+inode 294 offset 2793472 root 258
+inode 294 offset 2793472 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 267325440 /mnt/scratch
+inode 294 offset 2801664 root 258
+inode 294 offset 2801664 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 266657792 /mnt/scratch
+inode 294 offset 2945024 root 258
+inode 294 offset 2945024 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 267108352 /mnt/scratch
+inode 294 offset 3395584 root 258
+inode 294 offset 3395584 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 267112448 /mnt/scratch
+inode 294 offset 3399680 root 258
+inode 294 offset 3399680 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f2e
+294
+# /bin/btrfs inspect-internal logical-resolve -P 283013120 /mnt/scratch
+inode 294 offset 3964928 root 258
+inode 294 offset 3964928 root 5
+# /bin/btrfs inspect-internal inode-resolve 294 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f2e
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/f196
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/f1bb
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/f1bb is 204800 (50 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       26..      49:      59968..     59991:     24:         26: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/f1bb: 1 extent found
+after filter: 245628928#98304#106496#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/f1bb
+587
+# /bin/btrfs inspect-internal logical-resolve -P 245628928 /mnt/scratch
+inode 587 offset 106496 root 258
+inode 587 offset 106496 root 5
+# /bin/btrfs inspect-internal inode-resolve 587 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/f1bb
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4 is 1654239 (404 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       14..      43:      66738..     66767:     30:         14: shared
+   1:      151..     168:      63193..     63210:     18:      66875: shared
+   2:      169..     169:      59122..     59122:      1:      63211: shared
+   3:      224..     224:       4432..      4432:      1:      59177: last,shared
+/mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4: 4 extents found
+after filter: 273358848#122880#57344#shared 258838528#73728#618496#shared 242163712#4096#692224#shared 18153472#4096#917504#last,shared 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+429
+# /bin/btrfs inspect-internal logical-resolve -P 273358848 /mnt/scratch
+inode 429 offset 57344 root 258
+inode 429 offset 57344 root 5
+# /bin/btrfs inspect-internal inode-resolve 429 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+429
+# /bin/btrfs inspect-internal logical-resolve -P 258838528 /mnt/scratch
+inode 429 offset 618496 root 258
+inode 429 offset 618496 root 5
+# /bin/btrfs inspect-internal inode-resolve 429 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+429
+# /bin/btrfs inspect-internal logical-resolve -P 242163712 /mnt/scratch
+inode 429 offset 692224 root 258
+inode 429 offset 692224 root 5
+# /bin/btrfs inspect-internal inode-resolve 429 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+429
+# /bin/btrfs inspect-internal logical-resolve -P 18153472 /mnt/scratch
+inode 429 offset 917504 root 258
+inode 429 offset 917504 root 5
+# /bin/btrfs inspect-internal inode-resolve 429 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d1a2/f1a4
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5 is 2138112 (522 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       33..      48:      60794..     60809:     16:         33: shared
+   1:       56..      73:      60704..     60721:     18:      60817: shared
+   2:      146..     169:       4490..      4513:     24:      60794: shared
+   3:      170..     170:       3361..      3361:      1:       4514: shared
+   4:      226..     234:      61680..     61688:      9:       3417: unwritten,shared
+   5:      235..     261:      61689..     61715:     27:             shared
+   6:      262..     402:      61716..     61856:    141:             unwritten,shared
+   7:      403..     404:      61857..     61858:      2:             shared
+   8:      405..     420:      61859..     61874:     16:             unwritten,shared
+   9:      504..     509:      61894..     61899:      6:      61958: shared
+  10:      510..     521:      59873..     59884:     12:      61900: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5: 7 extents found
+after filter: 249012224#65536#135168#shared 248643584#73728#229376#shared 18391040#98304#598016#shared 13766656#4096#696320#shared 252641280#36864#925696#unwritten,shared 252678144#110592#962560#shared 252788736#577536#1073152#unwritten,shared 253366272#8192#1650688#shared 253374464#65536#1658880#unwritten,shared 253517824#24576#2064384#shared 245239808#49152#2088960#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 249012224 /mnt/scratch
+inode 319 offset 135168 root 258
+inode 319 offset 135168 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+background rm
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 248643584 /mnt/scratch
+inode 319 offset 229376 root 258
+inode 319 offset 229376 root 5
+background fsstress
+# ./ltp/fsstress -d /mnt/scratch/bgnoise -n 999
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+seed = 1509454372
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 18391040 /mnt/scratch
+inode 319 offset 598016 root 258
+inode 319 offset 598016 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 13766656 /mnt/scratch
+inode 319 offset 696320 root 258
+inode 319 offset 696320 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 252641280 /mnt/scratch
+inode 319 offset 925696 root 258
+inode 319 offset 925696 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 252678144 /mnt/scratch
+inode 319 offset 962560 root 258
+inode 319 offset 962560 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 252788736 /mnt/scratch
+inode 319 offset 1073152 root 258
+inode 319 offset 1073152 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 253366272 /mnt/scratch
+inode 319 offset 1650688 root 258
+inode 319 offset 1650688 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 253374464 /mnt/scratch
+inode 319 offset 1658880 root 258
+inode 319 offset 1658880 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 253517824 /mnt/scratch
+inode 319 offset 2064384 root 258
+inode 319 offset 2064384 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+319
+# /bin/btrfs inspect-internal logical-resolve -P 245239808 /mnt/scratch
+inode 319 offset 2088960 root 258
+inode 319 offset 2088960 root 5
+# /bin/btrfs inspect-internal inode-resolve 319 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d8c/dd0/f1c5
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d20/f7f
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d20/f7f is 3494945 (854 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       20..      24:       3972..      3976:      5:         20: shared
+   1:       82..      82:       4027..      4027:      1:       4034: shared
+   2:       90..     115:      62678..     62703:     26:       4035: shared
+   3:      116..     121:      62050..     62055:      6:      62704: shared
+   4:      287..     300:      60295..     60308:     14:      62221: shared
+   5:      329..     329:       3523..      3523:      1:      60337: shared
+   6:      451..     463:       4735..      4747:     13:       3645: shared
+   7:      557..     564:       4752..      4759:      8:       4841: shared
+   8:      595..     626:      64965..     64996:     32:       4790: shared
+   9:      627..     631:      58593..     58597:      5:      64997: shared
+  10:      632..     632:      59120..     59120:      1:      58598: shared
+  11:      679..     698:      61986..     62005:     20:      59167: shared
+  12:      833..     853:      66843..     66863:     21:      62140: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d20/f7f: 13 extents found
+after filter: 16269312#20480#81920#shared 16494592#4096#335872#shared 256729088#106496#368640#shared 254156800#24576#475136#shared 246968320#57344#1175552#shared 14430208#4096#1347584#shared 19394560#53248#1847296#shared 19464192#32768#2281472#shared 266096640#131072#2437120#shared 239996928#20480#2568192#shared 242155520#4096#2588672#shared 253894656#81920#2781184#shared 273788928#86016#3411968#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 16269312 /mnt/scratch
+inode 354 offset 81920 root 258
+inode 354 offset 81920 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 16494592 /mnt/scratch
+inode 354 offset 335872 root 258
+inode 354 offset 335872 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 256729088 /mnt/scratch
+inode 354 offset 368640 root 258
+inode 354 offset 368640 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 254156800 /mnt/scratch
+inode 354 offset 475136 root 258
+inode 354 offset 475136 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 246968320 /mnt/scratch
+inode 354 offset 1175552 root 258
+inode 354 offset 1175552 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 14430208 /mnt/scratch
+inode 354 offset 1347584 root 258
+inode 354 offset 1347584 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 19394560 /mnt/scratch
+inode 354 offset 1847296 root 258
+inode 354 offset 1847296 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 19464192 /mnt/scratch
+inode 354 offset 2281472 root 258
+inode 354 offset 2281472 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 266096640 /mnt/scratch
+inode 354 offset 2437120 root 258
+inode 354 offset 2437120 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 239996928 /mnt/scratch
+inode 354 offset 2568192 root 258
+inode 354 offset 2568192 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 242155520 /mnt/scratch
+inode 354 offset 2588672 root 258
+inode 354 offset 2588672 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 253894656 /mnt/scratch
+inode 354 offset 2781184 root 258
+inode 354 offset 2781184 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/f7f
+354
+# /bin/btrfs inspect-internal logical-resolve -P 273788928 /mnt/scratch
+inode 354 offset 3411968 root 258
+inode 354 offset 3411968 root 5
+# /bin/btrfs inspect-internal inode-resolve 354 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/f7f
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c is 2438048 (596 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       52..      59:       4973..      4980:      8:         52: shared
+   1:       60..      60:       3330..      3330:      1:       4981: shared
+   2:      264..     271:      59304..     59311:      8:       3534: shared
+   3:      281..     287:      59424..     59430:      7:      59321: shared
+   4:      366..     386:      68515..     68535:     21:      59509: shared
+   5:      422..     422:       3595..      3595:      1:      68571: shared
+   6:      566..     595:      64885..     64914:     30:       3739: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c: 7 extents found
+after filter: 20369408#32768#212992#shared 13639680#4096#245760#shared 242909184#32768#1081344#shared 243400704#28672#1150976#shared 280637440#86016#1499136#shared 14725120#4096#1728512#shared 265768960#122880#2318336#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+369
+# /bin/btrfs inspect-internal logical-resolve -P 20369408 /mnt/scratch
+inode 369 offset 212992 root 258
+inode 369 offset 212992 root 5
+# /bin/btrfs inspect-internal inode-resolve 369 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f90
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+369
+# /bin/btrfs inspect-internal logical-resolve -P 13639680 /mnt/scratch
+inode 369 offset 245760 root 258
+inode 369 offset 245760 root 5
+# /bin/btrfs inspect-internal inode-resolve 369 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f90
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+369
+# /bin/btrfs inspect-internal logical-resolve -P 242909184 /mnt/scratch
+inode 369 offset 1081344 root 258
+inode 369 offset 1081344 root 5
+# /bin/btrfs inspect-internal inode-resolve 369 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f90
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+369
+# /bin/btrfs inspect-internal logical-resolve -P 243400704 /mnt/scratch
+inode 369 offset 1150976 root 258
+inode 369 offset 1150976 root 5
+# /bin/btrfs inspect-internal inode-resolve 369 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f90
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+369
+# /bin/btrfs inspect-internal logical-resolve -P 280637440 /mnt/scratch
+inode 369 offset 1499136 root 258
+inode 369 offset 1499136 root 5
+# /bin/btrfs inspect-internal inode-resolve 369 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f90
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+369
+# /bin/btrfs inspect-internal logical-resolve -P 14725120 /mnt/scratch
+inode 369 offset 1728512 root 258
+inode 369 offset 1728512 root 5
+# /bin/btrfs inspect-internal inode-resolve 369 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f90
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+369
+# /bin/btrfs inspect-internal logical-resolve -P 265768960 /mnt/scratch
+inode 369 offset 2318336 root 258
+inode 369 offset 2318336 root 5
+# /bin/btrfs inspect-internal inode-resolve 369 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f90
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/f11c
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd is 1105920 (270 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       84..      97:      61211..     61224:     14:         84: shared
+   1:       98..      98:      59637..     59637:      1:      61225: shared
+   2:      267..     269:       4126..      4128:      3:      59806: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd: 3 extents found
+after filter: 250720256#57344#344064#shared 244273152#4096#401408#shared 16900096#12288#1093632#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd
+589
+# /bin/btrfs inspect-internal logical-resolve -P 250720256 /mnt/scratch
+inode 589 offset 344064 root 258
+inode 589 offset 344064 root 5
+# /bin/btrfs inspect-internal inode-resolve 589 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd
+589
+# /bin/btrfs inspect-internal logical-resolve -P 244273152 /mnt/scratch
+inode 589 offset 401408 root 258
+inode 589 offset 401408 root 5
+# /bin/btrfs inspect-internal inode-resolve 589 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd
+589
+# /bin/btrfs inspect-internal logical-resolve -P 16900096 /mnt/scratch
+inode 589 offset 1093632 root 258
+inode 589 offset 1093632 root 5
+# /bin/btrfs inspect-internal inode-resolve 589 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d57/d108/d15a/f1bd
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/d15/fa4
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/d15/fa4 is 97829 (24 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       23..      23:       3589..      3589:      1:         23: shared,eof
+   1:       43..     175:      67868..     68000:    133:       3609: last,unwritten,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/d15/fa4: 2 extents found
+after filter: 14700544#4096#94208#shared,eof 277987328#544768#176128#last,unwritten,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/fa4
+387
+# /bin/btrfs inspect-internal logical-resolve -P 14700544 /mnt/scratch
+inode 387 offset 94208 root 258
+inode 387 offset 94208 root 5
+# /bin/btrfs inspect-internal inode-resolve 387 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/fa4
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/fa4
+387
+# /bin/btrfs inspect-internal logical-resolve -P 277987328 /mnt/scratch
+inode 387 offset 176128 root 258
+inode 387 offset 176128 root 5
+# /bin/btrfs inspect-internal inode-resolve 387 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/fa4
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83 is 2218890 (542 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       22..      37:       4705..      4720:     16:         22: unwritten,shared
+   1:       38..      68:      59162..     59192:     31:       4721: shared
+   2:       69..     141:      61355..     61427:     73:      59193: unwritten,shared
+   3:      142..     150:       3640..      3648:      9:      61428: shared
+   4:      151..     163:      61428..     61440:     13:       3649: unwritten,shared
+   5:      164..     187:      61441..     61464:     24:             shared
+   6:      188..     201:      61465..     61478:     14:             unwritten,shared
+   7:      202..     227:       3416..      3441:     26:      61479: shared
+   8:      228..     241:      58599..     58612:     14:       3442: unwritten,shared
+   9:      242..     255:       3598..      3611:     14:      58613: shared
+  10:      256..     288:      60974..     61006:     33:       3612: shared
+  11:      289..     292:       3591..      3594:      4:      61007: shared
+  12:      306..     333:       3447..      3474:     28:       3608: shared
+  13:      353..     362:       4409..      4418:     10:       3494: unwritten,shared
+  14:      363..     392:       3649..      3678:     30:       4419: shared
+  15:      393..     411:      63696..     63714:     19:       3679: unwritten,shared
+  16:      412..     443:       4515..      4546:     32:      63715: shared
+  17:      467..     485:      61875..     61893:     19:       4570: shared
+  18:      514..     526:       4186..      4198:     13:      61922: shared
+  19:      527..     541:      59638..     59652:     15:       4199: shared,eof
+  20:      542..     571:      59653..     59682:     30:             last,unwritten,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83: 18 extents found
+after filter: 19271680#65536#90112#unwritten,shared 242327552#126976#155648#shared 251310080#299008#282624#unwritten,shared 14909440#36864#581632#shared 251609088#53248#618496#unwritten,shared 251662336#98304#671744#shared 251760640#57344#770048#unwritten,shared 13991936#106496#827392#shared 240021504#57344#933888#unwritten,shared 14737408#57344#991232#shared 249749504#135168#1048576#shared 14708736#16384#1183744#shared 14118912#114688#1253376#shared 18059264#40960#1445888#unwritten,shared 14946304#122880#1486848#shared 260898816#77824#1609728#unwritten,shared 18493440#131072#1687552#shared 253440000#77824#1912832#shared 17145856#53248#2105344#shared 244277248#61440#2158592#shared,eof 244338688#122880#2220032#last,unwritten,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 19271680 /mnt/scratch
+inode 290 offset 90112 root 258
+inode 290 offset 90112 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 242327552 /mnt/scratch
+inode 290 offset 155648 root 258
+inode 290 offset 155648 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 251310080 /mnt/scratch
+inode 290 offset 282624 root 258
+inode 290 offset 282624 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 14909440 /mnt/scratch
+inode 290 offset 581632 root 258
+inode 290 offset 581632 root 5
+background rm
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+background fsstress
+# ./ltp/fsstress -d /mnt/scratch/bgnoise -n 999
+seed = 1509798841
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 251609088 /mnt/scratch
+inode 290 offset 618496 root 258
+inode 290 offset 618496 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 251662336 /mnt/scratch
+inode 290 offset 671744 root 258
+inode 290 offset 671744 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 251760640 /mnt/scratch
+inode 290 offset 770048 root 258
+inode 290 offset 770048 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 13991936 /mnt/scratch
+inode 290 offset 827392 root 258
+inode 290 offset 827392 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 240021504 /mnt/scratch
+inode 290 offset 933888 root 258
+inode 290 offset 933888 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 14737408 /mnt/scratch
+inode 290 offset 991232 root 258
+inode 290 offset 991232 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 249749504 /mnt/scratch
+inode 290 offset 1048576 root 258
+inode 290 offset 1048576 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 14708736 /mnt/scratch
+inode 290 offset 1183744 root 258
+inode 290 offset 1183744 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 14118912 /mnt/scratch
+inode 290 offset 1253376 root 258
+inode 290 offset 1253376 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 18059264 /mnt/scratch
+inode 290 offset 1445888 root 258
+inode 290 offset 1445888 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 14946304 /mnt/scratch
+inode 290 offset 1486848 root 258
+inode 290 offset 1486848 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 260898816 /mnt/scratch
+inode 290 offset 1609728 root 258
+inode 290 offset 1609728 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 18493440 /mnt/scratch
+inode 290 offset 1687552 root 258
+inode 290 offset 1687552 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 253440000 /mnt/scratch
+inode 290 offset 1912832 root 258
+inode 290 offset 1912832 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 17145856 /mnt/scratch
+inode 290 offset 2105344 root 258
+inode 290 offset 2105344 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 244277248 /mnt/scratch
+inode 290 offset 2158592 root 258
+inode 290 offset 2158592 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+290
+# /bin/btrfs inspect-internal logical-resolve -P 244338688 /mnt/scratch
+inode 290 offset 2220032 root 258
+inode 290 offset 2220032 root 5
+# /bin/btrfs inspect-internal inode-resolve 290 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/d64/f83
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/d15/f41
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/d15/f41 is 1822393 (445 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       11..      74:       5044..      5107:     64:         11: unwritten,shared
+   1:       75..      82:      60966..     60973:      8:       5108: shared
+   2:       83..     111:       4944..      4972:     29:      60974: unwritten,shared
+   3:      125..     125:       4402..      4402:      1:       4986: shared
+   4:      293..     329:      64915..     64951:     37:       4570: unwritten,shared
+   5:      365..     378:      63326..     63339:     14:      64987: last,shared
+/mnt/scratch/snap1/p0/dd/d14/d15/f41: 6 extents found
+after filter: 20660224#262144#45056#unwritten,shared 249716736#32768#307200#shared 20250624#118784#339968#unwritten,shared 18030592#4096#512000#shared 265891840#151552#1200128#unwritten,shared 259383296#57344#1495040#last,shared 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f41
+308
+# /bin/btrfs inspect-internal logical-resolve -P 20660224 /mnt/scratch
+inode 308 offset 45056 root 258
+inode 308 offset 45056 root 5
+# /bin/btrfs inspect-internal inode-resolve 308 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f41
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f41
+308
+# /bin/btrfs inspect-internal logical-resolve -P 249716736 /mnt/scratch
+inode 308 offset 307200 root 258
+inode 308 offset 307200 root 5
+# /bin/btrfs inspect-internal inode-resolve 308 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f41
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f41
+308
+# /bin/btrfs inspect-internal logical-resolve -P 20250624 /mnt/scratch
+inode 308 offset 339968 root 258
+inode 308 offset 339968 root 5
+# /bin/btrfs inspect-internal inode-resolve 308 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f41
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f41
+308
+# /bin/btrfs inspect-internal logical-resolve -P 18030592 /mnt/scratch
+inode 308 offset 512000 root 258
+inode 308 offset 512000 root 5
+# /bin/btrfs inspect-internal inode-resolve 308 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f41
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f41
+308
+# /bin/btrfs inspect-internal logical-resolve -P 265891840 /mnt/scratch
+inode 308 offset 1200128 root 258
+inode 308 offset 1200128 root 5
+# /bin/btrfs inspect-internal inode-resolve 308 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f41
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/f41
+308
+# /bin/btrfs inspect-internal logical-resolve -P 259383296 /mnt/scratch
+inode 308 offset 1495040 root 258
+inode 308 offset 1495040 root 5
+# /bin/btrfs inspect-internal inode-resolve 308 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/f41
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3 is 1148277 (281 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       41..      47:       4034..      4040:      7:         41: shared
+   1:       75..      93:      63238..     63256:     19:       4068: shared
+   2:       94..     106:       3165..      3177:     13:      63257: shared
+   3:      108..     134:       4041..      4067:     27:       3179: shared
+   4:      135..     135:       3366..      3366:      1:       4068: shared
+   5:      257..     280:      61526..     61549:     24:       3488: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3: 6 extents found
+after filter: 16523264#28672#167936#shared 259022848#77824#307200#shared 12963840#53248#385024#shared 16551936#110592#442368#shared 13787136#4096#552960#shared 252010496#98304#1052672#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+263
+# /bin/btrfs inspect-internal logical-resolve -P 16523264 /mnt/scratch
+inode 263 offset 167936 root 258
+inode 263 offset 167936 root 5
+# /bin/btrfs inspect-internal inode-resolve 263 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/f4
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+263
+# /bin/btrfs inspect-internal logical-resolve -P 259022848 /mnt/scratch
+inode 263 offset 307200 root 258
+inode 263 offset 307200 root 5
+# /bin/btrfs inspect-internal inode-resolve 263 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/f4
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+263
+# /bin/btrfs inspect-internal logical-resolve -P 12963840 /mnt/scratch
+inode 263 offset 385024 root 258
+inode 263 offset 385024 root 5
+# /bin/btrfs inspect-internal inode-resolve 263 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/f4
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+263
+# /bin/btrfs inspect-internal logical-resolve -P 16551936 /mnt/scratch
+inode 263 offset 442368 root 258
+inode 263 offset 442368 root 5
+# /bin/btrfs inspect-internal inode-resolve 263 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/f4
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+263
+# /bin/btrfs inspect-internal logical-resolve -P 13787136 /mnt/scratch
+inode 263 offset 552960 root 258
+inode 263 offset 552960 root 5
+# /bin/btrfs inspect-internal inode-resolve 263 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/f4
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+263
+# /bin/btrfs inspect-internal logical-resolve -P 252010496 /mnt/scratch
+inode 263 offset 1052672 root 258
+inode 263 offset 1052672 root 5
+# /bin/btrfs inspect-internal inode-resolve 263 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/f4
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/fb3
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7 is 2725450 (666 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       58..      73:      59384..     59399:     16:         58: shared
+   1:       74..      84:       3404..      3414:     11:      59400: shared
+   2:       85..      95:      62852..     62862:     11:       3415: shared
+   3:      159..     160:       3521..      3522:      2:      62926: shared
+   4:      321..     344:      60313..     60336:     24:       3683: shared
+   5:      345..     345:      58569..     58569:      1:      60337: shared
+   6:      390..     398:      59622..     59630:      9:      58614: shared
+   7:      478..     486:      59612..     59620:      9:      59710: shared
+   8:      496..     525:       4455..      4484:     30:      59630: shared
+   9:      526..     526:       3487..      3487:      1:       4485: shared
+  10:      682..     788:      62241..     62347:    107:       3643: last,unwritten,shared,eof
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7: 11 extents found
+after filter: 243236864#65536#237568#shared 13942784#45056#303104#shared 257441792#45056#348160#shared 14422016#8192#651264#shared 247042048#98304#1314816#shared 239898624#4096#1413120#shared 244211712#36864#1597440#shared 244170752#36864#1957888#shared 18247680#122880#2031616#shared 14282752#4096#2154496#shared 254939136#438272#2793472#last,unwritten,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 243236864 /mnt/scratch
+inode 322 offset 237568 root 258
+inode 322 offset 237568 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 13942784 /mnt/scratch
+inode 322 offset 303104 root 258
+inode 322 offset 303104 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 257441792 /mnt/scratch
+inode 322 offset 348160 root 258
+inode 322 offset 348160 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 14422016 /mnt/scratch
+inode 322 offset 651264 root 258
+inode 322 offset 651264 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 247042048 /mnt/scratch
+inode 322 offset 1314816 root 258
+inode 322 offset 1314816 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 239898624 /mnt/scratch
+inode 322 offset 1413120 root 258
+inode 322 offset 1413120 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 244211712 /mnt/scratch
+inode 322 offset 1597440 root 258
+inode 322 offset 1597440 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 244170752 /mnt/scratch
+inode 322 offset 1957888 root 258
+inode 322 offset 1957888 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 18247680 /mnt/scratch
+inode 322 offset 2031616 root 258
+inode 322 offset 2031616 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 14282752 /mnt/scratch
+inode 322 offset 2154496 root 258
+inode 322 offset 2154496 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# stat -c %i /mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+322
+# /bin/btrfs inspect-internal logical-resolve -P 254939136 /mnt/scratch
+inode 322 offset 2793472 root 258
+inode 322 offset 2793472 root 5
+# /bin/btrfs inspect-internal inode-resolve 322 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d20/d145/d1a5/f1e7
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d19c/f1a3
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d19c/f1a3 is 599281 (147 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:      120..     146:      69665..     69691:     27:        120: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d19c/f1a3: 1 extent found
+after filter: 285347840#110592#491520#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d19c/f1a3
+571
+# /bin/btrfs inspect-internal logical-resolve -P 285347840 /mnt/scratch
+inode 571 offset 491520 root 258
+inode 571 offset 491520 root 5
+# /bin/btrfs inspect-internal inode-resolve 571 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d19c/f1a3
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136 is 335966 (83 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:        4..      31:      64356..     64383:     28:          4: shared
+   1:       56..      70:      66300..     66314:     15:      64408: unwritten,shared
+   2:       71..      82:      66315..     66326:     12:             shared,eof
+   3:       83..     131:      66327..     66375:     49:             last,unwritten,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136: 2 extents found
+after filter: 263602176#114688#16384#shared 271564800#61440#229376#unwritten,shared 271626240#49152#290816#shared,eof 271675392#200704#339968#last,unwritten,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+493
+# /bin/btrfs inspect-internal logical-resolve -P 263602176 /mnt/scratch
+inode 493 offset 16384 root 258
+inode 493 offset 16384 root 5
+# /bin/btrfs inspect-internal inode-resolve 493 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+493
+# /bin/btrfs inspect-internal logical-resolve -P 271564800 /mnt/scratch
+inode 493 offset 229376 root 258
+inode 493 offset 229376 root 5
+# /bin/btrfs inspect-internal inode-resolve 493 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+493
+# /bin/btrfs inspect-internal logical-resolve -P 271626240 /mnt/scratch
+inode 493 offset 290816 root 258
+inode 493 offset 290816 root 5
+# /bin/btrfs inspect-internal inode-resolve 493 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+493
+# /bin/btrfs inspect-internal logical-resolve -P 271675392 /mnt/scratch
+inode 493 offset 339968 root 258
+inode 493 offset 339968 root 5
+# /bin/btrfs inspect-internal inode-resolve 493 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d9f/d11b/dc5/df2/d1ad/f136
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/d17a/d169/f17b
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/d17a/d169/f17b is 1755914 (429 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:      252..     428:      67122..     67298:    177:        252: last,unwritten,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/d17a/d169/f17b: 1 extent found
+after filter: 274931712#724992#1032192#last,unwritten,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/d17a/d169/f17b
+541
+# /bin/btrfs inspect-internal logical-resolve -P 274931712 /mnt/scratch
+inode 541 offset 1032192 root 258
+inode 541 offset 1032192 root 5
+# /bin/btrfs inspect-internal inode-resolve 541 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/d74/d80/d17a/d169/f17b
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131 is 1646592 (402 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:        3..     228:      67443..     67668:    226:          3: unwritten,shared
+   1:      254..     262:      64069..     64077:      9:      67694: shared
+   2:      263..     269:      61673..     61679:      7:      64078: shared
+   3:      270..     282:      64085..     64097:     13:      61680: shared
+   4:      389..     401:      64574..     64586:     13:      64204: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131: 5 extents found
+after filter: 276246528#925696#12288#unwritten,shared 262426624#36864#1040384#shared 252612608#28672#1077248#shared 262492160#53248#1105920#shared 264495104#53248#1593344#last,shared,eof 
+background rm
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+410
+# /bin/btrfs inspect-internal logical-resolve -P 276246528 /mnt/scratch
+background fsstress
+# ./ltp/fsstress -d /mnt/scratch/bgnoise -n 999
+seed = 1509030101
+inode 410 offset 12288 root 258
+inode 410 offset 12288 root 5
+# /bin/btrfs inspect-internal inode-resolve 410 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+410
+# /bin/btrfs inspect-internal logical-resolve -P 262426624 /mnt/scratch
+inode 410 offset 1040384 root 258
+inode 410 offset 1040384 root 5
+# /bin/btrfs inspect-internal inode-resolve 410 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+410
+# /bin/btrfs inspect-internal logical-resolve -P 252612608 /mnt/scratch
+inode 410 offset 1077248 root 258
+inode 410 offset 1077248 root 5
+# /bin/btrfs inspect-internal inode-resolve 410 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+410
+# /bin/btrfs inspect-internal logical-resolve -P 262492160 /mnt/scratch
+inode 410 offset 1105920 root 258
+inode 410 offset 1105920 root 5
+# /bin/btrfs inspect-internal inode-resolve 410 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+410
+# /bin/btrfs inspect-internal logical-resolve -P 264495104 /mnt/scratch
+inode 410 offset 1593344 root 258
+inode 410 offset 1593344 root 5
+# /bin/btrfs inspect-internal inode-resolve 410 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/f131
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2 is 1779327 (435 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       63..      81:       3704..      3722:     19:         63: unwritten,shared
+   1:       82..     107:      60359..     60384:     26:       3723: shared
+   2:      108..     196:      63499..     63587:     89:      60385: unwritten,shared
+   3:      197..     233:      62915..     62951:     37:      63588: shared
+   4:      234..     258:      60082..     60106:     25:      62952: unwritten,shared
+   5:      259..     288:      60722..     60751:     30:      60107: shared
+   6:      289..     308:      63267..     63286:     20:      60752: unwritten,shared
+   7:      318..     329:      61007..     61018:     12:      63296: shared
+   8:      330..     330:      59224..     59224:      1:      61019: shared
+   9:      401..     425:      62952..     62976:     25:      59295: shared
+  10:      426..     426:      59096..     59096:      1:      62977: shared
+  11:      428..     434:       4178..      4184:      7:      59098: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2: 12 extents found
+after filter: 15171584#77824#258048#unwritten,shared 247230464#106496#335872#shared 260091904#364544#442368#unwritten,shared 257699840#151552#806912#shared 246095872#102400#958464#unwritten,shared 248717312#122880#1060864#shared 259141632#81920#1183744#unwritten,shared 249884672#49152#1302528#shared 242581504#4096#1351680#shared 257851392#102400#1642496#shared 242057216#4096#1744896#shared 17113088#28672#1753088#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 15171584 /mnt/scratch
+inode 388 offset 258048 root 258
+inode 388 offset 258048 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 247230464 /mnt/scratch
+inode 388 offset 335872 root 258
+inode 388 offset 335872 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 260091904 /mnt/scratch
+inode 388 offset 442368 root 258
+inode 388 offset 442368 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 257699840 /mnt/scratch
+inode 388 offset 806912 root 258
+inode 388 offset 806912 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 246095872 /mnt/scratch
+inode 388 offset 958464 root 258
+inode 388 offset 958464 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 248717312 /mnt/scratch
+inode 388 offset 1060864 root 258
+inode 388 offset 1060864 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 259141632 /mnt/scratch
+inode 388 offset 1183744 root 258
+inode 388 offset 1183744 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 249884672 /mnt/scratch
+inode 388 offset 1302528 root 258
+inode 388 offset 1302528 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 242581504 /mnt/scratch
+inode 388 offset 1351680 root 258
+inode 388 offset 1351680 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 257851392 /mnt/scratch
+inode 388 offset 1642496 root 258
+inode 388 offset 1642496 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 242057216 /mnt/scratch
+inode 388 offset 1744896 root 258
+inode 388 offset 1744896 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+388
+# /bin/btrfs inspect-internal logical-resolve -P 17113088 /mnt/scratch
+inode 388 offset 1753088 root 258
+inode 388 offset 1753088 root 5
+# /bin/btrfs inspect-internal inode-resolve 388 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/fd2
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/d15/dcb/f138
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/d15/dcb/f138 is 426395 (105 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       89..     104:      64831..     64846:     16:         89: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/d15/dcb/f138: 1 extent found
+after filter: 265547776#65536#364544#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d15/dcb/f138
+494
+# /bin/btrfs inspect-internal logical-resolve -P 265547776 /mnt/scratch
+inode 494 offset 364544 root 258
+inode 494 offset 364544 root 5
+# /bin/btrfs inspect-internal inode-resolve 494 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d15/dcb/f138
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79 is 4657003 (1137 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       79..      79:       3628..      3628:      1:         79: shared
+   1:      261..     263:       3442..      3444:      3:       3810: shared
+   2:      333..     363:       3977..      4007:     31:       3514: shared
+   3:      400..     414:      64548..     64562:     15:       4044: shared
+   4:      582..     586:       3475..      3479:      5:      64730: shared
+   5:      622..     625:      59863..     59866:      4:       3515: shared
+   6:      732..     778:      62348..     62394:     47:      59973: unwritten,shared
+   7:      779..     779:      62395..     62395:      1:             shared
+   8:     1035..    1056:      63991..     64012:     22:      62651: shared
+   9:     1057..    1057:      59097..     59097:      1:      64013: last,shared
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79: 9 extents found
+after filter: 14860288#4096#323584#shared 14098432#12288#1069056#shared 16289792#126976#1363968#shared 264388608#61440#1638400#shared 14233600#20480#2383872#shared 245198848#16384#2547712#shared 255377408#192512#2998272#unwritten,shared 255569920#4096#3190784#shared 262107136#90112#4239360#shared 242061312#4096#4329472#last,shared 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 14860288 /mnt/scratch
+inode 350 offset 323584 root 258
+inode 350 offset 323584 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 14098432 /mnt/scratch
+inode 350 offset 1069056 root 258
+inode 350 offset 1069056 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 16289792 /mnt/scratch
+inode 350 offset 1363968 root 258
+inode 350 offset 1363968 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 264388608 /mnt/scratch
+inode 350 offset 1638400 root 258
+inode 350 offset 1638400 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 14233600 /mnt/scratch
+inode 350 offset 2383872 root 258
+inode 350 offset 2383872 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 245198848 /mnt/scratch
+inode 350 offset 2547712 root 258
+inode 350 offset 2547712 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 255377408 /mnt/scratch
+inode 350 offset 2998272 root 258
+inode 350 offset 2998272 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 255569920 /mnt/scratch
+inode 350 offset 3190784 root 258
+inode 350 offset 3190784 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 262107136 /mnt/scratch
+inode 350 offset 4239360 root 258
+inode 350 offset 4239360 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+350
+# /bin/btrfs inspect-internal logical-resolve -P 242061312 /mnt/scratch
+inode 350 offset 4329472 root 258
+inode 350 offset 4329472 root 5
+# /bin/btrfs inspect-internal inode-resolve 350 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/f79
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff is 1063971 (260 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       20..      20:       4419..      4419:      1:         20: shared
+   1:      173..     179:      64030..     64036:      7:       4572: shared
+   2:      180..     180:      59636..     59636:      1:      64037: shared
+   3:      181..     191:      64038..     64048:     11:      59637: shared
+   4:      246..     246:       3088..      3088:      1:      64103: last,shared
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff: 5 extents found
+after filter: 18100224#4096#81920#shared 262266880#28672#708608#shared 244269056#4096#737280#shared 262299648#45056#741376#shared 12648448#4096#1007616#last,shared 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+455
+# /bin/btrfs inspect-internal logical-resolve -P 18100224 /mnt/scratch
+inode 455 offset 81920 root 258
+inode 455 offset 81920 root 5
+# /bin/btrfs inspect-internal inode-resolve 455 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+455
+# /bin/btrfs inspect-internal logical-resolve -P 262266880 /mnt/scratch
+inode 455 offset 708608 root 258
+inode 455 offset 708608 root 5
+# /bin/btrfs inspect-internal inode-resolve 455 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+455
+# /bin/btrfs inspect-internal logical-resolve -P 244269056 /mnt/scratch
+inode 455 offset 737280 root 258
+inode 455 offset 737280 root 5
+# /bin/btrfs inspect-internal inode-resolve 455 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+455
+# /bin/btrfs inspect-internal logical-resolve -P 262299648 /mnt/scratch
+inode 455 offset 741376 root 258
+inode 455 offset 741376 root 5
+# /bin/btrfs inspect-internal inode-resolve 455 /mnt/scratch/snap1
+background rm
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+background fsstress
+# ./ltp/fsstress -d /mnt/scratch/bgnoise -n 999
+seed = 1509471278
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+455
+# /bin/btrfs inspect-internal logical-resolve -P 12648448 /mnt/scratch
+inode 455 offset 1007616 root 258
+inode 455 offset 1007616 root 5
+# /bin/btrfs inspect-internal inode-resolve 455 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/da2/db0/db5/d15f/d194/d72/d142/fff
+# /sbin/filefrag -v /mnt/scratch/snap1/p0/dd/d14/d9b/f185
+Filesystem type is: 9123683e
+File size of /mnt/scratch/snap1/p0/dd/d14/d9b/f185 is 1736704 (424 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:       91..     115:      59795..     59819:     25:         91: shared
+   1:      116..     138:      67299..     67321:     23:      59820: shared
+   2:      198..     198:       3526..      3526:      1:      67381: shared
+   3:      405..     423:      59949..     59967:     19:       3733: last,shared,eof
+/mnt/scratch/snap1/p0/dd/d14/d9b/f185: 4 extents found
+after filter: 244920320#102400#372736#shared 275656704#94208#475136#shared 14442496#4096#811008#shared 245551104#77824#1658880#last,shared,eof 
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d9b/f185
+548
+# /bin/btrfs inspect-internal logical-resolve -P 244920320 /mnt/scratch
+inode 548 offset 372736 root 258
+inode 548 offset 372736 root 5
+# /bin/btrfs inspect-internal inode-resolve 548 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d9b/f185
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d9b/f185
+548
+# /bin/btrfs inspect-internal logical-resolve -P 275656704 /mnt/scratch
+inode 548 offset 475136 root 258
+inode 548 offset 475136 root 5
+# /bin/btrfs inspect-internal inode-resolve 548 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d9b/f185
+# stat -c %i /mnt/scratch/snap1/p0/dd/d14/d9b/f185
+548
+# /bin/btrfs inspect-internal logical-resolve -P 14442496 /mnt/scratch
+inode 548 offset 811008 root 258
+inode 548 offset 811008 root 5
+# /bin/btrfs inspect-internal inode-resolve 548 /mnt/scratch/snap1
+/mnt/scratch/snap1/p0/dd/d14/d9b/f185
+background rm
