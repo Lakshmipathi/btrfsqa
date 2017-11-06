@@ -2,4 +2,5 @@
 "001_btrfsdevel" : "120",
 "002_btrfsprogs" : "120",
 "003_xfstests" : "120"
+"004_raid5_scrub" : "30"
 }

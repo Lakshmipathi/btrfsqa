@@ -23,7 +23,7 @@ sed -i "s/bs=1M/bs=512K/" ~/xfstests/tests/btrfs/011
 
 
 # Run tests
-cd ~/xfstests && sudo ./check "tests/btrfs/00[1-5]"
+cd ~/xfstests && sudo ./check "tests/btrfs/*"
 
 #
 touch ~/btrfsqe/003_xfstests.completed

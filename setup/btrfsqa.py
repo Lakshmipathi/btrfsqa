@@ -203,6 +203,7 @@ def install_sw(instance):
                 with settings(hide('warnings'), warn_only=True, ):
                     run("cp -r ~/btrfs-progs/tests/*tests-results.txt " + btrfsprogs_results)
                     run("cp -r ~/xfstests/results " + xfstests_results)
+                    run("cp -r /tmp/logs " + results_dir)
                 # prepare html entries with status
                 table_block = ""
                 col = "</td><td>"
