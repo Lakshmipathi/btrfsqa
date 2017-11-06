@@ -1,0 +1,19 @@
+#!/bin/bash
+set -xe 
+
+# This script assumes 002_btrfsprogs already executed and ~/btrfs-progs exists
+
+sudo yum install patch -y
+cd ~/btrfs-progs; wget https://patchwork.kernel.org/patch/9583455/raw/
+mv index.html /tmp/raid5_scrub_test.diff
+patch -p1 < /tmp/raid5_scrub_test.diff 
+chmod +x ~/btrfs-progs/tests/misc-tests/020-raid5-datastripe-corruption-parity-check/test.sh
+
+sudo make TEST=020\* test-misc
+
+# Move logs
+mkdir -p /tmp/logs
+cp ~/btrfs-progs/tests/misc-tests-results.txt /tmp/logs/raid5_scrub.log
+
+#
+touch ~/btrfsqe/004_raid5_scrub.completed
