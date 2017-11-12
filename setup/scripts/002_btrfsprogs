@@ -15,8 +15,12 @@ cd ~/btrfs-progs && ./autogen.sh && \
 ./configure --prefix /usr CFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib"  \
 && make && sudo make install
 
+
 # Run tests
-cd ~/btrfs-progs && make test
+cd ~/btrfs-progs && make test-fsck && make test-cli && make test-misc && make test-fuzz
 
 #
+if [ $? -eq 0 ];
+then
 touch ~/btrfsqe/002_btrfsprogs.completed
+fi
