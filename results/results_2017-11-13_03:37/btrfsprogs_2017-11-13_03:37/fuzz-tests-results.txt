@@ -1,0 +1,1461 @@
+=== Entering /home/fedora/btrfs-progs/tests/fuzz-tests/001-simple-check-unmounted
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: unsupported checksum algorithm 1
+ERROR: unsupported checksum algorithm 1
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+Ignoring transid failure
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+checking extents
+Invalid key type(CHUNK_ITEM) found in root(ROOT_TREE)
+ignoring invalid key
+ref mismatch on [4235264 4096] extent item 1, found 0
+Backref 4235264 root 18446744073709551607 not referenced back 0x1d13810
+Incorrect global backref count on 4235264 found 1 wanted 0
+backpointer mismatch on [4235264 4096]
+owner ref check failed [4235264 4096]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+UUID: e0d334b9-d48f-49f3-9c6b-45fc8e0ec0c7
+found 28672 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19892
+file data blocks allocated: 0
+ referenced 0
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+checking extents
+Chunk[256, 228, 0]: length(4194304), offset(0), type(2) is not found in block group
+Block group[0, 0] (flags = 2) didn't find the relative chunk.
+bad extent [131072, 135168), type mismatch with chunk
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 28672 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23665
+file data blocks allocated: 0
+ referenced 0
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+checking extents
+ERROR: ignoring invalid extent, bytenr 131200 is not aligned to 4096
+ref mismatch on [131072 4096] extent item 0, found 1
+Tree backref 131072 parent 3 root 3 not found in extent tree
+backpointer mismatch on [131072 4096]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 28672 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23665
+file data blocks allocated: 0
+ referenced 0
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+checking extents
+ERROR: ignoring invalid extent, bytenr 131200 is not aligned to 4096
+ref mismatch on [131072 4096] extent item 0, found 1
+Tree backref 131072 parent 3 root 3 not found in extent tree
+backpointer mismatch on [131072 4096]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 28672 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23665
+file data blocks allocated: 0
+ referenced 0
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+checking extents
+Invalid key type(CHUNK_ITEM) found in root(ROOT_TREE)
+ignoring invalid key
+ref mismatch on [4235264 4096] extent item 1, found 0
+Backref 4235264 root 18446744073709551607 not referenced back 0xfba810
+Incorrect global backref count on 4235264 found 1 wanted 0
+backpointer mismatch on [4235264 4096]
+owner ref check failed [4235264 4096]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 28672 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19892
+file data blocks allocated: 0
+ referenced 0
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+ERROR: tree block bytenr 18446744073709551607 is not aligned to sectorsize 4096
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored
+checking extents
+corrupt extent record: key 131072 169 4096
+corrupt extent record: key 4194304 169 4096
+corrupt extent record: key 4198400 169 4096
+corrupt extent record: key 4202496 169 4096
+corrupt extent record: key 4227072 169 4096
+corrupt extent record: key 4231168 169 4096
+corrupt extent record: key 4235264 169 4096
+Chunk[256, 228, 0]: length(4194304), offset(0), type(2) is not found in block group
+Chunk[256, 228, 4194304]: length(1638400), offset(4194304), type(5) mismatch with block group[4194304, 192, 1638400]: offset(1638400), objectid(4194304), flags(21474836480)
+Chunk[256, 228, 5832704]: length(1638400), offset(5832704), type(5) mismatch with block group[5832704, 192, 1638400]: offset(1638400), objectid(5832704), flags(21474836480)
+Block group[0, 0] (flags = 8589934592) didn't find the relative chunk.
+Block group[4194304, 1638400] (flags = 21474836480) didn't find the relative chunk.
+Block group[5832704, 1638400] (flags = 21474836480) didn't find the relative chunk.
+ref mismatch on [131072 4096] extent item 4294967296, found 1
+Tree backref 131072 parent 3 root 3 not found in extent tree
+backpointer mismatch on [131072 4096]
+ref mismatch on [4194304 4096] extent item 4294967296, found 1
+Tree backref 4194304 parent 5 root 5 not found in extent tree
+backpointer mismatch on [4194304 4096]
+ref mismatch on [4198400 4096] extent item 4294967296, found 1
+Tree backref 4198400 parent 1 root 1 not found in extent tree
+backpointer mismatch on [4198400 4096]
+ref mismatch on [4202496 4096] extent item 4294967296, found 1
+Tree backref 4202496 parent 2 root 2 not found in extent tree
+backpointer mismatch on [4202496 4096]
+ref mismatch on [4227072 4096] extent item 4294967296, found 1
+Tree backref 4227072 parent 4 root 4 not found in extent tree
+backpointer mismatch on [4227072 4096]
+ref mismatch on [4231168 4096] extent item 8589934591, found 1
+Tree backref 4231168 parent 7 root 7 not found in extent tree
+backpointer mismatch on [4231168 4096]
+ref mismatch on [4235264 4096] extent item 4294967296, found 0
+owner ref check failed [4235264 4096]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 28672 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19892
+file data blocks allocated: 0
+ referenced 0
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156471-ubsan-trigger-crc32c-unaligned.raw.restored
+fsid mismatch, want=b70e656c-6461-404b-a50d-0fba330c7527, have=30303030-3030-3030-3030-303030303030
+Couldn't read tree root
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156471-ubsan-trigger-crc32c-unaligned.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156731.raw.restored
+checking extents
+ERROR: ignoring invalid extent, bytenr 4235312 is not aligned to 4096
+Chunk[256, 228, 0]: length(4194304), offset(0), type(2) is not found in block group
+Chunk[256, 228, 4194304]: length(1638400), offset(4194304), type(5) mismatch with block group[4194304, 192, 1638400]: offset(1638400), objectid(4194304), flags(3472328296227680261)
+Chunk[256, 228, 5832704]: length(1638400), offset(5832704), type(5) mismatch with block group[5845040, 192, 3472328296227680304]: offset(3472328296227680304), objectid(5845040), flags(3472328296227680261)
+Block group[4194304, 1638400] (flags = 3472328296227680261) didn't find the relative chunk.
+Block group[5845040, 3472328296227680304] (flags = 3472328296227680261) didn't find the relative chunk.
+owner ref check failed [0 4096]
+bad extent [131072, 135168), type mismatch with chunk
+ref mismatch on [4194304 4096] extent item 3472328296227680304, found 1
+Tree backref 4194304 parent 5 root 5 not found in extent tree
+Backref 4194304 root 3472328296227680304 not referenced back 0xc8c7f0
+Incorrect global backref count on 4194304 found 2 wanted 1
+backpointer mismatch on [4194304 4096]
+Incorrect local backref count on 4198400 root 0 owner 0 offset 0 found 0 wanted 808464432 back 0xc8c040
+Backref disk bytenr does not match extent record, bytenr=4198400, ref bytenr=0
+backpointer mismatch on [4198400 4096]
+bad full backref, on [4198400]
+bad extent [4198400, 4202496), type mismatch with chunk
+ref mismatch on [4206592 4096] extent item 3472328296227680304, found 0
+Backref 4206592 root 3472328296227680304 not referenced back 0xc8c580
+Incorrect global backref count on 4206592 found 1 wanted 0
+backpointer mismatch on [4206592 4096]
+owner ref check failed [4206592 4096]
+ref mismatch on [4227072 4096] extent item 0, found 1
+Tree backref 4227072 parent 4 root 4 not found in extent tree
+backpointer mismatch on [4227072 4096]
+ref mismatch on [4231168 4096] extent item 3472328296227680304, found 1
+Tree backref 4231168 parent 7 root 7 not found in extent tree
+Backref 4231168 root 3472328296227680304 not referenced back 0xc8c8f0
+Incorrect global backref count on 4231168 found 2 wanted 1
+backpointer mismatch on [4231168 4096]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+root 5 root dir 3472328296227680304 not found
+ERROR: errors found in fs roots
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156731.raw.restored
+UUID: 52975385-d05a-482b-8fb8-613a86a66042
+found 32768 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19892
+file data blocks allocated: 0
+ referenced 0
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156731.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156741.raw.restored
+parent transid verify failed on 1122304 wanted 3472328296227680304 found 1
+parent transid verify failed on 1122304 wanted 3472328296227680304 found 1
+Ignoring transid failure
+checking extents
+Chunk[256, 228, 0]: length(4194304), offset(0), type(2) is not found in block group
+Chunk[256, 228, 4194304]: length(1638400), offset(4194304), type(5) is not found in block group
+Chunk[256, 228, 5832704]: length(1638400), offset(5832704), type(5) is not found in block group
+ref mismatch on [131072 4096] extent item 0, found 1
+Tree backref 131072 parent 3 root 3 not found in extent tree
+backpointer mismatch on [131072 4096]
+ref mismatch on [1118208 4096] extent item 1, found 0
+Backref 1118208 root 1 not referenced back 0x1172540
+Incorrect global backref count on 1118208 found 1 wanted 0
+backpointer mismatch on [1118208 4096]
+owner ref check failed [1118208 4096]
+ref mismatch on [1126400 4096] extent item 1, found 0
+Backref 1126400 root 3 not referenced back 0x1172400
+Incorrect global backref count on 1126400 found 1 wanted 0
+backpointer mismatch on [1126400 4096]
+owner ref check failed [1126400 4096]
+ref mismatch on [1130496 4096] extent item 1, found 0
+Backref 1130496 root 4 not referenced back 0x1172640
+Incorrect global backref count on 1130496 found 1 wanted 0
+backpointer mismatch on [1130496 4096]
+owner ref check failed [1130496 4096]
+ref mismatch on [1134592 4096] extent item 1, found 0
+Backref 1134592 root 5 not referenced back 0x1172740
+Incorrect global backref count on 1134592 found 1 wanted 0
+backpointer mismatch on [1134592 4096]
+owner ref check failed [1134592 4096]
+ref mismatch on [1138688 4096] extent item 1, found 0
+Backref 1138688 root 7 not referenced back 0x1172840
+Incorrect global backref count on 1138688 found 1 wanted 0
+backpointer mismatch on [1138688 4096]
+owner ref check failed [1138688 4096]
+ref mismatch on [4194304 4096] extent item 0, found 1
+Tree backref 4194304 parent 5 root 5 not found in extent tree
+backpointer mismatch on [4194304 4096]
+ref mismatch on [4198400 4096] extent item 0, found 1
+Tree backref 4198400 parent 1 root 1 not found in extent tree
+backpointer mismatch on [4198400 4096]
+ref mismatch on [4227072 4096] extent item 0, found 1
+Tree backref 4227072 parent 4 root 4 not found in extent tree
+backpointer mismatch on [4227072 4096]
+ref mismatch on [4231168 4096] extent item 0, found 1
+Tree backref 4231168 parent 7 root 7 not found in extent tree
+backpointer mismatch on [4231168 4096]
+ref mismatch on [3472328296227680304 3472328296227680304] extent item 0, found 1
+Data backref 3472328296227680304 root 1 owner 6 offset 0 num_refs 0 not found in extent tree
+Incorrect local backref count on 3472328296227680304 root 1 owner 6 offset 0 found 1 wanted 0 back 0x1171ec0
+backpointer mismatch on [3472328296227680304 3472328296227680304]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+root 5 root dir 3472328296227680304 not found
+ERROR: errors found in fs roots
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156741.raw.restored
+UUID: 52975385-d05a-482b-8fb8-613a86a66042
+found 3472328296227725360 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 20465
+file data blocks allocated: 3472328296227680304
+ referenced 3472328296227680304
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156741.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156811-bad-parent-ref-qgroup-verify.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156811-bad-parent-ref-qgroup-verify.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-161811.raw.restored
+checking extents
+bad full backref, on [4198400]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+ERROR: DIR_ITEM[256 1167283096] name  namelen 1 filetype 1 mismatch with its hash, wanted 1167283096 have 1609117613
+invalid location in dir item 0
+root 5 root dir 256 error
+root 5 inode 256 errors 10, odd dir item
+root 5 inode 259 errors 1, no inode item
+root 5 inode 260 errors 2000, link count wrong
+	unresolved ref dir 256 index 5 namelen 1 name z filetype 0 errors 3, no dir item, no dir index
+root 5 inode 262 errors 2000, link count wrong
+	unresolved ref dir 260 index 4 namelen 6 name barfoo filetype 7 errors 0
+	unresolved ref dir 256 index 7 namelen 6 name barfoo filetype 0 errors 3, no dir item, no dir index
+root 5 inode 265 errors 2000, link count wrong
+	unresolved ref dir 256 index 8 namelen 7 name bla.bin filetype 0 errors 3, no dir item, no dir index
+root 5 inode 18446744073709551361 errors 2001, no inode item, link count wrong
+	unresolved ref dir 256 index 0 namelen 1 name  filetype 1 errors 106, no dir index, no inode ref, name too long
+ERROR: errors found in fs roots
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-161811.raw.restored
+UUID: 056b0872-c0a7-4121-8ac9-2263ffbee306
+found 49152 bytes used, error(s) found
+total csum bytes: 8
+total tree bytes: 40960
+total fs tree bytes: 16384
+total extent tree bytes: 4096
+btree space waste bytes: 31637
+file data blocks allocated: 8192
+ referenced 8192
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-161811.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-161821.raw.restored
+checking extents
+parent transid verify failed on 4198400 wanted 14 found 1114126
+parent transid verify failed on 4198400 wanted 14 found 1114126
+Ignoring transid failure
+owner ref check failed [4198400 4096]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+parent transid verify failed on 4198400 wanted 14 found 1114126
+Ignoring transid failure
+Wrong generation of child node/leaf, wanted: 1114126, have: 14
+root 5 root dir 256 not found
+ERROR: errors found in fs roots
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-161821.raw.restored
+UUID: 056b0872-c0a7-4121-8ac9-2263ffbee306
+found 49152 bytes used, error(s) found
+total csum bytes: 8
+total tree bytes: 36864
+total fs tree bytes: 12288
+total extent tree bytes: 4096
+btree space waste bytes: 27920
+file data blocks allocated: 8192
+ referenced 8192
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-161821.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-166361-blocksize-zero.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-166361-blocksize-zero.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167551.raw.restored
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167551.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167781.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167781.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167921.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167921.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-168301.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-168301.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169301-1-blocksize-zero.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169301-1-blocksize-zero.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169301-2-blocksize-zero.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169301-2-blocksize-zero.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169311-blocksize-zero-qgroup-verify.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169311-blocksize-zero-qgroup-verify.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-172811.raw.restored
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup csum tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-172811.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-172861.raw.restored
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-172861.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-96971-btrfs-image.raw.restored
+ERROR: unsupported checksum algorithm 1
+ERROR: unsupported checksum algorithm 1
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-96971-btrfs-image.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-96971-btrfs-image.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97021-invalid-chunk-sectorsize.raw.restored
+ERROR: invalid chunk sectorsize 4096
+ERROR: Superblock checksums match, but it has an invalid chunk, try btrfsck --repair -s <superblock> ie, 0,1,2
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97021-invalid-chunk-sectorsize.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97031-invalid-stripe-len-sys-array.raw.restored
+ERROR: sys_array too short to read 159504 bytes at offset 17
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97031-invalid-stripe-len-sys-array.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97041-invalid-sub-stripes-zero-FPE.raw.restored
+ERROR: Invalid num_stripes:sub_stripes 1:0 for profile 64
+ERROR: Superblock checksums match, but it has an invalid chunk, try btrfsck --repair -s <superblock> ie, 0,1,2
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97041-invalid-sub-stripes-zero-FPE.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97171-btrfs-image.raw.restored
+parent transid verify failed on 4194304 wanted 143 found 15
+parent transid verify failed on 4194304 wanted 143 found 15
+Ignoring transid failure
+checking extents
+bad level, 59 > 8
+owner ref check failed [4227072 4096]
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+bad level, 59 > 8
+bad level, 59 > 8
+	unresolved ref dir 256 index 7 namelen 5 name b.bin filetype 1 errors 2, no dir index
+	unresolved ref dir 256 index 7 namelen 5 name b.fin filetype 1 errors 5, no dir item, no inode ref
+root 5 inode 261 errors 200, dir isize wrong
+ERROR: errors found in fs roots
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97171-btrfs-image.raw.restored
+UUID: cdd8684f-9eb1-40a4-91ec-1ed7c3cb444c
+cache and super generation don't match, space cache will be invalidated
+found 8196096 bytes used, error(s) found
+total csum bytes: 4152
+total tree bytes: 57344
+total fs tree bytes: 16384
+total extent tree bytes: 12288
+btree space waste bytes: 37101
+file data blocks allocated: 8134656
+ referenced 8134656
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97171-btrfs-image.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97191-btrfs-image.raw.restored
+bad level, 20 > 8
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97191-btrfs-image.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97271-btrfs-image.raw.restored
+bad level, 19 > 8
+ERROR: cannot read chunk root
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97271-btrfs-image.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-stripsize-bogus.raw.restored
+ERROR: invalid stripesize 593920
+ERROR: superblock checksum matches but it has invalid members
+ERROR: invalid stripesize 593920
+ERROR: superblock checksum matches but it has invalid members
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-stripsize-bogus.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-stripsize-bogus.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-total-bytes-0.raw.restored
+ERROR: invalid total_bytes 0
+ERROR: superblock checksum matches but it has invalid members
+ERROR: invalid total_bytes 0
+ERROR: superblock checksum matches but it has invalid members
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-total-bytes-0.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-total-bytes-0.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-array-num-stripes-0.raw.restored
+ERROR: invalid number of stripes 0 in sys_array at offset 17
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-array-num-stripes-0.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-chunk-stripe-len-bogus.raw.restored
+ERROR: invalid chunk stripe length: 35184372088832
+ERROR: Superblock checksums match, but it has an invalid chunk, try btrfsck --repair -s <superblock> ie, 0,1,2
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-chunk-stripe-len-bogus.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-chunk-type-bogus.raw.restored
+ERROR: invalid chunk type 256
+ERROR: Superblock checksums match, but it has an invalid chunk, try btrfsck --repair -s <superblock> ie, 0,1,2
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-chunk-type-bogus.raw.restored
+=== Entering /home/fedora/btrfs-progs/tests/fuzz-tests/002-simple-image
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored target
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: open ctree failed
+ERROR: create failed: No such file or directory
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored target
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: open ctree failed
+ERROR: create failed: No such file or directory
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored target
+ERROR: unsupported checksum algorithm 1
+ERROR: unsupported checksum algorithm 1
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: open ctree failed
+ERROR: create failed: No such file or directory
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored target
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+ERROR: open ctree failed
+ERROR: create failed: No such file or directory
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored target
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+ERROR: open ctree failed
+ERROR: create failed: No such file or directory
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored target
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+Ignoring transid failure
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored target
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored target
+ERROR: tree block bytenr 131200 is not aligned to sectorsize 4096
+ERROR: unable to read metadata block 131200
+ERROR: unable to add block 4194304: -5
+ERROR: tree block bytenr 131200 is not aligned to sectorsize 4096
+ERROR: unable to read metadata block 131200
+ERROR: failed to flush pending data: -5
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored target
+ERROR: tree block bytenr 131200 is not aligned to sectorsize 4096
+ERROR: unable to read metadata block 131200
+ERROR: unable to add block 4194304: -5
+ERROR: tree block bytenr 131200 is not aligned to sectorsize 4096
+ERROR: unable to read metadata block 131200
+ERROR: failed to flush pending data: -5
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored target
+ERROR: tree block bytenr 18446744073709551607 is not aligned to sectorsize 4096
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156471-ubsan-trigger-crc32c-unaligned.raw.restored target
+fsid mismatch, want=b70e656c-6461-404b-a50d-0fba330c7527, have=30303030-3030-3030-3030-303030303030
+Couldn't read tree root
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156471-ubsan-trigger-crc32c-unaligned.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156731.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156741.raw.restored target
+parent transid verify failed on 1122304 wanted 3472328296227680304 found 1
+parent transid verify failed on 1122304 wanted 3472328296227680304 found 1
+Ignoring transid failure
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156811-bad-parent-ref-qgroup-verify.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-156811-bad-parent-ref-qgroup-verify.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-161811.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-161821.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-166361-blocksize-zero.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-166361-blocksize-zero.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167551.raw.restored target
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167551.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167781.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167781.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167921.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-167921.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-168301.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-168301.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169301-1-blocksize-zero.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169301-1-blocksize-zero.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169301-2-blocksize-zero.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169301-2-blocksize-zero.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169311-blocksize-zero-qgroup-verify.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-169311-blocksize-zero-qgroup-verify.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-172811.raw.restored target
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup csum tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-172811.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-172861.raw.restored target
+Couldn't setup extent tree
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-172861.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-96971-btrfs-image.raw.restored target
+ERROR: unsupported checksum algorithm 1
+ERROR: unsupported checksum algorithm 1
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-96971-btrfs-image.raw.restored
+ERROR: open ctree failed
+ERROR: create failed: No such file or directory
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-96971-btrfs-image.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97021-invalid-chunk-sectorsize.raw.restored target
+ERROR: invalid chunk sectorsize 4096
+ERROR: Superblock checksums match, but it has an invalid chunk, try btrfsck --repair -s <superblock> ie, 0,1,2
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97021-invalid-chunk-sectorsize.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97031-invalid-stripe-len-sys-array.raw.restored target
+ERROR: sys_array too short to read 159504 bytes at offset 17
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97031-invalid-stripe-len-sys-array.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97041-invalid-sub-stripes-zero-FPE.raw.restored target
+ERROR: Invalid num_stripes:sub_stripes 1:0 for profile 64
+ERROR: Superblock checksums match, but it has an invalid chunk, try btrfsck --repair -s <superblock> ie, 0,1,2
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97041-invalid-sub-stripes-zero-FPE.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97171-btrfs-image.raw.restored target
+parent transid verify failed on 4194304 wanted 143 found 15
+parent transid verify failed on 4194304 wanted 143 found 15
+Ignoring transid failure
+bad level, 59 > 8
+ERROR: unable to read metadata block 4227072
+ERROR: unable to add block 4235264: -5
+bad level, 59 > 8
+ERROR: unable to read metadata block 4227072
+ERROR: failed to flush pending data: -5
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97171-btrfs-image.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97191-btrfs-image.raw.restored target
+bad level, 20 > 8
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97191-btrfs-image.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97271-btrfs-image.raw.restored target
+bad level, 19 > 8
+ERROR: cannot read chunk root
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-97271-btrfs-image.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-stripsize-bogus.raw.restored target
+ERROR: invalid stripesize 593920
+ERROR: superblock checksum matches but it has invalid members
+ERROR: invalid stripesize 593920
+ERROR: superblock checksum matches but it has invalid members
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-stripsize-bogus.raw.restored
+ERROR: open ctree failed
+ERROR: create failed: No such file or directory
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-stripsize-bogus.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-total-bytes-0.raw.restored target
+ERROR: invalid total_bytes 0
+ERROR: superblock checksum matches but it has invalid members
+ERROR: invalid total_bytes 0
+ERROR: superblock checksum matches but it has invalid members
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-total-bytes-0.raw.restored
+ERROR: open ctree failed
+ERROR: create failed: No such file or directory
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/superblock-total-bytes-0.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-array-num-stripes-0.raw.restored target
+ERROR: invalid number of stripes 0 in sys_array at offset 17
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-array-num-stripes-0.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-chunk-stripe-len-bogus.raw.restored target
+ERROR: invalid chunk stripe length: 35184372088832
+ERROR: Superblock checksums match, but it has an invalid chunk, try btrfsck --repair -s <superblock> ie, 0,1,2
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-chunk-stripe-len-bogus.raw.restored target
+############### /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-chunk-type-bogus.raw.restored target
+ERROR: invalid chunk type 256
+ERROR: Superblock checksums match, but it has an invalid chunk, try btrfsck --repair -s <superblock> ie, 0,1,2
+ERROR: open ctree failed
+ERROR: create failed: Success
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs-image /home/fedora/btrfs-progs/tests/fuzz-tests/images/sys-chunk-type-bogus.raw.restored target
+=== Entering /home/fedora/btrfs-progs/tests/fuzz-tests/003-multi-check-unmounted
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock bytenr 67108864 is larger than device size 413696
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: cannot open file system
+Creating a new CRC tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+ERROR: cannot open file system
+enabling repair mode
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-1.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock bytenr 67108864 is larger than device size 413696
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: cannot open file system
+Creating a new CRC tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+ERROR: cannot open file system
+enabling repair mode
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-2.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: unsupported checksum algorithm 1
+ERROR: superblock bytenr 67108864 is larger than device size 413696
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: unsupported checksum algorithm 1
+ERROR: unsupported checksum algorithm 1
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: cannot open file system
+Creating a new CRC tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: unsupported checksum algorithm 1
+ERROR: unsupported checksum algorithm 1
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: unsupported checksum algorithm 1
+ERROR: unsupported checksum algorithm 1
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: unsupported checksum algorithm 1
+ERROR: unsupported checksum algorithm 1
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+ERROR: cannot open file system
+enabling repair mode
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bad-superblock-3.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 69067
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+ERROR: cannot open file system
+Creating a new CRC tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+ERROR: cannot open file system
+enabling repair mode
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104131-fsck-oob-read.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 69067
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+ERROR: cannot open file system
+Creating a new CRC tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+ERROR: cannot open file system
+enabling repair mode
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-104141-fsck-exception.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+Ignoring transid failure
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup extent tree
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+Creating a new CRC tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+Ignoring transid failure
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup extent tree
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+Ignoring transid failure
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup extent tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+parent transid verify failed on 4198400 wanted 5 found 4127129605
+Ignoring transid failure
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup extent tree
+ERROR: tree block bytenr 134628 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+enabling repair mode
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-153641-unaligned-tree-block-bytenr.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+Creating a new CRC tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+ERROR: tree block bytenr 0 is not aligned to sectorsize 4096
+Couldn't setup device tree
+ERROR: cannot open file system
+enabling repair mode
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154021-invalid-drop-level.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+Fixed 0 roots.
+checking extents
+Invalid key type(CHUNK_ITEM) found in root(ROOT_TREE)
+ignoring invalid key
+ref mismatch on [4231168 4096] extent item 1, found 0
+Backref 4231168 root 7 not referenced back 0x12411f0
+Incorrect global backref count on 4231168 found 1 wanted 0
+backpointer mismatch on [4231168 4096]
+owner ref check failed [4231168 4096]
+repair deleting extent record: key 4231168 169 0
+Repaired extent references for 4231168
+ref mismatch on [4235264 4096] extent item 1, found 0
+Backref 4235264 root 18446744073709551607 not referenced back 0x1247c40
+Incorrect global backref count on 4235264 found 1 wanted 0
+backpointer mismatch on [4235264 4096]
+owner ref check failed [4235264 4096]
+repair deleting extent record: key 4235264 169 0
+Repaired extent references for 4235264
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Creating a new CRC tree
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+UUID: e0d334b9-d48f-49f3-9c6b-45fc8e0ec0c7
+Reinitialize checksum tree
+No device size related problem found
+found 32768 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19834
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+We don't support re-initing the extent tree for mixed block groups yet, please notify a btrfs developer you want to do this so they can add this functionality.
+ERROR: attempt to start transaction over already running one
+extent buffer leak: start 4202496 len 4096
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+UUID: e0d334b9-d48f-49f3-9c6b-45fc8e0ec0c7
+Creating a new extent tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+checking extents
+Invalid key type(CHUNK_ITEM) found in root(ROOT_TREE)
+ignoring invalid key
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+UUID: e0d334b9-d48f-49f3-9c6b-45fc8e0ec0c7
+found 24576 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19950
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+Fixed 0 roots.
+checking extents
+Invalid key type(CHUNK_ITEM) found in root(ROOT_TREE)
+ignoring invalid key
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-154961-heap-overflow-chunk-items.raw.restored
+UUID: e0d334b9-d48f-49f3-9c6b-45fc8e0ec0c7
+No device size related problem found
+found 24576 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19950
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+Fixed 0 roots.
+checking extents
+Chunk[256, 228, 0]: length(4194304), offset(0), type(2) is not found in block group
+Block group[0, 0] (flags = 2) didn't find the relative chunk.
+bad extent [131072, 135168), type mismatch with chunk
+ref mismatch on [4231168 4096] extent item 1, found 0
+Backref 4231168 root 7 not referenced back 0x26af870
+Incorrect global backref count on 4231168 found 1 wanted 0
+backpointer mismatch on [4231168 4096]
+owner ref check failed [4231168 4096]
+repair deleting extent record: key 4231168 169 0
+Repaired extent references for 4231168
+failed to repair damaged filesystem, aborting
+Creating a new CRC tree
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Reinitialize checksum tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+We don't support re-initing the extent tree for mixed block groups yet, please notify a btrfs developer you want to do this so they can add this functionality.
+ERROR: attempt to start transaction over already running one
+extent buffer leak: start 4198400 len 4096
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Creating a new extent tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+checking extents
+Chunk[256, 228, 0]: length(4194304), offset(0), type(2) is not found in block group
+Block group[0, 0] (flags = 2) didn't find the relative chunk.
+bad extent [131072, 135168), type mismatch with chunk
+ERROR: errors found in extent allocation tree or chunk allocation
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 28672 bytes used, error(s) found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23665
+file data blocks allocated: 0
+ referenced 0
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+Fixed 0 roots.
+checking extents
+Chunk[256, 228, 0]: length(4194304), offset(0), type(2) is not found in block group
+Block group[0, 0] (flags = 2) didn't find the relative chunk.
+bad extent [131072, 135168), type mismatch with chunk
+failed to repair damaged filesystem, aborting
+enabling repair mode
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155151-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+Fixed 0 roots.
+checking extents
+ERROR: ignoring invalid extent, bytenr 131200 is not aligned to 4096
+ref mismatch on [131072 4096] extent item 0, found 1
+Tree backref 131072 parent 3 root 3 not found in extent tree
+backpointer mismatch on [131072 4096]
+adding new tree backref on start 131072 len 4096 parent 0 root 3
+Repaired extent references for 131072
+ref mismatch on [4231168 4096] extent item 1, found 0
+Backref 4231168 root 7 not referenced back 0x19a0a50
+Incorrect global backref count on 4231168 found 1 wanted 0
+backpointer mismatch on [4231168 4096]
+owner ref check failed [4231168 4096]
+repair deleting extent record: key 4231168 169 0
+Repaired extent references for 4231168
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Creating a new CRC tree
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Reinitialize checksum tree
+No device size related problem found
+found 32768 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23607
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+We don't support re-initing the extent tree for mixed block groups yet, please notify a btrfs developer you want to do this so they can add this functionality.
+ERROR: attempt to start transaction over already running one
+extent buffer leak: start 4202496 len 4096
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Creating a new extent tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+checking extents
+ERROR: ignoring invalid extent, bytenr 131200 is not aligned to 4096
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 28672 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23589
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+Fixed 0 roots.
+checking extents
+ERROR: ignoring invalid extent, bytenr 131200 is not aligned to 4096
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-bad-backref.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+No device size related problem found
+found 28672 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23589
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+Fixed 0 roots.
+checking extents
+ERROR: ignoring invalid extent, bytenr 131200 is not aligned to 4096
+ref mismatch on [131072 4096] extent item 0, found 1
+Tree backref 131072 parent 3 root 3 not found in extent tree
+backpointer mismatch on [131072 4096]
+adding new tree backref on start 131072 len 4096 parent 0 root 3
+Repaired extent references for 131072
+ref mismatch on [4231168 4096] extent item 1, found 0
+Backref 4231168 root 7 not referenced back 0x105fa60
+Incorrect global backref count on 4231168 found 1 wanted 0
+backpointer mismatch on [4231168 4096]
+owner ref check failed [4231168 4096]
+repair deleting extent record: key 4231168 169 0
+Repaired extent references for 4231168
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Creating a new CRC tree
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Reinitialize checksum tree
+No device size related problem found
+found 32768 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23607
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+We don't support re-initing the extent tree for mixed block groups yet, please notify a btrfs developer you want to do this so they can add this functionality.
+ERROR: attempt to start transaction over already running one
+extent buffer leak: start 4202496 len 4096
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Creating a new extent tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+checking extents
+ERROR: ignoring invalid extent, bytenr 131200 is not aligned to 4096
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 28672 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23589
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+Fixed 0 roots.
+checking extents
+ERROR: ignoring invalid extent, bytenr 131200 is not aligned to 4096
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155181-unaligned-extent-item.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+No device size related problem found
+found 28672 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 28672
+total fs tree bytes: 8192
+total extent tree bytes: 4096
+btree space waste bytes: 23589
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+Fixed 0 roots.
+checking extents
+Invalid key type(CHUNK_ITEM) found in root(ROOT_TREE)
+ignoring invalid key
+ref mismatch on [4231168 4096] extent item 1, found 0
+Backref 4231168 root 7 not referenced back 0x1a311f0
+Incorrect global backref count on 4231168 found 1 wanted 0
+backpointer mismatch on [4231168 4096]
+owner ref check failed [4231168 4096]
+repair deleting extent record: key 4231168 169 0
+Repaired extent references for 4231168
+ref mismatch on [4235264 4096] extent item 1, found 0
+Backref 4235264 root 18446744073709551607 not referenced back 0x1a37c40
+Incorrect global backref count on 4235264 found 1 wanted 0
+backpointer mismatch on [4235264 4096]
+owner ref check failed [4235264 4096]
+repair deleting extent record: key 4235264 169 0
+Repaired extent references for 4235264
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Creating a new CRC tree
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Reinitialize checksum tree
+No device size related problem found
+found 32768 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19834
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+We don't support re-initing the extent tree for mixed block groups yet, please notify a btrfs developer you want to do this so they can add this functionality.
+ERROR: attempt to start transaction over already running one
+extent buffer leak: start 4202496 len 4096
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Creating a new extent tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+checking extents
+Invalid key type(CHUNK_ITEM) found in root(ROOT_TREE)
+ignoring invalid key
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+found 24576 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19950
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+Fixed 0 roots.
+checking extents
+Invalid key type(CHUNK_ITEM) found in root(ROOT_TREE)
+ignoring invalid key
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+enabling repair mode
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155201-wrong-chunk-item-in-root-tree.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+No device size related problem found
+found 24576 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 24576
+total fs tree bytes: 4096
+total extent tree bytes: 4096
+btree space waste bytes: 19950
+file data blocks allocated: 0
+ referenced 0
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+ERROR: tree block bytenr 18446744073709551607 is not aligned to sectorsize 4096
+ERROR: cannot open file system
+Creating a new CRC tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+We don't support re-initing the extent tree for mixed block groups yet, please notify a btrfs developer you want to do this so they can add this functionality.
+ERROR: attempt to start transaction over already running one
+extent buffer leak: start 4202496 len 4096
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Creating a new extent tree
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --init-extent-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+ERROR: tree block bytenr 18446744073709551607 is not aligned to sectorsize 4096
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --check-data-csum /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+ERROR: /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored is not a valid numeric value.
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --subvol-extents /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+ERROR: tree block bytenr 18446744073709551607 is not aligned to sectorsize 4096
+ERROR: cannot open file system
+enabling repair mode
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check --repair /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155551-unaligned-tree-block.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored
+ERROR: superblock bytenr 67108864 is larger than device size 16777216
+ERROR: cannot open file system
+using SB copy 1, bytenr 67108864
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check -s 1 /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored
+############### /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored
+Unable to find block group for 0
+Unable to find block group for 0
+Unable to find block group for 0
+extent-tree.c:2765: alloc_tree_block: BUG_ON `ret` triggered, value -28
+/home/fedora/btrfs-progs/btrfs[0x419c41]
+/home/fedora/btrfs-progs/btrfs[0x419d2f]
+/home/fedora/btrfs-progs/btrfs[0x4211c2]
+/home/fedora/btrfs-progs/btrfs(btrfs_alloc_free_block+0x58)[0x4213c5]
+/home/fedora/btrfs-progs/btrfs[0x48ca29]
+/home/fedora/btrfs-progs/btrfs(cmd_check+0x9ff)[0x48fb04]
+/home/fedora/btrfs-progs/btrfs(main+0x127)[0x40b69d]
+/lib64/libc.so.6(__libc_start_main+0xea)[0x7f60833b24da]
+/home/fedora/btrfs-progs/btrfs(_start+0x2a)[0x40af9a]
+Creating a new CRC tree
+Checking filesystem on /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored
+UUID: 5cb33553-6f6d-4ce8-83fd-20af5a2f8181
+Reinitialize checksum tree
+failed (ignored, ret=134): /home/fedora/btrfs-progs/btrfs check --init-csum-tree /home/fedora/btrfs-progs/tests/fuzz-tests/images/bko-155621-bad-block-group-offset.raw.restored
+mayfail: returned code 134 (SIGABRT), not ignored
+test failed for case 003-multi-check-unmounted
