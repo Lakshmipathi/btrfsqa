@@ -1,0 +1,18 @@
+# /bin/btrfs subvolume create /mnt/scratch/first_subvol
+Create subvolume '/mnt/scratch/first_subvol'
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap1
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap1'
+# /bin/btrfs subvolume create /mnt/scratch/testdir
+Create subvolume '/mnt/scratch/testdir'
+# /bin/btrfs subvolume delete /mnt/scratch/first_subvol
+Delete subvolume (no-commit): '/mnt/scratch/first_subvol'
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap2
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap2'
+# /bin/btrfs send -f /mnt/test/btrfs-test-054/1.snap /mnt/scratch/mysnap1
+At subvol /mnt/scratch/mysnap1
+# /bin/btrfs send -p /mnt/scratch/mysnap1 -f /mnt/test/btrfs-test-054/2.snap /mnt/scratch/mysnap2
+At subvol /mnt/scratch/mysnap2
+# /bin/btrfs receive -f /mnt/test/btrfs-test-054/1.snap /mnt/scratch
+At subvol mysnap1
+# /bin/btrfs receive -f /mnt/test/btrfs-test-054/2.snap /mnt/scratch
+At snapshot mysnap2

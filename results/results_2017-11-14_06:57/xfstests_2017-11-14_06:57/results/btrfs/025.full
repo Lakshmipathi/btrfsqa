@@ -1,0 +1,22 @@
+# /sbin/xfs_io -i -f -c truncate 819200 /mnt/scratch/foo
+# /bin/btrfs filesystem sync /mnt/scratch
+# /sbin/xfs_io -i -c falloc -k 819200 667648 /mnt/scratch/foo
+# /bin/btrfs filesystem sync /mnt/scratch
+# /sbin/xfs_io -i -c pwrite 1482752 2978 /mnt/scratch/foo
+wrote 2978/2978 bytes at offset 1482752
+3 KiB, 1 ops; 0.0000 sec (157.780 MiB/sec and 55555.5556 ops/sec)
+# /bin/btrfs filesystem sync /mnt/scratch
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap1
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap1'
+# /sbin/xfs_io -i -c truncate 883305 /mnt/scratch/foo
+# /bin/btrfs filesystem sync /mnt/scratch
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap2
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap2'
+# /bin/btrfs send -f /tmp/tmp.EqLZvdQsWP/1.snap /mnt/scratch/mysnap1
+At subvol /mnt/scratch/mysnap1
+# /bin/btrfs send -p /mnt/scratch/mysnap1 -f /tmp/tmp.EqLZvdQsWP/2.snap /mnt/scratch/mysnap2
+At subvol /mnt/scratch/mysnap2
+# /bin/btrfs receive -f /tmp/tmp.EqLZvdQsWP/1.snap /mnt/scratch
+At subvol mysnap1
+# /bin/btrfs receive -f /tmp/tmp.EqLZvdQsWP/2.snap /mnt/scratch
+At snapshot mysnap2

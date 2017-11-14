@@ -1,0 +1,7 @@
+xfs_io> pwrite 0 65536
+wrote 65536/65536 bytes at offset 0
+64 KiB, 16 ops; 0.0000 sec (1.387 GiB/sec and 363636.3636 ops/sec)
+xfs_io> # /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap'
+# /bin/btrfs send -f /dev/null /mnt/scratch/mysnap
+At subvol /mnt/scratch/mysnap

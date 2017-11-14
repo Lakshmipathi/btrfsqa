@@ -1,0 +1,15 @@
+wrote 8192/8192 bytes at offset 16384
+8 KiB, 2 ops; 0.0000 sec (459.559 MiB/sec and 117647.0588 ops/sec)
+WARNING:
+
+	Full balance without filters requested. This operation is very
+	intense and takes potentially very long. It is recommended to
+	use the balance filters to narrow down the scope of balance.
+	Use 'btrfs balance start --full-balance' option to skip this
+	warning. The operation will start in 10 seconds.
+	Use Ctrl-C to stop it.
+10 9 8 7 6 5 4 3 2 1
+Starting balance without any filters.
+Done, had to relocate 4 out of 4 chunks
+read 1048576/1048576 bytes at offset 0
+1 MiB, 256 ops; 0.0000 sec (1.218 GiB/sec and 319201.9950 ops/sec)

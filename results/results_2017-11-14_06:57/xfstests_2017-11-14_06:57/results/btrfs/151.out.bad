@@ -1,0 +1,866 @@
+++ basename ./tests/btrfs/151
++ seq=151
++ seqres=/home/fedora/xfstests/results//btrfs/151
++ echo 'QA output created by 151'
+QA output created by 151
+++ pwd
++ here=/home/fedora/xfstests
++ tmp=/tmp/26228
++ status=1
++ trap '_cleanup; exit $status' 0 1 2 3 15
++ . ./common/rc
++++ which bc
+++ BC=/bin/bc
+++ VALID_TEST_ID='[0-9]\{3\}'
+++ VALID_TEST_NAME='[0-9]\{3\}-\?[[:alnum:]-]*'
+++ '[' '' '!=' check ']'
+++ . ./common/config
++++ export LANG=C
++++ LANG=C
++++ export LC_ALL=C
++++ LC_ALL=C
++++ PATH=.:.:/sbin:/bin:/usr/sbin:/usr/bin
+++++ hostname -s
++++ export HOST=ip-172-31-46-85
++++ HOST=ip-172-31-46-85
+++++ uname -s
++++ export HOSTOS=Linux
++++ HOSTOS=Linux
++++ export MODULAR=0
++++ MODULAR=0
++++ export BOOT=/boot
++++ BOOT=/boot
++++ export EXTRA=xfs-qa
++++ EXTRA=xfs-qa
++++ export SOAK_PROC=3
++++ SOAK_PROC=3
++++ export SOAK_STRESS=10000
++++ SOAK_STRESS=10000
++++ export SOAK_PASSES=-1
++++ SOAK_PASSES=-1
++++ export EMAIL=root@localhost
++++ EMAIL=root@localhost
++++ export HOST_OPTIONS=local.config
++++ HOST_OPTIONS=local.config
++++ export 'CHECK_OPTIONS=-g auto'
++++ CHECK_OPTIONS='-g auto'
++++ export BENCH_PASSES=5
++++ BENCH_PASSES=5
++++ export XFS_MKFS_OPTIONS=-bsize=4096
++++ XFS_MKFS_OPTIONS=-bsize=4096
++++ export TIME_FACTOR=1
++++ TIME_FACTOR=1
++++ export LOAD_FACTOR=1
++++ LOAD_FACTOR=1
++++ export DEBUGFS_MNT=/sys/kernel/debug
++++ DEBUGFS_MNT=/sys/kernel/debug
++++ export OVL_UPPER=ovl-upper
++++ OVL_UPPER=ovl-upper
++++ export OVL_LOWER=ovl-lower
++++ OVL_LOWER=ovl-lower
++++ export OVL_WORK=ovl-work
++++ OVL_WORK=ovl-work
++++ export OVL_MNT=ovl-mnt
++++ OVL_MNT=ovl-mnt
+++++ pwd
++++ export PWD=/home/fedora/xfstests
++++ PWD=/home/fedora/xfstests
++++ export MALLOCLIB=/usr/lib/libefence.a
++++ MALLOCLIB=/usr/lib/libefence.a
++++ export LOCAL_CONFIGURE_OPTIONS=--enable-readline=yes
++++ LOCAL_CONFIGURE_OPTIONS=--enable-readline=yes
++++ export RECREATE_TEST_DEV=false
++++ RECREATE_TEST_DEV=false
+++++ set_prog_path mkfs
+++++ type -P mkfs
++++ export MKFS_PROG=/sbin/mkfs
++++ MKFS_PROG=/sbin/mkfs
++++ '[' /sbin/mkfs = '' ']'
+++++ set_prog_path mount
+++++ type -P mount
++++ export MOUNT_PROG=/bin/mount
++++ MOUNT_PROG=/bin/mount
++++ '[' /bin/mount = '' ']'
+++++ set_prog_path umount
+++++ type -P umount
++++ export UMOUNT_PROG=/bin/umount
++++ UMOUNT_PROG=/bin/umount
++++ '[' /bin/umount = '' ']'
++++ export FSSTRESS_PROG=./ltp/fsstress
++++ FSSTRESS_PROG=./ltp/fsstress
++++ '[' '!' -x ./ltp/fsstress ']'
+++++ set_prog_path perl
+++++ type -P perl
++++ export PERL_PROG=/bin/perl
++++ PERL_PROG=/bin/perl
++++ '[' /bin/perl = '' ']'
+++++ set_prog_path awk
+++++ type -P awk
++++ export AWK_PROG=/bin/awk
++++ AWK_PROG=/bin/awk
++++ '[' /bin/awk = '' ']'
+++++ set_prog_path sed
+++++ type -P sed
++++ export SED_PROG=/bin/sed
++++ SED_PROG=/bin/sed
++++ '[' /bin/sed = '' ']'
+++++ set_prog_path bc
+++++ type -P bc
++++ export BC_PROG=/bin/bc
++++ BC_PROG=/bin/bc
++++ '[' /bin/bc = '' ']'
++++ export PS_ALL_FLAGS=-ef
++++ PS_ALL_FLAGS=-ef
+++++ set_prog_path df
+++++ type -P df
++++ export DF_PROG=/bin/df
++++ DF_PROG=/bin/df
++++ '[' /bin/df = '' ']'
++++ '[' Linux = Linux ']'
++++ export 'DF_PROG=/bin/df -T -P'
++++ DF_PROG='/bin/df -T -P'
+++++ set_prog_path xfs_io
+++++ type -P xfs_io
++++ export XFS_IO_PROG=/sbin/xfs_io
++++ XFS_IO_PROG=/sbin/xfs_io
++++ '[' /sbin/xfs_io = '' ']'
+++++ set_prog_path xfs_logprint
+++++ type -P xfs_logprint
++++ export XFS_LOGPRINT_PROG=/sbin/xfs_logprint
++++ XFS_LOGPRINT_PROG=/sbin/xfs_logprint
+++++ set_prog_path xfs_repair
+++++ type -P xfs_repair
++++ export XFS_REPAIR_PROG=/sbin/xfs_repair
++++ XFS_REPAIR_PROG=/sbin/xfs_repair
+++++ set_prog_path xfs_db
+++++ type -P xfs_db
++++ export XFS_DB_PROG=/sbin/xfs_db
++++ XFS_DB_PROG=/sbin/xfs_db
+++++ set_prog_path xfs_growfs
+++++ type -P xfs_growfs
++++ export XFS_GROWFS_PROG=/sbin/xfs_growfs
++++ XFS_GROWFS_PROG=/sbin/xfs_growfs
+++++ set_prog_path xfs_spaceman
+++++ type -P xfs_spaceman
++++ export XFS_SPACEMAN_PROG=
++++ XFS_SPACEMAN_PROG=
+++++ set_prog_path xfs_scrub
+++++ type -P xfs_scrub
++++ export XFS_SCRUB_PROG=
++++ XFS_SCRUB_PROG=
+++++ set_prog_path xfs_prepair
+++++ type -P xfs_prepair
++++ export XFS_PARALLEL_REPAIR_PROG=
++++ XFS_PARALLEL_REPAIR_PROG=
+++++ set_prog_path xfs_prepair64
+++++ type -P xfs_prepair64
++++ export XFS_PARALLEL_REPAIR64_PROG=
++++ XFS_PARALLEL_REPAIR64_PROG=
+++++ set_prog_path xfsdump
+++++ type -P xfsdump
++++ export __XFSDUMP_PROG=/sbin/xfsdump
++++ __XFSDUMP_PROG=/sbin/xfsdump
++++ '[' -n /sbin/xfsdump ']'
++++ export 'XFSDUMP_PROG=/sbin/xfsdump -e'
++++ XFSDUMP_PROG='/sbin/xfsdump -e'
+++++ set_prog_path xfsrestore
+++++ type -P xfsrestore
++++ export XFSRESTORE_PROG=/sbin/xfsrestore
++++ XFSRESTORE_PROG=/sbin/xfsrestore
+++++ set_prog_path xfsinvutil
+++++ type -P xfsinvutil
++++ export XFSINVUTIL_PROG=/sbin/xfsinvutil
++++ XFSINVUTIL_PROG=/sbin/xfsinvutil
+++++ set_prog_path getfattr
+++++ type -P getfattr
++++ export GETFATTR_PROG=/bin/getfattr
++++ GETFATTR_PROG=/bin/getfattr
+++++ set_prog_path setfattr
+++++ type -P setfattr
++++ export SETFATTR_PROG=/bin/setfattr
++++ SETFATTR_PROG=/bin/setfattr
+++++ set_prog_path chacl
+++++ type -P chacl
++++ export CHACL_PROG=/bin/chacl
++++ CHACL_PROG=/bin/chacl
+++++ set_prog_path attr
+++++ type -P attr
++++ export ATTR_PROG=/bin/attr
++++ ATTR_PROG=/bin/attr
+++++ set_prog_path quota
+++++ type -P quota
++++ export QUOTA_PROG=/bin/quota
++++ QUOTA_PROG=/bin/quota
+++++ set_prog_path xfs_quota
+++++ type -P xfs_quota
++++ export XFS_QUOTA_PROG=/sbin/xfs_quota
++++ XFS_QUOTA_PROG=/sbin/xfs_quota
+++++ set_prog_path killall
+++++ type -P killall
++++ export KILLALL_PROG=/bin/killall
++++ KILLALL_PROG=/bin/killall
+++++ set_prog_path indent
+++++ type -P indent
++++ export INDENT_PROG=/bin/indent
++++ INDENT_PROG=/bin/indent
+++++ set_prog_path xfs_copy
+++++ type -P xfs_copy
++++ export XFS_COPY_PROG=/sbin/xfs_copy
++++ XFS_COPY_PROG=/sbin/xfs_copy
+++++ set_prog_path fstrim
+++++ type -P fstrim
++++ export FSTRIM_PROG=/sbin/fstrim
++++ FSTRIM_PROG=/sbin/fstrim
+++++ set_prog_path dumpe2fs
+++++ type -P dumpe2fs
++++ export DUMPE2FS_PROG=/sbin/dumpe2fs
++++ DUMPE2FS_PROG=/sbin/dumpe2fs
+++++ set_prog_path fio
+++++ type -P fio
++++ export FIO_PROG=/bin/fio
++++ FIO_PROG=/bin/fio
+++++ set_prog_path filefrag
+++++ type -P filefrag
++++ export FILEFRAG_PROG=/sbin/filefrag
++++ FILEFRAG_PROG=/sbin/filefrag
+++++ set_prog_path e4defrag
+++++ type -P e4defrag
++++ export E4DEFRAG_PROG=/sbin/e4defrag
++++ E4DEFRAG_PROG=/sbin/e4defrag
+++++ set_prog_path logger
+++++ type -P logger
++++ export LOGGER_PROG=/bin/logger
++++ LOGGER_PROG=/bin/logger
+++++ set_prog_path dbench
+++++ type -P dbench
++++ export DBENCH_PROG=/bin/dbench
++++ DBENCH_PROG=/bin/dbench
+++++ set_prog_path dmsetup
+++++ type -P dmsetup
++++ export DMSETUP_PROG=/sbin/dmsetup
++++ DMSETUP_PROG=/sbin/dmsetup
+++++ set_prog_path wipefs
+++++ type -P wipefs
++++ export WIPEFS_PROG=/sbin/wipefs
++++ WIPEFS_PROG=/sbin/wipefs
+++++ set_prog_path dump
+++++ type -P dump
++++ export DUMP_PROG=/sbin/dump
++++ DUMP_PROG=/sbin/dump
+++++ set_prog_path restore
+++++ type -P restore
++++ export RESTORE_PROG=/sbin/restore
++++ RESTORE_PROG=/sbin/restore
+++++ set_prog_path lvm
+++++ type -P lvm
++++ export LVM_PROG=/sbin/lvm
++++ LVM_PROG=/sbin/lvm
+++++ set_prog_path chattr
+++++ type -P chattr
++++ export CHATTR_PROG=/bin/chattr
++++ CHATTR_PROG=/bin/chattr
+++++ set_prog_path debugfs
+++++ type -P debugfs
++++ export DEBUGFS_PROG=/sbin/debugfs
++++ DEBUGFS_PROG=/sbin/debugfs
+++++ set_prog_path uuidgen
+++++ type -P uuidgen
++++ export UUIDGEN_PROG=/bin/uuidgen
++++ UUIDGEN_PROG=/bin/uuidgen
+++++ set_prog_path getrichacl
+++++ type -P getrichacl
++++ export GETRICHACL_PROG=
++++ GETRICHACL_PROG=
+++++ set_prog_path setrichacl
+++++ type -P setrichacl
++++ export SETRICHACL_PROG=
++++ SETRICHACL_PROG=
+++++ set_prog_path keyctl
+++++ type -P keyctl
++++ export KEYCTL_PROG=
++++ KEYCTL_PROG=
+++++ set_prog_path xz
+++++ type -P xz
++++ export XZ_PROG=/bin/xz
++++ XZ_PROG=/bin/xz
+++++ set_prog_path flock
+++++ type -P flock
++++ export FLOCK_PROG=/bin/flock
++++ FLOCK_PROG=/bin/flock
+++++ set_prog_path ldd
+++++ type -P ldd
++++ export LDD_PROG=/bin/ldd
++++ LDD_PROG=/bin/ldd
+++++ set_prog_path timeout
+++++ type -P timeout
++++ export TIMEOUT_PROG=/bin/timeout
++++ TIMEOUT_PROG=/bin/timeout
+++++ set_prog_path man
+++++ type -P man
++++ export MAN_PROG=/bin/man
++++ MAN_PROG=/bin/man
+++++ set_prog_path nfs4_setfacl
+++++ type -P nfs4_setfacl
++++ export NFS4_SETFACL_PROG=
++++ NFS4_SETFACL_PROG=
+++++ set_prog_path nfs4_getfacl
+++++ type -P nfs4_getfacl
++++ export NFS4_GETFACL_PROG=
++++ NFS4_GETFACL_PROG=
+++++ set_prog_path ubiupdatevol
+++++ type -P ubiupdatevol
++++ export UBIUPDATEVOL_PROG=
++++ UBIUPDATEVOL_PROG=
+++++ set_prog_path thin_check
+++++ type -P thin_check
++++ export THIN_CHECK_PROG=/sbin/thin_check
++++ THIN_CHECK_PROG=/sbin/thin_check
+++++ set_prog_path udevadm
+++++ type -P udevadm
++++ UDEV_SETTLE_PROG=/sbin/udevadm
++++ '[' /sbin/udevadm == '' ']'
++++ UDEV_SETTLE_PROG='/sbin/udevadm settle'
++++ '[' '/sbin/udevadm settle' == '' ']'
++++ export UDEV_SETTLE_PROG
++++ case "$HOSTOS" in
+++++ set_prog_path mkfs.xfs
+++++ type -P mkfs.xfs
++++ export MKFS_XFS_PROG=/sbin/mkfs.xfs
++++ MKFS_XFS_PROG=/sbin/mkfs.xfs
+++++ set_prog_path mkfs.ext4
+++++ type -P mkfs.ext4
++++ export MKFS_EXT4_PROG=/sbin/mkfs.ext4
++++ MKFS_EXT4_PROG=/sbin/mkfs.ext4
+++++ set_prog_path mkudffs
+++++ type -P mkudffs
++++ export MKFS_UDF_PROG=
++++ MKFS_UDF_PROG=
+++++ set_btrfs_mkfs_prog_path_with_opts
++++++ set_prog_path mkfs.btrfs
++++++ type -P mkfs.btrfs
+++++ p=/bin/mkfs.btrfs
+++++ '[' /bin/mkfs.btrfs '!=' '' ']'
+++++ grep -q 'force overwrite' /bin/mkfs.btrfs
+++++ echo '/bin/mkfs.btrfs -f'
++++ export 'MKFS_BTRFS_PROG=/bin/mkfs.btrfs -f'
++++ MKFS_BTRFS_PROG='/bin/mkfs.btrfs -f'
+++++ set_prog_path mkfs.f2fs
+++++ type -P mkfs.f2fs
++++ export MKFS_F2FS_PROG=
++++ MKFS_F2FS_PROG=
+++++ set_prog_path dump.f2fs
+++++ type -P dump.f2fs
++++ export DUMP_F2FS_PROG=
++++ DUMP_F2FS_PROG=
+++++ set_prog_path btrfs
+++++ type -P btrfs
++++ export BTRFS_UTIL_PROG=/bin/btrfs
++++ BTRFS_UTIL_PROG=/bin/btrfs
+++++ set_prog_path btrfs-show-super
+++++ type -P btrfs-show-super
++++ export BTRFS_SHOW_SUPER_PROG=
++++ BTRFS_SHOW_SUPER_PROG=
+++++ set_prog_path btrfs-convert
+++++ type -P btrfs-convert
++++ export BTRFS_CONVERT_PROG=/bin/btrfs-convert
++++ BTRFS_CONVERT_PROG=/bin/btrfs-convert
+++++ set_prog_path xfs_fsr
+++++ type -P xfs_fsr
++++ export XFS_FSR_PROG=/sbin/xfs_fsr
++++ XFS_FSR_PROG=/sbin/xfs_fsr
++++ export MKFS_NFS_PROG=false
++++ MKFS_NFS_PROG=false
++++ export MKFS_CIFS_PROG=false
++++ MKFS_CIFS_PROG=false
++++ export MKFS_OVERLAY_PROG=false
++++ MKFS_OVERLAY_PROG=false
+++++ set_prog_path mkfs.reiser4
+++++ type -P mkfs.reiser4
++++ export MKFS_REISER4_PROG=
++++ MKFS_REISER4_PROG=
+++++ set_prog_path e2fsck
+++++ type -P e2fsck
++++ export E2FSCK_PROG=/sbin/e2fsck
++++ E2FSCK_PROG=/sbin/e2fsck
+++++ set_prog_path tune2fs
+++++ type -P tune2fs
++++ export TUNE2FS_PROG=/sbin/tune2fs
++++ TUNE2FS_PROG=/sbin/tune2fs
++++ '[' -x /usr/sbin/selinuxenabled ']'
++++ /usr/sbin/selinuxenabled
++++ : -o context=system_u:object_r:root_t:s0
++++ export SELINUX_MOUNT_OPTIONS
++++ XFS_MKFS_HAS_NO_META_SUPPORT=
++++ touch /tmp/crc_check.img
++++ /sbin/mkfs.xfs -N -d file,name=/tmp/crc_check.img,size=32m -m crc=0
++++ '[' 0 -ne 0 ']'
++++ rm -f /tmp/crc_check.img
++++ export XFS_MKFS_HAS_NO_META_SUPPORT
++++ '[' '' == new ']'
++++ '[' '!' -f local.config ']'
++++ export HOST_OPTIONS_SECTIONS=-no-sections-
++++ HOST_OPTIONS_SECTIONS=-no-sections-
++++ export OPTIONS_HAVE_SECTIONS=false
++++ OPTIONS_HAVE_SECTIONS=false
++++ '[' -f local.config ']'
+++++ get_config_sections local.config
+++++ sed -n -e 's/^\[\([[:alnum:]_]*\)\]/\1/p'
++++ export HOST_OPTIONS_SECTIONS=
++++ HOST_OPTIONS_SECTIONS=
++++ '[' -z '' ']'
++++ . local.config
+++++ export TEST_DEV=/dev/xvdb
+++++ TEST_DEV=/dev/xvdb
+++++ export TEST_DIR=/mnt/test
+++++ TEST_DIR=/mnt/test
+++++ export SCRATCH_MNT=/mnt/scratch
+++++ SCRATCH_MNT=/mnt/scratch
+++++ export 'SCRATCH_DEV_POOL=/dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg'
+++++ SCRATCH_DEV_POOL='/dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg'
++++ export HOST_OPTIONS_SECTIONS=-no-sections-
++++ HOST_OPTIONS_SECTIONS=-no-sections-
++++ '[' -z true ']'
+++++ _canonicalize_mountpoint TEST_DIR /mnt/test
+++++ local name=TEST_DIR
+++++ local dir=/mnt/test
+++++ '[' -d /mnt/test ']'
+++++ readlink -e /mnt/test
+++++ return 0
++++ export TEST_DIR=/mnt/test
++++ TEST_DIR=/mnt/test
+++++ _canonicalize_mountpoint SCRATCH_MNT /mnt/scratch
+++++ local name=SCRATCH_MNT
+++++ local dir=/mnt/scratch
+++++ '[' -d /mnt/scratch ']'
+++++ readlink -e /mnt/scratch
+++++ return 0
++++ export SCRATCH_MNT=/mnt/scratch
++++ SCRATCH_MNT=/mnt/scratch
++++ '[' '' == true -o btrfs == overlay ']'
++++ /bin/true
+++ umask 022
+++ case "$FSTYP" in
+++ '[' '/bin/mkfs.btrfs -f' = '' ']'
+++ . ./common/btrfs
+++ '[' '!' -z '' ']'
+++ USE_REMOUNT=0
+++ init_rc
+++ '[' '' == new ']'
+++ '[' /dev/xvdb = '' ']'
++++ _fs_type /dev/xvdb
++++ '[' 1 -ne 1 ']'
++++ sed -e s/nfs4/nfs/ -e s/fuse.glusterfs/glusterfs/
++++ /bin/awk '{ print $2 }'
++++ _df_device /dev/xvdb
++++ '[' 1 -ne 1 ']'
++++ /bin/awk -v what=/dev/xvdb '
+        ($1==what) && (NF==1) {
+            v=$1
+            getline
+            print v, $0
+            exit
+        }
+        ($1==what) {
+            print
+            exit
+        }
+    '
++++ /bin/df -T -P
+++ '[' -z btrfs ']'
+++ _check_mounted_on TEST_DEV /dev/xvdb TEST_DIR /mnt/test btrfs
+++ local devname=TEST_DEV
+++ local dev=/dev/xvdb
+++ local mntname=TEST_DIR
+++ local mnt=/mnt/test
+++ local type=btrfs
++++ findmnt -rncv -S /dev/xvdb -o SOURCE,TARGET
+++ local 'mount_rec=/dev/xvdb /mnt/test'
+++ '[' -n '/dev/xvdb /mnt/test' ']'
+++ '[' '/dev/xvdb /mnt/test' '!=' '/dev/xvdb /mnt/test' ']'
++++ _fs_type /dev/xvdb
++++ '[' 1 -ne 1 ']'
++++ sed -e s/nfs4/nfs/ -e s/fuse.glusterfs/glusterfs/
++++ /bin/awk '{ print $2 }'
++++ _df_device /dev/xvdb
++++ '[' 1 -ne 1 ']'
++++ /bin/awk -v what=/dev/xvdb '
+        ($1==what) && (NF==1) {
+            v=$1
+            getline
+            print v, $0
+            exit
+        }
+        ($1==what) {
+            print
+            exit
+        }
+    '
++++ /bin/df -T -P
+++ '[' -n btrfs -a btrfs '!=' btrfs ']'
+++ return 0
+++ '[' -n /dev/xvdc ']'
+++ _check_mounted_on SCRATCH_DEV /dev/xvdc SCRATCH_MNT /mnt/scratch
+++ local devname=SCRATCH_DEV
+++ local dev=/dev/xvdc
+++ local mntname=SCRATCH_MNT
+++ local mnt=/mnt/scratch
+++ local type=
++++ findmnt -rncv -S /dev/xvdc -o SOURCE,TARGET
+++ local 'mount_rec=/dev/xvdc /mnt/scratch'
+++ '[' -n '/dev/xvdc /mnt/scratch' ']'
+++ '[' '/dev/xvdc /mnt/scratch' '!=' '/dev/xvdc /mnt/scratch' ']'
++++ _fs_type /dev/xvdc
++++ '[' 1 -ne 1 ']'
++++ sed -e s/nfs4/nfs/ -e s/fuse.glusterfs/glusterfs/
++++ /bin/awk '{ print $2 }'
++++ _df_device /dev/xvdc
++++ '[' 1 -ne 1 ']'
++++ /bin/awk -v what=/dev/xvdc '
+        ($1==what) && (NF==1) {
+            v=$1
+            getline
+            print v, $0
+            exit
+        }
+        ($1==what) {
+            print
+            exit
+        }
+    '
++++ /bin/df -T -P
+++ '[' -n '' -a btrfs '!=' '' ']'
+++ return 0
+++ '[' 0 -le 1 ']'
+++ grep -q 'is not on an XFS filesystem'
+++ /sbin/xfs_io -c stat /mnt/test
+++ /sbin/xfs_io -i -c quit
+++ export 'XFS_IO_PROG=/sbin/xfs_io -i'
+++ XFS_IO_PROG='/sbin/xfs_io -i'
+++ '[' btrfs == xfs ']'
+++ /bin/true
++ . ./common/filter
+++ /bin/true
++ rm -f /home/fedora/xfstests/results//btrfs/151.full
++ _supported_fs btrfs
++ for f in "$@"
++ '[' btrfs = btrfs -o btrfs = generic ']'
++ return
++ _supported_os Linux
++ for h in "$@"
++ '[' Linux = Linux ']'
++ return
++ _require_scratch
++ _require_scratch_nocheck
++ case "$FSTYP" in
+++ _is_block_dev /dev/xvdc
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdc
+++ '[' -L /dev/xvdc ']'
+++ '[' -b /dev/xvdc ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdc
++ '[' -z /dev/xvdc -o 202,32 = '' ']'
+++ _is_block_dev /dev/xvdc
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdc
+++ '[' -L /dev/xvdc ']'
+++ '[' -b /dev/xvdc ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdc
+++ _is_block_dev /dev/xvdb
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdb
+++ '[' -L /dev/xvdb ']'
+++ '[' -b /dev/xvdb ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdb
++ '[' 202,32 = 202,16 ']'
++ '[' '!' -d /mnt/scratch ']'
++ _check_mounted_on SCRATCH_DEV /dev/xvdc SCRATCH_MNT /mnt/scratch
++ local devname=SCRATCH_DEV
++ local dev=/dev/xvdc
++ local mntname=SCRATCH_MNT
++ local mnt=/mnt/scratch
++ local type=
+++ findmnt -rncv -S /dev/xvdc -o SOURCE,TARGET
++ local 'mount_rec=/dev/xvdc /mnt/scratch'
++ '[' -n '/dev/xvdc /mnt/scratch' ']'
++ '[' '/dev/xvdc /mnt/scratch' '!=' '/dev/xvdc /mnt/scratch' ']'
+++ _fs_type /dev/xvdc
+++ '[' 1 -ne 1 ']'
+++ sed -e s/nfs4/nfs/ -e s/fuse.glusterfs/glusterfs/
+++ /bin/awk '{ print $2 }'
+++ _df_device /dev/xvdc
+++ '[' 1 -ne 1 ']'
+++ /bin/awk -v what=/dev/xvdc '
+        ($1==what) && (NF==1) {
+            v=$1
+            getline
+            print v, $0
+            exit
+        }
+        ($1==what) {
+            print
+            exit
+        }
+    '
+++ /bin/df -T -P
++ '[' -n '' -a btrfs '!=' '' ']'
++ return 0
++ local err=0
++ '[' 0 -le 1 ']'
++ '[' 0 -eq 0 ']'
++ _scratch_unmount
++ case "$FSTYP" in
++ /bin/umount /mnt/scratch
++ rm -f /home/fedora/xfstests/results//btrfs/require_scratch
++ touch /home/fedora/xfstests/results//btrfs/require_scratch
++ _require_scratch_dev_pool 3
++ local i
++ local ndevs
++ '[' -z '/dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg' ']'
++ '[' -z 3 ']'
++ ndevs=3
++ case $FSTYP in
+++ wc -w
+++ echo /dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg
++ '[' 5 -lt 3 ']'
++ for i in $SCRATCH_DEV_POOL
+++ _is_block_dev /dev/xvdc
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdc
+++ '[' -L /dev/xvdc ']'
+++ '[' -b /dev/xvdc ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdc
++ '[' 202,32 = '' ']'
+++ _is_block_dev /dev/xvdc
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdc
+++ '[' -L /dev/xvdc ']'
+++ '[' -b /dev/xvdc ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdc
+++ _is_block_dev /dev/xvdb
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdb
+++ '[' -L /dev/xvdb ']'
+++ '[' -b /dev/xvdb ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdb
++ '[' 202,32 = 202,16 ']'
++ grep -q /dev/xvdc
++ _mount
+++ _mount_ops_filter
+++ params=
+++ let last_index=0-1
+++ '[' -1 -gt 0 ']'
+++ FS_ESCAPED=
+++ /bin/perl -ne 's#mtpt=[^,|^\n|^\s]*#mtpt=\1\2#; print;'
+++ sed -e s/dmapi/dmi/
+++ echo
++ /bin/mount
++ dd if=/dev/zero of=/dev/xvdc bs=4096 count=100
++ for i in $SCRATCH_DEV_POOL
+++ _is_block_dev /dev/xvdd
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdd
+++ '[' -L /dev/xvdd ']'
+++ '[' -b /dev/xvdd ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdd
++ '[' 202,48 = '' ']'
+++ _is_block_dev /dev/xvdd
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdd
+++ '[' -L /dev/xvdd ']'
+++ '[' -b /dev/xvdd ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdd
+++ _is_block_dev /dev/xvdb
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdb
+++ '[' -L /dev/xvdb ']'
+++ '[' -b /dev/xvdb ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdb
++ '[' 202,48 = 202,16 ']'
++ grep -q /dev/xvdd
++ _mount
+++ _mount_ops_filter
+++ params=
+++ let last_index=0-1
+++ '[' -1 -gt 0 ']'
+++ FS_ESCAPED=
+++ /bin/perl -ne 's#mtpt=[^,|^\n|^\s]*#mtpt=\1\2#; print;'
+++ sed -e s/dmapi/dmi/
+++ echo
++ /bin/mount
++ dd if=/dev/zero of=/dev/xvdd bs=4096 count=100
++ for i in $SCRATCH_DEV_POOL
+++ _is_block_dev /dev/xvde
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvde
+++ '[' -L /dev/xvde ']'
+++ '[' -b /dev/xvde ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvde
++ '[' 202,64 = '' ']'
+++ _is_block_dev /dev/xvde
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvde
+++ '[' -L /dev/xvde ']'
+++ '[' -b /dev/xvde ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvde
+++ _is_block_dev /dev/xvdb
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdb
+++ '[' -L /dev/xvdb ']'
+++ '[' -b /dev/xvdb ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdb
++ '[' 202,64 = 202,16 ']'
++ grep -q /dev/xvde
++ _mount
+++ _mount_ops_filter
+++ params=
+++ let last_index=0-1
+++ '[' -1 -gt 0 ']'
+++ FS_ESCAPED=
+++ /bin/perl -ne 's#mtpt=[^,|^\n|^\s]*#mtpt=\1\2#; print;'
+++ sed -e s/dmapi/dmi/
+++ echo
++ /bin/mount
++ dd if=/dev/zero of=/dev/xvde bs=4096 count=100
++ for i in $SCRATCH_DEV_POOL
+++ _is_block_dev /dev/xvdf
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdf
+++ '[' -L /dev/xvdf ']'
+++ '[' -b /dev/xvdf ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdf
++ '[' 202,80 = '' ']'
+++ _is_block_dev /dev/xvdf
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdf
+++ '[' -L /dev/xvdf ']'
+++ '[' -b /dev/xvdf ']'
+++ src/lstat64 /dev/xvdf
+++ /bin/awk '/Device type:/ { print $9 }'
+++ _is_block_dev /dev/xvdb
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdb
+++ '[' -L /dev/xvdb ']'
+++ '[' -b /dev/xvdb ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdb
++ '[' 202,80 = 202,16 ']'
++ grep -q /dev/xvdf
++ _mount
+++ _mount_ops_filter
+++ params=
+++ let last_index=0-1
+++ '[' -1 -gt 0 ']'
+++ FS_ESCAPED=
+++ /bin/perl -ne 's#mtpt=[^,|^\n|^\s]*#mtpt=\1\2#; print;'
+++ sed -e s/dmapi/dmi/
+++ echo
++ /bin/mount
++ dd if=/dev/zero of=/dev/xvdf bs=4096 count=100
++ for i in $SCRATCH_DEV_POOL
+++ _is_block_dev /dev/xvdg
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdg
+++ '[' -L /dev/xvdg ']'
+++ '[' -b /dev/xvdg ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdg
++ '[' 202,96 = '' ']'
+++ _is_block_dev /dev/xvdg
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdg
+++ '[' -L /dev/xvdg ']'
+++ '[' -b /dev/xvdg ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdg
+++ _is_block_dev /dev/xvdb
+++ '[' 1 -ne 1 ']'
+++ _dev=/dev/xvdb
+++ '[' -L /dev/xvdb ']'
+++ '[' -b /dev/xvdb ']'
+++ /bin/awk '/Device type:/ { print $9 }'
+++ src/lstat64 /dev/xvdb
++ '[' 202,96 = 202,16 ']'
++ grep -q /dev/xvdg
++ _mount
+++ _mount_ops_filter
+++ params=
+++ let last_index=0-1
+++ '[' -1 -gt 0 ']'
+++ FS_ESCAPED=
+++ /bin/perl -ne 's#mtpt=[^,|^\n|^\s]*#mtpt=\1\2#; print;'
+++ sed -e s/dmapi/dmi/
+++ echo
++ /bin/mount
++ dd if=/dev/zero of=/dev/xvdg bs=4096 count=100
++ _require_btrfs_dev_del_by_devid
++ egrep devid
++ /bin/btrfs device delete --help
++ '[' 0 -eq 0 ']'
++ _scratch_dev_pool_get 3
++ '[' 1 -ne 1 ']'
++ local test_ndevs=3
+++ wc -w
+++ echo /dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg
++ local config_ndevs=5
++ local -a 'devs=( /dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg )'
++ typeset -p config_ndevs
++ '[' 0 -ne 0 ']'
++ '[' 5 -lt 3 ']'
++ SCRATCH_DEV_POOL_SAVED='/dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg'
++ export SCRATCH_DEV_POOL_SAVED
++ SCRATCH_DEV_POOL='/dev/xvdc /dev/xvdd /dev/xvde'
++ export SCRATCH_DEV_POOL
++ _scratch_pool_mkfs '-d raid1 -b 1G'
++ _scratch_mount -onospace_cache
++ '[' btrfs == overlay ']'
+++ _scratch_mount_options -onospace_cache
+++ _scratch_options mount
+++ type=mount
+++ SCRATCH_OPTIONS=
+++ '[' btrfs '!=' xfs ']'
+++ return
++++ _common_dev_mount_options -onospace_cache
++++ echo -o context=system_u:object_r:root_t:s0 -onospace_cache
+++ echo -o context=system_u:object_r:root_t:s0 -onospace_cache /dev/xvdc /mnt/scratch
++ _mount -t btrfs -o context=system_u:object_r:root_t:s0 -onospace_cache /dev/xvdc /mnt/scratch
+++ _mount_ops_filter -t btrfs -o context=system_u:object_r:root_t:s0 -onospace_cache /dev/xvdc /mnt/scratch
+++ params='-t btrfs -o context=system_u:object_r:root_t:s0 -onospace_cache /dev/xvdc /mnt/scratch'
+++ let last_index=7-1
+++ '[' 6 -gt 0 ']'
+++ shift 6
+++ FS_ESCAPED=/mnt/scratch
+++ /bin/perl -ne 's#mtpt=[^,|^\n|^\s]*#mtpt=/mnt/scratch\1\2#; print;'
+++ sed -e s/dmapi/dmi/
+++ echo -t btrfs -o context=system_u:object_r:root_t:s0 -onospace_cache /dev/xvdc /mnt/scratch
++ /bin/mount -t btrfs -o context=system_u:object_r:root_t:s0 -onospace_cache /dev/xvdc /mnt/scratch
++ /bin/btrfs device delete 2 /mnt/scratch
++ /bin/awk -F : '/Data,/ {print $1}'
++ tee -a /home/fedora/xfstests/results//btrfs/151.full
++ /bin/btrfs filesystem df /mnt/scratch
++ _scratch_dev_pool_put
++ typeset -p SCRATCH_DEV_POOL_SAVED
++ '[' 0 -ne 0 ']'
++ '[' -z '/dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg' ']'
++ export 'SCRATCH_DEV_POOL=/dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg'
++ SCRATCH_DEV_POOL='/dev/xvdc /dev/xvdd /dev/xvde /dev/xvdf /dev/xvdg'
++ export SCRATCH_DEV_POOL_SAVED=
++ SCRATCH_DEV_POOL_SAVED=
++ status=0
++ exit
++ _cleanup
++ cd /
++ rm -f '/tmp/26228.*'
++ exit 0
