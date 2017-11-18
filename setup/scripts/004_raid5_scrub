@@ -9,6 +9,10 @@ mv index.html /tmp/raid5_scrub_test.diff
 patch -p1 < /tmp/raid5_scrub_test.diff 
 chmod +x ~/btrfs-progs/tests/misc-tests/020-raid5-datastripe-corruption-parity-check/test.sh
 
+# Backup existing log
+mkdir -p /tmp/logs
+cp ~/btrfs-progs/tests/misc-tests-results.txt ~/btrfs-progs/tests/misc_tests_results.txt
+
 sudo make TEST=020\* test-misc
 
 # Move logs
