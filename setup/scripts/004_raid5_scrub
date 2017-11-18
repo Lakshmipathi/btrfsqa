@@ -11,7 +11,7 @@ chmod +x ~/btrfs-progs/tests/misc-tests/020-raid5-datastripe-corruption-parity-c
 
 # Backup existing log
 mkdir -p /tmp/logs
-cp ~/btrfs-progs/tests/misc-tests-results.txt ~/btrfs-progs/tests/misc_tests_results.txt
+cp ~/btrfs-progs/tests/misc-tests-results.txt ~/btrfs-progs/tests/Misc-tests-results.txt
 
 sudo make TEST=020\* test-misc
 
