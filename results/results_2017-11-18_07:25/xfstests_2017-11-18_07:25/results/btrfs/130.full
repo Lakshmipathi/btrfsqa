@@ -1,0 +1,5 @@
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/ro_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/ro_snap'
+# /bin/btrfs send /mnt/scratch/ro_snap
+At subvol /mnt/scratch/ro_snap
+ERROR: failed to read stream from kernel: Invalid argument
