@@ -1,0 +1,2488 @@
+=== Entering /home/fedora/btrfs-progs/tests/cli-tests/001-btrfs
+############### /home/fedora/btrfs-progs/btrfs
+For an overview of a given command use 'btrfs command --help'
+or 'btrfs [command...] --help --full' to print all available options.
+Any command name can be shortened as far as it stays unambiguous,
+however it is recommended to use full command names in scripts.
+All command groups have their manual page named 'btrfs-<group>'.
+usage: btrfs [--help] [--version] <group> [<group>...] <command> [<args>]
+
+Command groups:
+  subvolume         manage subvolumes: create, delete, list, etc
+  filesystem        overall filesystem tasks and information
+  balance           balance data across devices, or change block groups using filters
+  device            manage and query devices in the filesystem
+  scrub             verify checksums of data and metadata
+  rescue            toolbox for specific rescue operations
+  inspect-internal  query various internal information
+  property          modify properties of filesystem objects
+  quota             manage filesystem quota settings
+  qgroup            manage quota groups
+  replace           replace a device in the filesystem
+
+Commands:
+  check             Check structural integrity of a filesystem (unmounted).
+  restore           Try to restore files from a damaged filesystem (unmounted)
+  send              Send the subvolume(s) to stdout.
+  receive           Receive subvolumes from a stream
+  help              Display help information
+  version           Display btrfs-progs version
+
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs
+############### /home/fedora/btrfs-progs/btrfs version
+btrfs-progs v4.14-5-gf09e98a3
+############### /home/fedora/btrfs-progs/btrfs version --
+btrfs-progs v4.14-5-gf09e98a3
+############### /home/fedora/btrfs-progs/btrfs help
+usage: btrfs [--help] [--version] <group> [<group>...] <command> [<args>]
+
+    btrfs subvolume create [-i <qgroupid>] [<dest>/]<name>
+        Create a subvolume
+    btrfs subvolume delete [options] <subvolume> [<subvolume>...]
+        Delete subvolume(s)
+    btrfs subvolume list [options] <path>
+        List subvolumes and snapshots in the filesystem.
+    btrfs subvolume snapshot [-r] [-i <qgroupid>] <source> <dest>|[<dest>/]<name>
+        Create a snapshot of the subvolume
+    btrfs subvolume get-default <path>
+        Get the default subvolume of a filesystem
+    btrfs subvolume set-default <subvolume>
+    btrfs subvolume set-default <subvolid> <path>
+        Set the default subvolume of the filesystem mounted as default.
+    btrfs subvolume find-new <path> <lastgen>
+        List the recently modified files in a filesystem
+    btrfs subvolume show [options] <subvol-path>|<mnt>
+        Show more information about the subvolume
+    btrfs subvolume sync <path> [<subvol-id>...]
+        Wait until given subvolume(s) are completely removed from the filesystem.
+
+    btrfs filesystem df [options] <path>
+        Show space usage information for a mount point
+    btrfs filesystem du [options] <path> [<path>..]
+        Summarize disk usage of each file.
+    btrfs filesystem show [options] [<path>|<uuid>|<device>|label]
+        Show the structure of a filesystem
+    btrfs filesystem sync <path>
+        Force a sync on a filesystem
+    btrfs filesystem defragment [options] <file>|<dir> [<file>|<dir>...]
+        Defragment a file or a directory
+    btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+        Resize a filesystem
+    btrfs filesystem label [<device>|<mount_point>] [<newlabel>]
+        Get or change the label of a filesystem
+    btrfs filesystem usage [options] <path> [<path>..]
+        Show detailed information about internal filesystem usage .
+
+    btrfs balance start [options] <path>
+        Balance chunks across the devices
+    btrfs balance pause <path>
+        Pause running balance
+    btrfs balance cancel <path>
+        Cancel running or paused balance
+    btrfs balance resume <path>
+        Resume interrupted balance
+    btrfs balance status [-v] <path>
+        Show status of running or paused balance
+
+    btrfs device add [options] <device> [<device>...] <path>
+        Add a device to a filesystem
+    btrfs device delete <device>|<devid> [<device>|<devid>...] <path>
+    btrfs device remove <device>|<devid> [<device>|<devid>...] <path>
+        Remove a device from a filesystem
+    btrfs device scan [(-d|--all-devices)|<device> [<device>...]]
+        Scan devices for a btrfs filesystem
+    btrfs device ready <device>
+        Check device to see if it has all of its devices in cache for mounting
+    btrfs device stats [options] <path>|<device>
+        Show device IO error statistics
+    btrfs device usage [options] <path> [<path>..]
+        Show detailed information about internal allocations in devices.
+
+    btrfs scrub start [-BdqrRf] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Start a new scrub. If a scrub is already running, the new one fails.
+    btrfs scrub cancel <path>|<device>
+        Cancel a running scrub
+    btrfs scrub resume [-BdqrR] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Resume previously canceled or interrupted scrub
+    btrfs scrub status [-dR] <path>|<device>
+        Show status of running or finished scrub
+
+    btrfs check [options] <device>
+        Check structural integrity of a filesystem (unmounted).
+
+    btrfs rescue chunk-recover [options] <device>
+        Recover the chunk tree by scanning the devices one by one.
+    btrfs rescue super-recover [options] <device>
+        Recover bad superblocks from good copies
+    btrfs rescue zero-log <device>
+        Clear the tree log. Usable if it's corrupted and prevents mount.
+    btrfs rescue fix-device-size <device>
+        Re-align device and super block sizes. Usable if newer kernel refuse to mount it due to mismatch super size
+
+    btrfs restore [options] <device> <path> | -l <device>
+        Try to restore files from a damaged filesystem (unmounted)
+
+    btrfs inspect-internal inode-resolve [-v] <inode> <path>
+        Get file system paths for the given inode
+    btrfs inspect-internal logical-resolve [-Pv] [-s bufsize] <logical> <path>
+        Get file system paths for the given logical address
+    btrfs inspect-internal subvolid-resolve <subvolid> <path>
+        Get file system paths for the given subvolume ID.
+    btrfs inspect-internal rootid <path>
+        Get tree ID of the containing subvolume of path.
+    btrfs inspect-internal min-dev-size [options] <path>
+        Get the minimum size the device can be shrunk to. The
+    btrfs inspect-internal dump-tree [options] device
+        Dump tree structures from a given device
+    btrfs inspect-internal dump-super [options] device [device...]
+        Dump superblock from a device in a textual form
+    btrfs inspect-internal tree-stats [options] <device>
+        Print various stats for trees
+
+    btrfs property get [-t <type>] <object> [<name>]
+        Gets a property from a btrfs object.
+    btrfs property set [-t <type>] <object> <name> <value>
+        Sets a property on a btrfs object.
+    btrfs property list [-t <type>] <object>
+        Lists available properties with their descriptions for the given object.
+
+    btrfs send [-ve] [-p <parent>] [-c <clone-src>] [-f <outfile>] <subvol> [<subvol>...]
+        Send the subvolume(s) to stdout.
+    btrfs receive [options] <mount>
+    btrfs receive --dump [options]
+        Receive subvolumes from a stream
+
+    btrfs quota enable <path>
+        Enable subvolume quota support for a filesystem.
+    btrfs quota disable <path>
+        Disable subvolume quota support for a filesystem.
+    btrfs quota rescan [-sw] <path>
+        Trash all qgroup numbers and scan the metadata again with the current config.
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST
+    btrfs qgroup remove <src> <dst> <path>
+        Remove a child qgroup SRC from DST.
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+    btrfs qgroup show [options] <path>
+        Show subvolume quota groups.
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+    btrfs replace start [-Bfr] <srcdev>|<devid> <targetdev> <mount_point>
+        Replace device of a btrfs filesystem.
+    btrfs replace status [-1] <mount_point>
+        Print status and progress information of a running device replace
+    btrfs replace cancel <mount_point>
+        Cancel a running device replace operation.
+
+    btrfs help [--full]
+        Display help information
+    btrfs version
+        Display btrfs-progs version
+
+Use --help as an argument for information on a specific group or command.
+############### /home/fedora/btrfs-progs/btrfs help --
+usage: btrfs [--help] [--version] <group> [<group>...] <command> [<args>]
+
+    btrfs subvolume create [-i <qgroupid>] [<dest>/]<name>
+        Create a subvolume
+    btrfs subvolume delete [options] <subvolume> [<subvolume>...]
+        Delete subvolume(s)
+    btrfs subvolume list [options] <path>
+        List subvolumes and snapshots in the filesystem.
+    btrfs subvolume snapshot [-r] [-i <qgroupid>] <source> <dest>|[<dest>/]<name>
+        Create a snapshot of the subvolume
+    btrfs subvolume get-default <path>
+        Get the default subvolume of a filesystem
+    btrfs subvolume set-default <subvolume>
+    btrfs subvolume set-default <subvolid> <path>
+        Set the default subvolume of the filesystem mounted as default.
+    btrfs subvolume find-new <path> <lastgen>
+        List the recently modified files in a filesystem
+    btrfs subvolume show [options] <subvol-path>|<mnt>
+        Show more information about the subvolume
+    btrfs subvolume sync <path> [<subvol-id>...]
+        Wait until given subvolume(s) are completely removed from the filesystem.
+
+    btrfs filesystem df [options] <path>
+        Show space usage information for a mount point
+    btrfs filesystem du [options] <path> [<path>..]
+        Summarize disk usage of each file.
+    btrfs filesystem show [options] [<path>|<uuid>|<device>|label]
+        Show the structure of a filesystem
+    btrfs filesystem sync <path>
+        Force a sync on a filesystem
+    btrfs filesystem defragment [options] <file>|<dir> [<file>|<dir>...]
+        Defragment a file or a directory
+    btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+        Resize a filesystem
+    btrfs filesystem label [<device>|<mount_point>] [<newlabel>]
+        Get or change the label of a filesystem
+    btrfs filesystem usage [options] <path> [<path>..]
+        Show detailed information about internal filesystem usage .
+
+    btrfs balance start [options] <path>
+        Balance chunks across the devices
+    btrfs balance pause <path>
+        Pause running balance
+    btrfs balance cancel <path>
+        Cancel running or paused balance
+    btrfs balance resume <path>
+        Resume interrupted balance
+    btrfs balance status [-v] <path>
+        Show status of running or paused balance
+
+    btrfs device add [options] <device> [<device>...] <path>
+        Add a device to a filesystem
+    btrfs device delete <device>|<devid> [<device>|<devid>...] <path>
+    btrfs device remove <device>|<devid> [<device>|<devid>...] <path>
+        Remove a device from a filesystem
+    btrfs device scan [(-d|--all-devices)|<device> [<device>...]]
+        Scan devices for a btrfs filesystem
+    btrfs device ready <device>
+        Check device to see if it has all of its devices in cache for mounting
+    btrfs device stats [options] <path>|<device>
+        Show device IO error statistics
+    btrfs device usage [options] <path> [<path>..]
+        Show detailed information about internal allocations in devices.
+
+    btrfs scrub start [-BdqrRf] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Start a new scrub. If a scrub is already running, the new one fails.
+    btrfs scrub cancel <path>|<device>
+        Cancel a running scrub
+    btrfs scrub resume [-BdqrR] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Resume previously canceled or interrupted scrub
+    btrfs scrub status [-dR] <path>|<device>
+        Show status of running or finished scrub
+
+    btrfs check [options] <device>
+        Check structural integrity of a filesystem (unmounted).
+
+    btrfs rescue chunk-recover [options] <device>
+        Recover the chunk tree by scanning the devices one by one.
+    btrfs rescue super-recover [options] <device>
+        Recover bad superblocks from good copies
+    btrfs rescue zero-log <device>
+        Clear the tree log. Usable if it's corrupted and prevents mount.
+    btrfs rescue fix-device-size <device>
+        Re-align device and super block sizes. Usable if newer kernel refuse to mount it due to mismatch super size
+
+    btrfs restore [options] <device> <path> | -l <device>
+        Try to restore files from a damaged filesystem (unmounted)
+
+    btrfs inspect-internal inode-resolve [-v] <inode> <path>
+        Get file system paths for the given inode
+    btrfs inspect-internal logical-resolve [-Pv] [-s bufsize] <logical> <path>
+        Get file system paths for the given logical address
+    btrfs inspect-internal subvolid-resolve <subvolid> <path>
+        Get file system paths for the given subvolume ID.
+    btrfs inspect-internal rootid <path>
+        Get tree ID of the containing subvolume of path.
+    btrfs inspect-internal min-dev-size [options] <path>
+        Get the minimum size the device can be shrunk to. The
+    btrfs inspect-internal dump-tree [options] device
+        Dump tree structures from a given device
+    btrfs inspect-internal dump-super [options] device [device...]
+        Dump superblock from a device in a textual form
+    btrfs inspect-internal tree-stats [options] <device>
+        Print various stats for trees
+
+    btrfs property get [-t <type>] <object> [<name>]
+        Gets a property from a btrfs object.
+    btrfs property set [-t <type>] <object> <name> <value>
+        Sets a property on a btrfs object.
+    btrfs property list [-t <type>] <object>
+        Lists available properties with their descriptions for the given object.
+
+    btrfs send [-ve] [-p <parent>] [-c <clone-src>] [-f <outfile>] <subvol> [<subvol>...]
+        Send the subvolume(s) to stdout.
+    btrfs receive [options] <mount>
+    btrfs receive --dump [options]
+        Receive subvolumes from a stream
+
+    btrfs quota enable <path>
+        Enable subvolume quota support for a filesystem.
+    btrfs quota disable <path>
+        Disable subvolume quota support for a filesystem.
+    btrfs quota rescan [-sw] <path>
+        Trash all qgroup numbers and scan the metadata again with the current config.
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST
+    btrfs qgroup remove <src> <dst> <path>
+        Remove a child qgroup SRC from DST.
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+    btrfs qgroup show [options] <path>
+        Show subvolume quota groups.
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+    btrfs replace start [-Bfr] <srcdev>|<devid> <targetdev> <mount_point>
+        Replace device of a btrfs filesystem.
+    btrfs replace status [-1] <mount_point>
+        Print status and progress information of a running device replace
+    btrfs replace cancel <mount_point>
+        Cancel a running device replace operation.
+
+    btrfs help [--full]
+        Display help information
+    btrfs version
+        Display btrfs-progs version
+
+Use --help as an argument for information on a specific group or command.
+############### /home/fedora/btrfs-progs/btrfs help --full
+usage: btrfs [--help] [--version] <group> [<group>...] <command> [<args>]
+
+    btrfs subvolume create [-i <qgroupid>] [<dest>/]<name>
+        Create a subvolume
+
+        Create a subvolume <name> in <dest>.  If <dest> is not given
+        subvolume <name> will be created in the current directory.
+
+        -i <qgroupid>  add the newly created subvolume to a qgroup. This
+                       option can be given multiple times.
+
+    btrfs subvolume delete [options] <subvolume> [<subvolume>...]
+        Delete subvolume(s)
+
+        Delete subvolumes from the filesystem. The corresponding directory
+        is removed instantly but the data blocks are removed later.
+        The deletion does not involve full commit by default due to
+        performance reasons (as a consequence, the subvolume may appear again
+        after a crash). Use one of the --commit options to wait until the
+        operation is safely stored on the media.
+
+        -c|--commit-after      wait for transaction commit at the end of the operation
+        -C|--commit-each       wait for transaction commit after deleting each subvolume
+        -v|--verbose           verbose output of operations
+
+    btrfs subvolume list [options] <path>
+        List subvolumes and snapshots in the filesystem.
+
+        Path filtering:
+        -o           print only subvolumes below specified path
+        -a           print all the subvolumes in the filesystem and
+                     distinguish absolute and relative path with respect
+                     to the given <path>
+        
+        Field selection:
+        -p           print parent ID
+        -c           print the ogeneration of the subvolume
+        -g           print the generation of the subvolume
+        -u           print the uuid of subvolumes (and snapshots)
+        -q           print the parent uuid of the snapshots
+        -R           print the uuid of the received snapshots
+        
+        Type filtering:
+        -s           list only snapshots
+        -P           list parent subvolumes only
+        -r           list readonly subvolumes (including snapshots)
+        -d           list deleted subvolumes that are not yet cleaned
+        
+        Other:
+        -t           print the result as a table
+        
+        Sorting:
+        -G [+|-]value
+                     filter the subvolumes by generation
+                     (+value: >= value; -value: <= value; value: = value)
+        -C [+|-]value
+                     filter the subvolumes by ogeneration
+                     (+value: >= value; -value: <= value; value: = value)
+        --sort=gen,ogen,rootid,path
+                     list the subvolume in order of gen, ogen, rootid or path
+                     you also can add '+' or '-' in front of each items.
+                     (+:ascending, -:descending, ascending default)
+
+    btrfs subvolume snapshot [-r] [-i <qgroupid>] <source> <dest>|[<dest>/]<name>
+        Create a snapshot of the subvolume
+
+        Create a writable/readonly snapshot of the subvolume <source> with
+        the name <name> in the <dest> directory.  If only <dest> is given,
+        the subvolume will be named the basename of <source>.
+
+        -r             create a readonly snapshot
+        -i <qgroupid>  add the newly created snapshot to a qgroup. This
+                       option can be given multiple times.
+
+    btrfs subvolume get-default <path>
+        Get the default subvolume of a filesystem
+
+    btrfs subvolume set-default <subvolume>
+    btrfs subvolume set-default <subvolid> <path>
+        Set the default subvolume of the filesystem mounted as default.
+
+        The subvolume can be specified by its path,
+        or the pair of subvolume id and path to the filesystem.
+
+    btrfs subvolume find-new <path> <lastgen>
+        List the recently modified files in a filesystem
+
+    btrfs subvolume show [options] <subvol-path>|<mnt>
+        Show more information about the subvolume
+
+        -r|--rootid   rootid of the subvolume
+        -u|--uuid     uuid of the subvolume
+
+        If no option is specified, <subvol-path> will be shown, otherwise
+        the rootid or uuid are resolved relative to the <mnt> path.
+
+    btrfs subvolume sync <path> [<subvol-id>...]
+        Wait until given subvolume(s) are completely removed from the filesystem.
+
+        Wait until given subvolume(s) are completely removed from the filesystem
+        after deletion.
+        If no subvolume id is given, wait until all current deletion requests
+        are completed, but do not wait for subvolumes deleted meanwhile.
+        The status of subvolume ids is checked periodically.
+
+        -s <N>       sleep N seconds between checks (default: 1)
+
+    btrfs filesystem df [options] <path>
+        Show space usage information for a mount point
+
+        -b|--raw           raw numbers in bytes
+        -h|--human-readable
+                           human friendly numbers, base 1024 (default)
+        -H                 human friendly numbers, base 1000
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        -k|--kbytes        show sizes in KiB, or kB with --si
+        -m|--mbytes        show sizes in MiB, or MB with --si
+        -g|--gbytes        show sizes in GiB, or GB with --si
+        -t|--tbytes        show sizes in TiB, or TB with --si
+
+    btrfs filesystem du [options] <path> [<path>..]
+        Summarize disk usage of each file.
+
+        -s|--summarize     display only a total for each argument
+        --raw              raw numbers in bytes
+        --human-readable   human friendly numbers, base 1024 (default)
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        --kbytes           show sizes in KiB, or kB with --si
+        --mbytes           show sizes in MiB, or MB with --si
+        --gbytes           show sizes in GiB, or GB with --si
+        --tbytes           show sizes in TiB, or TB with --si
+
+    btrfs filesystem show [options] [<path>|<uuid>|<device>|label]
+        Show the structure of a filesystem
+
+        -d|--all-devices   show only disks under /dev containing btrfs filesystem
+        -m|--mounted       show only mounted btrfs
+        --raw              raw numbers in bytes
+        --human-readable   human friendly numbers, base 1024 (default)
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        --kbytes           show sizes in KiB, or kB with --si
+        --mbytes           show sizes in MiB, or MB with --si
+        --gbytes           show sizes in GiB, or GB with --si
+        --tbytes           show sizes in TiB, or TB with --si
+        If no argument is given, structure of all present filesystems is shown.
+
+    btrfs filesystem sync <path>
+        Force a sync on a filesystem
+
+    btrfs filesystem defragment [options] <file>|<dir> [<file>|<dir>...]
+        Defragment a file or a directory
+
+        -v                  be verbose
+        -r                  defragment files recursively
+        -c[zlib,lzo,zstd]   compress the file while defragmenting
+        -f                  flush data to disk immediately after defragmenting
+        -s start            defragment only from byte onward
+        -l len              defragment only up to len bytes
+        -t size             target extent size hint (default: 32M)
+        
+        Warning: most Linux kernels will break up the ref-links of COW data
+        (e.g., files copied with 'cp --reflink', snapshots) which may cause
+        considerable increase of space usage. See btrfs-filesystem(8) for
+        more information.
+
+    btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+        Resize a filesystem
+
+        If 'max' is passed, the filesystem will occupy all available space
+        on the device 'devid'.
+        [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+    btrfs filesystem label [<device>|<mount_point>] [<newlabel>]
+        Get or change the label of a filesystem
+
+        With one argument, get the label of filesystem on <device>.
+        If <newlabel> is passed, set the filesystem label to <newlabel>.
+
+    btrfs filesystem usage [options] <path> [<path>..]
+        Show detailed information about internal filesystem usage .
+
+        -b|--raw           raw numbers in bytes
+        -h|--human-readable
+                           human friendly numbers, base 1024 (default)
+        -H                 human friendly numbers, base 1000
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        -k|--kbytes        show sizes in KiB, or kB with --si
+        -m|--mbytes        show sizes in MiB, or MB with --si
+        -g|--gbytes        show sizes in GiB, or GB with --si
+        -t|--tbytes        show sizes in TiB, or TB with --si
+        -T                 show data in tabular format
+
+    btrfs balance start [options] <path>
+        Balance chunks across the devices
+
+        Balance and/or convert (change allocation profile of) chunks that
+        passed all filters in a comma-separated list of filters for a
+        particular chunk type.  If filter list is not given balance all
+        chunks of that type.  In case none of the -d, -m or -s options is
+        given balance all chunks in a filesystem. This is potentially
+        long operation and the user is warned before this start, with
+        a delay to stop it.
+
+        -d[filters]    act on data chunks
+        -m[filters]    act on metadata chunks
+        -s[filters]    act on system chunks (only under -f)
+        -v             be verbose
+        -f             force reducing of metadata integrity
+        --full-balance do not print warning and do not delay start
+        --background|--bg
+                       run the balance as a background process
+
+    btrfs balance pause <path>
+        Pause running balance
+
+    btrfs balance cancel <path>
+        Cancel running or paused balance
+
+    btrfs balance resume <path>
+        Resume interrupted balance
+
+    btrfs balance status [-v] <path>
+        Show status of running or paused balance
+
+        -v     be verbose
+
+    btrfs device add [options] <device> [<device>...] <path>
+        Add a device to a filesystem
+
+        -K|--nodiscard    do not perform whole device TRIM
+        -f|--force        force overwrite existing filesystem on the disk
+
+    btrfs device delete <device>|<devid> [<device>|<devid>...] <path>
+
+    btrfs device remove <device>|<devid> [<device>|<devid>...] <path>
+        Remove a device from a filesystem
+
+        If 'missing' is specified for <device>, the first device that is
+        described by the filesystem metadata, but not present at the mount
+        time will be removed. (only in degraded mode)
+
+    btrfs device scan [(-d|--all-devices)|<device> [<device>...]]
+        Scan devices for a btrfs filesystem
+
+         -d|--all-devices (deprecated)
+
+    btrfs device ready <device>
+        Check device to see if it has all of its devices in cache for mounting
+
+    btrfs device stats [options] <path>|<device>
+        Show device IO error statistics
+
+        Show device IO error statistics for all devices of the given filesystem
+        identified by PATH or DEVICE. The filesystem must be mounted.
+
+        -c|--check             return non-zero if any stat counter is not zero
+        -z|--reset             show current stats and reset values to zero
+
+    btrfs device usage [options] <path> [<path>..]
+        Show detailed information about internal allocations in devices.
+
+        -b|--raw           raw numbers in bytes
+        -h|--human-readable
+                           human friendly numbers, base 1024 (default)
+        -H                 human friendly numbers, base 1000
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        -k|--kbytes        show sizes in KiB, or kB with --si
+        -m|--mbytes        show sizes in MiB, or MB with --si
+        -g|--gbytes        show sizes in GiB, or GB with --si
+        -t|--tbytes        show sizes in TiB, or TB with --si
+
+    btrfs scrub start [-BdqrRf] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Start a new scrub. If a scrub is already running, the new one fails.
+
+        -B     do not background
+        -d     stats per device (-B only)
+        -q     be quiet
+        -r     read only mode
+        -R     raw print mode, print full data instead of summary
+        -c     set ioprio class (see ionice(1) manpage)
+        -n     set ioprio classdata (see ionice(1) manpage)
+        -f     force starting new scrub even if a scrub is already running
+               this is useful when scrub stats record file is damaged
+
+    btrfs scrub cancel <path>|<device>
+        Cancel a running scrub
+
+    btrfs scrub resume [-BdqrR] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Resume previously canceled or interrupted scrub
+
+        -B     do not background
+        -d     stats per device (-B only)
+        -q     be quiet
+        -r     read only mode
+        -R     raw print mode, print full data instead of summary
+        -c     set ioprio class (see ionice(1) manpage)
+        -n     set ioprio classdata (see ionice(1) manpage)
+
+    btrfs scrub status [-dR] <path>|<device>
+        Show status of running or finished scrub
+
+        -d     stats per device
+        -R     print raw stats
+
+    btrfs check [options] <device>
+        Check structural integrity of a filesystem (unmounted).
+
+        Check structural integrity of an unmounted filesystem. Verify internal
+        trees' consistency and item connectivity. In the repair mode try to
+        fix the problems found. 
+        WARNING: the repair mode is considered dangerous
+
+        -s|--super <superblock>     use this superblock copy
+        -b|--backup                 use the first valid backup root copy
+        --force                     skip mount checks, repair is not possible
+        --repair                    try to repair the filesystem
+        --readonly                  run in read-only mode (default)
+        --init-csum-tree            create a new CRC tree
+        --init-extent-tree          create a new extent tree
+        --mode <MODE>               allows choice of memory/IO trade-offs
+                                    where MODE is one of:
+                                    original - read inodes and extents to memory (requires
+                                               more memory, does less IO)
+                                    lowmem   - try to use less memory but read blocks again
+                                               when needed
+        --check-data-csum           verify checksums of data blocks
+        -Q|--qgroup-report          print a report on qgroup consistency
+        -E|--subvol-extents <subvolid>
+                                    print subvolume extents and sharing state
+        -r|--tree-root <bytenr>     use the given bytenr for the tree root
+        --chunk-root <bytenr>       use the given bytenr for the chunk tree root
+        -p|--progress               indicate progress
+        --clear-space-cache v1|v2   clear space cache for v1 or v2
+
+    btrfs rescue chunk-recover [options] <device>
+        Recover the chunk tree by scanning the devices one by one.
+
+        -y	Assume an answer of `yes' to all questions
+        -v	Verbose mode
+        -h	Help
+
+    btrfs rescue super-recover [options] <device>
+        Recover bad superblocks from good copies
+
+        -y	Assume an answer of `yes' to all questions
+        -v	Verbose mode
+
+    btrfs rescue zero-log <device>
+        Clear the tree log. Usable if it's corrupted and prevents mount.
+
+
+    btrfs rescue fix-device-size <device>
+        Re-align device and super block sizes. Usable if newer kernel refuse to mount it due to mismatch super size
+
+
+    btrfs restore [options] <device> <path> | -l <device>
+        Try to restore files from a damaged filesystem (unmounted)
+
+        -s|--snapshots       get snapshots
+        -x|--xattr           restore extended attributes
+        -m|--metadata        restore owner, mode and times
+        -S|--symlink         restore symbolic links
+        -v|--verbose         verbose
+        -i|--ignore-errors   ignore errors
+        -o|--overwrite       overwrite
+        -t <bytenr>          tree location
+        -f <bytenr>          filesystem location
+        -u|--super <mirror>  super mirror
+        -r|--root <rootid>   root objectid
+        -d                   find dir
+        -l|--list-roots      list tree roots
+        -D|--dry-run         dry run (only list files that would be recovered)
+        --path-regex <regex>
+                             restore only filenames matching regex,
+                             you have to use following syntax (possibly quoted):
+                             ^/(|home(|/username(|/Desktop(|/.*))))$
+        -c                   ignore case (--path-regex only)
+
+    btrfs inspect-internal inode-resolve [-v] <inode> <path>
+        Get file system paths for the given inode
+
+        -v   verbose mode
+
+    btrfs inspect-internal logical-resolve [-Pv] [-s bufsize] <logical> <path>
+        Get file system paths for the given logical address
+
+        -P          skip the path resolving and print the inodes instead
+        -v          verbose mode
+        -s bufsize  set inode container's size. This is used to increase inode
+                    container's size in case it is not enough to read all the 
+                    resolved results. The max value one can set is 64k
+
+    btrfs inspect-internal subvolid-resolve <subvolid> <path>
+        Get file system paths for the given subvolume ID.
+
+    btrfs inspect-internal rootid <path>
+        Get tree ID of the containing subvolume of path.
+
+    btrfs inspect-internal min-dev-size [options] <path>
+        Get the minimum size the device can be shrunk to. The
+
+        device id 1 is used by default.
+        --id DEVID   specify the device id to query
+
+    btrfs inspect-internal dump-tree [options] device
+        Dump tree structures from a given device
+
+        Dump tree structures from a given device in textual form, expand keys to human
+        readable equivalents where possible.
+        Note: contains file names, consider that if you're asked to send the dump
+        for analysis.
+
+        -e|--extents           print only extent info: extent and device trees
+        -d|--device            print only device info: tree root, chunk and device trees
+        -r|--roots             print only short root node info
+        -R|--backups           same as --roots plus print backup root info
+        -u|--uuid              print only the uuid tree
+        -b|--block <block_num> print info from the specified block only
+        -t|--tree <tree_id>    print only tree with the given id (string or number)
+
+    btrfs inspect-internal dump-super [options] device [device...]
+        Dump superblock from a device in a textual form
+
+        -f|--full             print full superblock information, backup roots etc.
+        -a|--all              print information about all superblocks
+        -s|--super <super>    specify which copy to print out (values: 0, 1, 2)
+        -F|--force            attempt to dump superblocks with bad magic
+        --bytenr <offset>     specify alternate superblock offset
+
+        Deprecated syntax:
+        -s <bytenr>           specify alternate superblock offset, values other than 0, 1, 2
+                              will be interpreted as --bytenr for backward compatibility,
+                              option renamed for consistency with other tools (eg. check)
+        -i <super>            specify which copy to print out (values: 0, 1, 2), now moved
+                              to -s|--super
+
+    btrfs inspect-internal tree-stats [options] <device>
+        Print various stats for trees
+
+        -b		raw numbers in bytes
+
+    btrfs property get [-t <type>] <object> [<name>]
+        Gets a property from a btrfs object.
+
+        If no name is specified, all properties for the given object are
+        printed.
+        A filesystem object can be a the filesystem itself, a subvolume,
+        an inode or a device. The '-t <type>' option can be used to explicitly
+        specify what type of object you meant. This is only needed when a
+        property could be set for more then one object type. Possible types
+        are s[ubvol], f[ilesystem], i[node] and d[evice].
+
+    btrfs property set [-t <type>] <object> <name> <value>
+        Sets a property on a btrfs object.
+
+        Please see the help of 'btrfs property get' for a description of
+        objects and object types.
+
+    btrfs property list [-t <type>] <object>
+        Lists available properties with their descriptions for the given object.
+
+        Please see the help of 'btrfs property get' for a description of
+        objects and object types.
+
+    btrfs send [-ve] [-p <parent>] [-c <clone-src>] [-f <outfile>] <subvol> [<subvol>...]
+        Send the subvolume(s) to stdout.
+
+        Sends the subvolume(s) specified by <subvol> to stdout.
+        <subvol> should be read-only here.
+        By default, this will send the whole subvolume. To do an incremental
+        send, use '-p <parent>'. If you want to allow btrfs to clone from
+        any additional local snapshots, use '-c <clone-src>' (multiple times
+        where applicable). You must not specify clone sources unless you
+        guarantee that these snapshots are exactly in the same state on both
+        sides, the sender and the receiver. It is allowed to omit the
+        '-p <parent>' option when '-c <clone-src>' options are given, in
+        which case 'btrfs send' will determine a suitable parent among the
+        clone sources itself.
+        
+
+        -e               If sending multiple subvols at once, use the new
+                         format and omit the end-cmd between the subvols.
+        -p <parent>      Send an incremental stream from <parent> to
+                         <subvol>.
+        -c <clone-src>   Use this snapshot as a clone source for an 
+                         incremental send (multiple allowed)
+        -f <outfile>     Output is normally written to stdout. To write to
+                         a file, use this option. An alternative would be to
+                         use pipes.
+        --no-data        send in NO_FILE_DATA mode, Note: the output stream
+                         does not contain any file data and thus cannot be used
+                         to transfer changes. This mode is faster and useful to
+                         show the differences in metadata.
+        -v|--verbose     enable verbose output to stderr, each occurrence of
+                         this option increases verbosity
+        -q|--quiet       suppress all messages, except errors
+
+    btrfs receive [options] <mount>
+    btrfs receive --dump [options]
+        Receive subvolumes from a stream
+
+        Receives one or more subvolumes that were previously
+        sent with btrfs send. The received subvolumes are stored
+        into MOUNT.
+        The receive will fail in case the receiving subvolume
+        already exists. It will also fail in case a previously
+        received subvolume has been changed after it was received.
+        After receiving a subvolume, it is immediately set to
+        read-only.
+
+        -v               increase verbosity about performed actions
+        -f FILE          read the stream from FILE instead of stdin
+        -e               terminate after receiving an <end cmd> marker in the stream.
+                         Without this option the receiver side terminates only in case
+                         of an error on end of file.
+        -C|--chroot      confine the process to <mount> using chroot
+        -E|--max-errors NERR
+                         terminate as soon as NERR errors occur while
+                         stream processing commands from the stream.
+                         Default value is 1. A value of 0 means no limit.
+        -m ROOTMOUNT     the root mount point of the destination filesystem.
+                         If /proc is not accessible, use this to tell us where
+                         this file system is mounted.
+        --dump           dump stream metadata, one line per operation,
+                         does not require the MOUNT parameter
+
+    btrfs quota enable <path>
+        Enable subvolume quota support for a filesystem.
+
+        Any data already present on the filesystem will not count towards
+        the space usage numbers. It is recommended to enable quota for a
+        filesystem before writing any data to it.
+
+    btrfs quota disable <path>
+        Disable subvolume quota support for a filesystem.
+
+    btrfs quota rescan [-sw] <path>
+        Trash all qgroup numbers and scan the metadata again with the current config.
+
+        -s   show status of a running rescan operation
+        -w   wait for rescan operation to finish (can be already in progress)
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST
+
+        --rescan       schedule qutoa rescan if needed
+        --no-rescan    don't schedule quota rescan
+
+    btrfs qgroup remove <src> <dst> <path>
+        Remove a child qgroup SRC from DST.
+
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+
+    btrfs qgroup show [options] <path>
+        Show subvolume quota groups.
+
+        -p             print parent qgroup id
+        -c             print child qgroup id
+        -r             print limit of referenced size of qgroup
+        -e             print limit of exclusive size of qgroup
+        -F             list all qgroups which impact the given path
+                       (including ancestral qgroups)
+        -f             list all qgroups which impact the given path
+                       (excluding ancestral qgroups)
+        --raw              raw numbers in bytes
+        --human-readable   human friendly numbers, base 1024 (default)
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        --kbytes           show sizes in KiB, or kB with --si
+        --mbytes           show sizes in MiB, or MB with --si
+        --gbytes           show sizes in GiB, or GB with --si
+        --tbytes           show sizes in TiB, or TB with --si
+        --sort=qgroupid,rfer,excl,max_rfer,max_excl
+                       list qgroups sorted by specified items
+                       you can use '+' or '-' in front of each item.
+                       (+:ascending, -:descending, ascending default)
+        --sync         force sync of the filesystem before getting info
+
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+        -c   limit amount of data after compression. This is the default,
+             it is currently not possible to turn off this option.
+        -e   limit space exclusively assigned to this qgroup
+
+    btrfs replace start [-Bfr] <srcdev>|<devid> <targetdev> <mount_point>
+        Replace device of a btrfs filesystem.
+
+        On a live filesystem, duplicate the data to the target device which
+        is currently stored on the source device. If the source device is not
+        available anymore, or if the -r option is set, the data is built
+        only using the RAID redundancy mechanisms. After completion of the
+        operation, the source device is removed from the filesystem.
+        If the <srcdev> is a numerical value, it is assumed to be the device id
+        of the filesystem which is mounted at <mount_point>, otherwise it is
+        the path to the source device. If the source device is disconnected,
+        from the system, you have to use the <devid> parameter format.
+        The <targetdev> needs to be same size or larger than the <srcdev>.
+
+        -r     only read from <srcdev> if no other zero-defect mirror exists
+               (enable this if your drive has lots of read errors, the access
+               would be very slow)
+        -f     force using and overwriting <targetdev> even if it looks like
+               containing a valid btrfs filesystem. A valid filesystem is
+               assumed if a btrfs superblock is found which contains a
+               correct checksum. Devices which are currently mounted are
+               never allowed to be used as the <targetdev>
+        -B     do not background
+
+    btrfs replace status [-1] <mount_point>
+        Print status and progress information of a running device replace
+
+        operation
+
+        -1     print once instead of print continuously until the replace
+               operation finishes (or is canceled)
+
+    btrfs replace cancel <mount_point>
+        Cancel a running device replace operation.
+
+    btrfs help [--full]
+        Display help information
+
+        --full     display detailed help on every command
+
+    btrfs version
+        Display btrfs-progs version
+
+Use --help as an argument for information on a specific group or command.
+############### /home/fedora/btrfs-progs/btrfs --help
+usage: btrfs [--help] [--version] <group> [<group>...] <command> [<args>]
+
+    btrfs subvolume create [-i <qgroupid>] [<dest>/]<name>
+        Create a subvolume
+    btrfs subvolume delete [options] <subvolume> [<subvolume>...]
+        Delete subvolume(s)
+    btrfs subvolume list [options] <path>
+        List subvolumes and snapshots in the filesystem.
+    btrfs subvolume snapshot [-r] [-i <qgroupid>] <source> <dest>|[<dest>/]<name>
+        Create a snapshot of the subvolume
+    btrfs subvolume get-default <path>
+        Get the default subvolume of a filesystem
+    btrfs subvolume set-default <subvolume>
+    btrfs subvolume set-default <subvolid> <path>
+        Set the default subvolume of the filesystem mounted as default.
+    btrfs subvolume find-new <path> <lastgen>
+        List the recently modified files in a filesystem
+    btrfs subvolume show [options] <subvol-path>|<mnt>
+        Show more information about the subvolume
+    btrfs subvolume sync <path> [<subvol-id>...]
+        Wait until given subvolume(s) are completely removed from the filesystem.
+
+    btrfs filesystem df [options] <path>
+        Show space usage information for a mount point
+    btrfs filesystem du [options] <path> [<path>..]
+        Summarize disk usage of each file.
+    btrfs filesystem show [options] [<path>|<uuid>|<device>|label]
+        Show the structure of a filesystem
+    btrfs filesystem sync <path>
+        Force a sync on a filesystem
+    btrfs filesystem defragment [options] <file>|<dir> [<file>|<dir>...]
+        Defragment a file or a directory
+    btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+        Resize a filesystem
+    btrfs filesystem label [<device>|<mount_point>] [<newlabel>]
+        Get or change the label of a filesystem
+    btrfs filesystem usage [options] <path> [<path>..]
+        Show detailed information about internal filesystem usage .
+
+    btrfs balance start [options] <path>
+        Balance chunks across the devices
+    btrfs balance pause <path>
+        Pause running balance
+    btrfs balance cancel <path>
+        Cancel running or paused balance
+    btrfs balance resume <path>
+        Resume interrupted balance
+    btrfs balance status [-v] <path>
+        Show status of running or paused balance
+
+    btrfs device add [options] <device> [<device>...] <path>
+        Add a device to a filesystem
+    btrfs device delete <device>|<devid> [<device>|<devid>...] <path>
+    btrfs device remove <device>|<devid> [<device>|<devid>...] <path>
+        Remove a device from a filesystem
+    btrfs device scan [(-d|--all-devices)|<device> [<device>...]]
+        Scan devices for a btrfs filesystem
+    btrfs device ready <device>
+        Check device to see if it has all of its devices in cache for mounting
+    btrfs device stats [options] <path>|<device>
+        Show device IO error statistics
+    btrfs device usage [options] <path> [<path>..]
+        Show detailed information about internal allocations in devices.
+
+    btrfs scrub start [-BdqrRf] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Start a new scrub. If a scrub is already running, the new one fails.
+    btrfs scrub cancel <path>|<device>
+        Cancel a running scrub
+    btrfs scrub resume [-BdqrR] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Resume previously canceled or interrupted scrub
+    btrfs scrub status [-dR] <path>|<device>
+        Show status of running or finished scrub
+
+    btrfs check [options] <device>
+        Check structural integrity of a filesystem (unmounted).
+
+    btrfs rescue chunk-recover [options] <device>
+        Recover the chunk tree by scanning the devices one by one.
+    btrfs rescue super-recover [options] <device>
+        Recover bad superblocks from good copies
+    btrfs rescue zero-log <device>
+        Clear the tree log. Usable if it's corrupted and prevents mount.
+    btrfs rescue fix-device-size <device>
+        Re-align device and super block sizes. Usable if newer kernel refuse to mount it due to mismatch super size
+
+    btrfs restore [options] <device> <path> | -l <device>
+        Try to restore files from a damaged filesystem (unmounted)
+
+    btrfs inspect-internal inode-resolve [-v] <inode> <path>
+        Get file system paths for the given inode
+    btrfs inspect-internal logical-resolve [-Pv] [-s bufsize] <logical> <path>
+        Get file system paths for the given logical address
+    btrfs inspect-internal subvolid-resolve <subvolid> <path>
+        Get file system paths for the given subvolume ID.
+    btrfs inspect-internal rootid <path>
+        Get tree ID of the containing subvolume of path.
+    btrfs inspect-internal min-dev-size [options] <path>
+        Get the minimum size the device can be shrunk to. The
+    btrfs inspect-internal dump-tree [options] device
+        Dump tree structures from a given device
+    btrfs inspect-internal dump-super [options] device [device...]
+        Dump superblock from a device in a textual form
+    btrfs inspect-internal tree-stats [options] <device>
+        Print various stats for trees
+
+    btrfs property get [-t <type>] <object> [<name>]
+        Gets a property from a btrfs object.
+    btrfs property set [-t <type>] <object> <name> <value>
+        Sets a property on a btrfs object.
+    btrfs property list [-t <type>] <object>
+        Lists available properties with their descriptions for the given object.
+
+    btrfs send [-ve] [-p <parent>] [-c <clone-src>] [-f <outfile>] <subvol> [<subvol>...]
+        Send the subvolume(s) to stdout.
+    btrfs receive [options] <mount>
+    btrfs receive --dump [options]
+        Receive subvolumes from a stream
+
+    btrfs quota enable <path>
+        Enable subvolume quota support for a filesystem.
+    btrfs quota disable <path>
+        Disable subvolume quota support for a filesystem.
+    btrfs quota rescan [-sw] <path>
+        Trash all qgroup numbers and scan the metadata again with the current config.
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST
+    btrfs qgroup remove <src> <dst> <path>
+        Remove a child qgroup SRC from DST.
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+    btrfs qgroup show [options] <path>
+        Show subvolume quota groups.
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+    btrfs replace start [-Bfr] <srcdev>|<devid> <targetdev> <mount_point>
+        Replace device of a btrfs filesystem.
+    btrfs replace status [-1] <mount_point>
+        Print status and progress information of a running device replace
+    btrfs replace cancel <mount_point>
+        Cancel a running device replace operation.
+
+    btrfs help [--full]
+        Display help information
+    btrfs version
+        Display btrfs-progs version
+
+Use --help as an argument for information on a specific group or command.
+############### /home/fedora/btrfs-progs/btrfs --help --full
+usage: btrfs [--help] [--version] <group> [<group>...] <command> [<args>]
+
+    btrfs subvolume create [-i <qgroupid>] [<dest>/]<name>
+        Create a subvolume
+
+        Create a subvolume <name> in <dest>.  If <dest> is not given
+        subvolume <name> will be created in the current directory.
+
+        -i <qgroupid>  add the newly created subvolume to a qgroup. This
+                       option can be given multiple times.
+
+    btrfs subvolume delete [options] <subvolume> [<subvolume>...]
+        Delete subvolume(s)
+
+        Delete subvolumes from the filesystem. The corresponding directory
+        is removed instantly but the data blocks are removed later.
+        The deletion does not involve full commit by default due to
+        performance reasons (as a consequence, the subvolume may appear again
+        after a crash). Use one of the --commit options to wait until the
+        operation is safely stored on the media.
+
+        -c|--commit-after      wait for transaction commit at the end of the operation
+        -C|--commit-each       wait for transaction commit after deleting each subvolume
+        -v|--verbose           verbose output of operations
+
+    btrfs subvolume list [options] <path>
+        List subvolumes and snapshots in the filesystem.
+
+        Path filtering:
+        -o           print only subvolumes below specified path
+        -a           print all the subvolumes in the filesystem and
+                     distinguish absolute and relative path with respect
+                     to the given <path>
+        
+        Field selection:
+        -p           print parent ID
+        -c           print the ogeneration of the subvolume
+        -g           print the generation of the subvolume
+        -u           print the uuid of subvolumes (and snapshots)
+        -q           print the parent uuid of the snapshots
+        -R           print the uuid of the received snapshots
+        
+        Type filtering:
+        -s           list only snapshots
+        -P           list parent subvolumes only
+        -r           list readonly subvolumes (including snapshots)
+        -d           list deleted subvolumes that are not yet cleaned
+        
+        Other:
+        -t           print the result as a table
+        
+        Sorting:
+        -G [+|-]value
+                     filter the subvolumes by generation
+                     (+value: >= value; -value: <= value; value: = value)
+        -C [+|-]value
+                     filter the subvolumes by ogeneration
+                     (+value: >= value; -value: <= value; value: = value)
+        --sort=gen,ogen,rootid,path
+                     list the subvolume in order of gen, ogen, rootid or path
+                     you also can add '+' or '-' in front of each items.
+                     (+:ascending, -:descending, ascending default)
+
+    btrfs subvolume snapshot [-r] [-i <qgroupid>] <source> <dest>|[<dest>/]<name>
+        Create a snapshot of the subvolume
+
+        Create a writable/readonly snapshot of the subvolume <source> with
+        the name <name> in the <dest> directory.  If only <dest> is given,
+        the subvolume will be named the basename of <source>.
+
+        -r             create a readonly snapshot
+        -i <qgroupid>  add the newly created snapshot to a qgroup. This
+                       option can be given multiple times.
+
+    btrfs subvolume get-default <path>
+        Get the default subvolume of a filesystem
+
+    btrfs subvolume set-default <subvolume>
+    btrfs subvolume set-default <subvolid> <path>
+        Set the default subvolume of the filesystem mounted as default.
+
+        The subvolume can be specified by its path,
+        or the pair of subvolume id and path to the filesystem.
+
+    btrfs subvolume find-new <path> <lastgen>
+        List the recently modified files in a filesystem
+
+    btrfs subvolume show [options] <subvol-path>|<mnt>
+        Show more information about the subvolume
+
+        -r|--rootid   rootid of the subvolume
+        -u|--uuid     uuid of the subvolume
+
+        If no option is specified, <subvol-path> will be shown, otherwise
+        the rootid or uuid are resolved relative to the <mnt> path.
+
+    btrfs subvolume sync <path> [<subvol-id>...]
+        Wait until given subvolume(s) are completely removed from the filesystem.
+
+        Wait until given subvolume(s) are completely removed from the filesystem
+        after deletion.
+        If no subvolume id is given, wait until all current deletion requests
+        are completed, but do not wait for subvolumes deleted meanwhile.
+        The status of subvolume ids is checked periodically.
+
+        -s <N>       sleep N seconds between checks (default: 1)
+
+    btrfs filesystem df [options] <path>
+        Show space usage information for a mount point
+
+        -b|--raw           raw numbers in bytes
+        -h|--human-readable
+                           human friendly numbers, base 1024 (default)
+        -H                 human friendly numbers, base 1000
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        -k|--kbytes        show sizes in KiB, or kB with --si
+        -m|--mbytes        show sizes in MiB, or MB with --si
+        -g|--gbytes        show sizes in GiB, or GB with --si
+        -t|--tbytes        show sizes in TiB, or TB with --si
+
+    btrfs filesystem du [options] <path> [<path>..]
+        Summarize disk usage of each file.
+
+        -s|--summarize     display only a total for each argument
+        --raw              raw numbers in bytes
+        --human-readable   human friendly numbers, base 1024 (default)
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        --kbytes           show sizes in KiB, or kB with --si
+        --mbytes           show sizes in MiB, or MB with --si
+        --gbytes           show sizes in GiB, or GB with --si
+        --tbytes           show sizes in TiB, or TB with --si
+
+    btrfs filesystem show [options] [<path>|<uuid>|<device>|label]
+        Show the structure of a filesystem
+
+        -d|--all-devices   show only disks under /dev containing btrfs filesystem
+        -m|--mounted       show only mounted btrfs
+        --raw              raw numbers in bytes
+        --human-readable   human friendly numbers, base 1024 (default)
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        --kbytes           show sizes in KiB, or kB with --si
+        --mbytes           show sizes in MiB, or MB with --si
+        --gbytes           show sizes in GiB, or GB with --si
+        --tbytes           show sizes in TiB, or TB with --si
+        If no argument is given, structure of all present filesystems is shown.
+
+    btrfs filesystem sync <path>
+        Force a sync on a filesystem
+
+    btrfs filesystem defragment [options] <file>|<dir> [<file>|<dir>...]
+        Defragment a file or a directory
+
+        -v                  be verbose
+        -r                  defragment files recursively
+        -c[zlib,lzo,zstd]   compress the file while defragmenting
+        -f                  flush data to disk immediately after defragmenting
+        -s start            defragment only from byte onward
+        -l len              defragment only up to len bytes
+        -t size             target extent size hint (default: 32M)
+        
+        Warning: most Linux kernels will break up the ref-links of COW data
+        (e.g., files copied with 'cp --reflink', snapshots) which may cause
+        considerable increase of space usage. See btrfs-filesystem(8) for
+        more information.
+
+    btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+        Resize a filesystem
+
+        If 'max' is passed, the filesystem will occupy all available space
+        on the device 'devid'.
+        [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+    btrfs filesystem label [<device>|<mount_point>] [<newlabel>]
+        Get or change the label of a filesystem
+
+        With one argument, get the label of filesystem on <device>.
+        If <newlabel> is passed, set the filesystem label to <newlabel>.
+
+    btrfs filesystem usage [options] <path> [<path>..]
+        Show detailed information about internal filesystem usage .
+
+        -b|--raw           raw numbers in bytes
+        -h|--human-readable
+                           human friendly numbers, base 1024 (default)
+        -H                 human friendly numbers, base 1000
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        -k|--kbytes        show sizes in KiB, or kB with --si
+        -m|--mbytes        show sizes in MiB, or MB with --si
+        -g|--gbytes        show sizes in GiB, or GB with --si
+        -t|--tbytes        show sizes in TiB, or TB with --si
+        -T                 show data in tabular format
+
+    btrfs balance start [options] <path>
+        Balance chunks across the devices
+
+        Balance and/or convert (change allocation profile of) chunks that
+        passed all filters in a comma-separated list of filters for a
+        particular chunk type.  If filter list is not given balance all
+        chunks of that type.  In case none of the -d, -m or -s options is
+        given balance all chunks in a filesystem. This is potentially
+        long operation and the user is warned before this start, with
+        a delay to stop it.
+
+        -d[filters]    act on data chunks
+        -m[filters]    act on metadata chunks
+        -s[filters]    act on system chunks (only under -f)
+        -v             be verbose
+        -f             force reducing of metadata integrity
+        --full-balance do not print warning and do not delay start
+        --background|--bg
+                       run the balance as a background process
+
+    btrfs balance pause <path>
+        Pause running balance
+
+    btrfs balance cancel <path>
+        Cancel running or paused balance
+
+    btrfs balance resume <path>
+        Resume interrupted balance
+
+    btrfs balance status [-v] <path>
+        Show status of running or paused balance
+
+        -v     be verbose
+
+    btrfs device add [options] <device> [<device>...] <path>
+        Add a device to a filesystem
+
+        -K|--nodiscard    do not perform whole device TRIM
+        -f|--force        force overwrite existing filesystem on the disk
+
+    btrfs device delete <device>|<devid> [<device>|<devid>...] <path>
+
+    btrfs device remove <device>|<devid> [<device>|<devid>...] <path>
+        Remove a device from a filesystem
+
+        If 'missing' is specified for <device>, the first device that is
+        described by the filesystem metadata, but not present at the mount
+        time will be removed. (only in degraded mode)
+
+    btrfs device scan [(-d|--all-devices)|<device> [<device>...]]
+        Scan devices for a btrfs filesystem
+
+         -d|--all-devices (deprecated)
+
+    btrfs device ready <device>
+        Check device to see if it has all of its devices in cache for mounting
+
+    btrfs device stats [options] <path>|<device>
+        Show device IO error statistics
+
+        Show device IO error statistics for all devices of the given filesystem
+        identified by PATH or DEVICE. The filesystem must be mounted.
+
+        -c|--check             return non-zero if any stat counter is not zero
+        -z|--reset             show current stats and reset values to zero
+
+    btrfs device usage [options] <path> [<path>..]
+        Show detailed information about internal allocations in devices.
+
+        -b|--raw           raw numbers in bytes
+        -h|--human-readable
+                           human friendly numbers, base 1024 (default)
+        -H                 human friendly numbers, base 1000
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        -k|--kbytes        show sizes in KiB, or kB with --si
+        -m|--mbytes        show sizes in MiB, or MB with --si
+        -g|--gbytes        show sizes in GiB, or GB with --si
+        -t|--tbytes        show sizes in TiB, or TB with --si
+
+    btrfs scrub start [-BdqrRf] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Start a new scrub. If a scrub is already running, the new one fails.
+
+        -B     do not background
+        -d     stats per device (-B only)
+        -q     be quiet
+        -r     read only mode
+        -R     raw print mode, print full data instead of summary
+        -c     set ioprio class (see ionice(1) manpage)
+        -n     set ioprio classdata (see ionice(1) manpage)
+        -f     force starting new scrub even if a scrub is already running
+               this is useful when scrub stats record file is damaged
+
+    btrfs scrub cancel <path>|<device>
+        Cancel a running scrub
+
+    btrfs scrub resume [-BdqrR] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Resume previously canceled or interrupted scrub
+
+        -B     do not background
+        -d     stats per device (-B only)
+        -q     be quiet
+        -r     read only mode
+        -R     raw print mode, print full data instead of summary
+        -c     set ioprio class (see ionice(1) manpage)
+        -n     set ioprio classdata (see ionice(1) manpage)
+
+    btrfs scrub status [-dR] <path>|<device>
+        Show status of running or finished scrub
+
+        -d     stats per device
+        -R     print raw stats
+
+    btrfs check [options] <device>
+        Check structural integrity of a filesystem (unmounted).
+
+        Check structural integrity of an unmounted filesystem. Verify internal
+        trees' consistency and item connectivity. In the repair mode try to
+        fix the problems found. 
+        WARNING: the repair mode is considered dangerous
+
+        -s|--super <superblock>     use this superblock copy
+        -b|--backup                 use the first valid backup root copy
+        --force                     skip mount checks, repair is not possible
+        --repair                    try to repair the filesystem
+        --readonly                  run in read-only mode (default)
+        --init-csum-tree            create a new CRC tree
+        --init-extent-tree          create a new extent tree
+        --mode <MODE>               allows choice of memory/IO trade-offs
+                                    where MODE is one of:
+                                    original - read inodes and extents to memory (requires
+                                               more memory, does less IO)
+                                    lowmem   - try to use less memory but read blocks again
+                                               when needed
+        --check-data-csum           verify checksums of data blocks
+        -Q|--qgroup-report          print a report on qgroup consistency
+        -E|--subvol-extents <subvolid>
+                                    print subvolume extents and sharing state
+        -r|--tree-root <bytenr>     use the given bytenr for the tree root
+        --chunk-root <bytenr>       use the given bytenr for the chunk tree root
+        -p|--progress               indicate progress
+        --clear-space-cache v1|v2   clear space cache for v1 or v2
+
+    btrfs rescue chunk-recover [options] <device>
+        Recover the chunk tree by scanning the devices one by one.
+
+        -y	Assume an answer of `yes' to all questions
+        -v	Verbose mode
+        -h	Help
+
+    btrfs rescue super-recover [options] <device>
+        Recover bad superblocks from good copies
+
+        -y	Assume an answer of `yes' to all questions
+        -v	Verbose mode
+
+    btrfs rescue zero-log <device>
+        Clear the tree log. Usable if it's corrupted and prevents mount.
+
+
+    btrfs rescue fix-device-size <device>
+        Re-align device and super block sizes. Usable if newer kernel refuse to mount it due to mismatch super size
+
+
+    btrfs restore [options] <device> <path> | -l <device>
+        Try to restore files from a damaged filesystem (unmounted)
+
+        -s|--snapshots       get snapshots
+        -x|--xattr           restore extended attributes
+        -m|--metadata        restore owner, mode and times
+        -S|--symlink         restore symbolic links
+        -v|--verbose         verbose
+        -i|--ignore-errors   ignore errors
+        -o|--overwrite       overwrite
+        -t <bytenr>          tree location
+        -f <bytenr>          filesystem location
+        -u|--super <mirror>  super mirror
+        -r|--root <rootid>   root objectid
+        -d                   find dir
+        -l|--list-roots      list tree roots
+        -D|--dry-run         dry run (only list files that would be recovered)
+        --path-regex <regex>
+                             restore only filenames matching regex,
+                             you have to use following syntax (possibly quoted):
+                             ^/(|home(|/username(|/Desktop(|/.*))))$
+        -c                   ignore case (--path-regex only)
+
+    btrfs inspect-internal inode-resolve [-v] <inode> <path>
+        Get file system paths for the given inode
+
+        -v   verbose mode
+
+    btrfs inspect-internal logical-resolve [-Pv] [-s bufsize] <logical> <path>
+        Get file system paths for the given logical address
+
+        -P          skip the path resolving and print the inodes instead
+        -v          verbose mode
+        -s bufsize  set inode container's size. This is used to increase inode
+                    container's size in case it is not enough to read all the 
+                    resolved results. The max value one can set is 64k
+
+    btrfs inspect-internal subvolid-resolve <subvolid> <path>
+        Get file system paths for the given subvolume ID.
+
+    btrfs inspect-internal rootid <path>
+        Get tree ID of the containing subvolume of path.
+
+    btrfs inspect-internal min-dev-size [options] <path>
+        Get the minimum size the device can be shrunk to. The
+
+        device id 1 is used by default.
+        --id DEVID   specify the device id to query
+
+    btrfs inspect-internal dump-tree [options] device
+        Dump tree structures from a given device
+
+        Dump tree structures from a given device in textual form, expand keys to human
+        readable equivalents where possible.
+        Note: contains file names, consider that if you're asked to send the dump
+        for analysis.
+
+        -e|--extents           print only extent info: extent and device trees
+        -d|--device            print only device info: tree root, chunk and device trees
+        -r|--roots             print only short root node info
+        -R|--backups           same as --roots plus print backup root info
+        -u|--uuid              print only the uuid tree
+        -b|--block <block_num> print info from the specified block only
+        -t|--tree <tree_id>    print only tree with the given id (string or number)
+
+    btrfs inspect-internal dump-super [options] device [device...]
+        Dump superblock from a device in a textual form
+
+        -f|--full             print full superblock information, backup roots etc.
+        -a|--all              print information about all superblocks
+        -s|--super <super>    specify which copy to print out (values: 0, 1, 2)
+        -F|--force            attempt to dump superblocks with bad magic
+        --bytenr <offset>     specify alternate superblock offset
+
+        Deprecated syntax:
+        -s <bytenr>           specify alternate superblock offset, values other than 0, 1, 2
+                              will be interpreted as --bytenr for backward compatibility,
+                              option renamed for consistency with other tools (eg. check)
+        -i <super>            specify which copy to print out (values: 0, 1, 2), now moved
+                              to -s|--super
+
+    btrfs inspect-internal tree-stats [options] <device>
+        Print various stats for trees
+
+        -b		raw numbers in bytes
+
+    btrfs property get [-t <type>] <object> [<name>]
+        Gets a property from a btrfs object.
+
+        If no name is specified, all properties for the given object are
+        printed.
+        A filesystem object can be a the filesystem itself, a subvolume,
+        an inode or a device. The '-t <type>' option can be used to explicitly
+        specify what type of object you meant. This is only needed when a
+        property could be set for more then one object type. Possible types
+        are s[ubvol], f[ilesystem], i[node] and d[evice].
+
+    btrfs property set [-t <type>] <object> <name> <value>
+        Sets a property on a btrfs object.
+
+        Please see the help of 'btrfs property get' for a description of
+        objects and object types.
+
+    btrfs property list [-t <type>] <object>
+        Lists available properties with their descriptions for the given object.
+
+        Please see the help of 'btrfs property get' for a description of
+        objects and object types.
+
+    btrfs send [-ve] [-p <parent>] [-c <clone-src>] [-f <outfile>] <subvol> [<subvol>...]
+        Send the subvolume(s) to stdout.
+
+        Sends the subvolume(s) specified by <subvol> to stdout.
+        <subvol> should be read-only here.
+        By default, this will send the whole subvolume. To do an incremental
+        send, use '-p <parent>'. If you want to allow btrfs to clone from
+        any additional local snapshots, use '-c <clone-src>' (multiple times
+        where applicable). You must not specify clone sources unless you
+        guarantee that these snapshots are exactly in the same state on both
+        sides, the sender and the receiver. It is allowed to omit the
+        '-p <parent>' option when '-c <clone-src>' options are given, in
+        which case 'btrfs send' will determine a suitable parent among the
+        clone sources itself.
+        
+
+        -e               If sending multiple subvols at once, use the new
+                         format and omit the end-cmd between the subvols.
+        -p <parent>      Send an incremental stream from <parent> to
+                         <subvol>.
+        -c <clone-src>   Use this snapshot as a clone source for an 
+                         incremental send (multiple allowed)
+        -f <outfile>     Output is normally written to stdout. To write to
+                         a file, use this option. An alternative would be to
+                         use pipes.
+        --no-data        send in NO_FILE_DATA mode, Note: the output stream
+                         does not contain any file data and thus cannot be used
+                         to transfer changes. This mode is faster and useful to
+                         show the differences in metadata.
+        -v|--verbose     enable verbose output to stderr, each occurrence of
+                         this option increases verbosity
+        -q|--quiet       suppress all messages, except errors
+
+    btrfs receive [options] <mount>
+    btrfs receive --dump [options]
+        Receive subvolumes from a stream
+
+        Receives one or more subvolumes that were previously
+        sent with btrfs send. The received subvolumes are stored
+        into MOUNT.
+        The receive will fail in case the receiving subvolume
+        already exists. It will also fail in case a previously
+        received subvolume has been changed after it was received.
+        After receiving a subvolume, it is immediately set to
+        read-only.
+
+        -v               increase verbosity about performed actions
+        -f FILE          read the stream from FILE instead of stdin
+        -e               terminate after receiving an <end cmd> marker in the stream.
+                         Without this option the receiver side terminates only in case
+                         of an error on end of file.
+        -C|--chroot      confine the process to <mount> using chroot
+        -E|--max-errors NERR
+                         terminate as soon as NERR errors occur while
+                         stream processing commands from the stream.
+                         Default value is 1. A value of 0 means no limit.
+        -m ROOTMOUNT     the root mount point of the destination filesystem.
+                         If /proc is not accessible, use this to tell us where
+                         this file system is mounted.
+        --dump           dump stream metadata, one line per operation,
+                         does not require the MOUNT parameter
+
+    btrfs quota enable <path>
+        Enable subvolume quota support for a filesystem.
+
+        Any data already present on the filesystem will not count towards
+        the space usage numbers. It is recommended to enable quota for a
+        filesystem before writing any data to it.
+
+    btrfs quota disable <path>
+        Disable subvolume quota support for a filesystem.
+
+    btrfs quota rescan [-sw] <path>
+        Trash all qgroup numbers and scan the metadata again with the current config.
+
+        -s   show status of a running rescan operation
+        -w   wait for rescan operation to finish (can be already in progress)
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST
+
+        --rescan       schedule qutoa rescan if needed
+        --no-rescan    don't schedule quota rescan
+
+    btrfs qgroup remove <src> <dst> <path>
+        Remove a child qgroup SRC from DST.
+
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+
+    btrfs qgroup show [options] <path>
+        Show subvolume quota groups.
+
+        -p             print parent qgroup id
+        -c             print child qgroup id
+        -r             print limit of referenced size of qgroup
+        -e             print limit of exclusive size of qgroup
+        -F             list all qgroups which impact the given path
+                       (including ancestral qgroups)
+        -f             list all qgroups which impact the given path
+                       (excluding ancestral qgroups)
+        --raw              raw numbers in bytes
+        --human-readable   human friendly numbers, base 1024 (default)
+        --iec              use 1024 as a base (KiB, MiB, GiB, TiB)
+        --si               use 1000 as a base (kB, MB, GB, TB)
+        --kbytes           show sizes in KiB, or kB with --si
+        --mbytes           show sizes in MiB, or MB with --si
+        --gbytes           show sizes in GiB, or GB with --si
+        --tbytes           show sizes in TiB, or TB with --si
+        --sort=qgroupid,rfer,excl,max_rfer,max_excl
+                       list qgroups sorted by specified items
+                       you can use '+' or '-' in front of each item.
+                       (+:ascending, -:descending, ascending default)
+        --sync         force sync of the filesystem before getting info
+
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+        -c   limit amount of data after compression. This is the default,
+             it is currently not possible to turn off this option.
+        -e   limit space exclusively assigned to this qgroup
+
+    btrfs replace start [-Bfr] <srcdev>|<devid> <targetdev> <mount_point>
+        Replace device of a btrfs filesystem.
+
+        On a live filesystem, duplicate the data to the target device which
+        is currently stored on the source device. If the source device is not
+        available anymore, or if the -r option is set, the data is built
+        only using the RAID redundancy mechanisms. After completion of the
+        operation, the source device is removed from the filesystem.
+        If the <srcdev> is a numerical value, it is assumed to be the device id
+        of the filesystem which is mounted at <mount_point>, otherwise it is
+        the path to the source device. If the source device is disconnected,
+        from the system, you have to use the <devid> parameter format.
+        The <targetdev> needs to be same size or larger than the <srcdev>.
+
+        -r     only read from <srcdev> if no other zero-defect mirror exists
+               (enable this if your drive has lots of read errors, the access
+               would be very slow)
+        -f     force using and overwriting <targetdev> even if it looks like
+               containing a valid btrfs filesystem. A valid filesystem is
+               assumed if a btrfs superblock is found which contains a
+               correct checksum. Devices which are currently mounted are
+               never allowed to be used as the <targetdev>
+        -B     do not background
+
+    btrfs replace status [-1] <mount_point>
+        Print status and progress information of a running device replace
+
+        operation
+
+        -1     print once instead of print continuously until the replace
+               operation finishes (or is canceled)
+
+    btrfs replace cancel <mount_point>
+        Cancel a running device replace operation.
+
+    btrfs help [--full]
+        Display help information
+
+        --full     display detailed help on every command
+
+    btrfs version
+        Display btrfs-progs version
+
+Use --help as an argument for information on a specific group or command.
+############### /home/fedora/btrfs-progs/btrfs --version
+btrfs-progs v4.14-5-gf09e98a3
+############### /home/fedora/btrfs-progs/btrfs --version --help
+usage: btrfs [--help] [--version] <group> [<group>...] <command> [<args>]
+
+    btrfs subvolume create [-i <qgroupid>] [<dest>/]<name>
+        Create a subvolume
+    btrfs subvolume delete [options] <subvolume> [<subvolume>...]
+        Delete subvolume(s)
+    btrfs subvolume list [options] <path>
+        List subvolumes and snapshots in the filesystem.
+    btrfs subvolume snapshot [-r] [-i <qgroupid>] <source> <dest>|[<dest>/]<name>
+        Create a snapshot of the subvolume
+    btrfs subvolume get-default <path>
+        Get the default subvolume of a filesystem
+    btrfs subvolume set-default <subvolume>
+    btrfs subvolume set-default <subvolid> <path>
+        Set the default subvolume of the filesystem mounted as default.
+    btrfs subvolume find-new <path> <lastgen>
+        List the recently modified files in a filesystem
+    btrfs subvolume show [options] <subvol-path>|<mnt>
+        Show more information about the subvolume
+    btrfs subvolume sync <path> [<subvol-id>...]
+        Wait until given subvolume(s) are completely removed from the filesystem.
+
+    btrfs filesystem df [options] <path>
+        Show space usage information for a mount point
+    btrfs filesystem du [options] <path> [<path>..]
+        Summarize disk usage of each file.
+    btrfs filesystem show [options] [<path>|<uuid>|<device>|label]
+        Show the structure of a filesystem
+    btrfs filesystem sync <path>
+        Force a sync on a filesystem
+    btrfs filesystem defragment [options] <file>|<dir> [<file>|<dir>...]
+        Defragment a file or a directory
+    btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+        Resize a filesystem
+    btrfs filesystem label [<device>|<mount_point>] [<newlabel>]
+        Get or change the label of a filesystem
+    btrfs filesystem usage [options] <path> [<path>..]
+        Show detailed information about internal filesystem usage .
+
+    btrfs balance start [options] <path>
+        Balance chunks across the devices
+    btrfs balance pause <path>
+        Pause running balance
+    btrfs balance cancel <path>
+        Cancel running or paused balance
+    btrfs balance resume <path>
+        Resume interrupted balance
+    btrfs balance status [-v] <path>
+        Show status of running or paused balance
+
+    btrfs device add [options] <device> [<device>...] <path>
+        Add a device to a filesystem
+    btrfs device delete <device>|<devid> [<device>|<devid>...] <path>
+    btrfs device remove <device>|<devid> [<device>|<devid>...] <path>
+        Remove a device from a filesystem
+    btrfs device scan [(-d|--all-devices)|<device> [<device>...]]
+        Scan devices for a btrfs filesystem
+    btrfs device ready <device>
+        Check device to see if it has all of its devices in cache for mounting
+    btrfs device stats [options] <path>|<device>
+        Show device IO error statistics
+    btrfs device usage [options] <path> [<path>..]
+        Show detailed information about internal allocations in devices.
+
+    btrfs scrub start [-BdqrRf] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Start a new scrub. If a scrub is already running, the new one fails.
+    btrfs scrub cancel <path>|<device>
+        Cancel a running scrub
+    btrfs scrub resume [-BdqrR] [-c ioprio_class -n ioprio_classdata] <path>|<device>
+        Resume previously canceled or interrupted scrub
+    btrfs scrub status [-dR] <path>|<device>
+        Show status of running or finished scrub
+
+    btrfs check [options] <device>
+        Check structural integrity of a filesystem (unmounted).
+
+    btrfs rescue chunk-recover [options] <device>
+        Recover the chunk tree by scanning the devices one by one.
+    btrfs rescue super-recover [options] <device>
+        Recover bad superblocks from good copies
+    btrfs rescue zero-log <device>
+        Clear the tree log. Usable if it's corrupted and prevents mount.
+    btrfs rescue fix-device-size <device>
+        Re-align device and super block sizes. Usable if newer kernel refuse to mount it due to mismatch super size
+
+    btrfs restore [options] <device> <path> | -l <device>
+        Try to restore files from a damaged filesystem (unmounted)
+
+    btrfs inspect-internal inode-resolve [-v] <inode> <path>
+        Get file system paths for the given inode
+    btrfs inspect-internal logical-resolve [-Pv] [-s bufsize] <logical> <path>
+        Get file system paths for the given logical address
+    btrfs inspect-internal subvolid-resolve <subvolid> <path>
+        Get file system paths for the given subvolume ID.
+    btrfs inspect-internal rootid <path>
+        Get tree ID of the containing subvolume of path.
+    btrfs inspect-internal min-dev-size [options] <path>
+        Get the minimum size the device can be shrunk to. The
+    btrfs inspect-internal dump-tree [options] device
+        Dump tree structures from a given device
+    btrfs inspect-internal dump-super [options] device [device...]
+        Dump superblock from a device in a textual form
+    btrfs inspect-internal tree-stats [options] <device>
+        Print various stats for trees
+
+    btrfs property get [-t <type>] <object> [<name>]
+        Gets a property from a btrfs object.
+    btrfs property set [-t <type>] <object> <name> <value>
+        Sets a property on a btrfs object.
+    btrfs property list [-t <type>] <object>
+        Lists available properties with their descriptions for the given object.
+
+    btrfs send [-ve] [-p <parent>] [-c <clone-src>] [-f <outfile>] <subvol> [<subvol>...]
+        Send the subvolume(s) to stdout.
+    btrfs receive [options] <mount>
+    btrfs receive --dump [options]
+        Receive subvolumes from a stream
+
+    btrfs quota enable <path>
+        Enable subvolume quota support for a filesystem.
+    btrfs quota disable <path>
+        Disable subvolume quota support for a filesystem.
+    btrfs quota rescan [-sw] <path>
+        Trash all qgroup numbers and scan the metadata again with the current config.
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST
+    btrfs qgroup remove <src> <dst> <path>
+        Remove a child qgroup SRC from DST.
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+    btrfs qgroup show [options] <path>
+        Show subvolume quota groups.
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+    btrfs replace start [-Bfr] <srcdev>|<devid> <targetdev> <mount_point>
+        Replace device of a btrfs filesystem.
+    btrfs replace status [-1] <mount_point>
+        Print status and progress information of a running device replace
+    btrfs replace cancel <mount_point>
+        Cancel a running device replace operation.
+
+    btrfs help [--full]
+        Display help information
+    btrfs version
+        Display btrfs-progs version
+
+Use --help as an argument for information on a specific group or command.
+=== Entering /home/fedora/btrfs-progs/tests/cli-tests/002-balance-full-no-filters
+$TEST_DEV not given, use /home/fedora/btrfs-progs/test/test.img as fallback
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f /home/fedora/btrfs-progs/tests/test.img
+btrfs-progs v4.14-5-gf09e98a3
+See http://btrfs.wiki.kernel.org for more information.
+
+Label:              (null)
+UUID:               c3d09dbe-cee9-49b0-b9da-c5c2a450ef07
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP             102.38MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     2.00GiB  /home/fedora/btrfs-progs/tests/test.img
+
+############### root_helper mount -t btrfs -o loop /home/fedora/btrfs-progs/tests/test.img /home/fedora/btrfs-progs/tests/mnt
+############### root_helper /home/fedora/btrfs-progs/btrfs balance start --full-balance /home/fedora/btrfs-progs/tests/mnt
+Done, had to relocate 3 out of 3 chunks
+############### root_helper /home/fedora/btrfs-progs/btrfs balance start /home/fedora/btrfs-progs/tests/mnt
+WARNING:
+
+	Full balance without filters requested. This operation is very
+	intense and takes potentially very long. It is recommended to
+	use the balance filters to narrow down the scope of balance.
+	Use 'btrfs balance start --full-balance' option to skip this
+	warning. The operation will start in 10 seconds.
+	Use Ctrl-C to stop it.
+10 9 8 7 6 5 4 3 2 1
+Starting balance without any filters.
+Done, had to relocate 3 out of 3 chunks
+############### root_helper /home/fedora/btrfs-progs/btrfs balance --full-balance /home/fedora/btrfs-progs/tests/mnt
+Done, had to relocate 3 out of 3 chunks
+############### root_helper /home/fedora/btrfs-progs/btrfs balance /home/fedora/btrfs-progs/tests/mnt
+WARNING:
+
+	Full balance without filters requested. This operation is very
+	intense and takes potentially very long. It is recommended to
+	use the balance filters to narrow down the scope of balance.
+	Use 'btrfs balance start --full-balance' option to skip this
+	warning. The operation will start in 10 seconds.
+	Use Ctrl-C to stop it.
+10 9 8 7 6 5 4 3 2 1
+Starting balance without any filters.
+Done, had to relocate 3 out of 3 chunks
+############### root_helper umount /home/fedora/btrfs-progs/tests/test.img
+=== Entering /home/fedora/btrfs-progs/tests/cli-tests/003-fi-resize-args
+$TEST_DEV not given, use /home/fedora/btrfs-progs/test/test.img as fallback
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f /home/fedora/btrfs-progs/tests/test.img
+btrfs-progs v4.14-5-gf09e98a3
+See http://btrfs.wiki.kernel.org for more information.
+
+Label:              (null)
+UUID:               2a7c595e-a347-4898-b97c-09d8df218372
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP             102.38MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     2.00GiB  /home/fedora/btrfs-progs/tests/test.img
+
+############### root_helper mount -t btrfs -o loop /home/fedora/btrfs-progs/tests/test.img /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs filesystem resize
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize
+############### /home/fedora/btrfs-progs/btrfs filesystem resize /home/fedora/btrfs-progs/tests/mnt
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs filesystem resize -128M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize -128M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize +128M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize +128M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize 512M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize 512M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize 1:-128M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize 1:-128M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize 1:512M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize 1:512M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize 1:+128M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize 1:+128M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize --
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize --
+############### /home/fedora/btrfs-progs/btrfs filesystem resize -- /home/fedora/btrfs-progs/tests/mnt
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize -- /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs filesystem resize -- -128M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize -- -128M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize -- +128M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize -- +128M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize -- 512M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize -- 512M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:-128M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:-128M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:512M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:512M
+############### /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:+128M
+btrfs filesystem resize: too few arguments
+usage: btrfs filesystem resize [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>
+
+    Resize a filesystem
+
+    If 'max' is passed, the filesystem will occupy all available space
+    on the device 'devid'.
+    [kK] means KiB, which denotes 1KiB = 1024B, 1MiB = 1024KiB, etc.
+
+failed: /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:+128M
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize -128M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '-128M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize +128M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '+128M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize 512M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '512M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize 1:-128M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '1:-128M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize 1:512M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '1:512M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize 1:+128M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '1:+128M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize -- -128M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '-128M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize -- +128M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '+128M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize -- 512M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '512M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:-128M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '1:-128M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:512M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '1:512M'
+############### root_helper /home/fedora/btrfs-progs/btrfs filesystem resize -- 1:+128M /home/fedora/btrfs-progs/tests/mnt
+Resize '/home/fedora/btrfs-progs/tests/mnt' of '1:+128M'
+############### root_helper umount /home/fedora/btrfs-progs/tests/test.img
+=== Entering /home/fedora/btrfs-progs/tests/cli-tests/004-send-parent-multi-subvol
+$TEST_DEV not given, use /home/fedora/btrfs-progs/test/test.img as fallback
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f /home/fedora/btrfs-progs/tests/test.img
+btrfs-progs v4.14-5-gf09e98a3
+See http://btrfs.wiki.kernel.org for more information.
+
+Label:              (null)
+UUID:               2f15fa15-a83c-4fa7-a8b5-3a2deccf489c
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP             102.38MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     2.00GiB  /home/fedora/btrfs-progs/tests/test.img
+
+############### root_helper mount -t btrfs -o loop /home/fedora/btrfs-progs/tests/test.img /home/fedora/btrfs-progs/tests/mnt
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume create subv-parent
+Create subvolume './subv-parent'
+############### root_helper dd if=/dev/urandom of=subv-parent/file bs=1M count=10
+10+0 records in
+10+0 records out
+10485760 bytes (10 MB, 10 MiB) copied, 0.11276 s, 93.0 MB/s
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume snapshot -r subv-parent subv-snap1
+Create a readonly snapshot of 'subv-parent' in './subv-snap1'
+############### root_helper dd if=/dev/urandom of=subv-parent/file bs=1M count=10
+10+0 records in
+10+0 records out
+10485760 bytes (10 MB, 10 MiB) copied, 0.129714 s, 80.8 MB/s
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume snapshot -r subv-parent subv-snap2
+Create a readonly snapshot of 'subv-parent' in './subv-snap2'
+############### root_helper dd if=/dev/urandom of=subv-parent/file bs=1M count=10
+10+0 records in
+10+0 records out
+10485760 bytes (10 MB, 10 MiB) copied, 0.12969 s, 80.9 MB/s
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume snapshot -r subv-parent subv-snap3
+Create a readonly snapshot of 'subv-parent' in './subv-snap3'
+############### truncate -s0 /home/fedora/btrfs-progs/tests/cli-tests/004-send-parent-multi-subvol/send.stream
+############### chmod a+w /home/fedora/btrfs-progs/tests/cli-tests/004-send-parent-multi-subvol/send.stream
+############### root_helper /home/fedora/btrfs-progs/btrfs send -f /home/fedora/btrfs-progs/tests/cli-tests/004-send-parent-multi-subvol/send.stream -p subv-snap1 subv-snap2 subv-snap3
+At subvol subv-snap2
+At subvol subv-snap3
+############### root_helper umount /home/fedora/btrfs-progs/tests/test.img
+=== Entering /home/fedora/btrfs-progs/tests/cli-tests/005-qgroup-show
+$TEST_DEV not given, use /home/fedora/btrfs-progs/test/test.img as fallback
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f /home/fedora/btrfs-progs/tests/test.img
+btrfs-progs v4.14-5-gf09e98a3
+See http://btrfs.wiki.kernel.org for more information.
+
+Label:              (null)
+UUID:               66b74343-3a72-4c7d-ac83-ef8565ad6fb8
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP             102.38MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     2.00GiB  /home/fedora/btrfs-progs/tests/test.img
+
+############### root_helper mount -t btrfs -o loop /home/fedora/btrfs-progs/tests/test.img /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs qgroup show /home/fedora/btrfs-progs/tests/mnt
+ERROR: can't list qgroups: Operation not permitted
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs qgroup show /home/fedora/btrfs-progs/tests/mnt
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup show /home/fedora/btrfs-progs/tests/mnt
+ERROR: can't list qgroups: quotas not enabled
+failed (ignored, ret=1): root_helper /home/fedora/btrfs-progs/btrfs qgroup show /home/fedora/btrfs-progs/tests/mnt
+############### root_helper /home/fedora/btrfs-progs/btrfs quota enable /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs qgroup show /home/fedora/btrfs-progs/tests/mnt
+ERROR: can't list qgroups: Operation not permitted
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs qgroup show /home/fedora/btrfs-progs/tests/mnt
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup show /home/fedora/btrfs-progs/tests/mnt
+qgroupid         rfer         excl 
+--------         ----         ---- 
+0/5          16.00KiB     16.00KiB 
+############### root_helper /home/fedora/btrfs-progs/btrfs quota disable /home/fedora/btrfs-progs/tests/mnt
+############### root_helper umount /home/fedora/btrfs-progs/tests/test.img
+=== Entering /home/fedora/btrfs-progs/tests/cli-tests/006-qgroup-show-sync
+$TEST_DEV not given, use /home/fedora/btrfs-progs/test/test.img as fallback
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f /home/fedora/btrfs-progs/tests/test.img
+btrfs-progs v4.14-5-gf09e98a3
+See http://btrfs.wiki.kernel.org for more information.
+
+Label:              (null)
+UUID:               fc94130b-1a9c-4799-9fa2-ab255b7fbc36
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP              51.19MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     1.00GiB  /home/fedora/btrfs-progs/tests/test.img
+
+############### root_helper mount -t btrfs -o loop /home/fedora/btrfs-progs/tests/test.img /home/fedora/btrfs-progs/tests/mnt
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume create /home/fedora/btrfs-progs/tests/mnt/Sub
+Create subvolume '/home/fedora/btrfs-progs/tests/mnt/Sub'
+############### root_helper /home/fedora/btrfs-progs/btrfs quota enable /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup limit 300M /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper dd if=/dev/zero of=/home/fedora/btrfs-progs/tests/mnt/Sub/file bs=1M count=200
+200+0 records in
+200+0 records out
+209715200 bytes (210 MB, 200 MiB) copied, 0.1738 s, 1.2 GB/s
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup show -re /home/fedora/btrfs-progs/tests/mnt/Sub
+qgroupid         rfer         excl     max_rfer     max_excl 
+--------         ----         ----     --------     -------- 
+0/5          16.00KiB     16.00KiB         none         none 
+0/256        16.00KiB     16.00KiB    300.00MiB         none 
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup limit none /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper rm -f /home/fedora/btrfs-progs/tests/mnt/Sub/file
+############### /home/fedora/btrfs-progs/btrfs filesystem sync /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup limit 300M /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper dd if=/dev/zero of=/home/fedora/btrfs-progs/tests/mnt/Sub/file bs=1M count=200
+200+0 records in
+200+0 records out
+209715200 bytes (210 MB, 200 MiB) copied, 0.176183 s, 1.2 GB/s
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup show -re -- /home/fedora/btrfs-progs/tests/mnt/Sub
+qgroupid         rfer         excl     max_rfer     max_excl 
+--------         ----         ----     --------     -------- 
+0/5          16.00KiB     16.00KiB         none         none 
+0/256        16.00KiB     16.00KiB    300.00MiB         none 
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup limit none /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper rm -f /home/fedora/btrfs-progs/tests/mnt/Sub/file
+############### /home/fedora/btrfs-progs/btrfs filesystem sync /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup limit 300M /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper dd if=/dev/zero of=/home/fedora/btrfs-progs/tests/mnt/Sub/file bs=1M count=200
+200+0 records in
+200+0 records out
+209715200 bytes (210 MB, 200 MiB) copied, 0.177101 s, 1.2 GB/s
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup show -re --sync /home/fedora/btrfs-progs/tests/mnt/Sub
+qgroupid         rfer         excl     max_rfer     max_excl 
+--------         ----         ----     --------     -------- 
+0/5          16.00KiB     16.00KiB         none         none 
+0/256       200.02MiB    200.02MiB    300.00MiB         none 
+############### root_helper /home/fedora/btrfs-progs/btrfs qgroup limit none /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper rm -f /home/fedora/btrfs-progs/tests/mnt/Sub/file
+############### /home/fedora/btrfs-progs/btrfs filesystem sync /home/fedora/btrfs-progs/tests/mnt/Sub
+############### root_helper umount /home/fedora/btrfs-progs/tests/test.img
+=== Entering /home/fedora/btrfs-progs/tests/cli-tests/007-check-force
+############### root_helper losetup --find --show img1
+/dev/loop0
+############### root_helper /home/fedora/btrfs-progs/mkfs.btrfs -f /dev/loop0
+btrfs-progs v4.14-5-gf09e98a3
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (2.00GiB) ...
+Label:              (null)
+UUID:               d947b928-ff36-4809-8273-3215bfbc347f
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP             102.38MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     2.00GiB  /dev/loop0
+
+############### root_helper mount -t btrfs /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### root_helper /home/fedora/btrfs-progs/btrfs check /dev/loop0
+ERROR: /dev/loop0 is currently mounted, use --force if you really intend to check the filesystem
+failed (expected): root_helper /home/fedora/btrfs-progs/btrfs check /dev/loop0
+############### root_helper /home/fedora/btrfs-progs/btrfs check --force /dev/loop0
+WARNING: filesystem mounted, continuing because of --force
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /dev/loop0
+UUID: d947b928-ff36-4809-8273-3215bfbc347f
+found 196608 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 124760
+file data blocks allocated: 65536
+ referenced 65536
+############### root_helper /home/fedora/btrfs-progs/btrfs check --force --repair /dev/loop0
+ERROR: repair and --force is not yet supported
+enabling repair mode
+failed (expected): root_helper /home/fedora/btrfs-progs/btrfs check --force --repair /dev/loop0
+############### root_helper umount /dev/loop0
+############### root_helper /home/fedora/btrfs-progs/btrfs check /dev/loop0
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /dev/loop0
+UUID: d947b928-ff36-4809-8273-3215bfbc347f
+found 196608 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 124760
+file data blocks allocated: 65536
+ referenced 65536
+############### root_helper /home/fedora/btrfs-progs/btrfs check --force /dev/loop0
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /dev/loop0
+UUID: d947b928-ff36-4809-8273-3215bfbc347f
+found 196608 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 131072
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 124760
+file data blocks allocated: 65536
+ referenced 65536
+############### root_helper /home/fedora/btrfs-progs/btrfs check --force --repair /dev/loop0
+ERROR: repair and --force is not yet supported
+enabling repair mode
+failed (expected): root_helper /home/fedora/btrfs-progs/btrfs check --force --repair /dev/loop0
+############### root_helper losetup -d /dev/loop0
+############### root_helper losetup --all
+=== Entering /home/fedora/btrfs-progs/tests/cli-tests/008-subvolume-get-set-default
+$TEST_DEV not given, use /home/fedora/btrfs-progs/test/test.img as fallback
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f /home/fedora/btrfs-progs/tests/test.img
+btrfs-progs v4.14-5-gf09e98a3
+See http://btrfs.wiki.kernel.org for more information.
+
+Label:              (null)
+UUID:               0c7e9208-fd1d-42a4-b0b1-6d799040fa7a
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP             102.38MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     2.00GiB  /home/fedora/btrfs-progs/tests/test.img
+
+############### root_helper mount -t btrfs -o loop /home/fedora/btrfs-progs/tests/test.img /home/fedora/btrfs-progs/tests/mnt
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume get-default .
+ID 5 (FS_TREE)
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume create sub
+Create subvolume './sub'
+############### /home/fedora/btrfs-progs/btrfs inspect-internal rootid sub
+257
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume set-default 257 .
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume get-default .
+ID 257 gen 7 top level 5 path sub
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume set-default 100 .
+ERROR: unable to set a new default subvolume: No such file or directory
+failed (expected): root_helper /home/fedora/btrfs-progs/btrfs subvolume set-default 100 .
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume create sub2
+Create subvolume './sub2'
+############### /home/fedora/btrfs-progs/btrfs inspect-internal rootid sub2
+258
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume set-default ./sub2
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume get-default .
+ID 258 gen 8 top level 5 path sub2
+############### root_helper mkdir sub2/dir
+############### root_helper /home/fedora/btrfs-progs/btrfs subvolume set-default ./sub2/dir
+ERROR: './sub2/dir' is not a subvolume
+failed (expected): root_helper /home/fedora/btrfs-progs/btrfs subvolume set-default ./sub2/dir
+############### root_helper umount /home/fedora/btrfs-progs/tests/test.img
