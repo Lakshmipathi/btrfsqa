@@ -1,0 +1,54 @@
+Create subvolume '/mnt/test/send_temp_008/send'
+Create a readonly snapshot of '/mnt/test/send_temp_008/send' in '/mnt/test/send_temp_008/send/snapshots/backup2'
+Create a readonly snapshot of '/mnt/test/send_temp_008/send' in '/mnt/test/send_temp_008/send/snapshots/backup3'
+At subvol /mnt/test/send_temp_008/send/snapshots/backup3
+At subvol backup3
+receiving subvol backup3 uuid=ac72ca4b-d44b-1c4d-9822-ded18c2781fe, stransid=11
+chown  - uid=0, gid=0
+chmod  - mode=0755
+utimes 
+mkdir o257-11-0
+rename o257-11-0 -> testdir
+utimes 
+set_xattr testdir - name=security.selinux data_len=37 data=unconfined_u:object_r:unlabeled_t:s0
+chown testdir - uid=0, gid=0
+chmod testdir - mode=0755
+utimes testdir
+mkdir o258-11-0
+rename o258-11-0 -> testdir/1
+utimes testdir
+set_xattr testdir/1 - name=security.selinux data_len=37 data=unconfined_u:object_r:unlabeled_t:s0
+chown testdir/1 - uid=0, gid=0
+chmod testdir/1 - mode=0755
+utimes testdir/1
+mkdir o259-11-0
+rename o259-11-0 -> testdir/2
+utimes testdir
+set_xattr testdir/2 - name=security.selinux data_len=37 data=unconfined_u:object_r:unlabeled_t:s0
+chown testdir/2 - uid=0, gid=0
+chmod testdir/2 - mode=0755
+utimes testdir/2
+mkfile o260-11-0
+rename o260-11-0 -> testdir/aa
+utimes testdir
+set_xattr testdir/aa - name=security.selinux data_len=37 data=unconfined_u:object_r:unlabeled_t:s0
+truncate testdir/aa size=8192
+chown testdir/aa - uid=0, gid=0
+chmod testdir/aa - mode=0644
+utimes testdir/aa
+mkfile o261-11-0
+rename o261-11-0 -> testdir/bb
+utimes testdir
+set_xattr testdir/bb - name=security.selinux data_len=37 data=unconfined_u:object_r:unlabeled_t:s0
+truncate testdir/bb size=8192
+chown testdir/bb - uid=0, gid=0
+chmod testdir/bb - mode=0644
+utimes testdir/bb
+mkdir o262-11-0
+rename o262-11-0 -> snapshots
+utimes 
+set_xattr snapshots - name=security.selinux data_len=37 data=unconfined_u:object_r:unlabeled_t:s0
+chown snapshots - uid=0, gid=0
+chmod snapshots - mode=0755
+utimes snapshots
+BTRFS_IOC_SET_RECEIVED_SUBVOL uuid=ac72ca4b-d44b-1c4d-9822-ded18c2781fe, stransid=11

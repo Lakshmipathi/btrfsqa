@@ -1,0 +1,65 @@
+*** mkfs -dsize=2097152000
+
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               4c041aa6-502f-422a-9747-2d14926be478
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.95GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     1.95GiB  /dev/xvdc
+
+# _scratch_mount -o noatime
+# ./ltp/fsstress -d /mnt/scratch -n 200 -x /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/base
+seed = 1511315265
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/base'
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/incr
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/incr'
+# /bin/btrfs send /mnt/scratch/base > /tmp/tmp.Fn68Gq3uA6/base.snap
+At subvol /mnt/scratch/base
+# /bin/btrfs send -p /mnt/scratch/base		/mnt/scratch/incr > /tmp/tmp.Fn68Gq3uA6/incr.snap
+At subvol /mnt/scratch/incr
+# /home/fedora/xfstests/src/fssum -A -f -w /tmp/tmp.Fn68Gq3uA6/base.fssum /mnt/scratch/base
+# /home/fedora/xfstests/src/fssum -A -f -w /tmp/tmp.Fn68Gq3uA6/incr.fssum -x /mnt/scratch/incr/base /mnt/scratch/incr
+*** mkfs -dsize=2097152000
+
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               2e3be716-d524-4785-b8a8-0f256dccdb1f
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.95GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     1.95GiB  /dev/xvdc
+
+# _scratch_mount -o noatime
+# /bin/btrfs receive /mnt/scratch
+At subvol base
+# /home/fedora/xfstests/src/fssum -r /tmp/tmp.Fn68Gq3uA6/base.fssum /mnt/scratch/base
+OK
+# /bin/btrfs receive /mnt/scratch
+At snapshot incr
+# /home/fedora/xfstests/src/fssum -r /tmp/tmp.Fn68Gq3uA6/incr.fssum /mnt/scratch/incr
+OK

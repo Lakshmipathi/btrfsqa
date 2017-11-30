@@ -1,0 +1,723 @@
+Script started on 2017-11-30 08:30:49+0000
++ echo 'Installing dependencies..'
+Installing dependencies..
++ sudo yum -q -y install acl attr automake bc dbench dump e2fsprogs fio gawk gcc indent libtool lvm2 make psmisc quota sed xfsdump xfsprogs libacl-devel libattr-devel libaio-devel libuuid-devel xfsprogs-devel
+warning: file /usr/share/locale/zh_CN/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/vi/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/sv/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/pl/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/nl/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ms/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ja/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/it/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/id/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/fr/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/fi/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/es/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/de/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/da/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ca/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
++ echo 'Installing dependencies..done'
+Installing dependencies..done
++ git clone https://github.com/kdave/xfstests.git
+Cloning into 'xfstests'...
+remote: Counting objects: 24731, done.[K
+remote: Compressing objects:   0% (1/122)   [Kremote: Compressing objects:   1% (2/122)   [Kremote: Compressing objects:   2% (3/122)   [Kremote: Compressing objects:   3% (4/122)   [Kremote: Compressing objects:   4% (5/122)   [Kremote: Compressing objects:   5% (7/122)   [Kremote: Compressing objects:   6% (8/122)   [Kremote: Compressing objects:   7% (9/122)   [Kremote: Compressing objects:   8% (10/122)   [Kremote: Compressing objects:   9% (11/122)   [Kremote: Compressing objects:  10% (13/122)   [Kremote: Compressing objects:  11% (14/122)   [Kremote: Compressing objects:  12% (15/122)   [Kremote: Compressing objects:  13% (16/122)   [Kremote: Compressing objects:  14% (18/122)   [Kremote: Compressing objects:  15% (19/122)   [Kremote: Compressing objects:  16% (20/122)   [Kremote: Compressing objects:  17% (21/122)   [Kremote: Compressing objects:  18% (22/122)   [Kremote: Compressing objects:  19% (24/122)   [Kremote: Compressing objects:  20% (25/122)   [Kremote: Compressing objects:  21% (26/122)   [Kremote: Compressing objects:  22% (27/122)   [Kremote: Compressing objects:  23% (29/122)   [Kremote: Compressing objects:  24% (30/122)   [Kremote: Compressing objects:  25% (31/122)   [Kremote: Compressing objects:  26% (32/122)   [Kremote: Compressing objects:  27% (33/122)   [Kremote: Compressing objects:  28% (35/122)   [Kremote: Compressing objects:  29% (36/122)   [Kremote: Compressing objects:  30% (37/122)   [Kremote: Compressing objects:  31% (38/122)   [Kremote: Compressing objects:  32% (40/122)   [Kremote: Compressing objects:  33% (41/122)   [Kremote: Compressing objects:  34% (42/122)   [Kremote: Compressing objects:  35% (43/122)   [Kremote: Compressing objects:  36% (44/122)   [Kremote: Compressing objects:  37% (46/122)   [Kremote: Compressing objects:  38% (47/122)   [Kremote: Compressing objects:  39% (48/122)   [Kremote: Compressing objects:  40% (49/122)   [Kremote: Compressing objects:  41% (51/122)   [Kremote: Compressing objects:  42% (52/122)   [Kremote: Compressing objects:  43% (53/122)   [Kremote: Compressing objects:  44% (54/122)   [Kremote: Compressing objects:  45% (55/122)   [Kremote: Compressing objects:  46% (57/122)   [Kremote: Compressing objects:  47% (58/122)   [Kremote: Compressing objects:  48% (59/122)   [Kremote: Compressing objects:  49% (60/122)   [Kremote: Compressing objects:  50% (61/122)   [Kremote: Compressing objects:  51% (63/122)   [Kremote: Compressing objects:  52% (64/122)   [Kremote: Compressing objects:  53% (65/122)   [Kremote: Compressing objects:  54% (66/122)   [Kremote: Compressing objects:  55% (68/122)   [Kremote: Compressing objects:  56% (69/122)   [Kremote: Compressing objects:  57% (70/122)   [Kremote: Compressing objects:  58% (71/122)   [Kremote: Compressing objects:  59% (72/122)   [Kremote: Compressing objects:  60% (74/122)   [Kremote: Compressing objects:  61% (75/122)   [Kremote: Compressing objects:  62% (76/122)   [Kremote: Compressing objects:  63% (77/122)   [Kremote: Compressing objects:  64% (79/122)   [Kremote: Compressing objects:  65% (80/122)   [Kremote: Compressing objects:  66% (81/122)   [Kremote: Compressing objects:  67% (82/122)   [Kremote: Compressing objects:  68% (83/122)   [Kremote: Compressing objects:  69% (85/122)   [Kremote: Compressing objects:  70% (86/122)   [Kremote: Compressing objects:  71% (87/122)   [Kremote: Compressing objects:  72% (88/122)   [Kremote: Compressing objects:  73% (90/122)   [Kremote: Compressing objects:  74% (91/122)   [Kremote: Compressing objects:  75% (92/122)   [Kremote: Compressing objects:  76% (93/122)   [Kremote: Compressing objects:  77% (94/122)   [Kremote: Compressing objects:  78% (96/122)   [Kremote: Compressing objects:  79% (97/122)   [Kremote: Compressing objects:  80% (98/122)   [Kremote: Compressing objects:  81% (99/122)   [Kremote: Compressing objects:  82% (101/122)   [Kremote: Compressing objects:  83% (102/122)   [Kremote: Compressing objects:  84% (103/122)   [Kremote: Compressing objects:  85% (104/122)   [Kremote: Compressing objects:  86% (105/122)   [Kremote: Compressing objects:  87% (107/122)   [Kremote: Compressing objects:  88% (108/122)   [Kremote: Compressing objects:  89% (109/122)   [Kremote: Compressing objects:  90% (110/122)   [Kremote: Compressing objects:  91% (112/122)   [Kremote: Compressing objects:  92% (113/122)   [Kremote: Compressing objects:  93% (114/122)   [Kremote: Compressing objects:  94% (115/122)   [Kremote: Compressing objects:  95% (116/122)   [Kremote: Compressing objects:  96% (118/122)   [Kremote: Compressing objects:  97% (119/122)   [Kremote: Compressing objects:  98% (120/122)   [Kremote: Compressing objects:  99% (121/122)   [Kremote: Compressing objects: 100% (122/122)   [Kremote: Compressing objects: 100% (122/122), done.[K
+Receiving objects:   0% (1/24731)   Receiving objects:   1% (248/24731)   Receiving objects:   2% (495/24731)   Receiving objects:   3% (742/24731)   Receiving objects:   4% (990/24731)   Receiving objects:   5% (1237/24731)   Receiving objects:   6% (1484/24731)   Receiving objects:   7% (1732/24731)   Receiving objects:   8% (1979/24731)   Receiving objects:   9% (2226/24731)   Receiving objects:  10% (2474/24731)   Receiving objects:  11% (2721/24731)   Receiving objects:  12% (2968/24731)   Receiving objects:  13% (3216/24731)   Receiving objects:  14% (3463/24731)   Receiving objects:  15% (3710/24731)   Receiving objects:  16% (3957/24731)   Receiving objects:  17% (4205/24731)   Receiving objects:  18% (4452/24731)   Receiving objects:  19% (4699/24731)   Receiving objects:  20% (4947/24731)   Receiving objects:  21% (5194/24731)   Receiving objects:  22% (5441/24731)   Receiving objects:  23% (5689/24731)   Receiving objects:  24% (5936/24731)   Receiving objects:  25% (6183/24731)   Receiving objects:  26% (6431/24731)   Receiving objects:  27% (6678/24731)   Receiving objects:  28% (6925/24731)   Receiving objects:  29% (7172/24731)   Receiving objects:  30% (7420/24731)   Receiving objects:  31% (7667/24731)   Receiving objects:  32% (7914/24731)   Receiving objects:  33% (8162/24731)   Receiving objects:  34% (8409/24731)   Receiving objects:  35% (8656/24731)   Receiving objects:  36% (8904/24731)   Receiving objects:  37% (9151/24731)   Receiving objects:  38% (9398/24731)   Receiving objects:  39% (9646/24731)   Receiving objects:  40% (9893/24731)   Receiving objects:  41% (10140/24731)   Receiving objects:  42% (10388/24731)   Receiving objects:  43% (10635/24731)   Receiving objects:  44% (10882/24731)   Receiving objects:  45% (11129/24731)   Receiving objects:  46% (11377/24731)   Receiving objects:  47% (11624/24731)   Receiving objects:  48% (11871/24731)   Receiving objects:  49% (12119/24731)   Receiving objects:  50% (12366/24731)   Receiving objects:  51% (12613/24731)   Receiving objects:  52% (12861/24731)   Receiving objects:  53% (13108/24731)   Receiving objects:  54% (13355/24731)   Receiving objects:  55% (13603/24731)   Receiving objects:  56% (13850/24731)   Receiving objects:  57% (14097/24731)   Receiving objects:  58% (14344/24731)   Receiving objects:  59% (14592/24731)   Receiving objects:  60% (14839/24731)   Receiving objects:  61% (15086/24731)   Receiving objects:  62% (15334/24731)   Receiving objects:  63% (15581/24731)   Receiving objects:  64% (15828/24731)   Receiving objects:  65% (16076/24731)   Receiving objects:  66% (16323/24731)   Receiving objects:  67% (16570/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  68% (16818/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  69% (17065/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  70% (17312/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  71% (17560/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  72% (17807/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  73% (18054/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  74% (18301/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  75% (18549/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  76% (18796/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  77% (19043/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  78% (19291/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  79% (19538/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  80% (19785/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  81% (20033/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  82% (20280/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  83% (20527/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  84% (20775/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  85% (21022/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  86% (21269/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  87% (21516/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  88% (21764/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  89% (22011/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  90% (22258/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  91% (22506/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  92% (22753/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  93% (23000/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  94% (23248/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  95% (23495/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  96% (23742/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  97% (23990/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  98% (24237/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects:  99% (24484/24731), 4.86 MiB | 9.71 MiB/s   remote: Total 24731 (delta 134), reused 175 (delta 106), pack-reused 24501[K
+Receiving objects: 100% (24731/24731), 4.86 MiB | 9.71 MiB/s   Receiving objects: 100% (24731/24731), 6.80 MiB | 10.11 MiB/s, done.
+Resolving deltas:   0% (0/19083)   Resolving deltas:   1% (228/19083)   Resolving deltas:   2% (400/19083)   Resolving deltas:   3% (598/19083)   Resolving deltas:   4% (766/19083)   Resolving deltas:   5% (987/19083)   Resolving deltas:   6% (1298/19083)   Resolving deltas:   7% (1340/19083)   Resolving deltas:   8% (1530/19083)   Resolving deltas:   9% (1722/19083)   Resolving deltas:  10% (1914/19083)   Resolving deltas:  11% (2130/19083)   Resolving deltas:  12% (2316/19083)   Resolving deltas:  13% (2496/19083)   Resolving deltas:  14% (2710/19083)   Resolving deltas:  15% (2864/19083)   Resolving deltas:  16% (3056/19083)   Resolving deltas:  17% (3251/19083)   Resolving deltas:  18% (3435/19083)   Resolving deltas:  19% (3634/19083)   Resolving deltas:  20% (3818/19083)   Resolving deltas:  21% (4045/19083)   Resolving deltas:  22% (4206/19083)   Resolving deltas:  23% (4399/19083)   Resolving deltas:  24% (4581/19083)   Resolving deltas:  27% (5213/19083)   Resolving deltas:  28% (5347/19083)   Resolving deltas:  29% (5561/19083)   Resolving deltas:  30% (5765/19083)   Resolving deltas:  31% (5943/19083)   Resolving deltas:  32% (6109/19083)   Resolving deltas:  33% (6342/19083)   Resolving deltas:  34% (6507/19083)   Resolving deltas:  35% (6680/19083)   Resolving deltas:  36% (6895/19083)   Resolving deltas:  37% (7065/19083)   Resolving deltas:  38% (7257/19083)   Resolving deltas:  39% (7449/19083)   Resolving deltas:  40% (7640/19083)   Resolving deltas:  41% (7842/19083)   Resolving deltas:  42% (8110/19083)   Resolving deltas:  43% (8208/19083)   Resolving deltas:  45% (8694/19083)   Resolving deltas:  46% (8783/19083)   Resolving deltas:  47% (8977/19083)   Resolving deltas:  48% (9162/19083)   Resolving deltas:  49% (9381/19083)   Resolving deltas:  50% (9546/19083)   Resolving deltas:  51% (9744/19083)   Resolving deltas:  52% (9928/19083)   Resolving deltas:  53% (10185/19083)   Resolving deltas:  54% (10427/19083)   Resolving deltas:  62% (11984/19083)   Resolving deltas:  63% (12029/19083)   Resolving deltas:  64% (12221/19083)   Resolving deltas:  65% (12437/19083)   Resolving deltas:  66% (12609/19083)   Resolving deltas:  67% (12833/19083)   Resolving deltas:  68% (12977/19083)   Resolving deltas:  69% (13175/19083)   Resolving deltas:  70% (13524/19083)   Resolving deltas:  71% (13550/19083)   Resolving deltas:  72% (13864/19083)   Resolving deltas:  73% (13934/19083)   Resolving deltas:  74% (14122/19083)   Resolving deltas:  75% (14383/19083)   Resolving deltas:  76% (14537/19083)   Resolving deltas:  78% (14891/19083)   Resolving deltas:  79% (15081/19083)   Resolving deltas:  80% (15283/19083)   Resolving deltas:  81% (15479/19083)   Resolving deltas:  82% (15652/19083)   Resolving deltas:  83% (15847/19083)   Resolving deltas:  84% (16034/19083)   Resolving deltas:  85% (16229/19083)   Resolving deltas:  86% (16412/19083)   Resolving deltas:  87% (16693/19083)   Resolving deltas:  88% (16834/19083)   Resolving deltas:  89% (16990/19083)   Resolving deltas:  90% (17180/19083)   Resolving deltas:  91% (17395/19083)   Resolving deltas:  92% (17595/19083)   Resolving deltas:  93% (17808/19083)   Resolving deltas:  94% (17974/19083)   Resolving deltas:  95% (18149/19083)   Resolving deltas:  96% (18323/19083)   Resolving deltas:  97% (18528/19083)   Resolving deltas:  98% (18705/19083)   Resolving deltas:  99% (18912/19083)   Resolving deltas: 100% (19083/19083)   Resolving deltas: 100% (19083/19083), done.
++ cd /home/fedora/xfstests
++ make
+libtoolize -cfi
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './config.guess'
+libtoolize: copying file './config.sub'
+libtoolize: copying file './install-sh'
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+aclocal -I m4
+autoheader
+autoconf
+./configure \
+                --libexecdir=/usr/lib \
+                --exec_prefix=/var/lib
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking how to print strings... printf
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking for gawk... gawk
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... no
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for gmake... /usr/bin/gmake
+./configure: line 11954: test: $(SHELL): binary operator expected
+checking for tar... /bin/tar
+checking for gzip... /bin/gzip
+checking whether gcc -MM is supported... yes
+checking for sort... /bin/sort
+checking whether ln -s works... yes
+checking for rpm... /bin/rpm
+checking for rpmbuild... no
+checking for ANSI C header files... (cached) yes
+checking assert.h usability... yes
+checking assert.h presence... yes
+checking for assert.h... yes
+checking bstring.h usability... no
+checking bstring.h presence... no
+checking for bstring.h... no
+checking libgen.h usability... yes
+checking libgen.h presence... yes
+checking for libgen.h... yes
+checking dirent.h usability... yes
+checking dirent.h presence... yes
+checking for dirent.h... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking uuid.h usability... no
+checking uuid.h presence... no
+checking for uuid.h... no
+checking uuid/uuid.h usability... yes
+checking uuid/uuid.h presence... yes
+checking for uuid/uuid.h... yes
+checking sys/uuid.h usability... no
+checking sys/uuid.h presence... no
+checking for sys/uuid.h... no
+checking sys/file.h usability... yes
+checking sys/file.h presence... yes
+checking for sys/file.h... yes
+checking sys/fcntl.h usability... yes
+checking sys/fcntl.h presence... yes
+checking for sys/fcntl.h... yes
+checking sys/syssgi.h usability... no
+checking sys/syssgi.h presence... no
+checking for sys/syssgi.h... no
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking for sys/stat.h... (cached) yes
+checking sys/statvfs.h usability... yes
+checking sys/statvfs.h presence... yes
+checking for sys/statvfs.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/wait.h usability... yes
+checking sys/wait.h presence... yes
+checking for sys/wait.h... yes
+checking for sys/types.h... (cached) yes
+checking for strings.h... (cached) yes
+checking err.h usability... yes
+checking err.h presence... yes
+checking for err.h... yes
+checking linux/falloc.h usability... yes
+checking linux/falloc.h presence... yes
+checking for linux/falloc.h... yes
+checking sys/fs/xfs_fsops.h usability... no
+checking sys/fs/xfs_fsops.h presence... no
+checking for sys/fs/xfs_fsops.h... no
+checking sys/fs/xfs_itable.h usability... no
+checking sys/fs/xfs_itable.h presence... no
+checking for sys/fs/xfs_itable.h... no
+checking xfs/platform_defs.h usability... no
+checking xfs/platform_defs.h presence... no
+checking for xfs/platform_defs.h... no
+checking btrfs/ioctl.h usability... yes
+checking btrfs/ioctl.h presence... yes
+checking for btrfs/ioctl.h... yes
+checking cifs/ioctl.h usability... no
+checking cifs/ioctl.h presence... no
+checking for cifs/ioctl.h... no
+checking sys/mman.h usability... yes
+checking sys/mman.h presence... yes
+checking for sys/mman.h... yes
+checking for xfs/xfs_log_format.h... no
+checking for uuid_compare... no
+checking for uuid_compare in -luuid... yes
+checking for xfs/xfs.h... yes
+checking for xfs/libxfs.h... no
+checking whether xlog_assign_lsn is declared... no
+checking for xfs/xqm.h... yes
+checking xfsctl from xfs/xfs.h... ok
+checking xfs/handle.h usability... yes
+checking xfs/handle.h presence... yes
+checking for xfs/handle.h... yes
+checking for attr_list_by_handle in -lhandle... yes
+checking attr/xattr.h usability... yes
+checking attr/xattr.h presence... yes
+checking for attr/xattr.h... yes
+checking attr/attributes.h usability... yes
+checking attr/attributes.h presence... yes
+checking for attr/attributes.h... yes
+checking sys/attributes.h usability... no
+checking sys/attributes.h presence... no
+checking for sys/attributes.h... no
+checking for attr_list in -lattr... yes
+checking for getxattr in -lattr... yes
+checking sys/acl.h usability... yes
+checking sys/acl.h presence... yes
+checking for sys/acl.h... yes
+checking acl/libacl.h usability... yes
+checking acl/libacl.h presence... yes
+checking for acl/libacl.h... yes
+checking for acl_init in -lacl... yes
+checking gdbm-ndbm.h usability... no
+checking gdbm-ndbm.h presence... no
+checking for gdbm-ndbm.h... no
+checking gdbm/ndbm.h usability... no
+checking gdbm/ndbm.h presence... no
+checking for gdbm/ndbm.h... no
+checking libaio.h usability... yes
+checking libaio.h presence... yes
+checking for libaio.h... yes
+checking for dm_make_handle in -ldm... no
+
+WARNING: could not find a valid DMAPI base library.
+If you want DMAPI support please install the data migration
+API (dmapi) library package. Alternatively, run "make install"
+from the dmapi source.
+
+checking linux/fiemap.h usability... yes
+checking linux/fiemap.h presence... yes
+checking for linux/fiemap.h... yes
+checking for fallocate... yes
+checking for open_by_handle_at... yes
+checking sys/prctl.h usability... yes
+checking sys/prctl.h presence... yes
+checking for sys/prctl.h... yes
+checking linux/fs.h usability... yes
+checking linux/fs.h presence... yes
+checking for linux/fs.h... yes
+checking for renameat2... no
+configure: creating ./config.status
+config.status: creating include/builddefs
+config.status: creating include/config.h
+config.status: executing libtool commands
+Building include
+Building lib
+    [LTDEP]
+    [CC] dataascii.lo
+    [CC] databin.lo
+    [CC] datapid.lo
+    [CC] file_lock.lo
+    [CC] forker.lo
+    [CC] pattern.lo
+    [CC] open_flags.lo
+    [CC] random_range.lo
+    [CC] string_to_tokens.lo
+    [CC] str_to_bytes.lo
+    [CC] tlibio.lo
+    [CC] write_log.lo
+[01m[Kwrite_log.c:[m[K In function ‘[01m[Kwlog_open[m[K’:
+[01m[Kwrite_log.c:124:37:[m[K [01;35m[Kwarning: [m[K‘[01m[K%s[m[K’ directive writing up to 1023 bytes into a region of size 224 [[01;35m[K-Wformat-overflow=[m[K]
+    "Could not open write_log - open([01;35m[K%s[m[K, %#o, %#o) failed:  %s\n",
+                                     [01;35m[K^~[m[K
+[01m[Kwrite_log.c:124:4:[m[K [01;36m[Knote: [m[Kdirective argument in the range [1089, 2047]
+    [01;36m[K"Could not open write_log - open(%s, %#o, %#o) failed:  %s\n"[m[K,
+    [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[Kwrite_log.c:124:4:[m[K [01;36m[Knote: [m[Kassuming directive output of 2 bytes
+[01m[Kwrite_log.c:124:4:[m[K [01;36m[Knote: [m[Kusing the range [0, 4294967295] for directive argument
+[01m[Kwrite_log.c:123:3:[m[K [01;36m[Knote: [m[K‘[01m[Ksprintf[m[K’ output 55 or more bytes (assuming 1079) into a destination of size 256
+   [01;36m[Ksprintf(Wlog_Error_String,[m[K
+   [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+ [01;36m[K   "Could not open write_log - open(%s, %#o, %#o) failed:  %s\n",[m[K
+    [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+ [01;36m[K   wfile->w_file, oflags, mode, strerror(errno))[m[K;
+    [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[Kwrite_log.c:136:37:[m[K [01;35m[Kwarning: [m[K‘[01m[K%s[m[K’ directive writing up to 1023 bytes into a region of size 224 [[01;35m[K-Wformat-overflow=[m[K]
+    "Could not open write log - open([01;35m[K%s[m[K, %#o) failed:  %s\n",
+                                     [01;35m[K^~[m[K
+[01m[Kwrite_log.c:135:3:[m[K [01;36m[Knote: [m[K‘[01m[Ksprintf[m[K’ output 49 or more bytes (assuming 1072) into a destination of size 256
+   [01;36m[Ksprintf(Wlog_Error_String,[m[K
+   [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+ [01;36m[K   "Could not open write log - open(%s, %#o) failed:  %s\n",[m[K
+    [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+ [01;36m[K   wfile->w_file, oflags, strerror(errno))[m[K;
+    [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+    [CC] random.lo
+    [LD] 
+Building ltp
+    [DEP]
+    [CC]    doio
+[01m[Kdoio.c:[m[K In function '[01m[Kparse_cmdline[m[K':
+[01m[Kdoio.c:3187:22:[m[K [01;35m[Kwarning: [m[K'[01m[K)[m[K' directive writing 1 byte into a region of size between 0 and 39 [[01;35m[K-Wformat-overflow=[m[K]
+    sprintf( TagName, [01;35m[K"(%.39s)"[m[K, optarg );
+                      [01;35m[K^~~~~~~~~[m[K
+[01m[Kdoio.c:3187:4:[m[K [01;36m[Knote: [m[K'[01m[Ksprintf[m[K' output between 3 and 42 bytes into a destination of size 40
+    [01;36m[Ksprintf( TagName, "(%.39s)", optarg )[m[K;
+    [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+    [CC]    fsstress
+    [CC]    fsx
+    [CC]    growfiles
+[01m[Kgrowfiles.c:[m[K In function '[01m[Kmain[m[K':
+[01m[Kgrowfiles.c:797:22:[m[K [01;35m[Kwarning: [m[K'[01m[K)[m[K' directive writing 1 byte into a region of size between 0 and 39 [[01;35m[K-Wformat-overflow=[m[K]
+    sprintf( TagName, [01;35m[K"(%.39s)"[m[K, optarg );
+                      [01;35m[K^~~~~~~~~[m[K
+[01m[Kgrowfiles.c:797:4:[m[K [01;36m[Knote: [m[K'[01m[Ksprintf[m[K' output between 3 and 42 bytes into a destination of size 40
+    [01;36m[Ksprintf( TagName, "(%.39s)", optarg )[m[K;
+    [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+    [CC]    iogen
+[01m[Kiogen.c:[m[K In function '[01m[Kparse_cmdline[m[K':
+[01m[Kiogen.c:1277:24:[m[K [01;35m[Kwarning: [m[K'[01m[K)[m[K' directive writing 1 byte into a region of size between 0 and 39 [[01;35m[K-Wformat-overflow=[m[K]
+      sprintf( TagName, [01;35m[K"(%.39s)"[m[K, optarg );
+                        [01;35m[K^~~~~~~~~[m[K
+[01m[Kiogen.c:1277:6:[m[K [01;36m[Knote: [m[K'[01m[Ksprintf[m[K' output between 3 and 42 bytes into a destination of size 40
+      [01;36m[Ksprintf( TagName, "(%.39s)", optarg )[m[K;
+      [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+    [CC]    aio-stress
+Building src
+    [DEP]
+    [DEP]
+    [DEP]
+    [CC]    dirstress
+    [CC]    fill
+    [CC]    fill2
+    [CC]    getpagesize
+    [CC]    holes
+    [CC]    lstat64
+    [CC]    nametest
+    [CC]    permname
+    [CC]    randholes
+    [CC]    runas
+    [CC]    truncfile
+    [CC]    usemem
+    [CC]    mmapcat
+    [CC]    append_reader
+    [CC]    append_writer
+    [CC]    dirperf
+    [CC]    metaperf
+    [CC]    devzero
+    [CC]    feature
+    [CC]    alloc
+    [CC]    fault
+    [CC]    fstest
+    [CC]    t_access_root
+    [CC]    godown
+    [CC]    resvtest
+    [CC]    writemod
+    [CC]    writev_on_pagefault
+    [CC]    makeextents
+    [CC]    itrash
+    [CC]    rename
+    [CC]    multi_open_unlink
+    [CC]    dmiperf
+    [CC]    unwritten_sync
+    [CC]    genhashnames
+    [CC]    t_holes
+    [CC]    t_mmap_writev
+    [CC]    t_truncate_cmtime
+    [CC]    dirhash_collide
+    [CC]    t_rename_overwrite
+    [CC]    holetest
+    [CC]    t_truncate_self
+    [CC]    t_mmap_dio
+    [CC]    af_unix
+    [CC]    t_mmap_stale_pmd
+    [CC]    t_mmap_cow_race
+    [CC]    t_mmap_fallocate
+    [CC]    fsync-err
+    [CC]    t_mmap_write_ro
+    [CC]    xfsctl
+    [CC]    bstat
+    [CC]    t_mtab
+    [CC]    getdevicesize
+    [CC]    preallo_rw_pattern_reader
+    [CC]    preallo_rw_pattern_writer
+    [CC]    ftrunc
+    [CC]    trunc
+    [CC]    fs_perms
+    [CC]    testx
+    [CC]    looptest
+    [CC]    locktest
+    [CC]    unwritten_mmap
+    [CC]    bulkstat_unlink_test
+    [CC]    t_stripealign
+    [CC]    bulkstat_unlink_test_modified
+    [CC]    t_dir_offset
+    [CC]    t_futimens
+    [CC]    t_immutable
+    [CC]    stale_handle
+    [CC]    pwrite_mmap_blocked
+    [CC]    t_dir_offset2
+    [CC]    seek_sanity_test
+    [CC]    seek_copy_test
+    [CC]    t_readdir_1
+    [CC]    t_readdir_2
+    [CC]    fsync-tester
+    [CC]    nsexec
+    [CC]    cloner
+    [CC]    renameat2
+    [CC]    t_getcwd
+    [CC]    e4compact
+    [CC]    test-nextquota
+    [CC]    punch-alternating
+    [CC]    attr-list-by-handle-cursor-test
+    [CC]    listxattr
+    [CC]    dio-interleaved
+    [CC]    t_dir_type
+    [CC]    dio-invalidate-cache
+    [CC]    stat_test
+    [CC]    t_encrypted_d_revalidate
+    [CC]    fiemap-tester
+    [CC]    open_by_handle
+    [CC]    fssum
+In file included from [01m[K/usr/include/bits/libc-header-start.h:33:0[m[K,
+                 from [01m[K/usr/include/stdio.h:28[m[K,
+                 from [01m[Kfssum.c:25[m[K:
+[01m[K/usr/include/features.h:180:3:[m[K [01;35m[Kwarning: [m[K#warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE" [[01;35m[K-Wcpp[m[K]
+ # [01;35m[Kwarning[m[K "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"
+   [01;35m[K^~~~~~~[m[K
+Building log-writes
+    [CC]    replay-log
+Building aio-dio-regress
+    [CC]    aio-dio-fcntl-race
+    [CC]    aio-dio-subblock-eof-read
+    [CC]    aio-dio-append-write-read-race
+    [CC]    aio-dio-invalidate-readahead
+    [CC]    aio-dio-hole-filling-race
+    [CC]    aio-free-ring-with-bogus-nr-pages
+    [CC]    aio-dio-cycle-write
+    [CC]    aio-dio-extend-stat
+    [CC]    aio-io-setup-with-nonwritable-context-pointer
+    [CC]    aiocp
+    [CC]    aio-dio-invalidate-failure
+    [CC]    aiodio_sparse2
+    [CC]    aio-last-ref-held-by-io
+    [CC]    aio-dio-eof-race
+    [CC]    aio-dio-cow-race
+Building m4
+Building common
+Building tests
++ sudo make install
+Building include
+Building lib
+Building ltp
+Building src
+Building log-writes
+Building aio-dio-regress
+Building m4
+Building common
+Building tests
+/usr/bin/gmake --no-print-directory Q=@ -C include install
+gmake[1]: Nothing to be done for 'install'.
+/usr/bin/gmake --no-print-directory Q=@ -C lib install
+gmake[1]: Nothing to be done for 'install'.
+/usr/bin/gmake --no-print-directory Q=@ -C ltp install
+../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/ltp
+/bin/sh ../libtool --quiet --mode=install ../install-sh -o fedora -g fedora -m 755 doio fsstress fsx growfiles iogen aio-stress /var/lib/xfstests/ltp
+../install-sh -o fedora -g fedora -m 755 rwtest.sh /var/lib/xfstests/ltp
+/usr/bin/gmake --no-print-directory Q=@ -C src install
+Building log-writes
+Building aio-dio-regress
+/usr/bin/gmake -C log-writes install
+../../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/src/log-writes
+../../install-sh -o fedora -g fedora -m 755 replay-log /var/lib/xfstests/src/log-writes
+/usr/bin/gmake -C aio-dio-regress install
+../../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/src/aio-dio-regress
+../../install-sh -o fedora -g fedora -m 755 aio-dio-fcntl-race aio-dio-subblock-eof-read aio-dio-append-write-read-race aio-dio-invalidate-readahead aio-dio-hole-filling-race aio-free-ring-with-bogus-nr-pages aio-dio-cycle-write aio-dio-extend-stat aio-io-setup-with-nonwritable-context-pointer aiocp aio-dio-invalidate-failure aiodio_sparse2 aio-last-ref-held-by-io aio-dio-eof-race aio-dio-cow-race /var/lib/xfstests/src/aio-dio-regress
+../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/src
+/bin/sh ../libtool --quiet --mode=install ../install-sh -o fedora -g fedora -m 755 dirstress fill fill2 getpagesize holes lstat64 nametest permname randholes runas truncfile usemem mmapcat append_reader append_writer dirperf metaperf devzero feature alloc fault fstest t_access_root godown resvtest writemod writev_on_pagefault makeextents itrash rename multi_open_unlink dmiperf unwritten_sync genhashnames t_holes t_mmap_writev t_truncate_cmtime dirhash_collide t_rename_overwrite holetest t_truncate_self t_mmap_dio af_unix t_mmap_stale_pmd t_mmap_cow_race t_mmap_fallocate fsync-err t_mmap_write_ro xfsctl bstat t_mtab getdevicesize preallo_rw_pattern_reader preallo_rw_pattern_writer ftrunc trunc fs_perms testx looptest locktest unwritten_mmap bulkstat_unlink_test t_stripealign bulkstat_unlink_test_modified t_dir_offset t_futimens t_immutable stale_handle pwrite_mmap_blocked t_dir_offset2 seek_sanity_test seek_copy_test t_readdir_1 t_readdir_2 fsync-tester nsexec cloner renameat2 t_getcwd e4compact test-nextquota punch-alternating attr-list-by-handle-cursor-test listxattr dio-interleaved t_dir_type dio-invalidate-cache stat_test t_encrypted_d_revalidate fiemap-tester open_by_handle fssum /var/lib/xfstests/src
+/bin/sh ../libtool --quiet --mode=install ../install-sh -o fedora -g fedora -m 755 dmerror fill2attr fill2fs fill2fs_check scaleread.sh /var/lib/xfstests/src
+/bin/sh ../libtool --quiet --mode=install ../install-sh -o fedora -g fedora -m 644 dumpfile /var/lib/xfstests/src
+/usr/bin/gmake --no-print-directory Q=@ -C m4 install
+gmake[1]: Nothing to be done for 'install'.
+/usr/bin/gmake --no-print-directory Q=@ -C common install
+../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/common
+../install-sh -o fedora -g fedora -m 644 * /var/lib/xfstests/common
+/usr/bin/gmake --no-print-directory Q=@ -C tests install
+../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/tests
+./install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests
+./install-sh -o fedora -g fedora -m 755 check /var/lib/xfstests
+./install-sh -o fedora -g fedora -m 644 randomize.awk /var/lib/xfstests
++ sudo mkdir -p /mnt/test
++ sudo mkdir -p /mnt/scratch
++ sudo mkfs.btrfs -f /dev/xvdb
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               0f349aa5-0bbd-42f6-9d91-f5afab55df9b
+Node size:          16384
+Sector size:        4096
+Filesystem size:    20.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1    20.00GiB  /dev/xvdb
+
++ cp -v /home/fedora/btrfsqe/local.config /home/fedora/xfstests
+'/home/fedora/btrfsqe/local.config' -> '/home/fedora/xfstests/local.config'
++ sed -i s/fssize=2048/fssize=64/ /home/fedora/xfstests/tests/btrfs/011
++ sed -i s/bs=1M/bs=512K/ /home/fedora/xfstests/tests/btrfs/011
++ cd /home/fedora/xfstests
++ sudo ./check 'tests/btrfs/*'
+tests/btrfs/001.out - unknown test, ignored
+tests/btrfs/002.out - unknown test, ignored
+tests/btrfs/003.out - unknown test, ignored
+tests/btrfs/004.out - unknown test, ignored
+tests/btrfs/005.out - unknown test, ignored
+tests/btrfs/006.out - unknown test, ignored
+tests/btrfs/007.out - unknown test, ignored
+tests/btrfs/008.out - unknown test, ignored
+tests/btrfs/009.out - unknown test, ignored
+tests/btrfs/010.out - unknown test, ignored
+tests/btrfs/011.out - unknown test, ignored
+tests/btrfs/012.out - unknown test, ignored
+tests/btrfs/013.out - unknown test, ignored
+tests/btrfs/014.out - unknown test, ignored
+tests/btrfs/015.out - unknown test, ignored
+tests/btrfs/016.out - unknown test, ignored
+tests/btrfs/017.out - unknown test, ignored
+tests/btrfs/018.out - unknown test, ignored
+tests/btrfs/019.out - unknown test, ignored
+tests/btrfs/020.out - unknown test, ignored
+tests/btrfs/021.out - unknown test, ignored
+tests/btrfs/022.out - unknown test, ignored
+tests/btrfs/023.out - unknown test, ignored
+tests/btrfs/024.out - unknown test, ignored
+tests/btrfs/025.out - unknown test, ignored
+tests/btrfs/026.out - unknown test, ignored
+tests/btrfs/027.out - unknown test, ignored
+tests/btrfs/028.out - unknown test, ignored
+tests/btrfs/029.out - unknown test, ignored
+tests/btrfs/030.out - unknown test, ignored
+tests/btrfs/031.out - unknown test, ignored
+tests/btrfs/032.out - unknown test, ignored
+tests/btrfs/033.out - unknown test, ignored
+tests/btrfs/034.out - unknown test, ignored
+tests/btrfs/035.out - unknown test, ignored
+tests/btrfs/036.out - unknown test, ignored
+tests/btrfs/037.out - unknown test, ignored
+tests/btrfs/038.out - unknown test, ignored
+tests/btrfs/039.out - unknown test, ignored
+tests/btrfs/040.out - unknown test, ignored
+tests/btrfs/041.out - unknown test, ignored
+tests/btrfs/042.out - unknown test, ignored
+tests/btrfs/043.out - unknown test, ignored
+tests/btrfs/044.out - unknown test, ignored
+tests/btrfs/045.out - unknown test, ignored
+tests/btrfs/046.out - unknown test, ignored
+tests/btrfs/047.out - unknown test, ignored
+tests/btrfs/048.out - unknown test, ignored
+tests/btrfs/049.out - unknown test, ignored
+tests/btrfs/050.out - unknown test, ignored
+tests/btrfs/051.out - unknown test, ignored
+tests/btrfs/052.out - unknown test, ignored
+tests/btrfs/053.out - unknown test, ignored
+tests/btrfs/054.out - unknown test, ignored
+tests/btrfs/055.out - unknown test, ignored
+tests/btrfs/056.out - unknown test, ignored
+tests/btrfs/057.out - unknown test, ignored
+tests/btrfs/058.out - unknown test, ignored
+tests/btrfs/059.out - unknown test, ignored
+tests/btrfs/060.out - unknown test, ignored
+tests/btrfs/061.out - unknown test, ignored
+tests/btrfs/062.out - unknown test, ignored
+tests/btrfs/063.out - unknown test, ignored
+tests/btrfs/064.out - unknown test, ignored
+tests/btrfs/065.out - unknown test, ignored
+tests/btrfs/066.out - unknown test, ignored
+tests/btrfs/067.out - unknown test, ignored
+tests/btrfs/068.out - unknown test, ignored
+tests/btrfs/069.out - unknown test, ignored
+tests/btrfs/070.out - unknown test, ignored
+tests/btrfs/071.out - unknown test, ignored
+tests/btrfs/072.out - unknown test, ignored
+tests/btrfs/073.out - unknown test, ignored
+tests/btrfs/074.out - unknown test, ignored
+tests/btrfs/075.out - unknown test, ignored
+tests/btrfs/076.out - unknown test, ignored
+tests/btrfs/077.out - unknown test, ignored
+tests/btrfs/078.out - unknown test, ignored
+tests/btrfs/079.out - unknown test, ignored
+tests/btrfs/080.out - unknown test, ignored
+tests/btrfs/081.out - unknown test, ignored
+tests/btrfs/082.out - unknown test, ignored
+tests/btrfs/083.out - unknown test, ignored
+tests/btrfs/084.out - unknown test, ignored
+tests/btrfs/085.out - unknown test, ignored
+tests/btrfs/086.out - unknown test, ignored
+tests/btrfs/087.out - unknown test, ignored
+tests/btrfs/088.out - unknown test, ignored
+tests/btrfs/089.out - unknown test, ignored
+tests/btrfs/090.out - unknown test, ignored
+tests/btrfs/091.out - unknown test, ignored
+tests/btrfs/092.out - unknown test, ignored
+tests/btrfs/093.out - unknown test, ignored
+tests/btrfs/094.out - unknown test, ignored
+tests/btrfs/095.out - unknown test, ignored
+tests/btrfs/096.out - unknown test, ignored
+tests/btrfs/097.out - unknown test, ignored
+tests/btrfs/098.out - unknown test, ignored
+tests/btrfs/099.out - unknown test, ignored
+tests/btrfs/100.out - unknown test, ignored
+tests/btrfs/101.out - unknown test, ignored
+tests/btrfs/102.out - unknown test, ignored
+tests/btrfs/103.out - unknown test, ignored
+tests/btrfs/104.out - unknown test, ignored
+tests/btrfs/105.out - unknown test, ignored
+tests/btrfs/106.out - unknown test, ignored
+tests/btrfs/107.out - unknown test, ignored
+tests/btrfs/108.out - unknown test, ignored
+tests/btrfs/109.out - unknown test, ignored
+tests/btrfs/110.out - unknown test, ignored
+tests/btrfs/111.out - unknown test, ignored
+tests/btrfs/112.out - unknown test, ignored
+tests/btrfs/113.out - unknown test, ignored
+tests/btrfs/114.out - unknown test, ignored
+tests/btrfs/115.out - unknown test, ignored
+tests/btrfs/116.out - unknown test, ignored
+tests/btrfs/117.out - unknown test, ignored
+tests/btrfs/118.out - unknown test, ignored
+tests/btrfs/119.out - unknown test, ignored
+tests/btrfs/120.out - unknown test, ignored
+tests/btrfs/121.out - unknown test, ignored
+tests/btrfs/122.out - unknown test, ignored
+tests/btrfs/123.out - unknown test, ignored
+tests/btrfs/124.out - unknown test, ignored
+tests/btrfs/125.out - unknown test, ignored
+tests/btrfs/126.out - unknown test, ignored
+tests/btrfs/127.out - unknown test, ignored
+tests/btrfs/128.out - unknown test, ignored
+tests/btrfs/129.out - unknown test, ignored
+tests/btrfs/130.out - unknown test, ignored
+tests/btrfs/131.out - unknown test, ignored
+tests/btrfs/132.out - unknown test, ignored
+tests/btrfs/133.out - unknown test, ignored
+tests/btrfs/134.out - unknown test, ignored
+tests/btrfs/135.out - unknown test, ignored
+tests/btrfs/136.out - unknown test, ignored
+tests/btrfs/137.out - unknown test, ignored
+tests/btrfs/138.out - unknown test, ignored
+tests/btrfs/139.out - unknown test, ignored
+tests/btrfs/140.out - unknown test, ignored
+tests/btrfs/141.out - unknown test, ignored
+tests/btrfs/142.out - unknown test, ignored
+tests/btrfs/143.out - unknown test, ignored
+tests/btrfs/144.out - unknown test, ignored
+tests/btrfs/145.out - unknown test, ignored
+tests/btrfs/146.out - unknown test, ignored
+tests/btrfs/147.out - unknown test, ignored
+tests/btrfs/148.out - unknown test, ignored
+tests/btrfs/149.out - unknown test, ignored
+tests/btrfs/150.out - unknown test, ignored
+tests/btrfs/151.out - unknown test, ignored
+tests/btrfs/152.out - unknown test, ignored
+tests/btrfs/153.out - unknown test, ignored
+tests/btrfs/154.out - unknown test, ignored
+tests/btrfs/Makefile - unknown test, ignored
+tests/btrfs/group - unknown test, ignored
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-47-86 4.14.0-rc7
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/001	 1s
+btrfs/002	 22s
+btrfs/003	 [not run] /dev/xvdc is a device which is not deletable
+btrfs/004	 39s
+btrfs/005	 10s
+btrfs/006	 2s
+btrfs/007	 1s
+btrfs/008	 0s
+btrfs/009	 0s
+btrfs/010	 159s
+btrfs/011	 304s
+btrfs/012	 62s
+btrfs/013	 11s
+btrfs/014	 204s
+btrfs/015	 0s
+btrfs/016	 2s
+btrfs/017	 1s
+btrfs/018	 1s
+btrfs/019	 0s
+btrfs/020	 0s
+btrfs/021	 16s
+btrfs/022	 6s
+btrfs/023	 6s
+btrfs/024	 1s
+btrfs/025	 1s
+btrfs/026	
+Script done on 2017-11-30 09:00:49+0000

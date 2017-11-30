@@ -1,0 +1,10 @@
+ERROR: size value '-1' is less equal than 0
+ERROR: size value '-1' is less equal than 0
+WARNING: directory specified but recursive mode not requested: /mnt/scratch/tmp_dir
+WARNING: a directory passed to the defrag ioctl will not process the files
+recursively but will defragment the subvolume tree and the extent tree.
+If this is not intended, please use option -r .
+WARNING: directory specified but recursive mode not requested: /mnt/scratch
+WARNING: a directory passed to the defrag ioctl will not process the files
+recursively but will defragment the subvolume tree and the extent tree.
+If this is not intended, please use option -r .

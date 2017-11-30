@@ -1,0 +1,3 @@
+Create subvolume '/mnt/scratch/newvol'
+ERROR: cannot delete '/mnt/scratch/newvol': Operation not permitted
+Delete subvolume (no-commit): '/mnt/scratch/newvol'
