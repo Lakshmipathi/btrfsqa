@@ -1,0 +1,11 @@
+Create subvolume '/mnt/test/send_temp_016/send'
+10+0 records in
+10+0 records out
+Create a readonly snapshot of '/mnt/test/send_temp_016/send' in '/mnt/test/send_temp_016/snap'
+Create a readonly snapshot of '/mnt/test/send_temp_016/send' in '/mnt/test/send_temp_016/snap1'
+At subvol /mnt/test/send_temp_016/snap
+At subvol /mnt/test/send_temp_016/snap1
+At subvol snap
+At snapshot snap1
+OK
+OK

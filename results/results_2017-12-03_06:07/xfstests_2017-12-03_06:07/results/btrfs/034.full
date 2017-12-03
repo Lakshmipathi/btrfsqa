@@ -1,0 +1,12 @@
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap1
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap1'
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap2
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap2'
+# /bin/btrfs send -f /tmp/tmp.gvQkoyz6IS/1.snap /mnt/scratch/mysnap1
+At subvol /mnt/scratch/mysnap1
+# /bin/btrfs send -f /tmp/tmp.gvQkoyz6IS/2.snap -p /mnt/scratch/mysnap1 /mnt/scratch/mysnap2
+At subvol /mnt/scratch/mysnap2
+# /bin/btrfs receive -f /tmp/tmp.gvQkoyz6IS/1.snap /mnt/scratch
+At subvol mysnap1
+# /bin/btrfs receive -f /tmp/tmp.gvQkoyz6IS/2.snap /mnt/scratch
+At snapshot mysnap2

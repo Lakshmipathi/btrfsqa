@@ -1,0 +1,429 @@
+Script started on Sun 03 Dec 2017 02:54:21 AM UTC
++ echo 'Installing dependencies..'
+Installing dependencies..
++ sudo yum install -q -y unzip wget openssl-devel gcc make libtool automake bc
++ echo 'Installing dependencies..done'
+Installing dependencies..done
++ sudo modprobe btrfs
++ wget https://github.com/kdave/btrfs-devel/archive/misc-next.zip
+--2017-12-03 02:54:59--  https://github.com/kdave/btrfs-devel/archive/misc-next.zip
+Resolving github.com (github.com)... 192.30.255.112, 192.30.255.113
+Connecting to github.com (github.com)|192.30.255.112|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://codeload.github.com/kdave/btrfs-devel/zip/misc-next [following]
+--2017-12-03 02:55:00--  https://codeload.github.com/kdave/btrfs-devel/zip/misc-next
+Resolving codeload.github.com (codeload.github.com)... 192.30.255.121, 192.30.255.120
+Connecting to codeload.github.com (codeload.github.com)|192.30.255.121|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/zip]
+Saving to: ‘misc-next.zip’
+
+misc-next.zip                           [<=>                                                                ]       0  --.-KB/s               misc-next.zip                           [ <=>                                                               ]   2.00M  8.22MB/s               misc-next.zip                           [  <=>                                                              ]   4.00M  8.21MB/s               misc-next.zip                           [   <=>                                                             ]   6.00M  8.27MB/s               misc-next.zip                           [    <=>                                                            ]   8.00M  8.32MB/s               misc-next.zip                           [     <=>                                                           ]  10.00M  8.34MB/s               misc-next.zip                           [      <=>                                                          ]  12.00M  8.43MB/s               misc-next.zip                           [       <=>                                                         ]  14.00M  8.49MB/s               misc-next.zip                           [        <=>                                                        ]  16.00M  8.51MB/s               misc-next.zip                           [         <=>                                                       ]  18.00M  8.42MB/s               misc-next.zip                           [          <=>                                                      ]  20.00M  8.36MB/s               misc-next.zip                           [           <=>                                                     ]  22.00M  8.38MB/s               misc-next.zip                           [            <=>                                                    ]  24.00M  8.43MB/s               misc-next.zip                           [             <=>                                                   ]  26.00M  8.50MB/s               misc-next.zip                           [              <=>                                                  ]  28.00M  8.52MB/s               misc-next.zip                           [               <=>                                                 ]  30.00M  8.53MB/s               misc-next.zip                           [                <=>                                                ]  32.00M  8.54MB/s               misc-next.zip                           [                 <=>                                               ]  34.00M  8.53MB/s               misc-next.zip                           [                  <=>                                              ]  36.00M  8.51MB/s               misc-next.zip                           [                   <=>                                             ]  38.00M  8.43MB/s               misc-next.zip                           [                    <=>                                            ]  40.00M  8.38MB/s               misc-next.zip                           [                     <=>                                           ]  42.00M  8.38MB/s               misc-next.zip                           [                      <=>                                          ]  44.00M  8.36MB/s               misc-next.zip                           [                       <=>                                         ]  46.00M  8.34MB/s               misc-next.zip                           [                        <=>                                        ]  48.00M  8.29MB/s               misc-next.zip                           [                         <=>                                       ]  50.01M  7.96MB/s               misc-next.zip                           [                          <=>                                      ]  52.00M  7.50MB/s               misc-next.zip                           [                           <=>                                     ]  54.00M  7.00MB/s               misc-next.zip                           [                            <=>                                    ]  56.00M  7.02MB/s               misc-next.zip                           [                             <=>                                   ]  58.00M  7.00MB/s               misc-next.zip                           [                              <=>                                  ]  60.01M  7.02MB/s               misc-next.zip                           [                               <=>                                 ]  62.00M  6.99MB/s               misc-next.zip                           [                                <=>                                ]  64.01M  6.96MB/s               misc-next.zip                           [                                 <=>                               ]  66.00M  6.94MB/s               misc-next.zip                           [                                  <=>                              ]  68.01M  6.85MB/s               misc-next.zip                           [                                   <=>                             ]  70.01M  6.82MB/s               misc-next.zip                           [                                    <=>                            ]  72.01M  6.81MB/s               misc-next.zip                           [                                     <=>                           ]  74.00M  6.80MB/s               misc-next.zip                           [                                      <=>                          ]  76.00M  6.75MB/s               misc-next.zip                           [                                       <=>                         ]  78.00M  6.80MB/s               misc-next.zip                           [                                        <=>                        ]  80.01M  6.82MB/s               misc-next.zip                           [                                         <=>                       ]  82.00M  6.81MB/s               misc-next.zip                           [                                          <=>                      ]  84.00M  6.81MB/s               misc-next.zip                           [                                           <=>                     ]  86.00M  6.81MB/s               misc-next.zip                           [                                            <=>                    ]  88.00M  6.82MB/s               misc-next.zip                           [                                             <=>                   ]  90.00M  6.99MB/s               misc-next.zip                           [                                              <=>                  ]  92.00M  7.33MB/s               misc-next.zip                           [                                               <=>                 ]  94.00M  7.79MB/s               misc-next.zip                           [                                                <=>                ]  96.00M  7.71MB/s               misc-next.zip                           [                                                 <=>               ]  98.01M  7.70MB/s               misc-next.zip                           [                                                  <=>              ] 100.00M  7.67MB/s               misc-next.zip                           [                                                   <=>             ] 102.00M  7.64MB/s               misc-next.zip                           [                                                    <=>            ] 104.00M  7.59MB/s               misc-next.zip                           [                                                     <=>           ] 106.00M  7.55MB/s               misc-next.zip                           [                                                      <=>          ] 108.00M  7.62MB/s               misc-next.zip                           [                                                       <=>         ] 110.00M  7.62MB/s               misc-next.zip                           [                                                        <=>        ] 112.00M  7.56MB/s               misc-next.zip                           [                                                         <=>       ] 114.00M  7.57MB/s               misc-next.zip                           [                                                          <=>      ] 116.01M  7.57MB/s               misc-next.zip                           [                                                           <=>     ] 118.00M  7.50MB/s               misc-next.zip                           [                                                            <=>    ] 120.01M  7.44MB/s               misc-next.zip                           [                                                             <=>   ] 122.00M  7.44MB/s               misc-next.zip                           [                                                              <=>  ] 124.00M  7.44MB/s               misc-next.zip                           [                                                               <=> ] 126.00M  7.43MB/s               misc-next.zip                           [                                                                <=>] 128.00M  7.44MB/s               misc-next.zip                           [                                                               <=> ] 130.00M  7.47MB/s               misc-next.zip                           [                                                              <=>  ] 132.00M  7.49MB/s               misc-next.zip                           [                                                             <=>   ] 134.00M  7.51MB/s               misc-next.zip                           [                                                            <=>    ] 136.00M  7.53MB/s               misc-next.zip                           [                                                           <=>     ] 138.00M  7.58MB/s               misc-next.zip                           [                                                          <=>      ] 140.00M  7.59MB/s               misc-next.zip                           [                                                         <=>       ] 142.00M  7.57MB/s               misc-next.zip                           [                                                        <=>        ] 144.01M  7.57MB/s               misc-next.zip                           [                                                       <=>         ] 146.00M  7.47MB/s               misc-next.zip                           [                                                      <=>          ] 148.00M  7.44MB/s               misc-next.zip                           [                                                     <=>           ] 150.00M  7.45MB/s               misc-next.zip                           [                                                    <=>            ] 152.00M  7.49MB/s               misc-next.zip                           [                                                   <=>             ] 154.00M  7.50MB/s               misc-next.zip                           [                                                  <=>              ] 156.00M  7.57MB/s               misc-next.zip                           [                                                 <=>               ] 158.00M  7.63MB/s               misc-next.zip                           [                                                <=>                ] 160.00M  7.64MB/s               misc-next.zip                           [                                               <=>                 ] 162.00M  7.60MB/s               misc-next.zip                           [                                              <=>                  ] 164.00M  7.56MB/s               misc-next.zip                           [                                             <=>                   ] 166.00M  7.56MB/s               misc-next.zip                           [                                            <=>                    ] 168.00M  7.53MB/s               misc-next.zip                           [                                           <=>                     ] 170.00M  7.56MB/s               misc-next.zip                           [                                          <=>                      ] 172.00M  7.56MB/s               misc-next.zip                           [                                         <=>                       ] 174.00M  7.55MB/s               misc-next.zip                           [                                        <=>                        ] 176.00M  7.54MB/s               misc-next.zip                           [                                       <=>                         ] 178.00M  7.50MB/s               misc-next.zip                           [                                      <=>                          ] 180.00M  7.51MB/s               misc-next.zip                           [                                     <=>                           ] 188.01M  8.17MB/s               misc-next.zip                           [                                    <=>                            ] 188.92M  8.31MB/s    in 25s     
+
+2017-12-03 02:55:25 (7.70 MB/s) - ‘misc-next.zip’ saved [198097238]
+
++ unzip -qq misc-next.zip
++ cd /home/fedora/btrfs-devel-misc-next/
++ wget https://patchwork.kernel.org/patch/10076951/raw/
+--2017-12-03 02:55:47--  https://patchwork.kernel.org/patch/10076951/raw/
+Resolving patchwork.kernel.org (patchwork.kernel.org)... 198.145.29.83
+Connecting to patchwork.kernel.org (patchwork.kernel.org)|198.145.29.83|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/x-patch]
+Saving to: ‘index.html’
+
+index.html                              [<=>                                                                ]       0  --.-KB/s               index.html                              [ <=>                                                               ]     525  --.-KB/s    in 0s      
+
+2017-12-03 02:55:47 (13.5 MB/s) - ‘index.html’ saved [525]
+
++ mv index.html /tmp/sanity.diff
++ sleep 2
++ sudo yum install patch -y
+Last metadata expiration check: 0:03:00 ago on Sun 03 Dec 2017 02:52:51 AM UTC.
+Dependencies resolved.
+===============================================================================================================================================
+ Package                        Arch                            Version                                  Repository                       Size
+===============================================================================================================================================
+Installing:
+ patch                          x86_64                          2.7.5-4.fc26                             fedora                          122 k
+
+Transaction Summary
+===============================================================================================================================================
+Install  1 Package
+
+Total download size: 122 k
+Installed size: 227 k
+Downloading Packages:
+patch-2.7.5-4.fc26.x86_64.rpm                         0% [                                                   ] ---  B/s |   0  B     --:-- ETApatch-2.7.5-4.fc26.x86_64.rpm                        11% [=====-                                             ]  45 kB/s |  14 kB     00:02 ETApatch-2.7.5-4.fc26.x86_64.rpm                                                                                  268 kB/s | 122 kB     00:00    
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                          107 kB/s | 122 kB     00:01     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                       1/1 
+  Installing       : patch-2.7.5-4.fc26.x86_64 [                                                                                         ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [============                                                                             ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [========================                                                                 ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [=====================================                                                    ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [=================================================                                        ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [==============================================================                           ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [===============================================================                          ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [=====================================================================                    ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [======================================================================                   ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [==================================================================================       ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [===================================================================================      ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [======================================================================================== ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64                                                                                             1/1 
+  Running scriptlet: patch-2.7.5-4.fc26.x86_64                                                                                             1/1 
+  Verifying        : patch-2.7.5-4.fc26.x86_64                                                                                             1/1 
+
+Installed:
+  patch.x86_64 2.7.5-4.fc26                                                                                                                    
+
+Complete!
++ patch -p1
+patching file fs/btrfs/volumes.c
+Hunk #1 succeeded at 1083 (offset 36 lines).
++ cp -v /home/fedora/btrfsqe/kernel.config /home/fedora/btrfs-devel-misc-next/.config
+'/home/fedora/btrfsqe/kernel.config' -> '/home/fedora/btrfs-devel-misc-next/.config'
++ cd /home/fedora/btrfs-devel-misc-next/
++ make -s -j8
+*
+* Restart config...
+*
+*
+* Memory Debugging
+*
+Extend memmap on extra space for more information on page (PAGE_EXTENSION) [N/y/?] n
+Debug page memory allocations (DEBUG_PAGEALLOC) [N/y/?] n
+Poison pages after freeing (PAGE_POISONING) [N/y/?] n
+Enable tracepoint to track down page reference manipulation (DEBUG_PAGE_REF) [N/y/?] n
+Testcase for the marking rodata read-only (DEBUG_RODATA_TEST) [Y/n/?] y
+Debug object operations (DEBUG_OBJECTS) [N/y/?] n
+SLUB debugging on by default (SLUB_DEBUG_ON) [Y/n/?] y
+Enable SLUB performance statistics (SLUB_STATS) [N/y/?] n
+Kernel memory leak detector (DEBUG_KMEMLEAK) [N/y/?] n
+Stack utilization instrumentation (DEBUG_STACK_USAGE) [Y/n/?] y
+Debug VM (DEBUG_VM) [Y/n/?] y
+  Debug VMA caching (DEBUG_VM_VMACACHE) [N/y/?] n
+  Debug VM red-black trees (DEBUG_VM_RB) [N/y/?] n
+  Debug page-flags operations (DEBUG_VM_PGFLAGS) [N/y/?] n
+Debug VM translations (DEBUG_VIRTUAL) [N/y/?] n
+Debug access to per_cpu maps (DEBUG_PER_CPU_MAPS) [N/y/?] n
+Check for stack overflows (DEBUG_STACKOVERFLOW) [Y/n/?] y
+KASan: runtime memory debugger (KASAN) [Y/n/?] y
+  Instrumentation type
+  > 1. Outline instrumentation (KASAN_OUTLINE) (NEW)
+    2. Inline instrumentation (KASAN_INLINE) (NEW)
+  choice[1-2]: y
+  Instrumentation type
+  > 1. Outline instrumentation (KASAN_OUTLINE) (NEW)
+    2. Inline instrumentation (KASAN_INLINE) (NEW)
+  choice[1-2]: 1
+  Module for testing kasan for bug detection (TEST_KASAN) [N/m/?] (NEW) y
+
+CONFIG_TEST_KASAN:
+
+This is a test module doing various nasty things like
+out of bounds accesses, use after free. It is useful for testing
+kernel debugging features like kernel address sanitizer.
+
+Symbol: TEST_KASAN [=n]
+Type  : tristate
+Prompt: Module for testing kasan for bug detection
+  Location:
+    -> Kernel hacking
+      -> Memory Debugging
+        -> KASan: runtime memory debugger (KASAN [=y])
+  Defined at lib/Kconfig.kasan:48
+  Depends on: HAVE_ARCH_KASAN [=y] && m && MODULES [=y] && KASAN [=y]
+
+
+
+  Module for testing kasan for bug detection (TEST_KASAN) [N/m/?] (NEW) y
+
+CONFIG_TEST_KASAN:
+
+This is a test module doing various nasty things like
+out of bounds accesses, use after free. It is useful for testing
+kernel debugging features like kernel address sanitizer.
+
+Symbol: TEST_KASAN [=n]
+Type  : tristate
+Prompt: Module for testing kasan for bug detection
+  Location:
+    -> Kernel hacking
+      -> Memory Debugging
+        -> KASan: runtime memory debugger (KASAN [=y])
+  Defined at lib/Kconfig.kasan:48
+  Depends on: HAVE_ARCH_KASAN [=y] && m && MODULES [=y] && KASAN [=y]
+
+
+
+  Module for testing kasan for bug detection (TEST_KASAN) [N/m/?] (NEW) m
+*
+* Kernel hacking
+*
+Magic SysRq key (MAGIC_SYSRQ) [Y/?] y
+  Enable magic SysRq key functions by default (MAGIC_SYSRQ_DEFAULT_ENABLE) [0x0] 0x0
+  Enable magic SysRq key over serial (MAGIC_SYSRQ_SERIAL) [Y/n/?] y
+Kernel debugging (DEBUG_KERNEL) [Y/n/?] y
+Code coverage for fuzzing (KCOV) [N/y/?] n
+Debug shared IRQ handlers (DEBUG_SHIRQ) [Y/n/?] y
+Panic on Oops (PANIC_ON_OOPS) [N/y/?] n
+panic timeout (PANIC_TIMEOUT) [0] 0
+Collect scheduler debugging info (SCHED_DEBUG) [Y/?] y
+Collect scheduler statistics (SCHEDSTATS) [Y/?] y
+Detect stack corruption on calls to schedule() (SCHED_STACK_END_CHECK) [N/y/?] n
+Enable extra timekeeping sanity checking (DEBUG_TIMEKEEPING) [N/y/?] n
+Stack backtrace support (STACKTRACE) [Y/?] y
+Warn for all uses of unseeded randomness (WARN_ALL_UNSEEDED_RANDOM) [N/y/?] n
+kobject debugging (DEBUG_KOBJECT) [N/y/?] n
+Debug linked list manipulation (DEBUG_LIST) [Y/?] y
+Debug priority linked list manipulation (DEBUG_PI_LIST) [N/y/?] n
+Debug SG table operations (DEBUG_SG) [N/y/?] n
+Debug notifier call chains (DEBUG_NOTIFIERS) [N/y/?] n
+Debug credential management (DEBUG_CREDENTIALS) [N/y/?] n
+Force round-robin CPU selection for unbound work items (DEBUG_WQ_FORCE_RR_CPU) [N/y/?] n
+Force extended block device numbers and spread them (DEBUG_BLOCK_EXT_DEVT) [N/y/?] n
+Enable CPU hotplug state control (CPU_HOTPLUG_STATE_CONTROL) [N/y/?] n
+Notifier error injection (NOTIFIER_ERROR_INJECTION) [N/m/y/?] n
+Fault-injection framework (FAULT_INJECTION) [Y/n/?] y
+  Fault-injection capability for kmalloc (FAILSLAB) [N/y/?] (NEW) y
+  Fault-injection capabilitiy for alloc_pages() (FAIL_PAGE_ALLOC) [N/y/?] (NEW) y
+  Fault-injection capability for disk IO (FAIL_MAKE_REQUEST) [Y/n/?] y
+  Fault-injection capability for faking disk interrupts (FAIL_IO_TIMEOUT) [N/y/?] (NEW) y
+Fault-injection capability for futexes (FAIL_FUTEX) [N/y/?] (NEW) y
+Debugfs entries for fault-injection capabilities (FAULT_INJECTION_DEBUG_FS) [Y/n/?] y
+Latency measuring infrastructure (LATENCYTOP) [Y/n/?] y
+Remote debugging over FireWire early on boot (PROVIDE_OHCI1394_DMA_INIT) [Y/n/?] y
+Enable debugging of DMA-API usage (DMA_API_DEBUG) [N/y/?] n
+Memtest (MEMTEST) [N/y/?] n
+Trigger a BUG when data corruption is detected (BUG_ON_DATA_CORRUPTION) [Y/n/?] y
+Undefined behaviour sanity checker (UBSAN) [N/y/?] n
+Filter access to /dev/mem (STRICT_DEVMEM) [Y/n/?] y
+  Filter I/O access to /dev/mem (IO_STRICT_DEVMEM) [Y/n/?] y
+Enable verbose x86 bootup info messages (X86_VERBOSE_BOOTUP) [N/y/?] n
+Early printk (EARLY_PRINTK) [Y/?] y
+  Early printk via EHCI debug port (EARLY_PRINTK_DBGP) [Y/n/?] y
+  Early printk via the EFI framebuffer (EARLY_PRINTK_EFI) [Y/n/?] y
+  Early printk via the xHCI debug port (EARLY_PRINTK_USB_XDBC) [N/y/?] n
+Export kernel pagetable layout to userspace via debugfs (X86_PTDUMP) [N/m/y/?] n
+Dump the EFI pagetable (EFI_PGT_DUMP) [N/y/?] n
+Warn on W+X mappings at boot (DEBUG_WX) [Y/n/?] y
+Set upper limit of TLB entries to flush one-by-one (DEBUG_TLBFLUSH) [N/y/?] n
+Enable IOMMU stress-test mode (IOMMU_STRESS) [N/y/?] n
+x86 instruction decoder selftest (X86_DECODER_SELFTEST) [Y/n/?] y
+IO delay type
+> 1. port 0x80 based port-IO delay [recommended] (IO_DELAY_0X80)
+  2. port 0xed based port-IO delay (IO_DELAY_0XED)
+  3. udelay based port-IO delay (IO_DELAY_UDELAY)
+  4. no port-IO delay (IO_DELAY_NONE)
+choice[1-4]: 1
+Debug boot parameters (DEBUG_BOOT_PARAMS) [Y/n/?] y
+CPA self-test code (CPA_DEBUG) [N/y/?] n
+Allow gcc to uninline functions marked 'inline' (OPTIMIZE_INLINING) [Y/n/?] y
+Debug low-level entry code (DEBUG_ENTRY) [N/y/?] n
+NMI Selftest (DEBUG_NMI_SELFTEST) [N/y/?] n
+Debug the x86 FPU code (X86_DEBUG_FPU) [N/y/?] n
+ATOM Punit debug driver (PUNIT_ATOM_DEBUG) [N/m/y/?] n
+Choose kernel unwinder
+> 1. Frame pointer unwinder (FRAME_POINTER_UNWINDER)
+  2. ORC unwinder (ORC_UNWINDER)
+choice[1-2?]: 1
+Makefile:939: "Cannot use CONFIG_STACK_VALIDATION=y, please install libelf-dev, libelf-devel or elfutils-libelf-devel"
+[01m[Kkernel/fork.c:[m[K In function ‘[01m[Kcopy_process.part.37[m[K’:
+[01m[Kkernel/fork.c:1989:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2168 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/filemap.c:[m[K In function ‘[01m[Kgeneric_file_read_iter[m[K’:
+[01m[Kmm/filemap.c:2254:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2064 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/page_alloc.c:[m[K In function ‘[01m[Kshow_free_areas[m[K’:
+[01m[Kmm/page_alloc.c:4868:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2528 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kkernel/rcu/tree.c:[m[K In function ‘[01m[Krcu_gp_kthread[m[K’:
+[01m[Kkernel/rcu/tree.c:2299:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2296 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/shmem.c:[m[K In function ‘[01m[Kshmem_getpage_gfp[m[K’:
+[01m[Kmm/shmem.c:1908:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2248 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/vmscan.c:[m[K In function ‘[01m[Kshrink_page_list[m[K’:
+[01m[Kmm/vmscan.c:1367:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 4896 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/gup.c:[m[K In function ‘[01m[K__get_user_pages_fast[m[K’:
+[01m[Kmm/gup.c:1702:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2248 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/memory.c:[m[K In function ‘[01m[Kdo_wp_page[m[K’:
+[01m[Kmm/memory.c:2755:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2096 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/rmap.c:[m[K In function ‘[01m[Ktry_to_unmap_one[m[K’:
+[01m[Kmm/rmap.c:1564:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2336 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/ksm.c:[m[K In function ‘[01m[Kksm_scan_thread[m[K’:
+[01m[Kmm/ksm.c:2346:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 3096 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+
+
+
+[01m[Kmm/migrate.c:[m[K In function ‘[01m[Kmigrate_page_move_mapping[m[K’:
+[01m[Kmm/migrate.c:562:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2264 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/khugepaged.c:[m[K In function ‘[01m[Kcollapse_shmem[m[K’:
+[01m[Kmm/khugepaged.c:1560:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 3288 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/migrate.c:[m[K In function ‘[01m[Kmigrate_misplaced_transhuge_page[m[K’:
+[01m[Kmm/migrate.c:2125:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2200 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/huge_memory.c:[m[K In function ‘[01m[Kdo_huge_pmd_wp_page[m[K’:
+[01m[Kmm/huge_memory.c:1371:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2744 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kmm/memory-failure.c:[m[K In function ‘[01m[Ksoft_offline_page[m[K’:
+[01m[Kmm/memory-failure.c:1767:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2064 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Karch/x86/kernel/cpu/mshyperv.c:[m[K In function ‘[01m[Kms_hyperv_init_platform[m[K’:
+[01m[Karch/x86/kernel/cpu/mshyperv.c:255:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2656 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kipc/sem.c:[m[K In function ‘[01m[Kdo_semtimedop[m[K’:
+[01m[Kipc/sem.c:2109:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2464 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/direct-io.c:[m[K In function ‘[01m[Kdo_blockdev_direct_IO[m[K’:
+[01m[Kfs/direct-io.c:1380:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 3424 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/jbd2/commit.c:[m[K In function ‘[01m[Kjbd2_journal_commit_transaction[m[K’:
+[01m[Kfs/jbd2/commit.c:1131:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 4768 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/btrfs/extent-tree.c:[m[K In function ‘[01m[K__btrfs_run_delayed_refs[m[K’:
+[01m[Kfs/btrfs/extent-tree.c:2814:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2136 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/btrfs/extent-tree.c:[m[K In function ‘[01m[Kbtrfs_remove_block_group[m[K’:
+[01m[Kfs/btrfs/extent-tree.c:10613:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2208 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/btrfs/disk-io.c:[m[K In function ‘[01m[Kopen_ctree[m[K’:
+[01m[Kfs/btrfs/disk-io.c:3116:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2768 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/btrfs/inode.c:[m[K In function ‘[01m[Kbtrfs_rename2[m[K’:
+[01m[Kfs/btrfs/inode.c:10135:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2432 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/xfs/libxfs/xfs_bmap.c:[m[K In function ‘[01m[Kxfs_bmap_add_extent_delay_real[m[K’:
+[01m[Kfs/xfs/libxfs/xfs_bmap.c:2135:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2056 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/btrfs/tree-log.c:[m[K In function ‘[01m[Kbtrfs_sync_log[m[K’:
+[01m[Kfs/btrfs/tree-log.c:3000:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2512 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/xfs/xfs_log_recover.c:[m[K In function ‘[01m[Kxlog_recover_reorder_trans[m[K’:
+[01m[Kfs/xfs/xfs_log_recover.c:1989:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2056 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/btrfs/relocation.c:[m[K In function ‘[01m[Kbuild_backref_tree[m[K’:
+[01m[Kfs/btrfs/relocation.c:1202:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 4056 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kfs/btrfs/scrub.c:[m[K In function ‘[01m[Kscrub_stripe[m[K’:
+[01m[Kfs/btrfs/scrub.c:3669:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2528 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Knet/core/ethtool.c:[m[K In function ‘[01m[Kdev_ethtool[m[K’:
+[01m[Knet/core/ethtool.c:2828:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 3280 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Klib/atomic64_test.c:[m[K In function ‘[01m[Ktest_atomic[m[K’:
+[01m[Klib/atomic64_test.c:148:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 11392 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Klib/atomic64_test.c:[m[K In function ‘[01m[Ktest_atomic64[m[K’:
+[01m[Klib/atomic64_test.c:250:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 12616 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Klib/rbtree.c:[m[K In function ‘[01m[Krb_erase[m[K’:
+[01m[Klib/rbtree.c:463:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2520 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Klib/rbtree.c:[m[K In function ‘[01m[Krb_erase_cached[m[K’:
+[01m[Klib/rbtree.c:481:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2520 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+[01m[Kdrivers/md/md.c:[m[K In function ‘[01m[Kmd_do_sync[m[K’:
+[01m[Kdrivers/md/md.c:8514:1:[m[K [01;35m[Kwarning: [m[Kthe frame size of 2560 bytes is larger than 2048 bytes [[01;35m[K-Wframe-larger-than=[m[K]
+ [01;35m[K}[m[K
+ [01;35m[K^[m[K
+Success: decoded and checked 4421786 instructions
+arch/x86/tools/insn_sanity: Success: decoded and checked 1000000 random instructions with 0 errors (seed:0x55cefd99)
++ sudo make modules_install
+Makefile:939: "Cannot use CONFIG_STACK_VALIDATION=y, please install libelf-dev, libelf-devel or elfutils-libelf-devel"
+  INSTALL arch/x86/crypto/crc32-pclmul.ko
+  INSTALL arch/x86/crypto/crc32c-intel.ko
+  INSTALL arch/x86/crypto/crct10dif-pclmul.ko
+  INSTALL arch/x86/crypto/ghash-clmulni-intel.ko
+  INSTALL arch/x86/events/intel/intel-rapl-perf.ko
+  INSTALL drivers/ata/ata_generic.ko
+  INSTALL drivers/ata/pata_acpi.ko
+  INSTALL drivers/block/xen-blkfront.ko
+  INSTALL drivers/char/ppdev.ko
+  INSTALL drivers/char/tpm/tpm.ko
+  INSTALL drivers/char/tpm/tpm_tis.ko
+  INSTALL drivers/char/tpm/tpm_tis_core.ko
+  INSTALL drivers/edac/sb_edac.ko
+  INSTALL drivers/gpu/drm/cirrus/cirrus.ko
+  INSTALL drivers/gpu/drm/drm.ko
+  INSTALL drivers/gpu/drm/drm_kms_helper.ko
+  INSTALL drivers/gpu/drm/ttm/ttm.ko
+  INSTALL drivers/i2c/algos/i2c-algo-bit.ko
+  INSTALL drivers/i2c/busses/i2c-piix4.ko
+  INSTALL drivers/input/serio/serio_raw.ko
+  INSTALL drivers/net/xen-netfront.ko
+  INSTALL drivers/parport/parport.ko
+  INSTALL drivers/parport/parport_pc.ko
+  INSTALL drivers/powercap/intel_rapl.ko
+  INSTALL drivers/xen/tmem.ko
+  INSTALL drivers/xen/xen-privcmd.ko
+  INSTALL fs/fat/fat.ko
+  INSTALL fs/fat/vfat.ko
+  INSTALL fs/fuse/fuse.ko
+  INSTALL fs/xfs/xfs.ko
+  INSTALL lib/test_kasan.ko
+  DEPMOD  4.14.0-rc7
++ sudo make install
+Makefile:939: "Cannot use CONFIG_STACK_VALIDATION=y, please install libelf-dev, libelf-devel or elfutils-libelf-devel"
+sh ./arch/x86/boot/install.sh 4.14.0-rc7 arch/x86/boot/bzImage \
+	System.map "/boot"
++ grub2-editenv list
+saved_entry=Fedora (4.11.8-300.fc26.x86_64) 26 (Cloud Edition)
++ grubcfg=/etc/grub2.cfg
++ cut -d \' -f2
++ grep '^menuentry' /etc/grub2.cfg
+Fedora (4.14.0-rc7) 26 (Cloud Edition)
+Fedora (4.11.8-300.fc26.x86_64) 26 (Cloud Edition)
+++ head -n1
+++ cut -d \' -f2
+++ grep '^menuentry' /etc/grub2.cfg
++ new_kernel='Fedora (4.14.0-rc7) 26 (Cloud Edition)'
++ sudo grub2-set-default 'Fedora (4.14.0-rc7) 26 (Cloud Edition)'
++ sudo grub2-mkconfig -o /etc/grub2.cfg
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-4.14.0-rc7
+Found initrd image: /boot/initramfs-4.14.0-rc7.img
+Found linux image: /boot/vmlinuz-4.11.8-300.fc26.x86_64
+Found initrd image: /boot/initramfs-4.11.8-300.fc26.x86_64.img
+done
++ grub2-editenv list
+saved_entry=Fedora (4.14.0-rc7) 26 (Cloud Edition)
++ '[' -f /home/fedora/btrfs-devel-misc-next/arch/x86/boot/bzImage ']'
++ touch /home/fedora/btrfsqe/001_btrfsdevel.completed
++ rm -rf /home/fedora/misc-next.zip /home/fedora/btrfs-devel-misc-next
+
+Script done on Sun 03 Dec 2017 04:02:02 AM UTC

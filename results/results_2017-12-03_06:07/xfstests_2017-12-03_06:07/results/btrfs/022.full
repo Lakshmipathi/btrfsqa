@@ -1,0 +1,32 @@
+# /bin/btrfs subvolume create /mnt/scratch/a
+Create subvolume '/mnt/scratch/a'
+# /bin/btrfs quota enable /mnt/scratch/a
+# /bin/btrfs quota rescan -w /mnt/scratch
+quota rescan started
+0/257           16384        16384 
+# ./ltp/fsstress -d /mnt/scratch/a -w -p 1 -n 2000
+seed = 1512457711
+# /bin/btrfs subvolume snapshot /mnt/scratch/a /mnt/scratch/b
+Create a snapshot of '/mnt/scratch/a' in '/mnt/scratch/b'
+# /bin/btrfs subvolume create /mnt/scratch/a
+Create subvolume '/mnt/scratch/a'
+# /bin/btrfs quota enable /mnt/scratch/a
+# ./ltp/fsstress -d /mnt/scratch/a -w -p 1 -n 2000
+seed = 1513037415
+0/257 51458048 51458048
+# /bin/btrfs quota rescan -w /mnt/scratch
+quota rescan started
+0/257 51458048 51458048
+# /bin/btrfs subvolume create /mnt/scratch/a
+Create subvolume '/mnt/scratch/a'
+# /bin/btrfs quota enable /mnt/scratch
+# /bin/btrfs qgroup limit 5M 0/257 /mnt/scratch
+dd: error writing '/mnt/scratch/a/file': Disk quota exceeded
+1+0 records in
+0+0 records out
+# /bin/btrfs subvolume create /mnt/scratch/a
+Create subvolume '/mnt/scratch/a'
+# /bin/btrfs quota enable /mnt/scratch
+# /bin/btrfs qgroup limit 5M 0/257 /mnt/scratch
+1+0 records in
+1+0 records out

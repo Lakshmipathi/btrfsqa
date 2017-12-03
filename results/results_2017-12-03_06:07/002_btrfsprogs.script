@@ -1,0 +1,429 @@
+Script started on Sun 03 Dec 2017 04:10:27 AM UTC
++ echo 'Installing dependencies..'
+Installing dependencies..
++ sudo yum install -q -y automake e2fsprogs-libs e2fsprogs-devel libblkid-devel zlib-devel lzo-devel asciidoc xmlto which findutils xz gcc make libtool attr libzstd libzstd-devel
+warning: file /usr/share/locale/zh_TW/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/zh_CN/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/vi/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/uk/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/tr/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/sv/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/sl/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ru/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/pt_BR/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/pl/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/nl/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ja/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/it/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/id/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/hu/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/hr/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/gl/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/fr/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/fi/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/eu/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/et/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/es/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/de/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/da/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/cs/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ca/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
++ echo 'Installing dependencies..done'
+Installing dependencies..done
++ git clone https://github.com/kdave/btrfs-progs.git -b devel
+Cloning into 'btrfs-progs'...
+remote: Counting objects: 18305, done.[K
+remote: Compressing objects:   2% (1/48)   [Kremote: Compressing objects:   4% (2/48)   [Kremote: Compressing objects:   6% (3/48)   [Kremote: Compressing objects:   8% (4/48)   [Kremote: Compressing objects:  10% (5/48)   [Kremote: Compressing objects:  12% (6/48)   [Kremote: Compressing objects:  14% (7/48)   [Kremote: Compressing objects:  16% (8/48)   [Kremote: Compressing objects:  18% (9/48)   [Kremote: Compressing objects:  20% (10/48)   [Kremote: Compressing objects:  22% (11/48)   [Kremote: Compressing objects:  25% (12/48)   [Kremote: Compressing objects:  27% (13/48)   [Kremote: Compressing objects:  29% (14/48)   [Kremote: Compressing objects:  31% (15/48)   [Kremote: Compressing objects:  33% (16/48)   [Kremote: Compressing objects:  35% (17/48)   [Kremote: Compressing objects:  37% (18/48)   [Kremote: Compressing objects:  39% (19/48)   [Kremote: Compressing objects:  41% (20/48)   [Kremote: Compressing objects:  43% (21/48)   [Kremote: Compressing objects:  45% (22/48)   [Kremote: Compressing objects:  47% (23/48)   [Kremote: Compressing objects:  50% (24/48)   [Kremote: Compressing objects:  52% (25/48)   [Kremote: Compressing objects:  54% (26/48)   [Kremote: Compressing objects:  56% (27/48)   [Kremote: Compressing objects:  58% (28/48)   [Kremote: Compressing objects:  60% (29/48)   [Kremote: Compressing objects:  62% (30/48)   [Kremote: Compressing objects:  64% (31/48)   [Kremote: Compressing objects:  66% (32/48)   [Kremote: Compressing objects:  68% (33/48)   [Kremote: Compressing objects:  70% (34/48)   [Kremote: Compressing objects:  72% (35/48)   [Kremote: Compressing objects:  75% (36/48)   [Kremote: Compressing objects:  77% (37/48)   [Kremote: Compressing objects:  79% (38/48)   [Kremote: Compressing objects:  81% (39/48)   [Kremote: Compressing objects:  83% (40/48)   [Kremote: Compressing objects:  85% (41/48)   [Kremote: Compressing objects:  87% (42/48)   [Kremote: Compressing objects:  89% (43/48)   [Kremote: Compressing objects:  91% (44/48)   [Kremote: Compressing objects:  93% (45/48)   [Kremote: Compressing objects:  95% (46/48)   [Kremote: Compressing objects:  97% (47/48)   [Kremote: Compressing objects: 100% (48/48)   [Kremote: Compressing objects: 100% (48/48), done.[K
+Receiving objects:   0% (1/18305)   Receiving objects:   1% (184/18305)   Receiving objects:   2% (367/18305)   Receiving objects:   3% (550/18305)   Receiving objects:   4% (733/18305)   Receiving objects:   5% (916/18305)   Receiving objects:   6% (1099/18305)   Receiving objects:   7% (1282/18305)   Receiving objects:   8% (1465/18305)   Receiving objects:   9% (1648/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  10% (1831/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  11% (2014/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  12% (2197/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  13% (2380/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  14% (2563/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  15% (2746/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  16% (2929/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  17% (3112/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  18% (3295/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  19% (3478/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  20% (3661/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  21% (3845/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  22% (4028/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  22% (4069/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  23% (4211/18305), 496.01 KiB | 917.00 KiB/s   Receiving objects:  24% (4394/18305), 1.36 MiB | 1.31 MiB/s   Receiving objects:  25% (4577/18305), 1.36 MiB | 1.31 MiB/s   Receiving objects:  26% (4760/18305), 1.36 MiB | 1.31 MiB/s   Receiving objects:  27% (4943/18305), 1.36 MiB | 1.31 MiB/s   Receiving objects:  28% (5126/18305), 1.36 MiB | 1.31 MiB/s   Receiving objects:  29% (5309/18305), 2.70 MiB | 1.68 MiB/s   Receiving objects:  29% (5311/18305), 2.70 MiB | 1.68 MiB/s   Receiving objects:  30% (5492/18305), 3.59 MiB | 1.70 MiB/s   Receiving objects:  31% (5675/18305), 3.59 MiB | 1.70 MiB/s   Receiving objects:  32% (5858/18305), 3.59 MiB | 1.70 MiB/s   Receiving objects:  33% (6041/18305), 3.59 MiB | 1.70 MiB/s   Receiving objects:  34% (6224/18305), 3.59 MiB | 1.70 MiB/s   Receiving objects:  35% (6407/18305), 4.54 MiB | 1.74 MiB/s   Receiving objects:  36% (6590/18305), 4.54 MiB | 1.74 MiB/s   Receiving objects:  37% (6773/18305), 4.54 MiB | 1.74 MiB/s   Receiving objects:  37% (6894/18305), 4.54 MiB | 1.74 MiB/s   Receiving objects:  38% (6956/18305), 4.54 MiB | 1.74 MiB/s   Receiving objects:  39% (7139/18305), 5.25 MiB | 1.69 MiB/s   Receiving objects:  40% (7322/18305), 5.25 MiB | 1.69 MiB/s   Receiving objects:  41% (7506/18305), 5.25 MiB | 1.69 MiB/s   Receiving objects:  42% (7689/18305), 5.25 MiB | 1.69 MiB/s   Receiving objects:  43% (7872/18305), 5.98 MiB | 1.65 MiB/s   Receiving objects:  44% (8055/18305), 5.98 MiB | 1.65 MiB/s   Receiving objects:  45% (8238/18305), 5.98 MiB | 1.65 MiB/s   Receiving objects:  46% (8421/18305), 5.98 MiB | 1.65 MiB/s   Receiving objects:  46% (8543/18305), 5.98 MiB | 1.65 MiB/s   Receiving objects:  47% (8604/18305), 5.98 MiB | 1.65 MiB/s   Receiving objects:  48% (8787/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  49% (8970/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  50% (9153/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  51% (9336/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  52% (9519/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  53% (9702/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  54% (9885/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  55% (10068/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  56% (10251/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  57% (10434/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  58% (10617/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  59% (10800/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  60% (10983/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  61% (11167/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  62% (11350/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  63% (11533/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  64% (11716/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  65% (11899/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  66% (12082/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  67% (12265/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  68% (12448/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  69% (12631/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  70% (12814/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  71% (12997/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  72% (13180/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  73% (13363/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  74% (13546/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  75% (13729/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  76% (13912/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  77% (14095/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  78% (14278/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  79% (14461/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  80% (14644/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  81% (14828/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  82% (15011/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  83% (15194/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  84% (15377/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  85% (15560/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  86% (15743/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  87% (15926/18305), 6.98 MiB | 1.69 MiB/s   Receiving objects:  88% (16109/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  89% (16292/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  90% (16475/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  91% (16658/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  92% (16841/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  93% (17024/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  94% (17207/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  95% (17390/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  96% (17573/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  97% (17756/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  98% (17939/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  98% (17974/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects:  99% (18122/18305), 9.63 MiB | 2.07 MiB/s   remote: Total 18305 (delta 35), reused 60 (delta 32), pack-reused 18223[K
+Receiving objects: 100% (18305/18305), 9.63 MiB | 2.07 MiB/s   Receiving objects: 100% (18305/18305), 11.57 MiB | 2.27 MiB/s, done.
+Resolving deltas:   0% (0/12367)   Resolving deltas:   1% (127/12367)   Resolving deltas:   2% (251/12367)   Resolving deltas:   3% (373/12367)   Resolving deltas:   4% (502/12367)   Resolving deltas:   5% (643/12367)   Resolving deltas:   6% (788/12367)   Resolving deltas:   7% (878/12367)   Resolving deltas:   8% (1011/12367)   Resolving deltas:  11% (1378/12367)   Resolving deltas:  12% (1493/12367)   Resolving deltas:  13% (1614/12367)   Resolving deltas:  14% (1800/12367)   Resolving deltas:  15% (1951/12367)   Resolving deltas:  16% (1996/12367)   Resolving deltas:  17% (2149/12367)   Resolving deltas:  19% (2434/12367)   Resolving deltas:  20% (2474/12367)   Resolving deltas:  21% (2691/12367)   Resolving deltas:  22% (2843/12367)   Resolving deltas:  23% (2905/12367)   Resolving deltas:  24% (2999/12367)   Resolving deltas:  25% (3094/12367)   Resolving deltas:  26% (3228/12367)   Resolving deltas:  27% (3341/12367)   Resolving deltas:  27% (3438/12367)   Resolving deltas:  28% (3493/12367)   Resolving deltas:  29% (3589/12367)   Resolving deltas:  30% (3724/12367)   Resolving deltas:  31% (3835/12367)   Resolving deltas:  32% (3962/12367)   Resolving deltas:  33% (4085/12367)   Resolving deltas:  34% (4289/12367)   Resolving deltas:  39% (4884/12367)   Resolving deltas:  40% (4948/12367)   Resolving deltas:  41% (5162/12367)   Resolving deltas:  42% (5195/12367)   Resolving deltas:  43% (5353/12367)   Resolving deltas:  44% (5544/12367)   Resolving deltas:  45% (5566/12367)   Resolving deltas:  46% (5734/12367)   Resolving deltas:  47% (5814/12367)   Resolving deltas:  48% (5938/12367)   Resolving deltas:  49% (6062/12367)   Resolving deltas:  52% (6436/12367)   Resolving deltas:  53% (6582/12367)   Resolving deltas:  55% (6830/12367)   Resolving deltas:  56% (6994/12367)   Resolving deltas:  57% (7053/12367)   Resolving deltas:  58% (7173/12367)   Resolving deltas:  62% (7751/12367)   Resolving deltas:  63% (7802/12367)   Resolving deltas:  67% (8330/12367)   Resolving deltas:  68% (8411/12367)   Resolving deltas:  70% (8714/12367)   Resolving deltas:  71% (8782/12367)   Resolving deltas:  72% (8911/12367)   Resolving deltas:  73% (9084/12367)   Resolving deltas:  75% (9310/12367)   Resolving deltas:  76% (9400/12367)   Resolving deltas:  80% (10005/12367)   Resolving deltas:  81% (10026/12367)   Resolving deltas:  82% (10148/12367)   Resolving deltas:  84% (10483/12367)   Resolving deltas:  85% (10519/12367)   Resolving deltas:  86% (10638/12367)   Resolving deltas:  87% (10785/12367)   Resolving deltas:  89% (11073/12367)   Resolving deltas:  90% (11133/12367)   Resolving deltas:  91% (11300/12367)   Resolving deltas:  92% (11399/12367)   Resolving deltas:  93% (11528/12367)   Resolving deltas:  94% (11733/12367)   Resolving deltas:  95% (11752/12367)   Resolving deltas:  96% (11873/12367)   Resolving deltas:  97% (11997/12367)   Resolving deltas:  98% (12123/12367)   Resolving deltas:  99% (12250/12367)   Resolving deltas: 100% (12367/12367)   Resolving deltas: 100% (12367/12367), done.
++ cd /home/fedora/btrfs-progs
++ ./autogen.sh
+
+Generate build-system by:
+   aclocal:    aclocal (GNU automake) 1.15
+   autoconf:   autoconf (GNU Autoconf) 2.69
+   autoheader: autoheader (GNU Autoconf) 2.69
+   automake:   automake (GNU automake) 1.15
+
+Now type './configure' and 'make' to compile.
+
++ ./configure --prefix /usr CFLAGS=-I/usr/include LDFLAGS=-L/usr/lib
+configure: loading site script /usr/share/config.site
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for an ANSI C-conforming const... yes
+checking for working volatile... yes
+checking whether byte ordering is bigendian... no
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether ln -s works... yes
+checking for ar... ar
+checking for rm... /usr/bin/rm
+checking for rmdir... /usr/bin/rmdir
+checking for openat... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking execinfo.h usability... yes
+checking execinfo.h presence... yes
+checking for execinfo.h... yes
+checking for backtrace... yes
+checking for backtrace_symbols_fd... yes
+checking for asciidoc... /usr/bin/asciidoc
+checking for xmlto... /usr/bin/xmlto
+checking for gzip... /usr/bin/gzip
+checking for mv... /usr/bin/mv
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for EXT2FS... yes
+checking for COM_ERR... yes
+checking for REISERFS... no
+checking for FIEMAP_EXTENT_SHARED defined in linux/fiemap.h... yes
+checking for BLKID... yes
+checking for UUID... yes
+checking for ZLIB... yes
+checking for ZSTD... yes
+checking for lzo_version in -llzo2... yes
+configure: creating ./config.status
+config.status: creating Makefile.inc
+config.status: creating Documentation/Makefile
+config.status: creating version.h
+config.status: creating config.h
+
+	btrfs-progs v4.14-36-gaf322ba5
+
+	prefix:             /usr
+	exec prefix:        ${prefix}
+
+	bindir:             ${exec_prefix}/bin
+	libdir:             ${exec_prefix}/lib64
+	includedir:         ${prefix}/include
+
+	compiler:           gcc
+	cflags:             -I/usr/include
+	ldflags:            -L/usr/lib
+
+	documentation:      yes
+	backtrace support:  yes
+	btrfs-convert:      yes (ext2)
+	btrfs-restore zstd: yes
+
+	Type 'make' to compile.
+
++ make
+    [CC]     btrfs.o
+    [CC]     ctree.o
+    [CC]     disk-io.o
+    [CC]     kernel-lib/radix-tree.o
+    [CC]     extent-tree.o
+    [CC]     print-tree.o
+    [CC]     root-tree.o
+    [CC]     dir-item.o
+    [CC]     file-item.o
+    [CC]     inode-item.o
+    [CC]     inode-map.o
+    [CC]     extent-cache.o
+    [CC]     extent_io.o
+    [CC]     volumes.o
+    [CC]     utils.o
+    [CC]     repair.o
+    [CC]     qgroup.o
+    [CC]     free-space-cache.o
+    [CC]     kernel-lib/list_sort.o
+    [CC]     props.o
+    [CC]     kernel-shared/ulist.o
+    [CC]     qgroup-verify.o
+    [CC]     backref.o
+    [CC]     string-table.o
+    [CC]     task-utils.o
+    [CC]     inode.o
+    [CC]     file.o
+    [CC]     find-root.o
+    [CC]     free-space-tree.o
+    [CC]     help.o
+    [CC]     send-dump.o
+    [CC]     fsfeatures.o
+    [CC]     kernel-lib/tables.o
+    [CC]     kernel-lib/raid56.o
+    [CC]     transaction.o
+    [CC]     cmds-subvolume.o
+    [CC]     cmds-filesystem.o
+    [CC]     cmds-device.o
+    [CC]     cmds-scrub.o
+    [CC]     cmds-inspect.o
+    [CC]     cmds-balance.o
+    [CC]     cmds-send.o
+    [CC]     cmds-receive.o
+    [CC]     cmds-quota.o
+    [CC]     cmds-qgroup.o
+    [CC]     cmds-replace.o
+    [CC]     cmds-check.o
+    [CC]     cmds-restore.o
+    [CC]     cmds-rescue.o
+    [CC]     chunk-recover.o
+    [CC]     super-recover.o
+    [CC]     cmds-property.o
+    [CC]     cmds-fi-usage.o
+    [CC]     cmds-inspect-dump-tree.o
+    [CC]     cmds-inspect-dump-super.o
+    [CC]     cmds-inspect-tree-stats.o
+    [CC]     cmds-fi-du.o
+    [CC]     mkfs/common.o
+    [CC]     send-stream.o
+    [CC]     send-utils.o
+    [CC]     kernel-lib/rbtree.o
+    [CC]     btrfs-list.o
+    [CC]     kernel-lib/crc32c.o
+    [CC]     messages.o
+    [CC]     uuid-tree.o
+    [CC]     utils-lib.o
+    [CC]     rbtree-utils.o
+    [AR]     libbtrfs.a
+    [LD]     btrfs
+    [CC]     mkfs/main.o
+    [CC]     mkfs/rootdir.o
+    [LD]     mkfs.btrfs
+    [CC]     btrfs-debug-tree.o
+    [LD]     btrfs-debug-tree
+    [CC]     btrfs-map-logical.o
+    [LD]     btrfs-map-logical
+    [CC]     image/main.o
+    [CC]     image/sanitize.o
+    [LD]     btrfs-image
+    [CC]     btrfs-zero-log.o
+    [LD]     btrfs-zero-log
+    [CC]     btrfs-find-root.o
+    [LD]     btrfs-find-root
+    [CC]     btrfstune.o
+    [LD]     btrfstune
+    [CC]     btrfs-select-super.o
+    [LD]     btrfs-select-super
+    [CC]     convert/main.o
+    [CC]     convert/common.o
+    [CC]     convert/source-fs.o
+    [CC]     convert/source-ext2.o
+    [CC]     convert/source-reiserfs.o
+    [LD]     btrfs-convert
+    [LN]     btrfsck
+    [CC]     btrfs-corrupt-block.o
+    [LD]     btrfs-corrupt-block
+    [LN]     libbtrfs.so.0
+    [LN]     libbtrfs.so
+    [LD]     libbtrfs.so.0.1
+Making all in Documentation
+    [ASCII]  btrfs-ioctl.xml
+    [XMLTO]  btrfs-ioctl.3
+    [GZ]     btrfs-ioctl.3.gz
+    [ASCII]  btrfs-man5.xml
+    [XMLTO]  btrfs-man5.5
+    [GZ]     btrfs-man5.5.gz
+    [ASCII]  btrfs.xml
+    [XMLTO]  btrfs.8
+    [GZ]     btrfs.8.gz
+    [ASCII]  btrfs-convert.xml
+    [XMLTO]  btrfs-convert.8
+    [GZ]     btrfs-convert.8.gz
+    [ASCII]  btrfs-find-root.xml
+    [XMLTO]  btrfs-find-root.8
+    [GZ]     btrfs-find-root.8.gz
+    [ASCII]  btrfs-image.xml
+    [XMLTO]  btrfs-image.8
+    [GZ]     btrfs-image.8.gz
+    [ASCII]  btrfs-map-logical.xml
+    [XMLTO]  btrfs-map-logical.8
+    [GZ]     btrfs-map-logical.8.gz
+    [ASCII]  btrfs-select-super.xml
+    [XMLTO]  btrfs-select-super.8
+    [GZ]     btrfs-select-super.8.gz
+    [ASCII]  btrfstune.xml
+    [XMLTO]  btrfstune.8
+    [GZ]     btrfstune.8.gz
+    [ASCII]  fsck.btrfs.xml
+    [XMLTO]  fsck.btrfs.8
+    [GZ]     fsck.btrfs.8.gz
+    [ASCII]  mkfs.btrfs.xml
+    [XMLTO]  mkfs.btrfs.8
+    [GZ]     mkfs.btrfs.8.gz
+    [ASCII]  btrfs-subvolume.xml
+    [XMLTO]  btrfs-subvolume.8
+    [GZ]     btrfs-subvolume.8.gz
+    [ASCII]  btrfs-filesystem.xml
+    [XMLTO]  btrfs-filesystem.8
+    [GZ]     btrfs-filesystem.8.gz
+    [ASCII]  btrfs-balance.xml
+    [XMLTO]  btrfs-balance.8
+    [GZ]     btrfs-balance.8.gz
+    [ASCII]  btrfs-device.xml
+    [XMLTO]  btrfs-device.8
+    [GZ]     btrfs-device.8.gz
+    [ASCII]  btrfs-scrub.xml
+    [XMLTO]  btrfs-scrub.8
+    [GZ]     btrfs-scrub.8.gz
+    [ASCII]  btrfs-check.xml
+    [XMLTO]  btrfs-check.8
+    [GZ]     btrfs-check.8.gz
+    [ASCII]  btrfs-rescue.xml
+    [XMLTO]  btrfs-rescue.8
+    [GZ]     btrfs-rescue.8.gz
+    [ASCII]  btrfs-inspect-internal.xml
+    [XMLTO]  btrfs-inspect-internal.8
+    [GZ]     btrfs-inspect-internal.8.gz
+    [ASCII]  btrfs-send.xml
+    [XMLTO]  btrfs-send.8
+    [GZ]     btrfs-send.8.gz
+    [ASCII]  btrfs-receive.xml
+    [XMLTO]  btrfs-receive.8
+    [GZ]     btrfs-receive.8.gz
+    [ASCII]  btrfs-quota.xml
+    [XMLTO]  btrfs-quota.8
+    [GZ]     btrfs-quota.8.gz
+    [ASCII]  btrfs-qgroup.xml
+    [XMLTO]  btrfs-qgroup.8
+    [GZ]     btrfs-qgroup.8.gz
+    [ASCII]  btrfs-replace.xml
+    [XMLTO]  btrfs-replace.8
+    [GZ]     btrfs-replace.8.gz
+    [ASCII]  btrfs-restore.xml
+    [XMLTO]  btrfs-restore.8
+    [GZ]     btrfs-restore.8.gz
+    [ASCII]  btrfs-property.xml
+    [XMLTO]  btrfs-property.8
+    [GZ]     btrfs-property.8.gz
+rm btrfs-quota.8 btrfs-balance.xml btrfs-man5.5 btrfs-restore.xml btrfs-scrub.8 mkfs.btrfs.8 btrfs-check.8 btrfs-map-logical.8 btrfs-man5.xml btrfs-select-super.xml btrfs-scrub.xml mkfs.btrfs.xml btrfs-map-logical.xml btrfs-inspect-internal.8 btrfs-inspect-internal.xml btrfs-filesystem.8 btrfs-ioctl.3 fsck.btrfs.8 btrfs-filesystem.xml btrfs-convert.xml btrfs-replace.8 btrfstune.xml fsck.btrfs.xml btrfs-replace.xml btrfs-ioctl.xml btrfs-quota.xml btrfs-send.xml btrfs.xml btrfs-device.8 btrfs-image.8 btrfs-convert.8 btrfs-device.xml btrfs-image.xml btrfs-select-super.8 btrfs-rescue.8 btrfs-check.xml btrfs.8 btrfs-qgroup.8 btrfs-rescue.xml btrfs-qgroup.xml btrfs-property.8 btrfs-subvolume.8 btrfs-property.xml btrfs-restore.8 btrfstune.8 btrfs-receive.8 btrfs-subvolume.xml btrfs-receive.xml btrfs-find-root.8 btrfs-send.8 btrfs-find-root.xml btrfs-balance.8
++ sudo make install
+Making install in Documentation
+/usr/bin/install -c -d -m 755 /usr/share/man/man5
+/usr/bin/install -c -d -m 755 /usr/share/man/man8
+/usr/bin/install -c -m 644 btrfs-man5.5.gz /usr/share/man/man5
+# the source file name of btrfs.5 clashes with section 8 page, but we
+# want to keep the code generic
+/usr/bin/mv /usr/share/man/man5/btrfs-man5.5.gz /usr/share/man/man5/btrfs.5.gz
+/usr/bin/install -c -m 644 btrfs.8.gz btrfs-convert.8.gz btrfs-find-root.8.gz btrfs-image.8.gz btrfs-map-logical.8.gz btrfs-select-super.8.gz btrfstune.8.gz fsck.btrfs.8.gz mkfs.btrfs.8.gz btrfs-subvolume.8.gz btrfs-filesystem.8.gz btrfs-balance.8.gz btrfs-device.8.gz btrfs-scrub.8.gz btrfs-check.8.gz btrfs-rescue.8.gz btrfs-inspect-internal.8.gz btrfs-send.8.gz btrfs-receive.8.gz btrfs-quota.8.gz btrfs-qgroup.8.gz btrfs-replace.8.gz btrfs-restore.8.gz btrfs-property.8.gz /usr/share/man/man8
+ln -s -f btrfs-check.8.gz /usr/share/man/man8/btrfsck.8.gz
+ln -s -f btrfs-rescue.8.gz /usr/share/man/man8/btrfs-zero-log.8.gz
+ln -s -f btrfs-inspect-internal.8.gz /usr/share/man/man8/btrfs-debug-tree.8.gz
+ln -s -f btrfs-inspect-internal.8.gz /usr/share/man/man8/btrfs-show-super.8.gz
+/usr/bin/install -c -m755 -d /usr/bin
+/usr/bin/install -c btrfs mkfs.btrfs btrfs-debug-tree btrfs-map-logical btrfs-image btrfs-zero-log btrfs-find-root btrfstune btrfs-select-super btrfs-convert /usr/bin
+/usr/bin/install -c fsck.btrfs /usr/bin
+# btrfsck is a link to btrfs in the src tree, make it so for installed file as well
+ln -s -f btrfs /usr/bin/btrfsck
+/usr/bin/install -c -m755 -d /usr/lib64
+/usr/bin/install -c libbtrfs.so.0.1 libbtrfs.a /usr/lib64
+cp -a libbtrfs.so.0 libbtrfs.so /usr/lib64
+/usr/bin/install -c -m755 -d /usr/include/btrfs
+/usr/bin/install -c -m644 send-stream.h send-utils.h send.h kernel-lib/rbtree.h btrfs-list.h kernel-lib/crc32c.h kernel-lib/list.h kerncompat.h kernel-lib/radix-tree.h kernel-lib/sizes.h kernel-lib/raid56.h extent-cache.h extent_io.h ioctl.h ctree.h btrfsck.h version.h /usr/include/btrfs
+/usr/bin/install -c -m755 -d /usr/lib/udev/rules.d
+/usr/bin/install -c -m644 64-btrfs-dm.rules /usr/lib/udev/rules.d
++ cd /home/fedora/btrfs-progs
++ make test-fsck
+    [TEST]   fsck-tests.sh
+    [TEST/fsck]   001-bad-file-extent-bytenr
+    [TEST/fsck]   002-bad-transid
+    [TEST/fsck]   003-shift-offsets
+    [TEST/fsck]   004-no-dir-index
+    [TEST/fsck]   005-bad-item-offset
+    [TEST/fsck]   006-bad-root-items
+    [TEST/fsck]   007-bad-offset-snapshots
+    [TEST/fsck]   008-bad-dir-index-name
+    [TEST/fsck]   009-no-dir-item-or-index
+    [TEST/fsck]   010-no-rootdir-inode-item
+    [TEST/fsck]   011-no-inode-item
+    [TEST/fsck]   012-leaf-corruption
+    [TEST/fsck]   013-extent-tree-rebuild
+    [TEST/fsck]   014-no-extent-info
+    [TEST/fsck]   016-wrong-inode-nbytes
+    [TEST/fsck]   017-missing-all-file-extent
+    [TEST/fsck]   018-leaf-crossing-stripes
+    [TEST/fsck]   019-non-skinny-false-alert
+    [TEST/fsck]   020-extent-ref-cases
+    [TEST/fsck]   021-partially-dropped-snapshot-case
+    [TEST/fsck]   022-qgroup-rescan-halfway
+    [TEST/fsck]   023-qgroup-stack-overflow
+    [TEST/fsck]   024-clear-space-cache
+    [TEST/fsck]   025-file-extents
+    [TEST/fsck]   026-bad-dir-item-name
+    [TEST/fsck]   027-bad-extent-inline-ref-type
+    [TEST/fsck]   027-tree-reloc-tree
+    [TEST/fsck]   028-unaligned-super-dev-sizes
++ make test-cli
+    [TEST]   cli-tests.sh
+    [TEST/cli]   001-btrfs
+    [TEST/cli]   002-balance-full-no-filters
+    [TEST/cli]   003-fi-resize-args
+    [TEST/cli]   004-send-parent-multi-subvol
+    [TEST/cli]   005-qgroup-show
+    [TEST/cli]   006-qgroup-show-sync
+    [TEST/cli]   007-check-force
+    [TEST/cli]   008-subvolume-get-set-default
++ make test-misc
+    [LD]     fssum
+    [TEST]   misc-tests.sh
+    [TEST/misc]   001-btrfstune-features
+    [TEST/misc]   002-uuid-rewrite
+    [TEST/misc]   003-zero-log
+    [TEST/misc]   004-shrink-fs
+    [TEST/misc]   005-convert-progress-thread-crash
+    [TEST/misc]   006-image-on-missing-device
+    [TEST/misc]   007-subvolume-sync
+    [TEST/misc]   008-leaf-crossing-stripes
+    [TEST/misc]   009-subvolume-sync-must-wait
+    [TEST/misc]   010-convert-delete-ext2-subvol
+    [TEST/misc]   011-delete-missing-device
+    [TEST/misc]   012-find-root-no-result
+    [TEST/misc]   013-subvolume-sync-crash
+    [TEST/misc]   014-filesystem-label
+    [TEST/misc]   015-dump-super-garbage
+    [TEST/misc]   016-send-clone-src
+    [TEST/misc]   017-recv-stream-malformatted
+    [TEST/misc]   018-recv-end-of-stream
+    [TEST/misc]   019-receive-clones-on-mounted-subvol
+    [TEST/misc]   020-fix-superblock-corruption
+    [TEST/misc]   021-image-multi-devices
+    [TEST/misc]   022-filesystem-du-on-empty-subvol
+    [TEST/misc]   023-device-usage-with-missing-device
+    [TEST/misc]   024-inspect-internal-rootid
+    [TEST/misc]   025-zstd-compression
+    [TEST/misc]   026-image-non-printable-chars
+    [TEST/misc]   027-subvol-list-deleted-toplevel
++ make test-fuzz
+    [TEST]   fuzz-tests.sh
+    [TEST/fuzz]   001-simple-check-unmounted
+    [TEST/fuzz]   002-simple-image
+    [TEST/fuzz]   003-multi-check-unmounted
+/home/fedora/btrfs-progs/tests/common: line 170: 22454 Aborted                 (core dumped) $INSTRUMENT "$@" >> "$RESULTS" 2>&1
+mayfail: returned code 134 (SIGABRT), not ignored
+test failed for case 003-multi-check-unmounted
+make: *** [Makefile:318: test-fuzz] Error 1
+
+Script done on Sun 03 Dec 2017 04:29:01 AM UTC

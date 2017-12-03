@@ -1,0 +1,4 @@
+wrote 9000/9000 bytes at offset 0
+9 KiB, 3 ops; 0.0000 sec (52.657 MiB/sec and 18404.9080 ops/sec)
+cp: failed to clone '/mnt/test/test-029/copy' from '/mnt/scratch/original': Invalid cross-device link
+cp: failed to clone '/mnt/test/test-029/copy' from '/mnt/scratch/original': Invalid cross-device link

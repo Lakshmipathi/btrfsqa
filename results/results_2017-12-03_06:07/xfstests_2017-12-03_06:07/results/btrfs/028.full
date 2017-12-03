@@ -1,0 +1,5 @@
+# /bin/btrfs quota enable /mnt/scratch
+# /bin/btrfs quota rescan -w /mnt/scratch
+Run fsstress -z -f write=10 -f unlink=10 -f creat=10 -f fsync=10 -f fsync=10 -n 100000 -p 2 -d /mnt/scratch/stress_dir
+Start balance
+# /bin/btrfs filesystem sync /mnt/scratch

@@ -1,0 +1,2705 @@
+=== Entering /home/fedora/btrfs-progs/tests/misc-tests/020-fix-superblock-corruption
+$TEST_DEV not given, use /home/fedora/btrfs-progs/test/test.img as fallback
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f /home/fedora/btrfs-progs/tests/test.img
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Label:              (null)
+UUID:               f9579c01-22aa-49a7-ad8b-7f1c8a1a6e30
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP             102.38MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     2.00GiB  /home/fedora/btrfs-progs/tests/test.img
+
+############### dd if=/dev/zero of=/home/fedora/btrfs-progs/tests/test.img seek=65536 bs=1 count=4 conv=notrunc
+4+0 records in
+4+0 records out
+4 bytes copied, 0.000569014 s, 7.0 kB/s
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/test.img
+ERROR: superblock checksum mismatch
+ERROR: superblock checksum mismatch
+No valid Btrfs found on /home/fedora/btrfs-progs/tests/test.img
+ERROR: cannot open file system
+failed (ignored, ret=1): /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/test.img
+############### /home/fedora/btrfs-progs/btrfs-select-super -s 1 /home/fedora/btrfs-progs/tests/test.img
+ERROR: superblock checksum mismatch
+using SB copy 1, bytenr 67108864
+############### /home/fedora/btrfs-progs/btrfs check /home/fedora/btrfs-progs/tests/test.img
+checking extents
+checking free space cache
+checking fs roots
+checking csums
+checking root refs
+Checking filesystem on /home/fedora/btrfs-progs/tests/test.img
+UUID: f9579c01-22aa-49a7-ad8b-7f1c8a1a6e30
+found 114688 bytes used, no error found
+total csum bytes: 0
+total tree bytes: 114688
+total fs tree bytes: 32768
+total extent tree bytes: 16384
+btree space waste bytes: 109471
+file data blocks allocated: 0
+ referenced 0
+=== Entering /home/fedora/btrfs-progs/tests/misc-tests/020-raid5-datastripe-corruption-parity-check
+$TEST_DEV not given, use /home/fedora/btrfs-progs/test/test.img as fallback
+------------------RAID5 Corruption------------------
+Filename=file128k.txt Total Stripes=2 	      Data Stripe to be corrupted=1
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs inspect-internal dump-tree /dev/loop0
+btrfs-progs v4.14-36-gaf322ba5
+root tree
+leaf 37961728 items 16 free space 12515 generation 7 owner 1
+leaf 37961728 flags 0x1(WRITTEN) backref revision 1
+fs uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+chunk uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 0 key (EXTENT_TREE ROOT_ITEM 0) itemoff 15844 itemsize 439
+		generation 7 root_dirid 0 bytenr 37945344 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 1 key (DEV_TREE ROOT_ITEM 0) itemoff 15405 itemsize 439
+		generation 6 root_dirid 0 bytenr 37896192 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 2 key (FS_TREE INODE_REF 6) itemoff 15388 itemsize 17
+		index 0 namelen 7 name: default
+	item 3 key (FS_TREE ROOT_ITEM 0) itemoff 14949 itemsize 439
+		generation 7 root_dirid 256 bytenr 37994496 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		ctransid 7 otransid 0 stransid 0 rtransid 0
+		ctime 1512279408.627676304 (2017-12-03 05:36:48)
+		drop key (0 UNKNOWN.0 0) level 0
+	item 4 key (ROOT_TREE_DIR INODE_ITEM 0) itemoff 14789 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279394.0 (2017-12-03 05:36:34)
+		ctime 1512279394.0 (2017-12-03 05:36:34)
+		mtime 1512279394.0 (2017-12-03 05:36:34)
+		otime 1512279394.0 (2017-12-03 05:36:34)
+	item 5 key (ROOT_TREE_DIR INODE_REF 6) itemoff 14777 itemsize 12
+		index 0 namelen 2 name: ..
+	item 6 key (ROOT_TREE_DIR DIR_ITEM 2378154706) itemoff 14740 itemsize 37
+		location key (FS_TREE ROOT_ITEM -1) type DIR
+		transid 0 data_len 0 name_len 7
+		name: default
+	item 7 key (CSUM_TREE ROOT_ITEM 0) itemoff 14301 itemsize 439
+		generation 7 root_dirid 0 bytenr 37978112 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 8 key (UUID_TREE ROOT_ITEM 0) itemoff 13862 itemsize 439
+		generation 6 root_dirid 0 bytenr 37765120 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 9 key (256 INODE_ITEM 0) itemoff 13702 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279408.694074730 (2017-12-03 05:36:48)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 10 key (256 EXTENT_DATA 0) itemoff 13649 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145358848 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 11 key (257 INODE_ITEM 0) itemoff 13489 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279408.695074719 (2017-12-03 05:36:48)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 12 key (257 EXTENT_DATA 0) itemoff 13436 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145424384 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 13 key (FREE_SPACE UNTYPED 37748736) itemoff 13395 itemsize 41
+		location key (256 INODE_ITEM 0)
+		cache generation 7 entries 6 bitmaps 0
+	item 14 key (FREE_SPACE UNTYPED 145096704) itemoff 13354 itemsize 41
+		location key (257 INODE_ITEM 0)
+		cache generation 7 entries 3 bitmaps 0
+	item 15 key (DATA_RELOC_TREE ROOT_ITEM 0) itemoff 12915 itemsize 439
+		generation 4 root_dirid 256 bytenr 37830656 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+chunk tree
+leaf 20987904 items 6 free space 15407 generation 5 owner 3
+leaf 20987904 flags 0x1(WRITTEN) backref revision 1
+fs uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+chunk uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 0 key (DEV_ITEMS DEV_ITEM 1) itemoff 16185 itemsize 98
+		devid 1 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 97bfbae7-ea91-4540-9a41-afa62b163bcc
+		fsid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+	item 1 key (DEV_ITEMS DEV_ITEM 2) itemoff 16087 itemsize 98
+		devid 2 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 0b21c226-b61c-4bdb-834d-b711bee4d3a7
+		fsid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+	item 2 key (DEV_ITEMS DEV_ITEM 3) itemoff 15989 itemsize 98
+		devid 3 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid ac5e296d-6b60-4088-bc1f-9afa0a6d030d
+		fsid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+	item 3 key (FIRST_CHUNK_TREE CHUNK_ITEM 20971520) itemoff 15845 itemsize 144
+		length 16777216 owner 2 stripe_len 65536 type SYSTEM|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 1048576
+			dev_uuid ac5e296d-6b60-4088-bc1f-9afa0a6d030d
+			stripe 1 devid 2 offset 1048576
+			dev_uuid 0b21c226-b61c-4bdb-834d-b711bee4d3a7
+			stripe 2 devid 1 offset 20971520
+			dev_uuid 97bfbae7-ea91-4540-9a41-afa62b163bcc
+	item 4 key (FIRST_CHUNK_TREE CHUNK_ITEM 37748736) itemoff 15701 itemsize 144
+		length 107347968 owner 2 stripe_len 65536 type METADATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 9437184
+			dev_uuid ac5e296d-6b60-4088-bc1f-9afa0a6d030d
+			stripe 1 devid 2 offset 9437184
+			dev_uuid 0b21c226-b61c-4bdb-834d-b711bee4d3a7
+			stripe 2 devid 1 offset 29360128
+			dev_uuid 97bfbae7-ea91-4540-9a41-afa62b163bcc
+	item 5 key (FIRST_CHUNK_TREE CHUNK_ITEM 145096704) itemoff 15557 itemsize 144
+		length 134217728 owner 2 stripe_len 65536 type DATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 63111168
+			dev_uuid ac5e296d-6b60-4088-bc1f-9afa0a6d030d
+			stripe 1 devid 2 offset 63111168
+			dev_uuid 0b21c226-b61c-4bdb-834d-b711bee4d3a7
+			stripe 2 devid 1 offset 83034112
+			dev_uuid 97bfbae7-ea91-4540-9a41-afa62b163bcc
+extent tree key (EXTENT_TREE ROOT_ITEM 0) 
+leaf 37945344 items 14 free space 15438 generation 7 owner 2
+leaf 37945344 flags 0x1(WRITTEN) backref revision 1
+fs uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+chunk uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 0 key (20971520 BLOCK_GROUP_ITEM 16777216) itemoff 16259 itemsize 24
+		block group used 16384 chunk_objectid 256 flags SYSTEM|RAID5
+	item 1 key (20987904 METADATA_ITEM 0) itemoff 16226 itemsize 33
+		refs 1 gen 5 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 3
+	item 2 key (37748736 BLOCK_GROUP_ITEM 107347968) itemoff 16202 itemsize 24
+		block group used 114688 chunk_objectid 256 flags METADATA|RAID5
+	item 3 key (37765120 METADATA_ITEM 0) itemoff 16169 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 9
+	item 4 key (37830656 METADATA_ITEM 0) itemoff 16136 itemsize 33
+		refs 1 gen 4 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 18446744073709551607
+	item 5 key (37896192 METADATA_ITEM 0) itemoff 16103 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 4
+	item 6 key (37945344 METADATA_ITEM 0) itemoff 16070 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 2
+	item 7 key (37961728 METADATA_ITEM 0) itemoff 16037 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 1
+	item 8 key (37978112 METADATA_ITEM 0) itemoff 16004 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 7
+	item 9 key (37994496 METADATA_ITEM 0) itemoff 15971 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 5
+	item 10 key (145096704 BLOCK_GROUP_ITEM 134217728) itemoff 15947 itemsize 24
+		block group used 262144 chunk_objectid 256 flags DATA|RAID5
+	item 11 key (145227776 EXTENT_ITEM 131072) itemoff 15894 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 5 objectid 257 offset 0 count 1
+	item 12 key (145358848 EXTENT_ITEM 65536) itemoff 15841 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 256 offset 0 count 1
+	item 13 key (145424384 EXTENT_ITEM 65536) itemoff 15788 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 257 offset 0 count 1
+device tree key (DEV_TREE ROOT_ITEM 0) 
+leaf 37896192 items 12 free space 15431 generation 6 owner 4
+leaf 37896192 flags 0x1(WRITTEN) backref revision 1
+fs uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+chunk uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 0 key (0 PERSISTENT_ITEM 1) itemoff 16243 itemsize 40
+		persistent item objectid 0 offset 1
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 1 key (0 PERSISTENT_ITEM 2) itemoff 16203 itemsize 40
+		persistent item objectid 0 offset 2
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 2 key (0 PERSISTENT_ITEM 3) itemoff 16163 itemsize 40
+		persistent item objectid 0 offset 3
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 3 key (1 DEV_EXTENT 20971520) itemoff 16115 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 4 key (1 DEV_EXTENT 29360128) itemoff 16067 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 5 key (1 DEV_EXTENT 83034112) itemoff 16019 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 6 key (2 DEV_EXTENT 1048576) itemoff 15971 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 7 key (2 DEV_EXTENT 9437184) itemoff 15923 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 8 key (2 DEV_EXTENT 63111168) itemoff 15875 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 9 key (3 DEV_EXTENT 1048576) itemoff 15827 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 10 key (3 DEV_EXTENT 9437184) itemoff 15779 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 11 key (3 DEV_EXTENT 63111168) itemoff 15731 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+fs tree key (FS_TREE ROOT_ITEM 0) 
+leaf 37994496 items 8 free space 15509 generation 7 owner 5
+leaf 37994496 flags 0x1(WRITTEN) backref revision 1
+fs uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+chunk uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 7 size 24 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x1(none)
+		atime 1512279394.0 (2017-12-03 05:36:34)
+		ctime 1512279408.594075803 (2017-12-03 05:36:48)
+		mtime 1512279408.594075803 (2017-12-03 05:36:48)
+		otime 1512279394.0 (2017-12-03 05:36:34)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+	item 2 key (256 DIR_ITEM 1020026518) itemoff 16069 itemsize 42
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 12
+		name: file128k.txt
+	item 3 key (256 DIR_INDEX 2) itemoff 16027 itemsize 42
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 12
+		name: file128k.txt
+	item 4 key (257 INODE_ITEM 0) itemoff 15867 itemsize 160
+		generation 7 transid 7 size 131072 nbytes 131072
+		block group 0 mode 100644 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x2(none)
+		atime 1512279408.594075803 (2017-12-03 05:36:48)
+		ctime 1512279408.594075803 (2017-12-03 05:36:48)
+		mtime 1512279408.594075803 (2017-12-03 05:36:48)
+		otime 1512279408.594075803 (2017-12-03 05:36:48)
+	item 5 key (257 INODE_REF 256) itemoff 15845 itemsize 22
+		index 2 namelen 12 name: file128k.txt
+	item 6 key (257 XATTR_ITEM 3817753667) itemoff 15762 itemsize 83
+		location key (0 UNKNOWN.0 0) type XATTR
+		transid 7 data_len 37 name_len 16
+		name: security.selinux
+		data unconfined_u:object_r:unlabeled_t:s0
+	item 7 key (257 EXTENT_DATA 0) itemoff 15709 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145227776 nr 131072
+		extent data offset 0 nr 131072 ram 131072
+		extent compression 0 (none)
+checksum tree key (CSUM_TREE ROOT_ITEM 0) 
+leaf 37978112 items 1 free space 16130 generation 7 owner 7
+leaf 37978112 flags 0x1(WRITTEN) backref revision 1
+fs uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+chunk uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 0 key (EXTENT_CSUM EXTENT_CSUM 145227776) itemoff 16155 itemsize 128
+		range start 145227776 end 145358848 length 131072
+uuid tree key (UUID_TREE ROOT_ITEM 0) 
+leaf 37765120 items 0 free space 16283 generation 6 owner 9
+leaf 37765120 flags 0x1(WRITTEN) backref revision 1
+fs uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+chunk uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+data reloc tree key (DATA_RELOC_TREE ROOT_ITEM 0) 
+leaf 37830656 items 2 free space 16061 generation 4 owner 18446744073709551607
+leaf 37830656 flags 0x1(WRITTEN) backref revision 1
+fs uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+chunk uuid 2689fe6f-1d66-4848-b7f4-8aeb44e677ee
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279394.0 (2017-12-03 05:36:34)
+		ctime 1512279394.0 (2017-12-03 05:36:34)
+		mtime 1512279394.0 (2017-12-03 05:36:34)
+		otime 1512279394.0 (2017-12-03 05:36:34)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+total bytes 1610612736
+bytes used 393216
+uuid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f
+Single extent found.
+logical_addr: 145227776 length=131072 		total_stripe=2
+############### umount /home/fedora/btrfs-progs/tests/mnt
+D1xxxx: Corrupting /dev/loop0 at position 83099648 	which has D1xxxxxxxxxxxxxx
+Found on-disk value: D1xxxxxxxxxxxxxx 
+Corruption completed at 83099648
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### btrfs scrub start /home/fedora/btrfs-progs/tests/mnt
+scrub started on /home/fedora/btrfs-progs/tests/mnt, fsid 31e08eb1-771b-42a7-8d11-c36e3b5f7b4f (pid=31919)
+WARNING: errors detected during scrubbing, corrected
+Scrub corrected value: D1xxxxxxxxxxxxxx
+Parity_stripe_entry:/dev/loop2|63176704|00010000000000000000000000000000
+Parity: before=00010000000000000000000000000000 after=00010000000000000000000000000000
+Parity stripe check passed.
+############### umount /home/fedora/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+------------------RAID5 Corruption------------------
+Filename=file256k.txt Total Stripes=4 	      Data Stripe to be corrupted=3
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               972e2ada-26d6-4fbb-89c4-f0c9936d925e
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs inspect-internal dump-tree /dev/loop0
+btrfs-progs v4.14-36-gaf322ba5
+root tree
+leaf 37961728 items 16 free space 12515 generation 7 owner 1
+leaf 37961728 flags 0x1(WRITTEN) backref revision 1
+fs uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+chunk uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 0 key (EXTENT_TREE ROOT_ITEM 0) itemoff 15844 itemsize 439
+		generation 7 root_dirid 0 bytenr 37945344 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 1 key (DEV_TREE ROOT_ITEM 0) itemoff 15405 itemsize 439
+		generation 6 root_dirid 0 bytenr 37896192 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 2 key (FS_TREE INODE_REF 6) itemoff 15388 itemsize 17
+		index 0 namelen 7 name: default
+	item 3 key (FS_TREE ROOT_ITEM 0) itemoff 14949 itemsize 439
+		generation 7 root_dirid 256 bytenr 37994496 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		ctransid 7 otransid 0 stransid 0 rtransid 0
+		ctime 1512279456.333337789 (2017-12-03 05:37:36)
+		drop key (0 UNKNOWN.0 0) level 0
+	item 4 key (ROOT_TREE_DIR INODE_ITEM 0) itemoff 14789 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279429.0 (2017-12-03 05:37:09)
+		ctime 1512279429.0 (2017-12-03 05:37:09)
+		mtime 1512279429.0 (2017-12-03 05:37:09)
+		otime 1512279429.0 (2017-12-03 05:37:09)
+	item 5 key (ROOT_TREE_DIR INODE_REF 6) itemoff 14777 itemsize 12
+		index 0 namelen 2 name: ..
+	item 6 key (ROOT_TREE_DIR DIR_ITEM 2378154706) itemoff 14740 itemsize 37
+		location key (FS_TREE ROOT_ITEM -1) type DIR
+		transid 0 data_len 0 name_len 7
+		name: default
+	item 7 key (CSUM_TREE ROOT_ITEM 0) itemoff 14301 itemsize 439
+		generation 7 root_dirid 0 bytenr 37978112 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 8 key (UUID_TREE ROOT_ITEM 0) itemoff 13862 itemsize 439
+		generation 6 root_dirid 0 bytenr 37765120 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 9 key (256 INODE_ITEM 0) itemoff 13702 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279456.342563512 (2017-12-03 05:37:36)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 10 key (256 EXTENT_DATA 0) itemoff 13649 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145489920 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 11 key (257 INODE_ITEM 0) itemoff 13489 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279456.345563479 (2017-12-03 05:37:36)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 12 key (257 EXTENT_DATA 0) itemoff 13436 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145555456 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 13 key (FREE_SPACE UNTYPED 37748736) itemoff 13395 itemsize 41
+		location key (256 INODE_ITEM 0)
+		cache generation 7 entries 6 bitmaps 0
+	item 14 key (FREE_SPACE UNTYPED 145096704) itemoff 13354 itemsize 41
+		location key (257 INODE_ITEM 0)
+		cache generation 7 entries 3 bitmaps 0
+	item 15 key (DATA_RELOC_TREE ROOT_ITEM 0) itemoff 12915 itemsize 439
+		generation 4 root_dirid 256 bytenr 37830656 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+chunk tree
+leaf 20987904 items 6 free space 15407 generation 5 owner 3
+leaf 20987904 flags 0x1(WRITTEN) backref revision 1
+fs uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+chunk uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 0 key (DEV_ITEMS DEV_ITEM 1) itemoff 16185 itemsize 98
+		devid 1 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 36a655be-d059-4b7a-bcb4-94d70b6ebf54
+		fsid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+	item 1 key (DEV_ITEMS DEV_ITEM 2) itemoff 16087 itemsize 98
+		devid 2 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 5cdb3c6f-8a48-4158-85af-36b8f7c0fdd4
+		fsid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+	item 2 key (DEV_ITEMS DEV_ITEM 3) itemoff 15989 itemsize 98
+		devid 3 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid f7c47efa-2e77-4ec1-8677-9cbbf72a49fa
+		fsid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+	item 3 key (FIRST_CHUNK_TREE CHUNK_ITEM 20971520) itemoff 15845 itemsize 144
+		length 16777216 owner 2 stripe_len 65536 type SYSTEM|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 1048576
+			dev_uuid f7c47efa-2e77-4ec1-8677-9cbbf72a49fa
+			stripe 1 devid 2 offset 1048576
+			dev_uuid 5cdb3c6f-8a48-4158-85af-36b8f7c0fdd4
+			stripe 2 devid 1 offset 20971520
+			dev_uuid 36a655be-d059-4b7a-bcb4-94d70b6ebf54
+	item 4 key (FIRST_CHUNK_TREE CHUNK_ITEM 37748736) itemoff 15701 itemsize 144
+		length 107347968 owner 2 stripe_len 65536 type METADATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 9437184
+			dev_uuid f7c47efa-2e77-4ec1-8677-9cbbf72a49fa
+			stripe 1 devid 2 offset 9437184
+			dev_uuid 5cdb3c6f-8a48-4158-85af-36b8f7c0fdd4
+			stripe 2 devid 1 offset 29360128
+			dev_uuid 36a655be-d059-4b7a-bcb4-94d70b6ebf54
+	item 5 key (FIRST_CHUNK_TREE CHUNK_ITEM 145096704) itemoff 15557 itemsize 144
+		length 134217728 owner 2 stripe_len 65536 type DATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 63111168
+			dev_uuid f7c47efa-2e77-4ec1-8677-9cbbf72a49fa
+			stripe 1 devid 2 offset 63111168
+			dev_uuid 5cdb3c6f-8a48-4158-85af-36b8f7c0fdd4
+			stripe 2 devid 1 offset 83034112
+			dev_uuid 36a655be-d059-4b7a-bcb4-94d70b6ebf54
+extent tree key (EXTENT_TREE ROOT_ITEM 0) 
+leaf 37945344 items 14 free space 15438 generation 7 owner 2
+leaf 37945344 flags 0x1(WRITTEN) backref revision 1
+fs uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+chunk uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 0 key (20971520 BLOCK_GROUP_ITEM 16777216) itemoff 16259 itemsize 24
+		block group used 16384 chunk_objectid 256 flags SYSTEM|RAID5
+	item 1 key (20987904 METADATA_ITEM 0) itemoff 16226 itemsize 33
+		refs 1 gen 5 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 3
+	item 2 key (37748736 BLOCK_GROUP_ITEM 107347968) itemoff 16202 itemsize 24
+		block group used 114688 chunk_objectid 256 flags METADATA|RAID5
+	item 3 key (37765120 METADATA_ITEM 0) itemoff 16169 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 9
+	item 4 key (37830656 METADATA_ITEM 0) itemoff 16136 itemsize 33
+		refs 1 gen 4 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 18446744073709551607
+	item 5 key (37896192 METADATA_ITEM 0) itemoff 16103 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 4
+	item 6 key (37945344 METADATA_ITEM 0) itemoff 16070 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 2
+	item 7 key (37961728 METADATA_ITEM 0) itemoff 16037 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 1
+	item 8 key (37978112 METADATA_ITEM 0) itemoff 16004 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 7
+	item 9 key (37994496 METADATA_ITEM 0) itemoff 15971 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 5
+	item 10 key (145096704 BLOCK_GROUP_ITEM 134217728) itemoff 15947 itemsize 24
+		block group used 393216 chunk_objectid 256 flags DATA|RAID5
+	item 11 key (145227776 EXTENT_ITEM 262144) itemoff 15894 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 5 objectid 257 offset 0 count 1
+	item 12 key (145489920 EXTENT_ITEM 65536) itemoff 15841 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 256 offset 0 count 1
+	item 13 key (145555456 EXTENT_ITEM 65536) itemoff 15788 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 257 offset 0 count 1
+device tree key (DEV_TREE ROOT_ITEM 0) 
+leaf 37896192 items 12 free space 15431 generation 6 owner 4
+leaf 37896192 flags 0x1(WRITTEN) backref revision 1
+fs uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+chunk uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 0 key (0 PERSISTENT_ITEM 1) itemoff 16243 itemsize 40
+		persistent item objectid 0 offset 1
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 1 key (0 PERSISTENT_ITEM 2) itemoff 16203 itemsize 40
+		persistent item objectid 0 offset 2
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 2 key (0 PERSISTENT_ITEM 3) itemoff 16163 itemsize 40
+		persistent item objectid 0 offset 3
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 3 key (1 DEV_EXTENT 20971520) itemoff 16115 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 4 key (1 DEV_EXTENT 29360128) itemoff 16067 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 5 key (1 DEV_EXTENT 83034112) itemoff 16019 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 6 key (2 DEV_EXTENT 1048576) itemoff 15971 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 7 key (2 DEV_EXTENT 9437184) itemoff 15923 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 8 key (2 DEV_EXTENT 63111168) itemoff 15875 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 9 key (3 DEV_EXTENT 1048576) itemoff 15827 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 10 key (3 DEV_EXTENT 9437184) itemoff 15779 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 11 key (3 DEV_EXTENT 63111168) itemoff 15731 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+fs tree key (FS_TREE ROOT_ITEM 0) 
+leaf 37994496 items 8 free space 15509 generation 7 owner 5
+leaf 37994496 flags 0x1(WRITTEN) backref revision 1
+fs uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+chunk uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 7 size 24 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x1(none)
+		atime 1512279429.0 (2017-12-03 05:37:09)
+		ctime 1512279456.282564155 (2017-12-03 05:37:36)
+		mtime 1512279456.282564155 (2017-12-03 05:37:36)
+		otime 1512279429.0 (2017-12-03 05:37:09)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+	item 2 key (256 DIR_ITEM 4078102237) itemoff 16069 itemsize 42
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 12
+		name: file256k.txt
+	item 3 key (256 DIR_INDEX 2) itemoff 16027 itemsize 42
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 12
+		name: file256k.txt
+	item 4 key (257 INODE_ITEM 0) itemoff 15867 itemsize 160
+		generation 7 transid 7 size 262144 nbytes 262144
+		block group 0 mode 100644 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x3(none)
+		atime 1512279456.282564155 (2017-12-03 05:37:36)
+		ctime 1512279456.282564155 (2017-12-03 05:37:36)
+		mtime 1512279456.282564155 (2017-12-03 05:37:36)
+		otime 1512279456.282564155 (2017-12-03 05:37:36)
+	item 5 key (257 INODE_REF 256) itemoff 15845 itemsize 22
+		index 2 namelen 12 name: file256k.txt
+	item 6 key (257 XATTR_ITEM 3817753667) itemoff 15762 itemsize 83
+		location key (0 UNKNOWN.0 0) type XATTR
+		transid 7 data_len 37 name_len 16
+		name: security.selinux
+		data unconfined_u:object_r:unlabeled_t:s0
+	item 7 key (257 EXTENT_DATA 0) itemoff 15709 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145227776 nr 262144
+		extent data offset 0 nr 262144 ram 262144
+		extent compression 0 (none)
+checksum tree key (CSUM_TREE ROOT_ITEM 0) 
+leaf 37978112 items 1 free space 16002 generation 7 owner 7
+leaf 37978112 flags 0x1(WRITTEN) backref revision 1
+fs uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+chunk uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 0 key (EXTENT_CSUM EXTENT_CSUM 145227776) itemoff 16027 itemsize 256
+		range start 145227776 end 145489920 length 262144
+uuid tree key (UUID_TREE ROOT_ITEM 0) 
+leaf 37765120 items 0 free space 16283 generation 6 owner 9
+leaf 37765120 flags 0x1(WRITTEN) backref revision 1
+fs uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+chunk uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+data reloc tree key (DATA_RELOC_TREE ROOT_ITEM 0) 
+leaf 37830656 items 2 free space 16061 generation 4 owner 18446744073709551607
+leaf 37830656 flags 0x1(WRITTEN) backref revision 1
+fs uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+chunk uuid eeb76be4-3277-4d9c-9ffc-1c783d0fc83c
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279429.0 (2017-12-03 05:37:09)
+		ctime 1512279429.0 (2017-12-03 05:37:09)
+		mtime 1512279429.0 (2017-12-03 05:37:09)
+		otime 1512279429.0 (2017-12-03 05:37:09)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+total bytes 1610612736
+bytes used 524288
+uuid 972e2ada-26d6-4fbb-89c4-f0c9936d925e
+Single extent found.
+logical_addr: 145227776 length=262144 		total_stripe=4
+############### umount /home/fedora/btrfs-progs/tests/mnt
+D3xxxx: Corrupting /dev/loop2 at position 63242240 	which has D3xxxxxxxxxxxxxx
+Found on-disk value: D3xxxxxxxxxxxxxx 
+Corruption completed at 63242240
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### btrfs scrub start /home/fedora/btrfs-progs/tests/mnt
+scrub started on /home/fedora/btrfs-progs/tests/mnt, fsid 972e2ada-26d6-4fbb-89c4-f0c9936d925e (pid=32293)
+WARNING: errors detected during scrubbing, corrected
+Scrub corrected value: D3xxxxxxxxxxxxxx
+Parity_stripe_entry:/dev/loop1|63242240|00010000000000000000000000000000
+Parity: before=00010000000000000000000000000000 after=00010000000000000000000000000000
+Parity stripe check passed.
+############### umount /home/fedora/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+------------------RAID5 Corruption------------------
+Filename=file512k.txt Total Stripes=8 	      Data Stripe to be corrupted=6
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs inspect-internal dump-tree /dev/loop0
+btrfs-progs v4.14-36-gaf322ba5
+root tree
+leaf 37961728 items 16 free space 12515 generation 7 owner 1
+leaf 37961728 flags 0x1(WRITTEN) backref revision 1
+fs uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+chunk uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 0 key (EXTENT_TREE ROOT_ITEM 0) itemoff 15844 itemsize 439
+		generation 7 root_dirid 0 bytenr 37945344 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 1 key (DEV_TREE ROOT_ITEM 0) itemoff 15405 itemsize 439
+		generation 6 root_dirid 0 bytenr 37896192 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 2 key (FS_TREE INODE_REF 6) itemoff 15388 itemsize 17
+		index 0 namelen 7 name: default
+	item 3 key (FS_TREE ROOT_ITEM 0) itemoff 14949 itemsize 439
+		generation 7 root_dirid 256 bytenr 37994496 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		ctransid 7 otransid 0 stransid 0 rtransid 0
+		ctime 1512279526.865611844 (2017-12-03 05:38:46)
+		drop key (0 UNKNOWN.0 0) level 0
+	item 4 key (ROOT_TREE_DIR INODE_ITEM 0) itemoff 14789 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279474.0 (2017-12-03 05:37:54)
+		ctime 1512279474.0 (2017-12-03 05:37:54)
+		mtime 1512279474.0 (2017-12-03 05:37:54)
+		otime 1512279474.0 (2017-12-03 05:37:54)
+	item 5 key (ROOT_TREE_DIR INODE_REF 6) itemoff 14777 itemsize 12
+		index 0 namelen 2 name: ..
+	item 6 key (ROOT_TREE_DIR DIR_ITEM 2378154706) itemoff 14740 itemsize 37
+		location key (FS_TREE ROOT_ITEM -1) type DIR
+		transid 0 data_len 0 name_len 7
+		name: default
+	item 7 key (CSUM_TREE ROOT_ITEM 0) itemoff 14301 itemsize 439
+		generation 7 root_dirid 0 bytenr 37978112 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 8 key (UUID_TREE ROOT_ITEM 0) itemoff 13862 itemsize 439
+		generation 6 root_dirid 0 bytenr 37765120 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 9 key (256 INODE_ITEM 0) itemoff 13702 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279526.875806764 (2017-12-03 05:38:46)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 10 key (256 EXTENT_DATA 0) itemoff 13649 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145752064 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 11 key (257 INODE_ITEM 0) itemoff 13489 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279526.878806732 (2017-12-03 05:38:46)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 12 key (257 EXTENT_DATA 0) itemoff 13436 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145817600 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 13 key (FREE_SPACE UNTYPED 37748736) itemoff 13395 itemsize 41
+		location key (256 INODE_ITEM 0)
+		cache generation 7 entries 6 bitmaps 0
+	item 14 key (FREE_SPACE UNTYPED 145096704) itemoff 13354 itemsize 41
+		location key (257 INODE_ITEM 0)
+		cache generation 7 entries 3 bitmaps 0
+	item 15 key (DATA_RELOC_TREE ROOT_ITEM 0) itemoff 12915 itemsize 439
+		generation 4 root_dirid 256 bytenr 37830656 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+chunk tree
+leaf 20987904 items 6 free space 15407 generation 5 owner 3
+leaf 20987904 flags 0x1(WRITTEN) backref revision 1
+fs uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+chunk uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 0 key (DEV_ITEMS DEV_ITEM 1) itemoff 16185 itemsize 98
+		devid 1 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 149a4af3-f24f-402b-bbb7-ed2048568e9b
+		fsid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+	item 1 key (DEV_ITEMS DEV_ITEM 2) itemoff 16087 itemsize 98
+		devid 2 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 5d02d59c-d38a-4b15-9e94-3903222cf8aa
+		fsid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+	item 2 key (DEV_ITEMS DEV_ITEM 3) itemoff 15989 itemsize 98
+		devid 3 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 875858e2-5734-41aa-8f3c-770b027df686
+		fsid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+	item 3 key (FIRST_CHUNK_TREE CHUNK_ITEM 20971520) itemoff 15845 itemsize 144
+		length 16777216 owner 2 stripe_len 65536 type SYSTEM|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 1048576
+			dev_uuid 875858e2-5734-41aa-8f3c-770b027df686
+			stripe 1 devid 2 offset 1048576
+			dev_uuid 5d02d59c-d38a-4b15-9e94-3903222cf8aa
+			stripe 2 devid 1 offset 20971520
+			dev_uuid 149a4af3-f24f-402b-bbb7-ed2048568e9b
+	item 4 key (FIRST_CHUNK_TREE CHUNK_ITEM 37748736) itemoff 15701 itemsize 144
+		length 107347968 owner 2 stripe_len 65536 type METADATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 9437184
+			dev_uuid 875858e2-5734-41aa-8f3c-770b027df686
+			stripe 1 devid 2 offset 9437184
+			dev_uuid 5d02d59c-d38a-4b15-9e94-3903222cf8aa
+			stripe 2 devid 1 offset 29360128
+			dev_uuid 149a4af3-f24f-402b-bbb7-ed2048568e9b
+	item 5 key (FIRST_CHUNK_TREE CHUNK_ITEM 145096704) itemoff 15557 itemsize 144
+		length 134217728 owner 2 stripe_len 65536 type DATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 63111168
+			dev_uuid 875858e2-5734-41aa-8f3c-770b027df686
+			stripe 1 devid 2 offset 63111168
+			dev_uuid 5d02d59c-d38a-4b15-9e94-3903222cf8aa
+			stripe 2 devid 1 offset 83034112
+			dev_uuid 149a4af3-f24f-402b-bbb7-ed2048568e9b
+extent tree key (EXTENT_TREE ROOT_ITEM 0) 
+leaf 37945344 items 14 free space 15438 generation 7 owner 2
+leaf 37945344 flags 0x1(WRITTEN) backref revision 1
+fs uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+chunk uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 0 key (20971520 BLOCK_GROUP_ITEM 16777216) itemoff 16259 itemsize 24
+		block group used 16384 chunk_objectid 256 flags SYSTEM|RAID5
+	item 1 key (20987904 METADATA_ITEM 0) itemoff 16226 itemsize 33
+		refs 1 gen 5 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 3
+	item 2 key (37748736 BLOCK_GROUP_ITEM 107347968) itemoff 16202 itemsize 24
+		block group used 114688 chunk_objectid 256 flags METADATA|RAID5
+	item 3 key (37765120 METADATA_ITEM 0) itemoff 16169 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 9
+	item 4 key (37830656 METADATA_ITEM 0) itemoff 16136 itemsize 33
+		refs 1 gen 4 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 18446744073709551607
+	item 5 key (37896192 METADATA_ITEM 0) itemoff 16103 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 4
+	item 6 key (37945344 METADATA_ITEM 0) itemoff 16070 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 2
+	item 7 key (37961728 METADATA_ITEM 0) itemoff 16037 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 1
+	item 8 key (37978112 METADATA_ITEM 0) itemoff 16004 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 7
+	item 9 key (37994496 METADATA_ITEM 0) itemoff 15971 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 5
+	item 10 key (145096704 BLOCK_GROUP_ITEM 134217728) itemoff 15947 itemsize 24
+		block group used 655360 chunk_objectid 256 flags DATA|RAID5
+	item 11 key (145227776 EXTENT_ITEM 524288) itemoff 15894 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 5 objectid 257 offset 0 count 1
+	item 12 key (145752064 EXTENT_ITEM 65536) itemoff 15841 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 256 offset 0 count 1
+	item 13 key (145817600 EXTENT_ITEM 65536) itemoff 15788 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 257 offset 0 count 1
+device tree key (DEV_TREE ROOT_ITEM 0) 
+leaf 37896192 items 12 free space 15431 generation 6 owner 4
+leaf 37896192 flags 0x1(WRITTEN) backref revision 1
+fs uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+chunk uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 0 key (0 PERSISTENT_ITEM 1) itemoff 16243 itemsize 40
+		persistent item objectid 0 offset 1
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 1 key (0 PERSISTENT_ITEM 2) itemoff 16203 itemsize 40
+		persistent item objectid 0 offset 2
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 2 key (0 PERSISTENT_ITEM 3) itemoff 16163 itemsize 40
+		persistent item objectid 0 offset 3
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 3 key (1 DEV_EXTENT 20971520) itemoff 16115 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 4 key (1 DEV_EXTENT 29360128) itemoff 16067 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 5 key (1 DEV_EXTENT 83034112) itemoff 16019 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 6 key (2 DEV_EXTENT 1048576) itemoff 15971 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 7 key (2 DEV_EXTENT 9437184) itemoff 15923 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 8 key (2 DEV_EXTENT 63111168) itemoff 15875 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 9 key (3 DEV_EXTENT 1048576) itemoff 15827 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 10 key (3 DEV_EXTENT 9437184) itemoff 15779 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 11 key (3 DEV_EXTENT 63111168) itemoff 15731 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+fs tree key (FS_TREE ROOT_ITEM 0) 
+leaf 37994496 items 8 free space 15509 generation 7 owner 5
+leaf 37994496 flags 0x1(WRITTEN) backref revision 1
+fs uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+chunk uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 7 size 24 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x1(none)
+		atime 1512279474.0 (2017-12-03 05:37:54)
+		ctime 1512279526.811807451 (2017-12-03 05:38:46)
+		mtime 1512279526.811807451 (2017-12-03 05:38:46)
+		otime 1512279474.0 (2017-12-03 05:37:54)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+	item 2 key (256 DIR_ITEM 509481343) itemoff 16069 itemsize 42
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 12
+		name: file512k.txt
+	item 3 key (256 DIR_INDEX 2) itemoff 16027 itemsize 42
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 12
+		name: file512k.txt
+	item 4 key (257 INODE_ITEM 0) itemoff 15867 itemsize 160
+		generation 7 transid 7 size 524288 nbytes 524288
+		block group 0 mode 100644 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x9(none)
+		atime 1512279526.811807451 (2017-12-03 05:38:46)
+		ctime 1512279526.812807440 (2017-12-03 05:38:46)
+		mtime 1512279526.812807440 (2017-12-03 05:38:46)
+		otime 1512279526.811807451 (2017-12-03 05:38:46)
+	item 5 key (257 INODE_REF 256) itemoff 15845 itemsize 22
+		index 2 namelen 12 name: file512k.txt
+	item 6 key (257 XATTR_ITEM 3817753667) itemoff 15762 itemsize 83
+		location key (0 UNKNOWN.0 0) type XATTR
+		transid 7 data_len 37 name_len 16
+		name: security.selinux
+		data unconfined_u:object_r:unlabeled_t:s0
+	item 7 key (257 EXTENT_DATA 0) itemoff 15709 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145227776 nr 524288
+		extent data offset 0 nr 524288 ram 524288
+		extent compression 0 (none)
+checksum tree key (CSUM_TREE ROOT_ITEM 0) 
+leaf 37978112 items 1 free space 15746 generation 7 owner 7
+leaf 37978112 flags 0x1(WRITTEN) backref revision 1
+fs uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+chunk uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 0 key (EXTENT_CSUM EXTENT_CSUM 145227776) itemoff 15771 itemsize 512
+		range start 145227776 end 145752064 length 524288
+uuid tree key (UUID_TREE ROOT_ITEM 0) 
+leaf 37765120 items 0 free space 16283 generation 6 owner 9
+leaf 37765120 flags 0x1(WRITTEN) backref revision 1
+fs uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+chunk uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+data reloc tree key (DATA_RELOC_TREE ROOT_ITEM 0) 
+leaf 37830656 items 2 free space 16061 generation 4 owner 18446744073709551607
+leaf 37830656 flags 0x1(WRITTEN) backref revision 1
+fs uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+chunk uuid e40d981c-a4f8-42ed-adcb-091e005acfc5
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279474.0 (2017-12-03 05:37:54)
+		ctime 1512279474.0 (2017-12-03 05:37:54)
+		mtime 1512279474.0 (2017-12-03 05:37:54)
+		otime 1512279474.0 (2017-12-03 05:37:54)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+total bytes 1610612736
+bytes used 786432
+uuid e34e138b-6436-4f0d-9a8d-7ac58747f6ab
+Single extent found.
+logical_addr: 145227776 length=524288 		total_stripe=8
+############### umount /home/fedora/btrfs-progs/tests/mnt
+D6xxxx: Corrupting /dev/loop1 at position 63373312 	which has D6xxxxxxxxxxxxxx
+Found on-disk value: D6xxxxxxxxxxxxxx 
+Corruption completed at 63373312
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### btrfs scrub start /home/fedora/btrfs-progs/tests/mnt
+scrub started on /home/fedora/btrfs-progs/tests/mnt, fsid e34e138b-6436-4f0d-9a8d-7ac58747f6ab (pid=308)
+WARNING: errors detected during scrubbing, corrected
+Scrub corrected value: D6xxxxxxxxxxxxxx
+Parity_stripe_entry:/dev/loop2|63373312|00010000000000000000000000000000
+Parity: before=00010000000000000000000000000000 after=00010000000000000000000000000000
+Parity stripe check passed.
+############### umount /home/fedora/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+------------------RAID5 Corruption------------------
+Filename=file768k.txt Total Stripes=12 	      Data Stripe to be corrupted=10
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               2a06babc-1387-4261-a7cb-3ea3ea3827f4
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs inspect-internal dump-tree /dev/loop0
+btrfs-progs v4.14-36-gaf322ba5
+root tree
+leaf 37961728 items 16 free space 12515 generation 7 owner 1
+leaf 37961728 flags 0x1(WRITTEN) backref revision 1
+fs uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+chunk uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 0 key (EXTENT_TREE ROOT_ITEM 0) itemoff 15844 itemsize 439
+		generation 7 root_dirid 0 bytenr 37945344 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 1 key (DEV_TREE ROOT_ITEM 0) itemoff 15405 itemsize 439
+		generation 6 root_dirid 0 bytenr 37896192 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 2 key (FS_TREE INODE_REF 6) itemoff 15388 itemsize 17
+		index 0 namelen 7 name: default
+	item 3 key (FS_TREE ROOT_ITEM 0) itemoff 14949 itemsize 439
+		generation 7 root_dirid 256 bytenr 37994496 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		ctransid 7 otransid 0 stransid 0 rtransid 0
+		ctime 1512279625.556747564 (2017-12-03 05:40:25)
+		drop key (0 UNKNOWN.0 0) level 0
+	item 4 key (ROOT_TREE_DIR INODE_ITEM 0) itemoff 14789 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279546.0 (2017-12-03 05:39:06)
+		ctime 1512279546.0 (2017-12-03 05:39:06)
+		mtime 1512279546.0 (2017-12-03 05:39:06)
+		otime 1512279546.0 (2017-12-03 05:39:06)
+	item 5 key (ROOT_TREE_DIR INODE_REF 6) itemoff 14777 itemsize 12
+		index 0 namelen 2 name: ..
+	item 6 key (ROOT_TREE_DIR DIR_ITEM 2378154706) itemoff 14740 itemsize 37
+		location key (FS_TREE ROOT_ITEM -1) type DIR
+		transid 0 data_len 0 name_len 7
+		name: default
+	item 7 key (CSUM_TREE ROOT_ITEM 0) itemoff 14301 itemsize 439
+		generation 7 root_dirid 0 bytenr 37978112 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 8 key (UUID_TREE ROOT_ITEM 0) itemoff 13862 itemsize 439
+		generation 6 root_dirid 0 bytenr 37765120 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 9 key (256 INODE_ITEM 0) itemoff 13702 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279625.570747871 (2017-12-03 05:40:25)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 10 key (256 EXTENT_DATA 0) itemoff 13649 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 146014208 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 11 key (257 INODE_ITEM 0) itemoff 13489 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279625.573747839 (2017-12-03 05:40:25)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 12 key (257 EXTENT_DATA 0) itemoff 13436 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 146079744 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 13 key (FREE_SPACE UNTYPED 37748736) itemoff 13395 itemsize 41
+		location key (256 INODE_ITEM 0)
+		cache generation 7 entries 6 bitmaps 0
+	item 14 key (FREE_SPACE UNTYPED 145096704) itemoff 13354 itemsize 41
+		location key (257 INODE_ITEM 0)
+		cache generation 7 entries 3 bitmaps 0
+	item 15 key (DATA_RELOC_TREE ROOT_ITEM 0) itemoff 12915 itemsize 439
+		generation 4 root_dirid 256 bytenr 37830656 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+chunk tree
+leaf 20987904 items 6 free space 15407 generation 5 owner 3
+leaf 20987904 flags 0x1(WRITTEN) backref revision 1
+fs uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+chunk uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 0 key (DEV_ITEMS DEV_ITEM 1) itemoff 16185 itemsize 98
+		devid 1 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 0f797c40-4605-44fb-8005-e36bc34e860d
+		fsid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+	item 1 key (DEV_ITEMS DEV_ITEM 2) itemoff 16087 itemsize 98
+		devid 2 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 252545e5-4d92-47d1-8d24-8731f27a2fdc
+		fsid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+	item 2 key (DEV_ITEMS DEV_ITEM 3) itemoff 15989 itemsize 98
+		devid 3 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid b3782109-c049-4536-90c6-37aab83d2b0a
+		fsid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+	item 3 key (FIRST_CHUNK_TREE CHUNK_ITEM 20971520) itemoff 15845 itemsize 144
+		length 16777216 owner 2 stripe_len 65536 type SYSTEM|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 1048576
+			dev_uuid b3782109-c049-4536-90c6-37aab83d2b0a
+			stripe 1 devid 2 offset 1048576
+			dev_uuid 252545e5-4d92-47d1-8d24-8731f27a2fdc
+			stripe 2 devid 1 offset 20971520
+			dev_uuid 0f797c40-4605-44fb-8005-e36bc34e860d
+	item 4 key (FIRST_CHUNK_TREE CHUNK_ITEM 37748736) itemoff 15701 itemsize 144
+		length 107347968 owner 2 stripe_len 65536 type METADATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 9437184
+			dev_uuid b3782109-c049-4536-90c6-37aab83d2b0a
+			stripe 1 devid 2 offset 9437184
+			dev_uuid 252545e5-4d92-47d1-8d24-8731f27a2fdc
+			stripe 2 devid 1 offset 29360128
+			dev_uuid 0f797c40-4605-44fb-8005-e36bc34e860d
+	item 5 key (FIRST_CHUNK_TREE CHUNK_ITEM 145096704) itemoff 15557 itemsize 144
+		length 134217728 owner 2 stripe_len 65536 type DATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 63111168
+			dev_uuid b3782109-c049-4536-90c6-37aab83d2b0a
+			stripe 1 devid 2 offset 63111168
+			dev_uuid 252545e5-4d92-47d1-8d24-8731f27a2fdc
+			stripe 2 devid 1 offset 83034112
+			dev_uuid 0f797c40-4605-44fb-8005-e36bc34e860d
+extent tree key (EXTENT_TREE ROOT_ITEM 0) 
+leaf 37945344 items 14 free space 15438 generation 7 owner 2
+leaf 37945344 flags 0x1(WRITTEN) backref revision 1
+fs uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+chunk uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 0 key (20971520 BLOCK_GROUP_ITEM 16777216) itemoff 16259 itemsize 24
+		block group used 16384 chunk_objectid 256 flags SYSTEM|RAID5
+	item 1 key (20987904 METADATA_ITEM 0) itemoff 16226 itemsize 33
+		refs 1 gen 5 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 3
+	item 2 key (37748736 BLOCK_GROUP_ITEM 107347968) itemoff 16202 itemsize 24
+		block group used 114688 chunk_objectid 256 flags METADATA|RAID5
+	item 3 key (37765120 METADATA_ITEM 0) itemoff 16169 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 9
+	item 4 key (37830656 METADATA_ITEM 0) itemoff 16136 itemsize 33
+		refs 1 gen 4 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 18446744073709551607
+	item 5 key (37896192 METADATA_ITEM 0) itemoff 16103 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 4
+	item 6 key (37945344 METADATA_ITEM 0) itemoff 16070 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 2
+	item 7 key (37961728 METADATA_ITEM 0) itemoff 16037 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 1
+	item 8 key (37978112 METADATA_ITEM 0) itemoff 16004 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 7
+	item 9 key (37994496 METADATA_ITEM 0) itemoff 15971 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 5
+	item 10 key (145096704 BLOCK_GROUP_ITEM 134217728) itemoff 15947 itemsize 24
+		block group used 917504 chunk_objectid 256 flags DATA|RAID5
+	item 11 key (145227776 EXTENT_ITEM 786432) itemoff 15894 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 5 objectid 257 offset 0 count 1
+	item 12 key (146014208 EXTENT_ITEM 65536) itemoff 15841 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 256 offset 0 count 1
+	item 13 key (146079744 EXTENT_ITEM 65536) itemoff 15788 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 257 offset 0 count 1
+device tree key (DEV_TREE ROOT_ITEM 0) 
+leaf 37896192 items 12 free space 15431 generation 6 owner 4
+leaf 37896192 flags 0x1(WRITTEN) backref revision 1
+fs uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+chunk uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 0 key (0 PERSISTENT_ITEM 1) itemoff 16243 itemsize 40
+		persistent item objectid 0 offset 1
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 1 key (0 PERSISTENT_ITEM 2) itemoff 16203 itemsize 40
+		persistent item objectid 0 offset 2
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 2 key (0 PERSISTENT_ITEM 3) itemoff 16163 itemsize 40
+		persistent item objectid 0 offset 3
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 3 key (1 DEV_EXTENT 20971520) itemoff 16115 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 4 key (1 DEV_EXTENT 29360128) itemoff 16067 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 5 key (1 DEV_EXTENT 83034112) itemoff 16019 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 6 key (2 DEV_EXTENT 1048576) itemoff 15971 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 7 key (2 DEV_EXTENT 9437184) itemoff 15923 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 8 key (2 DEV_EXTENT 63111168) itemoff 15875 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 9 key (3 DEV_EXTENT 1048576) itemoff 15827 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 10 key (3 DEV_EXTENT 9437184) itemoff 15779 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 11 key (3 DEV_EXTENT 63111168) itemoff 15731 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+fs tree key (FS_TREE ROOT_ITEM 0) 
+leaf 37994496 items 8 free space 15509 generation 7 owner 5
+leaf 37994496 flags 0x1(WRITTEN) backref revision 1
+fs uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+chunk uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 7 size 24 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x1(none)
+		atime 1512279546.0 (2017-12-03 05:39:06)
+		ctime 1512279625.491748718 (2017-12-03 05:40:25)
+		mtime 1512279625.491748718 (2017-12-03 05:40:25)
+		otime 1512279546.0 (2017-12-03 05:39:06)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+	item 2 key (256 DIR_ITEM 709485412) itemoff 16069 itemsize 42
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 12
+		name: file768k.txt
+	item 3 key (256 DIR_INDEX 2) itemoff 16027 itemsize 42
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 12
+		name: file768k.txt
+	item 4 key (257 INODE_ITEM 0) itemoff 15867 itemsize 160
+		generation 7 transid 7 size 786432 nbytes 786432
+		block group 0 mode 100644 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0xb(none)
+		atime 1512279625.491748718 (2017-12-03 05:40:25)
+		ctime 1512279625.492748708 (2017-12-03 05:40:25)
+		mtime 1512279625.492748708 (2017-12-03 05:40:25)
+		otime 1512279625.491748718 (2017-12-03 05:40:25)
+	item 5 key (257 INODE_REF 256) itemoff 15845 itemsize 22
+		index 2 namelen 12 name: file768k.txt
+	item 6 key (257 XATTR_ITEM 3817753667) itemoff 15762 itemsize 83
+		location key (0 UNKNOWN.0 0) type XATTR
+		transid 7 data_len 37 name_len 16
+		name: security.selinux
+		data unconfined_u:object_r:unlabeled_t:s0
+	item 7 key (257 EXTENT_DATA 0) itemoff 15709 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145227776 nr 786432
+		extent data offset 0 nr 786432 ram 786432
+		extent compression 0 (none)
+checksum tree key (CSUM_TREE ROOT_ITEM 0) 
+leaf 37978112 items 1 free space 15490 generation 7 owner 7
+leaf 37978112 flags 0x1(WRITTEN) backref revision 1
+fs uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+chunk uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 0 key (EXTENT_CSUM EXTENT_CSUM 145227776) itemoff 15515 itemsize 768
+		range start 145227776 end 146014208 length 786432
+uuid tree key (UUID_TREE ROOT_ITEM 0) 
+leaf 37765120 items 0 free space 16283 generation 6 owner 9
+leaf 37765120 flags 0x1(WRITTEN) backref revision 1
+fs uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+chunk uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+data reloc tree key (DATA_RELOC_TREE ROOT_ITEM 0) 
+leaf 37830656 items 2 free space 16061 generation 4 owner 18446744073709551607
+leaf 37830656 flags 0x1(WRITTEN) backref revision 1
+fs uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+chunk uuid e7eeb855-50ea-430d-a23d-c6d28b040c70
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279546.0 (2017-12-03 05:39:06)
+		ctime 1512279546.0 (2017-12-03 05:39:06)
+		mtime 1512279546.0 (2017-12-03 05:39:06)
+		otime 1512279546.0 (2017-12-03 05:39:06)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+total bytes 1610612736
+bytes used 1048576
+uuid 2a06babc-1387-4261-a7cb-3ea3ea3827f4
+Single extent found.
+logical_addr: 145227776 length=786432 		total_stripe=12
+############### umount /home/fedora/btrfs-progs/tests/mnt
+D10xxxx: Corrupting /dev/loop2 at position 63504384 	which has D10xxxxxxxxxxxxx
+Found on-disk value: D10xxxxxxxxxxxxx 
+Corruption completed at 63504384
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### btrfs scrub start /home/fedora/btrfs-progs/tests/mnt
+scrub started on /home/fedora/btrfs-progs/tests/mnt, fsid 2a06babc-1387-4261-a7cb-3ea3ea3827f4 (pid=916)
+WARNING: errors detected during scrubbing, corrected
+Scrub corrected value: D10xxxxxxxxxxxxx
+Parity_stripe_entry:/dev/loop0|83427328|00000100000000000000000000000000
+Parity: before=00000100000000000000000000000000 after=00000100000000000000000000000000
+Parity stripe check passed.
+############### umount /home/fedora/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+------------------RAID5 Corruption------------------
+Filename=file1m.txt Total Stripes=16 	      Data Stripe to be corrupted=14
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs inspect-internal dump-tree /dev/loop0
+btrfs-progs v4.14-36-gaf322ba5
+root tree
+leaf 37961728 items 16 free space 12515 generation 7 owner 1
+leaf 37961728 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+chunk uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 0 key (EXTENT_TREE ROOT_ITEM 0) itemoff 15844 itemsize 439
+		generation 7 root_dirid 0 bytenr 37945344 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 1 key (DEV_TREE ROOT_ITEM 0) itemoff 15405 itemsize 439
+		generation 6 root_dirid 0 bytenr 37896192 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 2 key (FS_TREE INODE_REF 6) itemoff 15388 itemsize 17
+		index 0 namelen 7 name: default
+	item 3 key (FS_TREE ROOT_ITEM 0) itemoff 14949 itemsize 439
+		generation 7 root_dirid 256 bytenr 37994496 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		ctransid 7 otransid 0 stransid 0 rtransid 0
+		ctime 1512279749.722276258 (2017-12-03 05:42:29)
+		drop key (0 UNKNOWN.0 0) level 0
+	item 4 key (ROOT_TREE_DIR INODE_ITEM 0) itemoff 14789 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279645.0 (2017-12-03 05:40:45)
+		ctime 1512279645.0 (2017-12-03 05:40:45)
+		mtime 1512279645.0 (2017-12-03 05:40:45)
+		otime 1512279645.0 (2017-12-03 05:40:45)
+	item 5 key (ROOT_TREE_DIR INODE_REF 6) itemoff 14777 itemsize 12
+		index 0 namelen 2 name: ..
+	item 6 key (ROOT_TREE_DIR DIR_ITEM 2378154706) itemoff 14740 itemsize 37
+		location key (FS_TREE ROOT_ITEM -1) type DIR
+		transid 0 data_len 0 name_len 7
+		name: default
+	item 7 key (CSUM_TREE ROOT_ITEM 0) itemoff 14301 itemsize 439
+		generation 7 root_dirid 0 bytenr 37978112 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 8 key (UUID_TREE ROOT_ITEM 0) itemoff 13862 itemsize 439
+		generation 6 root_dirid 0 bytenr 37765120 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 9 key (256 INODE_ITEM 0) itemoff 13702 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279749.739415671 (2017-12-03 05:42:29)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 10 key (256 EXTENT_DATA 0) itemoff 13649 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 146276352 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 11 key (257 INODE_ITEM 0) itemoff 13489 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279749.742415639 (2017-12-03 05:42:29)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 12 key (257 EXTENT_DATA 0) itemoff 13436 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 146341888 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 13 key (FREE_SPACE UNTYPED 37748736) itemoff 13395 itemsize 41
+		location key (256 INODE_ITEM 0)
+		cache generation 7 entries 6 bitmaps 0
+	item 14 key (FREE_SPACE UNTYPED 145096704) itemoff 13354 itemsize 41
+		location key (257 INODE_ITEM 0)
+		cache generation 7 entries 3 bitmaps 0
+	item 15 key (DATA_RELOC_TREE ROOT_ITEM 0) itemoff 12915 itemsize 439
+		generation 4 root_dirid 256 bytenr 37830656 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+chunk tree
+leaf 20987904 items 6 free space 15407 generation 5 owner 3
+leaf 20987904 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+chunk uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 0 key (DEV_ITEMS DEV_ITEM 1) itemoff 16185 itemsize 98
+		devid 1 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 29be1720-4a5a-43c6-81a6-a0e3a67584fb
+		fsid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+	item 1 key (DEV_ITEMS DEV_ITEM 2) itemoff 16087 itemsize 98
+		devid 2 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 9be20c8e-3af7-4de7-a67b-b19c68c57c54
+		fsid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+	item 2 key (DEV_ITEMS DEV_ITEM 3) itemoff 15989 itemsize 98
+		devid 3 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 0a6270d8-320a-405a-b3b3-00fe01d754f9
+		fsid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+	item 3 key (FIRST_CHUNK_TREE CHUNK_ITEM 20971520) itemoff 15845 itemsize 144
+		length 16777216 owner 2 stripe_len 65536 type SYSTEM|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 1048576
+			dev_uuid 0a6270d8-320a-405a-b3b3-00fe01d754f9
+			stripe 1 devid 2 offset 1048576
+			dev_uuid 9be20c8e-3af7-4de7-a67b-b19c68c57c54
+			stripe 2 devid 1 offset 20971520
+			dev_uuid 29be1720-4a5a-43c6-81a6-a0e3a67584fb
+	item 4 key (FIRST_CHUNK_TREE CHUNK_ITEM 37748736) itemoff 15701 itemsize 144
+		length 107347968 owner 2 stripe_len 65536 type METADATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 9437184
+			dev_uuid 0a6270d8-320a-405a-b3b3-00fe01d754f9
+			stripe 1 devid 2 offset 9437184
+			dev_uuid 9be20c8e-3af7-4de7-a67b-b19c68c57c54
+			stripe 2 devid 1 offset 29360128
+			dev_uuid 29be1720-4a5a-43c6-81a6-a0e3a67584fb
+	item 5 key (FIRST_CHUNK_TREE CHUNK_ITEM 145096704) itemoff 15557 itemsize 144
+		length 134217728 owner 2 stripe_len 65536 type DATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 63111168
+			dev_uuid 0a6270d8-320a-405a-b3b3-00fe01d754f9
+			stripe 1 devid 2 offset 63111168
+			dev_uuid 9be20c8e-3af7-4de7-a67b-b19c68c57c54
+			stripe 2 devid 1 offset 83034112
+			dev_uuid 29be1720-4a5a-43c6-81a6-a0e3a67584fb
+extent tree key (EXTENT_TREE ROOT_ITEM 0) 
+leaf 37945344 items 14 free space 15438 generation 7 owner 2
+leaf 37945344 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+chunk uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 0 key (20971520 BLOCK_GROUP_ITEM 16777216) itemoff 16259 itemsize 24
+		block group used 16384 chunk_objectid 256 flags SYSTEM|RAID5
+	item 1 key (20987904 METADATA_ITEM 0) itemoff 16226 itemsize 33
+		refs 1 gen 5 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 3
+	item 2 key (37748736 BLOCK_GROUP_ITEM 107347968) itemoff 16202 itemsize 24
+		block group used 114688 chunk_objectid 256 flags METADATA|RAID5
+	item 3 key (37765120 METADATA_ITEM 0) itemoff 16169 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 9
+	item 4 key (37830656 METADATA_ITEM 0) itemoff 16136 itemsize 33
+		refs 1 gen 4 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 18446744073709551607
+	item 5 key (37896192 METADATA_ITEM 0) itemoff 16103 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 4
+	item 6 key (37945344 METADATA_ITEM 0) itemoff 16070 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 2
+	item 7 key (37961728 METADATA_ITEM 0) itemoff 16037 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 1
+	item 8 key (37978112 METADATA_ITEM 0) itemoff 16004 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 7
+	item 9 key (37994496 METADATA_ITEM 0) itemoff 15971 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 5
+	item 10 key (145096704 BLOCK_GROUP_ITEM 134217728) itemoff 15947 itemsize 24
+		block group used 1179648 chunk_objectid 256 flags DATA|RAID5
+	item 11 key (145227776 EXTENT_ITEM 1048576) itemoff 15894 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 5 objectid 257 offset 0 count 1
+	item 12 key (146276352 EXTENT_ITEM 65536) itemoff 15841 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 256 offset 0 count 1
+	item 13 key (146341888 EXTENT_ITEM 65536) itemoff 15788 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 257 offset 0 count 1
+device tree key (DEV_TREE ROOT_ITEM 0) 
+leaf 37896192 items 12 free space 15431 generation 6 owner 4
+leaf 37896192 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+chunk uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 0 key (0 PERSISTENT_ITEM 1) itemoff 16243 itemsize 40
+		persistent item objectid 0 offset 1
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 1 key (0 PERSISTENT_ITEM 2) itemoff 16203 itemsize 40
+		persistent item objectid 0 offset 2
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 2 key (0 PERSISTENT_ITEM 3) itemoff 16163 itemsize 40
+		persistent item objectid 0 offset 3
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 3 key (1 DEV_EXTENT 20971520) itemoff 16115 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 4 key (1 DEV_EXTENT 29360128) itemoff 16067 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 5 key (1 DEV_EXTENT 83034112) itemoff 16019 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 6 key (2 DEV_EXTENT 1048576) itemoff 15971 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 7 key (2 DEV_EXTENT 9437184) itemoff 15923 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 8 key (2 DEV_EXTENT 63111168) itemoff 15875 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 9 key (3 DEV_EXTENT 1048576) itemoff 15827 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 10 key (3 DEV_EXTENT 9437184) itemoff 15779 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 11 key (3 DEV_EXTENT 63111168) itemoff 15731 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+fs tree key (FS_TREE ROOT_ITEM 0) 
+leaf 37994496 items 8 free space 15515 generation 7 owner 5
+leaf 37994496 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+chunk uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 7 size 20 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x1(none)
+		atime 1512279645.0 (2017-12-03 05:40:45)
+		ctime 1512279749.642416712 (2017-12-03 05:42:29)
+		mtime 1512279749.642416712 (2017-12-03 05:42:29)
+		otime 1512279645.0 (2017-12-03 05:40:45)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+	item 2 key (256 DIR_ITEM 4015311817) itemoff 16071 itemsize 40
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 10
+		name: file1m.txt
+	item 3 key (256 DIR_INDEX 2) itemoff 16031 itemsize 40
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 10
+		name: file1m.txt
+	item 4 key (257 INODE_ITEM 0) itemoff 15871 itemsize 160
+		generation 7 transid 7 size 1048576 nbytes 1048576
+		block group 0 mode 100644 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0xd(none)
+		atime 1512279749.642416712 (2017-12-03 05:42:29)
+		ctime 1512279749.644416690 (2017-12-03 05:42:29)
+		mtime 1512279749.644416690 (2017-12-03 05:42:29)
+		otime 1512279749.642416712 (2017-12-03 05:42:29)
+	item 5 key (257 INODE_REF 256) itemoff 15851 itemsize 20
+		index 2 namelen 10 name: file1m.txt
+	item 6 key (257 XATTR_ITEM 3817753667) itemoff 15768 itemsize 83
+		location key (0 UNKNOWN.0 0) type XATTR
+		transid 7 data_len 37 name_len 16
+		name: security.selinux
+		data unconfined_u:object_r:unlabeled_t:s0
+	item 7 key (257 EXTENT_DATA 0) itemoff 15715 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145227776 nr 1048576
+		extent data offset 0 nr 1048576 ram 1048576
+		extent compression 0 (none)
+checksum tree key (CSUM_TREE ROOT_ITEM 0) 
+leaf 37978112 items 1 free space 15234 generation 7 owner 7
+leaf 37978112 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+chunk uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 0 key (EXTENT_CSUM EXTENT_CSUM 145227776) itemoff 15259 itemsize 1024
+		range start 145227776 end 146276352 length 1048576
+uuid tree key (UUID_TREE ROOT_ITEM 0) 
+leaf 37765120 items 0 free space 16283 generation 6 owner 9
+leaf 37765120 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+chunk uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+data reloc tree key (DATA_RELOC_TREE ROOT_ITEM 0) 
+leaf 37830656 items 2 free space 16061 generation 4 owner 18446744073709551607
+leaf 37830656 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+chunk uuid c5911d8f-4897-4b5d-a892-440ff56b87d2
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279645.0 (2017-12-03 05:40:45)
+		ctime 1512279645.0 (2017-12-03 05:40:45)
+		mtime 1512279645.0 (2017-12-03 05:40:45)
+		otime 1512279645.0 (2017-12-03 05:40:45)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+total bytes 1610612736
+bytes used 1310720
+uuid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66
+Single extent found.
+logical_addr: 145227776 length=1048576 		total_stripe=16
+############### umount /home/fedora/btrfs-progs/tests/mnt
+D14xxxx: Corrupting /dev/loop0 at position 83558400 	which has D14xxxxxxxxxxxxx
+Found on-disk value: D14xxxxxxxxxxxxx 
+Corruption completed at 83558400
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### btrfs scrub start /home/fedora/btrfs-progs/tests/mnt
+scrub started on /home/fedora/btrfs-progs/tests/mnt, fsid 7f514845-d6e6-49a7-a7bf-b8cefc7caf66 (pid=1632)
+WARNING: errors detected during scrubbing, corrected
+Scrub corrected value: D14xxxxxxxxxxxxx
+Parity_stripe_entry:/dev/loop1|63635456|00000100000000000000000000000000
+Parity: before=00000100000000000000000000000000 after=00000100000000000000000000000000
+Parity stripe check passed.
+############### umount /home/fedora/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+------------------RAID5 Corruption------------------
+Filename=file2m.txt Total Stripes=32 	      Data Stripe to be corrupted=23
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               7c06c6dc-e530-480b-acae-29d7f4ad3197
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs inspect-internal dump-tree /dev/loop0
+btrfs-progs v4.14-36-gaf322ba5
+root tree
+leaf 37978112 items 16 free space 12515 generation 7 owner 1
+leaf 37978112 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+chunk uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 0 key (EXTENT_TREE ROOT_ITEM 0) itemoff 15844 itemsize 439
+		generation 7 root_dirid 0 bytenr 37961728 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 1 key (DEV_TREE ROOT_ITEM 0) itemoff 15405 itemsize 439
+		generation 6 root_dirid 0 bytenr 37896192 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 2 key (FS_TREE INODE_REF 6) itemoff 15388 itemsize 17
+		index 0 namelen 7 name: default
+	item 3 key (FS_TREE ROOT_ITEM 0) itemoff 14949 itemsize 439
+		generation 7 root_dirid 256 bytenr 37928960 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		ctransid 7 otransid 0 stransid 0 rtransid 0
+		ctime 1512279977.994511706 (2017-12-03 05:46:17)
+		drop key (0 UNKNOWN.0 0) level 0
+	item 4 key (ROOT_TREE_DIR INODE_ITEM 0) itemoff 14789 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279770.0 (2017-12-03 05:42:50)
+		ctime 1512279770.0 (2017-12-03 05:42:50)
+		mtime 1512279770.0 (2017-12-03 05:42:50)
+		otime 1512279770.0 (2017-12-03 05:42:50)
+	item 5 key (ROOT_TREE_DIR INODE_REF 6) itemoff 14777 itemsize 12
+		index 0 namelen 2 name: ..
+	item 6 key (ROOT_TREE_DIR DIR_ITEM 2378154706) itemoff 14740 itemsize 37
+		location key (FS_TREE ROOT_ITEM -1) type DIR
+		transid 0 data_len 0 name_len 7
+		name: default
+	item 7 key (CSUM_TREE ROOT_ITEM 0) itemoff 14301 itemsize 439
+		generation 7 root_dirid 0 bytenr 37945344 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 8 key (UUID_TREE ROOT_ITEM 0) itemoff 13862 itemsize 439
+		generation 6 root_dirid 0 bytenr 37765120 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 9 key (256 INODE_ITEM 0) itemoff 13702 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279977.996966707 (2017-12-03 05:46:17)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 10 key (256 EXTENT_DATA 0) itemoff 13649 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 147324928 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 11 key (257 INODE_ITEM 0) itemoff 13489 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512279977.997966696 (2017-12-03 05:46:17)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 12 key (257 EXTENT_DATA 0) itemoff 13436 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 147390464 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 13 key (FREE_SPACE UNTYPED 37748736) itemoff 13395 itemsize 41
+		location key (256 INODE_ITEM 0)
+		cache generation 7 entries 6 bitmaps 0
+	item 14 key (FREE_SPACE UNTYPED 145096704) itemoff 13354 itemsize 41
+		location key (257 INODE_ITEM 0)
+		cache generation 7 entries 3 bitmaps 0
+	item 15 key (DATA_RELOC_TREE ROOT_ITEM 0) itemoff 12915 itemsize 439
+		generation 4 root_dirid 256 bytenr 37830656 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+chunk tree
+leaf 20987904 items 6 free space 15407 generation 5 owner 3
+leaf 20987904 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+chunk uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 0 key (DEV_ITEMS DEV_ITEM 1) itemoff 16185 itemsize 98
+		devid 1 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 47ad16a2-bd0c-4e6e-99d1-4f53d156a478
+		fsid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+	item 1 key (DEV_ITEMS DEV_ITEM 2) itemoff 16087 itemsize 98
+		devid 2 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid ac74bd35-bd58-42f6-82ba-9ecd6bd46f72
+		fsid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+	item 2 key (DEV_ITEMS DEV_ITEM 3) itemoff 15989 itemsize 98
+		devid 3 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 20d7fc28-c49f-4187-9f7a-0854e951507e
+		fsid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+	item 3 key (FIRST_CHUNK_TREE CHUNK_ITEM 20971520) itemoff 15845 itemsize 144
+		length 16777216 owner 2 stripe_len 65536 type SYSTEM|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 1048576
+			dev_uuid 20d7fc28-c49f-4187-9f7a-0854e951507e
+			stripe 1 devid 2 offset 1048576
+			dev_uuid ac74bd35-bd58-42f6-82ba-9ecd6bd46f72
+			stripe 2 devid 1 offset 20971520
+			dev_uuid 47ad16a2-bd0c-4e6e-99d1-4f53d156a478
+	item 4 key (FIRST_CHUNK_TREE CHUNK_ITEM 37748736) itemoff 15701 itemsize 144
+		length 107347968 owner 2 stripe_len 65536 type METADATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 9437184
+			dev_uuid 20d7fc28-c49f-4187-9f7a-0854e951507e
+			stripe 1 devid 2 offset 9437184
+			dev_uuid ac74bd35-bd58-42f6-82ba-9ecd6bd46f72
+			stripe 2 devid 1 offset 29360128
+			dev_uuid 47ad16a2-bd0c-4e6e-99d1-4f53d156a478
+	item 5 key (FIRST_CHUNK_TREE CHUNK_ITEM 145096704) itemoff 15557 itemsize 144
+		length 134217728 owner 2 stripe_len 65536 type DATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 63111168
+			dev_uuid 20d7fc28-c49f-4187-9f7a-0854e951507e
+			stripe 1 devid 2 offset 63111168
+			dev_uuid ac74bd35-bd58-42f6-82ba-9ecd6bd46f72
+			stripe 2 devid 1 offset 83034112
+			dev_uuid 47ad16a2-bd0c-4e6e-99d1-4f53d156a478
+extent tree key (EXTENT_TREE ROOT_ITEM 0) 
+leaf 37961728 items 14 free space 15438 generation 7 owner 2
+leaf 37961728 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+chunk uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 0 key (20971520 BLOCK_GROUP_ITEM 16777216) itemoff 16259 itemsize 24
+		block group used 16384 chunk_objectid 256 flags SYSTEM|RAID5
+	item 1 key (20987904 METADATA_ITEM 0) itemoff 16226 itemsize 33
+		refs 1 gen 5 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 3
+	item 2 key (37748736 BLOCK_GROUP_ITEM 107347968) itemoff 16202 itemsize 24
+		block group used 114688 chunk_objectid 256 flags METADATA|RAID5
+	item 3 key (37765120 METADATA_ITEM 0) itemoff 16169 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 9
+	item 4 key (37830656 METADATA_ITEM 0) itemoff 16136 itemsize 33
+		refs 1 gen 4 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 18446744073709551607
+	item 5 key (37896192 METADATA_ITEM 0) itemoff 16103 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 4
+	item 6 key (37928960 METADATA_ITEM 0) itemoff 16070 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 5
+	item 7 key (37945344 METADATA_ITEM 0) itemoff 16037 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 7
+	item 8 key (37961728 METADATA_ITEM 0) itemoff 16004 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 2
+	item 9 key (37978112 METADATA_ITEM 0) itemoff 15971 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 1
+	item 10 key (145096704 BLOCK_GROUP_ITEM 134217728) itemoff 15947 itemsize 24
+		block group used 2228224 chunk_objectid 256 flags DATA|RAID5
+	item 11 key (145227776 EXTENT_ITEM 2097152) itemoff 15894 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 5 objectid 257 offset 0 count 1
+	item 12 key (147324928 EXTENT_ITEM 65536) itemoff 15841 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 256 offset 0 count 1
+	item 13 key (147390464 EXTENT_ITEM 65536) itemoff 15788 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 257 offset 0 count 1
+device tree key (DEV_TREE ROOT_ITEM 0) 
+leaf 37896192 items 12 free space 15431 generation 6 owner 4
+leaf 37896192 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+chunk uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 0 key (0 PERSISTENT_ITEM 1) itemoff 16243 itemsize 40
+		persistent item objectid 0 offset 1
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 1 key (0 PERSISTENT_ITEM 2) itemoff 16203 itemsize 40
+		persistent item objectid 0 offset 2
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 2 key (0 PERSISTENT_ITEM 3) itemoff 16163 itemsize 40
+		persistent item objectid 0 offset 3
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 3 key (1 DEV_EXTENT 20971520) itemoff 16115 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 4 key (1 DEV_EXTENT 29360128) itemoff 16067 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 5 key (1 DEV_EXTENT 83034112) itemoff 16019 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 6 key (2 DEV_EXTENT 1048576) itemoff 15971 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 7 key (2 DEV_EXTENT 9437184) itemoff 15923 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 8 key (2 DEV_EXTENT 63111168) itemoff 15875 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 9 key (3 DEV_EXTENT 1048576) itemoff 15827 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 10 key (3 DEV_EXTENT 9437184) itemoff 15779 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 11 key (3 DEV_EXTENT 63111168) itemoff 15731 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+fs tree key (FS_TREE ROOT_ITEM 0) 
+leaf 37928960 items 8 free space 15515 generation 7 owner 5
+leaf 37928960 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+chunk uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 7 size 20 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x1(none)
+		atime 1512279770.0 (2017-12-03 05:42:50)
+		ctime 1512279977.871968048 (2017-12-03 05:46:17)
+		mtime 1512279977.871968048 (2017-12-03 05:46:17)
+		otime 1512279770.0 (2017-12-03 05:42:50)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+	item 2 key (256 DIR_ITEM 3689414675) itemoff 16071 itemsize 40
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 10
+		name: file2m.txt
+	item 3 key (256 DIR_INDEX 2) itemoff 16031 itemsize 40
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 10
+		name: file2m.txt
+	item 4 key (257 INODE_ITEM 0) itemoff 15871 itemsize 160
+		generation 7 transid 7 size 2097152 nbytes 2097152
+		block group 0 mode 100644 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x15(none)
+		atime 1512279977.871968048 (2017-12-03 05:46:17)
+		ctime 1512279977.875968005 (2017-12-03 05:46:17)
+		mtime 1512279977.875968005 (2017-12-03 05:46:17)
+		otime 1512279977.871968048 (2017-12-03 05:46:17)
+	item 5 key (257 INODE_REF 256) itemoff 15851 itemsize 20
+		index 2 namelen 10 name: file2m.txt
+	item 6 key (257 XATTR_ITEM 3817753667) itemoff 15768 itemsize 83
+		location key (0 UNKNOWN.0 0) type XATTR
+		transid 7 data_len 37 name_len 16
+		name: security.selinux
+		data unconfined_u:object_r:unlabeled_t:s0
+	item 7 key (257 EXTENT_DATA 0) itemoff 15715 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145227776 nr 2097152
+		extent data offset 0 nr 2097152 ram 2097152
+		extent compression 0 (none)
+checksum tree key (CSUM_TREE ROOT_ITEM 0) 
+leaf 37945344 items 1 free space 14210 generation 7 owner 7
+leaf 37945344 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+chunk uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 0 key (EXTENT_CSUM EXTENT_CSUM 145227776) itemoff 14235 itemsize 2048
+		range start 145227776 end 147324928 length 2097152
+uuid tree key (UUID_TREE ROOT_ITEM 0) 
+leaf 37765120 items 0 free space 16283 generation 6 owner 9
+leaf 37765120 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+chunk uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+data reloc tree key (DATA_RELOC_TREE ROOT_ITEM 0) 
+leaf 37830656 items 2 free space 16061 generation 4 owner 18446744073709551607
+leaf 37830656 flags 0x1(WRITTEN) backref revision 1
+fs uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+chunk uuid 075dd83a-6c61-4117-874f-8e7c8a65e35a
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512279770.0 (2017-12-03 05:42:50)
+		ctime 1512279770.0 (2017-12-03 05:42:50)
+		mtime 1512279770.0 (2017-12-03 05:42:50)
+		otime 1512279770.0 (2017-12-03 05:42:50)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+total bytes 1610612736
+bytes used 2359296
+uuid 7c06c6dc-e530-480b-acae-29d7f4ad3197
+Single extent found.
+logical_addr: 145227776 length=2097152 		total_stripe=32
+############### umount /home/fedora/btrfs-progs/tests/mnt
+D23xxxx: Corrupting /dev/loop1 at position 63897600 	which has D23xxxxxxxxxxxxx
+Found on-disk value: D23xxxxxxxxxxxxx 
+Corruption completed at 63897600
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### btrfs scrub start /home/fedora/btrfs-progs/tests/mnt
+scrub started on /home/fedora/btrfs-progs/tests/mnt, fsid 7c06c6dc-e530-480b-acae-29d7f4ad3197 (pid=2817)
+WARNING: errors detected during scrubbing, corrected
+Scrub corrected value: D23xxxxxxxxxxxxx
+Parity_stripe_entry:/dev/loop0|83820544|00000100000000000000000000000000
+Parity: before=00000100000000000000000000000000 after=00000100000000000000000000000000
+Parity stripe check passed.
+############### umount /home/fedora/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+------------------RAID5 Corruption------------------
+Filename=file4m.txt Total Stripes=64 	      Data Stripe to be corrupted=34
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### /home/fedora/btrfs-progs/btrfs inspect-internal dump-tree /dev/loop0
+btrfs-progs v4.14-36-gaf322ba5
+root tree
+leaf 37961728 items 16 free space 12515 generation 7 owner 1
+leaf 37961728 flags 0x1(WRITTEN) backref revision 1
+fs uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+chunk uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 0 key (EXTENT_TREE ROOT_ITEM 0) itemoff 15844 itemsize 439
+		generation 7 root_dirid 0 bytenr 37945344 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 1 key (DEV_TREE ROOT_ITEM 0) itemoff 15405 itemsize 439
+		generation 6 root_dirid 0 bytenr 37896192 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 2 key (FS_TREE INODE_REF 6) itemoff 15388 itemsize 17
+		index 0 namelen 7 name: default
+	item 3 key (FS_TREE ROOT_ITEM 0) itemoff 14949 itemsize 439
+		generation 7 root_dirid 256 bytenr 37994496 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		ctransid 7 otransid 0 stransid 0 rtransid 0
+		ctime 1512280418.860135555 (2017-12-03 05:53:38)
+		drop key (0 UNKNOWN.0 0) level 0
+	item 4 key (ROOT_TREE_DIR INODE_ITEM 0) itemoff 14789 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512280002.0 (2017-12-03 05:46:42)
+		ctime 1512280002.0 (2017-12-03 05:46:42)
+		mtime 1512280002.0 (2017-12-03 05:46:42)
+		otime 1512280002.0 (2017-12-03 05:46:42)
+	item 5 key (ROOT_TREE_DIR INODE_REF 6) itemoff 14777 itemsize 12
+		index 0 namelen 2 name: ..
+	item 6 key (ROOT_TREE_DIR DIR_ITEM 2378154706) itemoff 14740 itemsize 37
+		location key (FS_TREE ROOT_ITEM -1) type DIR
+		transid 0 data_len 0 name_len 7
+		name: default
+	item 7 key (CSUM_TREE ROOT_ITEM 0) itemoff 14301 itemsize 439
+		generation 7 root_dirid 0 bytenr 37978112 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 8 key (UUID_TREE ROOT_ITEM 0) itemoff 13862 itemsize 439
+		generation 6 root_dirid 0 bytenr 37765120 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+	item 9 key (256 INODE_ITEM 0) itemoff 13702 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512280418.866249431 (2017-12-03 05:53:38)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 10 key (256 EXTENT_DATA 0) itemoff 13649 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 149422080 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 11 key (257 INODE_ITEM 0) itemoff 13489 itemsize 160
+		generation 7 transid 7 size 65536 nbytes 131072
+		block group 0 mode 100600 links 1 uid 0 gid 0 rdev 0
+		sequence 27 flags 0x2(NODATASUM|NODATACOW|NOCOMPRESS|PREALLOC)
+		atime 0.0 (1970-01-01 00:00:00)
+		ctime 1512280418.867249421 (2017-12-03 05:53:38)
+		mtime 0.0 (1970-01-01 00:00:00)
+		otime 0.0 (1970-01-01 00:00:00)
+	item 12 key (257 EXTENT_DATA 0) itemoff 13436 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 149487616 nr 65536
+		extent data offset 0 nr 65536 ram 65536
+		extent compression 0 (none)
+	item 13 key (FREE_SPACE UNTYPED 37748736) itemoff 13395 itemsize 41
+		location key (256 INODE_ITEM 0)
+		cache generation 7 entries 6 bitmaps 0
+	item 14 key (FREE_SPACE UNTYPED 145096704) itemoff 13354 itemsize 41
+		location key (257 INODE_ITEM 0)
+		cache generation 7 entries 3 bitmaps 0
+	item 15 key (DATA_RELOC_TREE ROOT_ITEM 0) itemoff 12915 itemsize 439
+		generation 4 root_dirid 256 bytenr 37830656 level 0 refs 1
+		lastsnap 0 byte_limit 0 bytes_used 16384 flags 0x0(none)
+		uuid 00000000-0000-0000-0000-000000000000
+		drop key (0 UNKNOWN.0 0) level 0
+chunk tree
+leaf 20987904 items 6 free space 15407 generation 5 owner 3
+leaf 20987904 flags 0x1(WRITTEN) backref revision 1
+fs uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+chunk uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 0 key (DEV_ITEMS DEV_ITEM 1) itemoff 16185 itemsize 98
+		devid 1 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid ffa30fe7-f9fe-4cf3-bd25-2612d22b264a
+		fsid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+	item 1 key (DEV_ITEMS DEV_ITEM 2) itemoff 16087 itemsize 98
+		devid 2 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 6bc9d337-01b6-49e2-8d97-ac2c535bc75a
+		fsid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+	item 2 key (DEV_ITEMS DEV_ITEM 3) itemoff 15989 itemsize 98
+		devid 3 total_bytes 536870912 bytes_used 129171456
+		io_align 4096 io_width 4096 sector_size 4096 type 0
+		generation 0 start_offset 0 dev_group 0
+		seek_speed 0 bandwidth 0
+		uuid 729e669c-9c4c-41fa-8216-a562749234f7
+		fsid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+	item 3 key (FIRST_CHUNK_TREE CHUNK_ITEM 20971520) itemoff 15845 itemsize 144
+		length 16777216 owner 2 stripe_len 65536 type SYSTEM|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 1048576
+			dev_uuid 729e669c-9c4c-41fa-8216-a562749234f7
+			stripe 1 devid 2 offset 1048576
+			dev_uuid 6bc9d337-01b6-49e2-8d97-ac2c535bc75a
+			stripe 2 devid 1 offset 20971520
+			dev_uuid ffa30fe7-f9fe-4cf3-bd25-2612d22b264a
+	item 4 key (FIRST_CHUNK_TREE CHUNK_ITEM 37748736) itemoff 15701 itemsize 144
+		length 107347968 owner 2 stripe_len 65536 type METADATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 9437184
+			dev_uuid 729e669c-9c4c-41fa-8216-a562749234f7
+			stripe 1 devid 2 offset 9437184
+			dev_uuid 6bc9d337-01b6-49e2-8d97-ac2c535bc75a
+			stripe 2 devid 1 offset 29360128
+			dev_uuid ffa30fe7-f9fe-4cf3-bd25-2612d22b264a
+	item 5 key (FIRST_CHUNK_TREE CHUNK_ITEM 145096704) itemoff 15557 itemsize 144
+		length 134217728 owner 2 stripe_len 65536 type DATA|RAID5
+		io_align 65536 io_width 65536 sector_size 4096
+		num_stripes 3 sub_stripes 0
+			stripe 0 devid 3 offset 63111168
+			dev_uuid 729e669c-9c4c-41fa-8216-a562749234f7
+			stripe 1 devid 2 offset 63111168
+			dev_uuid 6bc9d337-01b6-49e2-8d97-ac2c535bc75a
+			stripe 2 devid 1 offset 83034112
+			dev_uuid ffa30fe7-f9fe-4cf3-bd25-2612d22b264a
+extent tree key (EXTENT_TREE ROOT_ITEM 0) 
+leaf 37945344 items 14 free space 15438 generation 7 owner 2
+leaf 37945344 flags 0x1(WRITTEN) backref revision 1
+fs uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+chunk uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 0 key (20971520 BLOCK_GROUP_ITEM 16777216) itemoff 16259 itemsize 24
+		block group used 16384 chunk_objectid 256 flags SYSTEM|RAID5
+	item 1 key (20987904 METADATA_ITEM 0) itemoff 16226 itemsize 33
+		refs 1 gen 5 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 3
+	item 2 key (37748736 BLOCK_GROUP_ITEM 107347968) itemoff 16202 itemsize 24
+		block group used 114688 chunk_objectid 256 flags METADATA|RAID5
+	item 3 key (37765120 METADATA_ITEM 0) itemoff 16169 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 9
+	item 4 key (37830656 METADATA_ITEM 0) itemoff 16136 itemsize 33
+		refs 1 gen 4 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 18446744073709551607
+	item 5 key (37896192 METADATA_ITEM 0) itemoff 16103 itemsize 33
+		refs 1 gen 6 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 4
+	item 6 key (37945344 METADATA_ITEM 0) itemoff 16070 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 2
+	item 7 key (37961728 METADATA_ITEM 0) itemoff 16037 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 1
+	item 8 key (37978112 METADATA_ITEM 0) itemoff 16004 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 7
+	item 9 key (37994496 METADATA_ITEM 0) itemoff 15971 itemsize 33
+		refs 1 gen 7 flags TREE_BLOCK
+		tree block skinny level 0
+		tree block backref root 5
+	item 10 key (145096704 BLOCK_GROUP_ITEM 134217728) itemoff 15947 itemsize 24
+		block group used 4325376 chunk_objectid 256 flags DATA|RAID5
+	item 11 key (145227776 EXTENT_ITEM 4194304) itemoff 15894 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 5 objectid 257 offset 0 count 1
+	item 12 key (149422080 EXTENT_ITEM 65536) itemoff 15841 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 256 offset 0 count 1
+	item 13 key (149487616 EXTENT_ITEM 65536) itemoff 15788 itemsize 53
+		refs 1 gen 7 flags DATA
+		extent data backref root 1 objectid 257 offset 0 count 1
+device tree key (DEV_TREE ROOT_ITEM 0) 
+leaf 37896192 items 12 free space 15431 generation 6 owner 4
+leaf 37896192 flags 0x1(WRITTEN) backref revision 1
+fs uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+chunk uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 0 key (0 PERSISTENT_ITEM 1) itemoff 16243 itemsize 40
+		persistent item objectid 0 offset 1
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 1 key (0 PERSISTENT_ITEM 2) itemoff 16203 itemsize 40
+		persistent item objectid 0 offset 2
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 2 key (0 PERSISTENT_ITEM 3) itemoff 16163 itemsize 40
+		persistent item objectid 0 offset 3
+		device stats
+		write_errs 0 read_errs 0 flush_errs 0 corruption_errs 0 generation 0
+	item 3 key (1 DEV_EXTENT 20971520) itemoff 16115 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 4 key (1 DEV_EXTENT 29360128) itemoff 16067 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 5 key (1 DEV_EXTENT 83034112) itemoff 16019 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 6 key (2 DEV_EXTENT 1048576) itemoff 15971 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 7 key (2 DEV_EXTENT 9437184) itemoff 15923 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 8 key (2 DEV_EXTENT 63111168) itemoff 15875 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 9 key (3 DEV_EXTENT 1048576) itemoff 15827 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 20971520 length 8388608
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 10 key (3 DEV_EXTENT 9437184) itemoff 15779 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 37748736 length 53673984
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 11 key (3 DEV_EXTENT 63111168) itemoff 15731 itemsize 48
+		dev extent chunk_tree 3
+		chunk_objectid 256 chunk_offset 145096704 length 67108864
+		chunk_tree_uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+fs tree key (FS_TREE ROOT_ITEM 0) 
+leaf 37994496 items 8 free space 15515 generation 7 owner 5
+leaf 37994496 flags 0x1(WRITTEN) backref revision 1
+fs uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+chunk uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 7 size 20 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x1(none)
+		atime 1512280002.0 (2017-12-03 05:46:42)
+		ctime 1512280418.607252179 (2017-12-03 05:53:38)
+		mtime 1512280418.607252179 (2017-12-03 05:53:38)
+		otime 1512280002.0 (2017-12-03 05:46:42)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+	item 2 key (256 DIR_ITEM 2995885991) itemoff 16071 itemsize 40
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 10
+		name: file4m.txt
+	item 3 key (256 DIR_INDEX 2) itemoff 16031 itemsize 40
+		location key (257 INODE_ITEM 0) type FILE
+		transid 7 data_len 0 name_len 10
+		name: file4m.txt
+	item 4 key (257 INODE_ITEM 0) itemoff 15871 itemsize 160
+		generation 7 transid 7 size 4194304 nbytes 4194304
+		block group 0 mode 100644 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x35(none)
+		atime 1512280418.607252179 (2017-12-03 05:53:38)
+		ctime 1512280418.622252020 (2017-12-03 05:53:38)
+		mtime 1512280418.622252020 (2017-12-03 05:53:38)
+		otime 1512280418.607252179 (2017-12-03 05:53:38)
+	item 5 key (257 INODE_REF 256) itemoff 15851 itemsize 20
+		index 2 namelen 10 name: file4m.txt
+	item 6 key (257 XATTR_ITEM 3817753667) itemoff 15768 itemsize 83
+		location key (0 UNKNOWN.0 0) type XATTR
+		transid 7 data_len 37 name_len 16
+		name: security.selinux
+		data unconfined_u:object_r:unlabeled_t:s0
+	item 7 key (257 EXTENT_DATA 0) itemoff 15715 itemsize 53
+		generation 7 type 1 (regular)
+		extent data disk byte 145227776 nr 4194304
+		extent data offset 0 nr 4194304 ram 4194304
+		extent compression 0 (none)
+checksum tree key (CSUM_TREE ROOT_ITEM 0) 
+leaf 37978112 items 1 free space 12162 generation 7 owner 7
+leaf 37978112 flags 0x1(WRITTEN) backref revision 1
+fs uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+chunk uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 0 key (EXTENT_CSUM EXTENT_CSUM 145227776) itemoff 12187 itemsize 4096
+		range start 145227776 end 149422080 length 4194304
+uuid tree key (UUID_TREE ROOT_ITEM 0) 
+leaf 37765120 items 0 free space 16283 generation 6 owner 9
+leaf 37765120 flags 0x1(WRITTEN) backref revision 1
+fs uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+chunk uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+data reloc tree key (DATA_RELOC_TREE ROOT_ITEM 0) 
+leaf 37830656 items 2 free space 16061 generation 4 owner 18446744073709551607
+leaf 37830656 flags 0x1(WRITTEN) backref revision 1
+fs uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+chunk uuid 0b89ea55-79cc-47b6-b28d-629199f2c787
+	item 0 key (256 INODE_ITEM 0) itemoff 16123 itemsize 160
+		generation 3 transid 0 size 0 nbytes 16384
+		block group 0 mode 40755 links 1 uid 0 gid 0 rdev 0
+		sequence 0 flags 0x0(none)
+		atime 1512280002.0 (2017-12-03 05:46:42)
+		ctime 1512280002.0 (2017-12-03 05:46:42)
+		mtime 1512280002.0 (2017-12-03 05:46:42)
+		otime 1512280002.0 (2017-12-03 05:46:42)
+	item 1 key (256 INODE_REF 256) itemoff 16111 itemsize 12
+		index 0 namelen 2 name: ..
+total bytes 1610612736
+bytes used 4456448
+uuid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192
+Single extent found.
+logical_addr: 145227776 length=4194304 		total_stripe=64
+############### umount /home/fedora/btrfs-progs/tests/mnt
+D34xxxx: Corrupting /dev/loop2 at position 64290816 	which has D34xxxxxxxxxxxxx
+Found on-disk value: D34xxxxxxxxxxxxx 
+Corruption completed at 64290816
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
+############### btrfs scrub start /home/fedora/btrfs-progs/tests/mnt
+scrub started on /home/fedora/btrfs-progs/tests/mnt, fsid 44ab5c6f-4628-450e-9cc1-2c8ec37c8192 (pid=4902)
+WARNING: errors detected during scrubbing, corrected
+Scrub corrected value: D34xxxxxxxxxxxxx
+Parity_stripe_entry:/dev/loop0|84213760|00000100000000000000000000000000
+Parity: before=00000100000000000000000000000000 after=00000100000000000000000000000000
+Parity stripe check passed.
+############### umount /home/fedora/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+------------------RAID5 Corruption------------------
+Filename=file8m.txt Total Stripes=128 	      Data Stripe to be corrupted=100
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/fedora/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v4.14-36-gaf322ba5
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               a5bb761e-fd6e-47bb-b99f-06f15914aeeb
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/fedora/btrfs-progs/tests/mnt
