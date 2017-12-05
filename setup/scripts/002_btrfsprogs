@@ -15,7 +15,8 @@ cd ~/btrfs-progs && ./autogen.sh && \
 ./configure --prefix /usr CFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib"  \
 && make && sudo make install
 
-
+echo "Kernel info:"
+uname -a
 # Run tests
 cd ~/btrfs-progs && make test-fsck && make test-cli && make test-misc && make test-fuzz
 

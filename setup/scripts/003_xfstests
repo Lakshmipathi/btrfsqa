@@ -22,8 +22,13 @@ sed -i "s/fssize=2048/fssize=64/" ~/xfstests/tests/btrfs/011
 sed -i "s/bs=1M/bs=512K/" ~/xfstests/tests/btrfs/011
 
 
+echo "Kernel info:"
+uname -a
 # Run tests
 cd ~/xfstests && sudo ./check "tests/btrfs/*"
 
 #
+if [ $? -eq 0 ];
+then
 touch ~/btrfsqe/003_xfstests.completed
+fi

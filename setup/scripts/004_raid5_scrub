@@ -13,6 +13,8 @@ chmod +x ~/btrfs-progs/tests/misc-tests/020-raid5-datastripe-corruption-parity-c
 mkdir -p /tmp/logs
 cp ~/btrfs-progs/tests/misc-tests-results.txt ~/btrfs-progs/tests/Misc-tests-results.txt
 
+echo "Kernel info:"
+uname -a
 sudo make TEST=020\* test-misc
 
 # Move logs
@@ -20,4 +22,7 @@ mkdir -p /tmp/logs
 cp ~/btrfs-progs/tests/misc-tests-results.txt /tmp/logs/raid5_scrub.log
 
 #
+if [ $? -eq 0 ];
+then
 touch ~/btrfsqe/004_raid5_scrub.completed
+fi
