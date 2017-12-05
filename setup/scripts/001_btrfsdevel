@@ -32,6 +32,5 @@ grub2-editenv list
 if [ -f ~/btrfs-devel-misc-next/arch/x86/boot/bzImage ];
 then
 touch ~/btrfsqe/001_btrfsdevel.completed
-fi
-
 rm -rf ~/misc-next.zip ~/btrfs-devel-misc-next
+fi
