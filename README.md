@@ -46,7 +46,14 @@ Ensure host machine has python-fabric and boto installed. Then you need to:
  - Edit setup/config/netrc and github.json with your github credentials.
   Optionally, edit setup/config/ec2.json if you like to use different EC2 instance.
  
+Launching the Tests:
+===================
+Once we have appropriate config files, to start the tests type:
 
+	`$sudo python btrfsqa.py`
+
+preferably in a screen session.
+   
 Author:
 ======
 Feel free to ping me if you have suggestions or scripts to add to this public repo. 
