@@ -1,0 +1,3 @@
+# /bin/btrfs quota enable /mnt/scratch
+# /bin/btrfs subvolume snapshot -i 1/10 /mnt/scratch /mnt/scratch/snap1
+Create a snapshot of '/mnt/scratch' in '/mnt/scratch/snap1'

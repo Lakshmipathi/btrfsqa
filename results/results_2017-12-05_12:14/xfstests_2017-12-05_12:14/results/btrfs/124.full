@@ -1,0 +1,74 @@
+
+max_fs_sz=1200000000 count=1200
+-----Initialize -----
+# /bin/btrfs filesystem show
+Label: none  uuid: 8423c98b-3c4e-40fe-8837-877c2585b0ff
+	Total devices 2 FS bytes used 640.00KiB
+	devid    1 size 20.00GiB used 2.01GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 2.01GiB path /dev/xvdd
+
+Label: none  uuid: 1d6305eb-ad62-4e47-ba7e-f78943093931
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+1+0 records in
+1+0 records out
+unmount
+clean btrfs ko
+
+-----Write degraded mount fill upto 1200000000 bytes-----
+# /bin/btrfs filesystem show
+Label: none  uuid: 8423c98b-3c4e-40fe-8837-877c2585b0ff
+	Total devices 2 FS bytes used 1.62MiB
+	devid    1 size 20.00GiB used 2.01GiB path /dev/xvdc
+	*** Some devices missing
+
+Label: none  uuid: 1d6305eb-ad62-4e47-ba7e-f78943093931
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+1200+0 records in
+1200+0 records out
+8c2297c9abaf3b724f6192f65efe9a89 /mnt/scratch/tf2
+unmount
+
+-----Mount normal-----
+# /bin/btrfs device scan
+Scanning for Btrfs filesystems
+# /bin/btrfs filesystem show
+Label: none  uuid: 8423c98b-3c4e-40fe-8837-877c2585b0ff
+	Total devices 2 FS bytes used 1.17GiB
+	devid    1 size 20.00GiB used 3.29GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 2.01GiB path /dev/xvdd
+
+Label: none  uuid: 1d6305eb-ad62-4e47-ba7e-f78943093931
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+
+# /bin/btrfs balance start /mnt/scratch
+WARNING:
+
+	Full balance without filters requested. This operation is very
+	intense and takes potentially very long. It is recommended to
+	use the balance filters to narrow down the scope of balance.
+	Use 'btrfs balance start --full-balance' option to skip this
+	warning. The operation will start in 10 seconds.
+	Use Ctrl-C to stop it.
+10 9 8 7 6 5 4 3 2 1
+Starting balance without any filters.
+Done, had to relocate 6 out of 6 chunks
+8c2297c9abaf3b724f6192f65efe9a89 /mnt/scratch/tf2
+
+-----Mount degraded with the other dev -----
+# /bin/btrfs filesystem show
+Label: none  uuid: 8423c98b-3c4e-40fe-8837-877c2585b0ff
+	Total devices 2 FS bytes used 1.17GiB
+	devid    2 size 20.00GiB used 2.28GiB path /dev/xvdd
+	*** Some devices missing
+
+Label: none  uuid: 1d6305eb-ad62-4e47-ba7e-f78943093931
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+8c2297c9abaf3b724f6192f65efe9a89 /mnt/scratch/tf2

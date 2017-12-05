@@ -1,0 +1,58 @@
+btrfs-progs v4.14-37-g03a44122
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               9a15e42a-1315-439b-bb93-59cbafdf5cc5
+Node size:          16384
+Sector size:        4096
+Filesystem size:    20.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1    20.00GiB  /dev/xvdc
+
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap1
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap1'
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/mysnap2
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/mysnap2'
+# /home/fedora/xfstests/src/fssum -A -f -w /mnt/test/btrfs-test-084/1.fssum /mnt/scratch/mysnap1
+# /home/fedora/xfstests/src/fssum -A -f -w /mnt/test/btrfs-test-084/2.fssum -x /mnt/scratch/mysnap2/mysnap1 /mnt/scratch/mysnap2
+# /bin/btrfs send -f /mnt/test/btrfs-test-084/1.snap /mnt/scratch/mysnap1
+At subvol /mnt/scratch/mysnap1
+# /bin/btrfs send -p /mnt/scratch/mysnap1 -f /mnt/test/btrfs-test-084/2.snap /mnt/scratch/mysnap2
+At subvol /mnt/scratch/mysnap2
+btrfs-progs v4.14-37-g03a44122
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               9dbbb28a-0cc3-460d-97bf-8ba73610b8fb
+Node size:          16384
+Sector size:        4096
+Filesystem size:    20.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1    20.00GiB  /dev/xvdc
+
+# /bin/btrfs receive -f /mnt/test/btrfs-test-084/1.snap /mnt/scratch
+At subvol mysnap1
+# /home/fedora/xfstests/src/fssum -r /mnt/test/btrfs-test-084/1.fssum /mnt/scratch/mysnap1
+OK
+# /bin/btrfs receive -f /mnt/test/btrfs-test-084/2.snap /mnt/scratch
+At snapshot mysnap2
+# /home/fedora/xfstests/src/fssum -r /mnt/test/btrfs-test-084/2.fssum /mnt/scratch/mysnap2
+OK
