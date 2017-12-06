@@ -1,0 +1,8 @@
+step 1......mkfs.btrfs
+step 2......corrupt file extent
+Filesystem type is: 9123683e
+File size of /mnt/scratch/foobar is 131072 (32 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:        0..      31:      33376..     33407:     32:             last,shared,eof
+/mnt/scratch/foobar: 1 extent found
+step 3......repair the bad copy

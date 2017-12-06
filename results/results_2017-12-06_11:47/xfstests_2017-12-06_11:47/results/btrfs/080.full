@@ -1,0 +1,720 @@
+btrfs-progs v4.14-37-g03a44122
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               1b75005b-6c17-4c46-ad02-7dce98a91ea4
+Node size:          16384
+Sector size:        4096
+Filesystem size:    20.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1    20.00GiB  /dev/xvdc
+
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_1
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_14_453227012_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (744.048 MiB/sec and 23809.5238 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 34482.7586 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_14_453227012_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_2
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_15_007238118_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_15_007238118_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_3
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_15_099231210_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_15_099231210_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (892.912 MiB/sec and 28571.4286 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_4
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_15_187211223_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 34482.7586 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_15_187211223_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_5
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_15_457332759_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_15_457332759_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_6
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_15_552238456_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_15_552238456_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_7
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_15_632220541_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_15_632220541_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_8
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_15_740215156_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_15_740215156_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_9
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_15_840203973_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_15_840203973_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_10
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_16_114216469_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_16_114216469_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_11
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_16_211408598_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_16_211408598_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_12
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_16_460227284_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_16_460227284_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_13
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_16_553226196_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_16_553226196_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_14
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_16_646217262_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_16_646217262_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_15
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_16_875237005_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (744.048 MiB/sec and 23809.5238 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_16_875237005_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_16
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_16_975205963_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_16_975205963_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_17
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_17_096219549_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (946.970 MiB/sec and 30303.0303 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_17_096219549_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_18
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_17_207229413_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_17_207229413_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_19
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_17_509241004_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_17_509241004_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_20
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_17_625384143_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_17_625384143_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_21
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.272 GiB/sec and 41666.6667 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_17_918706928_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_17_918706928_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_22
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_18_043222530_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_18_043222530_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_23
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_18_570266436_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (919.118 MiB/sec and 29411.7647 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_18_570266436_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_24
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_19_106223707_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_19_106223707_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_25
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_19_223284230_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_19_223284230_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (822.419 MiB/sec and 26315.7895 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_26
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_19_582224779_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_19_582224779_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_27
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_19_714892217_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_19_714892217_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_28
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_19_849228217_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1008.065 MiB/sec and 32258.0645 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_19_849228217_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_29
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_20_083239631_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.272 GiB/sec and 41666.6667 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 34482.7586 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_20_083239631_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_30
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_20_211213713_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_20_211213713_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_31
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_20_331222112_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 34482.7586 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_20_331222112_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_32
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1008.065 MiB/sec and 32258.0645 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_21_261411619_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_21_261411619_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_33
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 34482.7586 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_21_559354888_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_21_559354888_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_34
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_21_676239946_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_21_676239946_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_35
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_22_630040584_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_22_630040584_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_36
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_22_741216981_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_22_741216981_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_37
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_23_109220299_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_23_109220299_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_38
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_23_720220424_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1008.065 MiB/sec and 32258.0645 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 34482.7586 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_23_720220424_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_39
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_23_845227059_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_23_845227059_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_40
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_24_209276319_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (946.970 MiB/sec and 30303.0303 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 34482.7586 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_24_209276319_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_41
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_24_333224814_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_24_333224814_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_42
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_24_476226472_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (947.027 MiB/sec and 30303.0303 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_24_476226472_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_43
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_24_618221564_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_24_618221564_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_44
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_24_946219799_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_24_946219799_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_45
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_25_099261132_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_25_099261132_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_46
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_25_210270377_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (844.646 MiB/sec and 27027.0270 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_25_210270377_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_47
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_25_362723785_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_25_362723785_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.833 MiB/sec and 58.6510 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (625 MiB/sec and 20000.0000 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_48
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_25_611218648_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_25_611218648_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_49
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_25_847219556_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_25_847219556_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_50
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_26_208240964_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_26_208240964_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_51
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_26_359222203_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_26_359222203_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_52
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_27_001229116_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1008.065 MiB/sec and 32258.0645 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_27_001229116_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_53
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_27_745258095_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_27_745258095_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_54
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_27_846277502_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_27_846277502_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_55
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_27_971219958_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (25.934 MiB/sec and 829.8755 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_27_971219958_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_56
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_28_105231103_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_28_105231103_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_57
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_28_253272506_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_28_253272506_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_58
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_28_698278156_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_28_698278156_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_59
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_28_843221623_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_28_843221623_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_60
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_28_963222340_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_28_963222340_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_61
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_29_241246404_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_29_241246404_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (651.042 MiB/sec and 20833.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_62
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_29_570212045_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_29_570212045_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_63
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_29_905039081_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_29_905039081_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_64
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_30_317217859_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_30_317217859_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_65
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_30_612221482_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_30_612221482_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_66
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_30_922061279_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_30_922061279_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (892.912 MiB/sec and 28571.4286 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_67
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_31_282242720_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1008.065 MiB/sec and 32258.0645 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (822.419 MiB/sec and 26315.7895 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_31_282242720_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_68
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_31_608404207_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_31_608404207_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1008.065 MiB/sec and 32258.0645 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_69
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_31_875254677_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_31_875254677_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (166.080 KiB/sec and 5.1900 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (892.912 MiB/sec and 28571.4286 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_70
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_32_384201031_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (919.174 MiB/sec and 29411.7647 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_32_384201031_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_71
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_32_521284241_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1008.065 MiB/sec and 32258.0645 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_32_521284241_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_72
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (947.027 MiB/sec and 30303.0303 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_32_872347067_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_32_872347067_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_73
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_33_353378052_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_33_353378052_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_74
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_33_870666561_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_33_870666561_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_75
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_34_006271394_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (892.857 MiB/sec and 28571.4286 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_34_006271394_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_76
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_34_428251747_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_34_428251747_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1008.065 MiB/sec and 32258.0645 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_77
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_35_054233259_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_35_054233259_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (637.755 MiB/sec and 20408.1633 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_78
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_35_318557185_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (947.027 MiB/sec and 30303.0303 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_35_318557185_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_79
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_35_491274039_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (29.847 MiB/sec and 955.1098 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (868.109 MiB/sec and 27777.7778 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_35_491274039_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_80
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_35_657230900_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (744.093 MiB/sec and 23809.5238 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_35_657230900_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_81
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_36_099234522_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (946.970 MiB/sec and 30303.0303 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_36_099234522_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_82
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_36_262253829_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_36_262253829_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_83
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_36_528409949_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_36_528409949_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_84
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_36_692235506_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (868.056 MiB/sec and 27777.7778 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (868.109 MiB/sec and 27777.7778 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_36_692235506_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_85
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_37_652238680_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_37_652238680_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (919.174 MiB/sec and 29411.7647 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_86
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_37_826900526_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_37_826900526_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_87
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (946.970 MiB/sec and 30303.0303 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_38_250947274_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_38_250947274_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_88
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_38_668216601_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.052 GiB/sec and 34482.7586 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_38_668216601_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_89
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_38_993283985_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_38_993283985_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_90
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_39_351233345_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.327 GiB/sec and 43478.2609 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (947.027 MiB/sec and 30303.0303 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_39_351233345_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_91
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_39_668196763_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.387 GiB/sec and 45454.5455 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1 GiB/sec and 40000.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_39_668196763_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_92
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_39_831239302_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (919.174 MiB/sec and 29411.7647 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_39_831239302_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_93
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_40_143223857_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.130 GiB/sec and 37037.0370 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_40_143223857_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_94
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1008.126 MiB/sec and 32258.0645 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_40_757032634_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_40_757032634_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_95
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_40_890234881_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (919.118 MiB/sec and 29411.7647 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_40_890234881_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_96
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_41_328303908_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_41_328303908_snap'
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_97
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.174 GiB/sec and 38461.5385 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_41_755907824_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_41_755907824_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_98
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.272 GiB/sec and 41666.6667 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (1.017 GiB/sec and 33333.3333 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_41_910219723_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_41_910219723_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_99
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.090 GiB/sec and 35714.2857 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (625 MiB/sec and 20000.0000 ops/sec)
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_42_331326494_snap
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_42_331326494_snap'
+# /sbin/xfs_io -i -f -c pwrite -S 0xaa -b 32K 0 32K -c fsync -c pwrite -S 0xbb -b 32770 16K 32770 -c truncate 90123 /mnt/scratch/foobar_100
+# /bin/btrfs subvolume snapshot -r /mnt/scratch /mnt/scratch/11_11_42_472214542_snap
+wrote 32768/32768 bytes at offset 0
+32 KiB, 1 ops; 0.0000 sec (1.327 GiB/sec and 43478.2609 ops/sec)
+wrote 32770/32770 bytes at offset 16384
+32 KiB, 1 ops; 0.0000 sec (977 MiB/sec and 31250.0000 ops/sec)
+Create a readonly snapshot of '/mnt/scratch' in '/mnt/scratch/11_11_42_472214542_snap'
