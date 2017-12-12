@@ -1,0 +1,4 @@
+# /bin/btrfs quota enable /mnt/scratch
+# /bin/btrfs quota rescan -w /mnt/scratch
+# /bin/btrfs balance start -d /mnt/scratch
+Done, had to relocate 2 out of 5 chunks

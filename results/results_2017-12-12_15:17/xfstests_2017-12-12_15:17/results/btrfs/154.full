@@ -1,0 +1,65 @@
+DEV1=/dev/xvdc
+DEV2=/dev/xvdd
+
+MAX_FS_SZ=100000000 COUNT=100
+-----setup-----
+1+0 records in
+1+0 records out
+# /bin/btrfs filesystem show -m /mnt/scratch
+Label: none  uuid: f56b148a-2933-4eb4-8ff8-90c3f0f3f8ec
+	Total devices 2 FS bytes used 640.00KiB
+	devid    1 size 20.00GiB used 2.01GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 2.01GiB path /dev/xvdd
+
+# /bin/btrfs filesystem df /mnt/scratch
+Data, RAID1: total=1.00GiB, used=512.00KiB
+System, RAID1: total=8.00MiB, used=16.00KiB
+Metadata, RAID1: total=1.00GiB, used=112.00KiB
+GlobalReserve, single: total=16.00MiB, used=0.00B
+unmount
+
+--degraded mount: max_fs_sz  bytes--
+clean btrfs ko
+9+0 records in
+9+0 records out
+# /bin/btrfs filesystem show -m /mnt/scratch
+Label: none  uuid: f56b148a-2933-4eb4-8ff8-90c3f0f3f8ec
+	Total devices 2 FS bytes used 1.62MiB
+	devid    1 size 20.00GiB used 2.29GiB path /dev/xvdc
+	*** Some devices missing
+
+# /bin/btrfs filesystem df /mnt/scratch
+Data, RAID1: total=1.00GiB, used=1.50MiB
+System, RAID1: total=8.00MiB, used=16.00KiB
+System, single: total=32.00MiB, used=0.00B
+Metadata, RAID1: total=1.00GiB, used=112.00KiB
+Metadata, single: total=256.00MiB, used=0.00B
+GlobalReserve, single: total=16.00MiB, used=0.00B
+/mnt/scratch/tf1:4004dc54093d6d10fd48c2be3ba00d2e /mnt/scratch/tf1
+
+--scan missing /dev/xvdd--
+# /bin/btrfs device scan /dev/xvdd
+Scanning for Btrfs filesystems in '/dev/xvdd'
+
+# /bin/btrfs filesystem show -m /mnt/scratch
+Label: none  uuid: f56b148a-2933-4eb4-8ff8-90c3f0f3f8ec
+	Total devices 2 FS bytes used 1.62MiB
+	devid    1 size 20.00GiB used 2.29GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 2.01GiB path /dev/xvdd
+
+# /bin/btrfs filesystem df /mnt/scratch
+Data, RAID1: total=1.00GiB, used=1.50MiB
+System, RAID1: total=8.00MiB, used=16.00KiB
+System, single: total=32.00MiB, used=0.00B
+Metadata, RAID1: total=1.00GiB, used=112.00KiB
+Metadata, single: total=256.00MiB, used=0.00B
+GlobalReserve, single: total=16.00MiB, used=0.00B
+90+0 records in
+90+0 records out
+/mnt/scratch/tf2:910ba828c3fca9aed1aa25b35b715af6 /mnt/scratch/tf2
+
+----- run balance -----
+# /bin/btrfs balance start --full-balance -dconvert=raid1 -mconvert=raid1 /mnt/scratch
+ERROR: error during balancing '/mnt/scratch': No space left on device
+There may be more info in syslog - try dmesg | tail
+failed: '/bin/btrfs balance start --full-balance -dconvert=raid1 -mconvert=raid1 /mnt/scratch'
