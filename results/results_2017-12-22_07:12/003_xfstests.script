@@ -1,0 +1,862 @@
+Script started on 2017-12-22 06:26:24+0000
++ echo 'Installing dependencies..'
+Installing dependencies..
++ sudo yum -q -y install acl attr automake bc dbench dump e2fsprogs fio gawk gcc indent libtool lvm2 make psmisc quota sed xfsdump xfsprogs libacl-devel libattr-devel libaio-devel libuuid-devel xfsprogs-devel
+warning: file /usr/share/locale/zh_CN/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/vi/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/sv/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/pl/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/nl/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ms/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ja/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/it/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/id/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/fr/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/fi/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/es/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/de/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/da/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ca/LC_MESSAGES/gawk.mo: remove failed: No such file or directory
++ echo 'Installing dependencies..done'
+Installing dependencies..done
++ sudo useradd fsgqa
++ sudo useradd 123456-fsgqa
++ git clone https://github.com/kdave/xfstests.git
+Cloning into 'xfstests'...
+remote: Counting objects: 25014, done.[K
+remote: Compressing objects:   0% (1/132)   [Kremote: Compressing objects:   1% (2/132)   [Kremote: Compressing objects:   2% (3/132)   [Kremote: Compressing objects:   3% (4/132)   [Kremote: Compressing objects:   4% (6/132)   [Kremote: Compressing objects:   5% (7/132)   [Kremote: Compressing objects:   6% (8/132)   [Kremote: Compressing objects:   7% (10/132)   [Kremote: Compressing objects:   8% (11/132)   [Kremote: Compressing objects:   9% (12/132)   [Kremote: Compressing objects:  10% (14/132)   [Kremote: Compressing objects:  11% (15/132)   [Kremote: Compressing objects:  12% (16/132)   [Kremote: Compressing objects:  13% (18/132)   [Kremote: Compressing objects:  14% (19/132)   [Kremote: Compressing objects:  15% (20/132)   [Kremote: Compressing objects:  16% (22/132)   [Kremote: Compressing objects:  17% (23/132)   [Kremote: Compressing objects:  18% (24/132)   [Kremote: Compressing objects:  19% (26/132)   [Kremote: Compressing objects:  20% (27/132)   [Kremote: Compressing objects:  21% (28/132)   [Kremote: Compressing objects:  22% (30/132)   [Kremote: Compressing objects:  23% (31/132)   [Kremote: Compressing objects:  24% (32/132)   [Kremote: Compressing objects:  25% (33/132)   [Kremote: Compressing objects:  26% (35/132)   [Kremote: Compressing objects:  27% (36/132)   [Kremote: Compressing objects:  28% (37/132)   [Kremote: Compressing objects:  29% (39/132)   [Kremote: Compressing objects:  30% (40/132)   [Kremote: Compressing objects:  31% (41/132)   [Kremote: Compressing objects:  32% (43/132)   [Kremote: Compressing objects:  33% (44/132)   [Kremote: Compressing objects:  34% (45/132)   [Kremote: Compressing objects:  35% (47/132)   [Kremote: Compressing objects:  36% (48/132)   [Kremote: Compressing objects:  37% (49/132)   [Kremote: Compressing objects:  38% (51/132)   [Kremote: Compressing objects:  39% (52/132)   [Kremote: Compressing objects:  40% (53/132)   [Kremote: Compressing objects:  41% (55/132)   [Kremote: Compressing objects:  42% (56/132)   [Kremote: Compressing objects:  43% (57/132)   [Kremote: Compressing objects:  44% (59/132)   [Kremote: Compressing objects:  45% (60/132)   [Kremote: Compressing objects:  46% (61/132)   [Kremote: Compressing objects:  47% (63/132)   [Kremote: Compressing objects:  48% (64/132)   [Kremote: Compressing objects:  49% (65/132)   [Kremote: Compressing objects:  50% (66/132)   [Kremote: Compressing objects:  51% (68/132)   [Kremote: Compressing objects:  52% (69/132)   [Kremote: Compressing objects:  53% (70/132)   [Kremote: Compressing objects:  54% (72/132)   [Kremote: Compressing objects:  55% (73/132)   [Kremote: Compressing objects:  56% (74/132)   [Kremote: Compressing objects:  57% (76/132)   [Kremote: Compressing objects:  58% (77/132)   [Kremote: Compressing objects:  59% (78/132)   [Kremote: Compressing objects:  60% (80/132)   [Kremote: Compressing objects:  61% (81/132)   [Kremote: Compressing objects:  62% (82/132)   [Kremote: Compressing objects:  63% (84/132)   [Kremote: Compressing objects:  64% (85/132)   [Kremote: Compressing objects:  65% (86/132)   [Kremote: Compressing objects:  66% (88/132)   [Kremote: Compressing objects:  67% (89/132)   [Kremote: Compressing objects:  68% (90/132)   [Kremote: Compressing objects:  69% (92/132)   [Kremote: Compressing objects:  70% (93/132)   [Kremote: Compressing objects:  71% (94/132)   [Kremote: Compressing objects:  72% (96/132)   [Kremote: Compressing objects:  73% (97/132)   [Kremote: Compressing objects:  74% (98/132)   [Kremote: Compressing objects:  75% (99/132)   [Kremote: Compressing objects:  76% (101/132)   [Kremote: Compressing objects:  77% (102/132)   [Kremote: Compressing objects:  78% (103/132)   [Kremote: Compressing objects:  79% (105/132)   [Kremote: Compressing objects:  80% (106/132)   [Kremote: Compressing objects:  81% (107/132)   [Kremote: Compressing objects:  82% (109/132)   [Kremote: Compressing objects:  83% (110/132)   [Kremote: Compressing objects:  84% (111/132)   [Kremote: Compressing objects:  85% (113/132)   [Kremote: Compressing objects:  86% (114/132)   [Kremote: Compressing objects:  87% (115/132)   [Kremote: Compressing objects:  88% (117/132)   [Kremote: Compressing objects:  89% (118/132)   [Kremote: Compressing objects:  90% (119/132)   [Kremote: Compressing objects:  91% (121/132)   [Kremote: Compressing objects:  92% (122/132)   [Kremote: Compressing objects:  93% (123/132)   [Kremote: Compressing objects:  94% (125/132)   [Kremote: Compressing objects:  95% (126/132)   [Kremote: Compressing objects:  96% (127/132)   [Kremote: Compressing objects:  97% (129/132)   [Kremote: Compressing objects:  98% (130/132)   [Kremote: Compressing objects:  99% (131/132)   [Kremote: Compressing objects: 100% (132/132)   [Kremote: Compressing objects: 100% (132/132), done.[K
+Receiving objects:   0% (1/25014)   Receiving objects:   1% (251/25014)   Receiving objects:   2% (501/25014)   Receiving objects:   3% (751/25014)   Receiving objects:   4% (1001/25014)   Receiving objects:   5% (1251/25014)   Receiving objects:   6% (1501/25014)   Receiving objects:   7% (1751/25014)   Receiving objects:   8% (2002/25014)   Receiving objects:   9% (2252/25014)   Receiving objects:  10% (2502/25014)   Receiving objects:  11% (2752/25014)   Receiving objects:  12% (3002/25014)   Receiving objects:  13% (3252/25014)   Receiving objects:  14% (3502/25014)   Receiving objects:  15% (3753/25014)   Receiving objects:  16% (4003/25014)   Receiving objects:  17% (4253/25014)   Receiving objects:  18% (4503/25014)   Receiving objects:  19% (4753/25014)   Receiving objects:  20% (5003/25014)   Receiving objects:  21% (5253/25014)   Receiving objects:  22% (5504/25014)   Receiving objects:  23% (5754/25014)   Receiving objects:  24% (6004/25014)   Receiving objects:  25% (6254/25014)   Receiving objects:  26% (6504/25014)   Receiving objects:  27% (6754/25014)   Receiving objects:  28% (7004/25014)   Receiving objects:  29% (7255/25014)   Receiving objects:  30% (7505/25014)   Receiving objects:  31% (7755/25014)   Receiving objects:  32% (8005/25014)   Receiving objects:  33% (8255/25014)   Receiving objects:  34% (8505/25014)   Receiving objects:  35% (8755/25014)   Receiving objects:  36% (9006/25014)   Receiving objects:  37% (9256/25014)   Receiving objects:  38% (9506/25014)   Receiving objects:  39% (9756/25014)   Receiving objects:  40% (10006/25014)   Receiving objects:  41% (10256/25014)   Receiving objects:  42% (10506/25014)   Receiving objects:  43% (10757/25014)   Receiving objects:  44% (11007/25014)   Receiving objects:  45% (11257/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  46% (11507/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  47% (11757/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  48% (12007/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  49% (12257/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  50% (12507/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  51% (12758/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  52% (13008/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  53% (13258/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  54% (13508/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  55% (13758/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  56% (14008/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  57% (14258/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  58% (14509/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  59% (14759/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  60% (15009/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  61% (15259/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  62% (15509/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  63% (15759/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  64% (16009/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  65% (16260/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  66% (16510/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  67% (16760/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  68% (17010/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  69% (17260/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  70% (17510/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  71% (17760/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  72% (18011/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  73% (18261/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  74% (18511/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  75% (18761/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  76% (19011/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  77% (19261/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  78% (19511/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  79% (19762/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  80% (20012/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  81% (20262/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  82% (20512/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  83% (20762/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  84% (21012/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  85% (21262/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  86% (21513/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  87% (21763/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  88% (22013/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  89% (22263/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  90% (22513/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  91% (22763/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  92% (23013/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  93% (23264/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  94% (23514/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  95% (23764/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  96% (24014/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  97% (24264/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  98% (24514/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects:  99% (24764/25014), 4.18 MiB | 8.35 MiB/s   remote: Total 25014 (delta 150), reused 216 (delta 138), pack-reused 24741[K
+Receiving objects: 100% (25014/25014), 4.18 MiB | 8.35 MiB/s   Receiving objects: 100% (25014/25014), 6.95 MiB | 9.06 MiB/s, done.
+Resolving deltas:   0% (0/19280)   Resolving deltas:   1% (228/19280)   Resolving deltas:   2% (414/19280)   Resolving deltas:   3% (629/19280)   Resolving deltas:   4% (819/19280)   Resolving deltas:   6% (1211/19280)   Resolving deltas:   7% (1366/19280)   Resolving deltas:   8% (1575/19280)   Resolving deltas:   9% (1737/19280)   Resolving deltas:  10% (1932/19280)   Resolving deltas:  11% (2188/19280)   Resolving deltas:  12% (2316/19280)   Resolving deltas:  13% (2508/19280)   Resolving deltas:  14% (2705/19280)   Resolving deltas:  15% (2906/19280)   Resolving deltas:  16% (3091/19280)   Resolving deltas:  17% (3287/19280)   Resolving deltas:  18% (3509/19280)   Resolving deltas:  19% (3667/19280)   Resolving deltas:  20% (3916/19280)   Resolving deltas:  21% (4109/19280)   Resolving deltas:  22% (4291/19280)   Resolving deltas:  25% (4933/19280)   Resolving deltas:  26% (5018/19280)   Resolving deltas:  27% (5281/19280)   Resolving deltas:  28% (5404/19280)   Resolving deltas:  29% (5628/19280)   Resolving deltas:  30% (5808/19280)   Resolving deltas:  31% (5978/19280)   Resolving deltas:  32% (6170/19280)   Resolving deltas:  33% (6400/19280)   Resolving deltas:  34% (6575/19280)   Resolving deltas:  35% (6760/19280)   Resolving deltas:  36% (6945/19280)   Resolving deltas:  37% (7136/19280)   Resolving deltas:  38% (7327/19280)   Resolving deltas:  39% (7521/19280)   Resolving deltas:  40% (7844/19280)   Resolving deltas:  41% (7920/19280)   Resolving deltas:  43% (8345/19280)   Resolving deltas:  44% (8489/19280)   Resolving deltas:  45% (8692/19280)   Resolving deltas:  46% (8872/19280)   Resolving deltas:  47% (9071/19280)   Resolving deltas:  48% (9276/19280)   Resolving deltas:  49% (9449/19280)   Resolving deltas:  50% (9654/19280)   Resolving deltas:  51% (9851/19280)   Resolving deltas:  52% (10063/19280)   Resolving deltas:  53% (10312/19280)   Resolving deltas:  54% (10535/19280)   Resolving deltas:  62% (12092/19280)   Resolving deltas:  63% (12149/19280)   Resolving deltas:  64% (12362/19280)   Resolving deltas:  65% (12540/19280)   Resolving deltas:  66% (12750/19280)   Resolving deltas:  67% (12974/19280)   Resolving deltas:  68% (13118/19280)   Resolving deltas:  69% (13316/19280)   Resolving deltas:  70% (13665/19280)   Resolving deltas:  71% (13691/19280)   Resolving deltas:  72% (13883/19280)   Resolving deltas:  73% (14089/19280)   Resolving deltas:  74% (14268/19280)   Resolving deltas:  75% (14564/19280)   Resolving deltas:  76% (14653/19280)   Resolving deltas:  78% (15072/19280)   Resolving deltas:  79% (15255/19280)   Resolving deltas:  80% (15437/19280)   Resolving deltas:  81% (15660/19280)   Resolving deltas:  82% (15818/19280)   Resolving deltas:  83% (16028/19280)   Resolving deltas:  84% (16197/19280)   Resolving deltas:  85% (16393/19280)   Resolving deltas:  86% (16583/19280)   Resolving deltas:  87% (16874/19280)   Resolving deltas:  88% (17015/19280)   Resolving deltas:  89% (17163/19280)   Resolving deltas:  90% (17361/19280)   Resolving deltas:  91% (17576/19280)   Resolving deltas:  92% (17776/19280)   Resolving deltas:  93% (17989/19280)   Resolving deltas:  94% (18155/19280)   Resolving deltas:  95% (18330/19280)   Resolving deltas:  96% (18510/19280)   Resolving deltas:  97% (18709/19280)   Resolving deltas:  98% (18920/19280)   Resolving deltas:  99% (19093/19280)   Resolving deltas: 100% (19280/19280)   Resolving deltas: 100% (19280/19280), done.
++ cd /home/fedora/xfstests
++ make
+libtoolize -cfi
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './config.guess'
+libtoolize: copying file './config.sub'
+libtoolize: copying file './install-sh'
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+aclocal -I m4
+autoheader
+autoconf
+./configure \
+                --libexecdir=/usr/lib \
+                --exec_prefix=/var/lib
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking how to print strings... printf
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking for gawk... gawk
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... no
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for gmake... /usr/bin/gmake
+./configure: line 11954: test: $(SHELL): binary operator expected
+checking for tar... /bin/tar
+checking for gzip... /bin/gzip
+checking whether gcc -MM is supported... yes
+checking for sort... /bin/sort
+checking whether ln -s works... yes
+checking for rpm... /bin/rpm
+checking for rpmbuild... no
+checking for ANSI C header files... (cached) yes
+checking assert.h usability... yes
+checking assert.h presence... yes
+checking for assert.h... yes
+checking bstring.h usability... no
+checking bstring.h presence... no
+checking for bstring.h... no
+checking libgen.h usability... yes
+checking libgen.h presence... yes
+checking for libgen.h... yes
+checking dirent.h usability... yes
+checking dirent.h presence... yes
+checking for dirent.h... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking uuid.h usability... no
+checking uuid.h presence... no
+checking for uuid.h... no
+checking uuid/uuid.h usability... yes
+checking uuid/uuid.h presence... yes
+checking for uuid/uuid.h... yes
+checking sys/uuid.h usability... no
+checking sys/uuid.h presence... no
+checking for sys/uuid.h... no
+checking sys/file.h usability... yes
+checking sys/file.h presence... yes
+checking for sys/file.h... yes
+checking sys/fcntl.h usability... yes
+checking sys/fcntl.h presence... yes
+checking for sys/fcntl.h... yes
+checking sys/syssgi.h usability... no
+checking sys/syssgi.h presence... no
+checking for sys/syssgi.h... no
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking for sys/stat.h... (cached) yes
+checking sys/statvfs.h usability... yes
+checking sys/statvfs.h presence... yes
+checking for sys/statvfs.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/wait.h usability... yes
+checking sys/wait.h presence... yes
+checking for sys/wait.h... yes
+checking for sys/types.h... (cached) yes
+checking for strings.h... (cached) yes
+checking err.h usability... yes
+checking err.h presence... yes
+checking for err.h... yes
+checking linux/falloc.h usability... yes
+checking linux/falloc.h presence... yes
+checking for linux/falloc.h... yes
+checking sys/fs/xfs_fsops.h usability... no
+checking sys/fs/xfs_fsops.h presence... no
+checking for sys/fs/xfs_fsops.h... no
+checking sys/fs/xfs_itable.h usability... no
+checking sys/fs/xfs_itable.h presence... no
+checking for sys/fs/xfs_itable.h... no
+checking xfs/platform_defs.h usability... no
+checking xfs/platform_defs.h presence... no
+checking for xfs/platform_defs.h... no
+checking btrfs/ioctl.h usability... yes
+checking btrfs/ioctl.h presence... yes
+checking for btrfs/ioctl.h... yes
+checking cifs/ioctl.h usability... no
+checking cifs/ioctl.h presence... no
+checking for cifs/ioctl.h... no
+checking sys/mman.h usability... yes
+checking sys/mman.h presence... yes
+checking for sys/mman.h... yes
+checking for xfs/xfs_log_format.h... no
+checking for uuid_compare... no
+checking for uuid_compare in -luuid... yes
+checking for xfs/xfs.h... yes
+checking for xfs/libxfs.h... no
+checking whether xlog_assign_lsn is declared... no
+checking for xfs/xqm.h... yes
+checking xfsctl from xfs/xfs.h... ok
+checking xfs/handle.h usability... yes
+checking xfs/handle.h presence... yes
+checking for xfs/handle.h... yes
+checking for attr_list_by_handle in -lhandle... yes
+checking attr/xattr.h usability... yes
+checking attr/xattr.h presence... yes
+checking for attr/xattr.h... yes
+checking attr/attributes.h usability... yes
+checking attr/attributes.h presence... yes
+checking for attr/attributes.h... yes
+checking sys/attributes.h usability... no
+checking sys/attributes.h presence... no
+checking for sys/attributes.h... no
+checking for attr_list in -lattr... yes
+checking for getxattr in -lattr... yes
+checking sys/acl.h usability... yes
+checking sys/acl.h presence... yes
+checking for sys/acl.h... yes
+checking acl/libacl.h usability... yes
+checking acl/libacl.h presence... yes
+checking for acl/libacl.h... yes
+checking for acl_init in -lacl... yes
+checking gdbm-ndbm.h usability... no
+checking gdbm-ndbm.h presence... no
+checking for gdbm-ndbm.h... no
+checking gdbm/ndbm.h usability... no
+checking gdbm/ndbm.h presence... no
+checking for gdbm/ndbm.h... no
+checking gdbm.h usability... no
+checking gdbm.h presence... no
+checking for gdbm.h... no
+checking ndbm.h usability... no
+checking ndbm.h presence... no
+checking for ndbm.h... no
+checking libaio.h usability... yes
+checking libaio.h presence... yes
+checking for libaio.h... yes
+checking for dm_make_handle in -ldm... no
+
+WARNING: could not find a valid DMAPI base library.
+If you want DMAPI support please install the data migration
+API (dmapi) library package. Alternatively, run "make install"
+from the dmapi source.
+
+checking linux/fiemap.h usability... yes
+checking linux/fiemap.h presence... yes
+checking for linux/fiemap.h... yes
+checking for fallocate... yes
+checking for open_by_handle_at... yes
+checking sys/prctl.h usability... yes
+checking sys/prctl.h presence... yes
+checking for sys/prctl.h... yes
+checking linux/fs.h usability... yes
+checking linux/fs.h presence... yes
+checking for linux/fs.h... yes
+checking for renameat2... no
+configure: creating ./config.status
+config.status: creating include/builddefs
+config.status: creating include/config.h
+config.status: executing libtool commands
+Building include
+Building lib
+    [LTDEP]
+    [CC] dataascii.lo
+    [CC] databin.lo
+    [CC] datapid.lo
+    [CC] file_lock.lo
+    [CC] forker.lo
+    [CC] pattern.lo
+    [CC] open_flags.lo
+    [CC] random_range.lo
+    [CC] string_to_tokens.lo
+    [CC] str_to_bytes.lo
+    [CC] tlibio.lo
+    [CC] write_log.lo
+    [CC] random.lo
+    [LD] 
+Building ltp
+    [DEP]
+    [CC]    doio
+    [CC]    fsstress
+    [CC]    fsx
+    [CC]    growfiles
+    [CC]    iogen
+    [CC]    aio-stress
+Building src
+    [DEP]
+    [DEP]
+    [DEP]
+    [DEP]
+    [CC]    dirstress
+    [CC]    fill
+    [CC]    fill2
+    [CC]    getpagesize
+    [CC]    holes
+    [CC]    lstat64
+    [CC]    nametest
+    [CC]    permname
+    [CC]    randholes
+    [CC]    runas
+    [CC]    truncfile
+    [CC]    usemem
+    [CC]    mmapcat
+    [CC]    append_reader
+    [CC]    append_writer
+    [CC]    dirperf
+    [CC]    metaperf
+    [CC]    devzero
+    [CC]    feature
+    [CC]    alloc
+    [CC]    fault
+    [CC]    fstest
+    [CC]    t_access_root
+    [CC]    godown
+    [CC]    resvtest
+    [CC]    writemod
+    [CC]    writev_on_pagefault
+    [CC]    makeextents
+    [CC]    itrash
+    [CC]    rename
+    [CC]    multi_open_unlink
+    [CC]    dmiperf
+    [CC]    unwritten_sync
+    [CC]    genhashnames
+    [CC]    t_holes
+    [CC]    t_mmap_writev
+    [CC]    t_truncate_cmtime
+    [CC]    dirhash_collide
+    [CC]    t_rename_overwrite
+    [CC]    holetest
+    [CC]    t_truncate_self
+    [CC]    t_mmap_dio
+    [CC]    af_unix
+    [CC]    t_mmap_stale_pmd
+    [CC]    t_mmap_cow_race
+    [CC]    t_mmap_fallocate
+    [CC]    fsync-err
+    [CC]    t_mmap_write_ro
+    [CC]    xfsctl
+    [CC]    bstat
+    [CC]    t_mtab
+    [CC]    getdevicesize
+    [CC]    preallo_rw_pattern_reader
+    [CC]    preallo_rw_pattern_writer
+    [CC]    ftrunc
+    [CC]    trunc
+    [CC]    fs_perms
+    [CC]    testx
+    [CC]    looptest
+    [CC]    locktest
+    [CC]    unwritten_mmap
+    [CC]    bulkstat_unlink_test
+    [CC]    t_stripealign
+    [CC]    bulkstat_unlink_test_modified
+    [CC]    t_dir_offset
+    [CC]    t_futimens
+    [CC]    t_immutable
+    [CC]    stale_handle
+    [CC]    pwrite_mmap_blocked
+    [CC]    t_dir_offset2
+    [CC]    seek_sanity_test
+    [CC]    seek_copy_test
+    [CC]    t_readdir_1
+    [CC]    t_readdir_2
+    [CC]    fsync-tester
+    [CC]    nsexec
+    [CC]    cloner
+    [CC]    renameat2
+    [CC]    t_getcwd
+    [CC]    e4compact
+    [CC]    test-nextquota
+    [CC]    punch-alternating
+    [CC]    attr-list-by-handle-cursor-test
+    [CC]    listxattr
+    [CC]    dio-interleaved
+    [CC]    t_dir_type
+    [CC]    dio-invalidate-cache
+    [CC]    stat_test
+    [CC]    t_encrypted_d_revalidate
+    [CC]    fiemap-tester
+    [CC]    open_by_handle
+    [CC]    fssum
+Building log-writes
+    [CC]    replay-log
+Building perf
+Building aio-dio-regress
+    [CC]    aio-dio-fcntl-race
+    [CC]    aio-dio-subblock-eof-read
+    [CC]    aio-dio-append-write-read-race
+    [CC]    aio-dio-invalidate-readahead
+    [CC]    aio-dio-hole-filling-race
+    [CC]    aio-free-ring-with-bogus-nr-pages
+    [CC]    aio-dio-cycle-write
+    [CC]    aio-dio-extend-stat
+    [CC]    aio-io-setup-with-nonwritable-context-pointer
+    [CC]    aiocp
+    [CC]    aio-dio-invalidate-failure
+    [CC]    aiodio_sparse2
+    [CC]    aio-last-ref-held-by-io
+    [CC]    aio-dio-eof-race
+    [CC]    aio-dio-cow-race
+Building m4
+Building common
+Building tests
++ sudo make install
+Building include
+Building lib
+Building ltp
+Building src
+Building log-writes
+Building perf
+Building aio-dio-regress
+Building m4
+Building common
+Building tests
+/usr/bin/gmake --no-print-directory Q=@ -C include install
+gmake[1]: Nothing to be done for 'install'.
+/usr/bin/gmake --no-print-directory Q=@ -C lib install
+gmake[1]: Nothing to be done for 'install'.
+/usr/bin/gmake --no-print-directory Q=@ -C ltp install
+../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/ltp
+/bin/sh ../libtool --quiet --mode=install ../install-sh -o fedora -g fedora -m 755 doio fsstress fsx growfiles iogen aio-stress /var/lib/xfstests/ltp
+../install-sh -o fedora -g fedora -m 755 rwtest.sh /var/lib/xfstests/ltp
+/usr/bin/gmake --no-print-directory Q=@ -C src install
+Building log-writes
+Building perf
+Building aio-dio-regress
+/usr/bin/gmake -C log-writes install
+../../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/src/log-writes
+../../install-sh -o fedora -g fedora -m 755 replay-log /var/lib/xfstests/src/log-writes
+/usr/bin/gmake -C perf install
+../../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/src/perf
+../../install-sh -o fedora -g fedora -m 755 ResultData.py fio-insert-and-compare.py FioResultDecoder.py FioCompare.py generate-schema.py fio-results.sql /var/lib/xfstests/src/perf
+/usr/bin/gmake -C aio-dio-regress install
+../../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/src/aio-dio-regress
+../../install-sh -o fedora -g fedora -m 755 aio-dio-fcntl-race aio-dio-subblock-eof-read aio-dio-append-write-read-race aio-dio-invalidate-readahead aio-dio-hole-filling-race aio-free-ring-with-bogus-nr-pages aio-dio-cycle-write aio-dio-extend-stat aio-io-setup-with-nonwritable-context-pointer aiocp aio-dio-invalidate-failure aiodio_sparse2 aio-last-ref-held-by-io aio-dio-eof-race aio-dio-cow-race /var/lib/xfstests/src/aio-dio-regress
+../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/src
+/bin/sh ../libtool --quiet --mode=install ../install-sh -o fedora -g fedora -m 755 dirstress fill fill2 getpagesize holes lstat64 nametest permname randholes runas truncfile usemem mmapcat append_reader append_writer dirperf metaperf devzero feature alloc fault fstest t_access_root godown resvtest writemod writev_on_pagefault makeextents itrash rename multi_open_unlink dmiperf unwritten_sync genhashnames t_holes t_mmap_writev t_truncate_cmtime dirhash_collide t_rename_overwrite holetest t_truncate_self t_mmap_dio af_unix t_mmap_stale_pmd t_mmap_cow_race t_mmap_fallocate fsync-err t_mmap_write_ro xfsctl bstat t_mtab getdevicesize preallo_rw_pattern_reader preallo_rw_pattern_writer ftrunc trunc fs_perms testx looptest locktest unwritten_mmap bulkstat_unlink_test t_stripealign bulkstat_unlink_test_modified t_dir_offset t_futimens t_immutable stale_handle pwrite_mmap_blocked t_dir_offset2 seek_sanity_test seek_copy_test t_readdir_1 t_readdir_2 fsync-tester nsexec cloner renameat2 t_getcwd e4compact test-nextquota punch-alternating attr-list-by-handle-cursor-test listxattr dio-interleaved t_dir_type dio-invalidate-cache stat_test t_encrypted_d_revalidate fiemap-tester open_by_handle fssum /var/lib/xfstests/src
+/bin/sh ../libtool --quiet --mode=install ../install-sh -o fedora -g fedora -m 755 dmerror fill2attr fill2fs fill2fs_check scaleread.sh /var/lib/xfstests/src
+/bin/sh ../libtool --quiet --mode=install ../install-sh -o fedora -g fedora -m 644 dumpfile /var/lib/xfstests/src
+/usr/bin/gmake --no-print-directory Q=@ -C m4 install
+gmake[1]: Nothing to be done for 'install'.
+/usr/bin/gmake --no-print-directory Q=@ -C common install
+../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/common
+../install-sh -o fedora -g fedora -m 644 * /var/lib/xfstests/common
+/usr/bin/gmake --no-print-directory Q=@ -C tests install
+../install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests/tests
+./install-sh -o fedora -g fedora -m 755 -d /var/lib/xfstests
+./install-sh -o fedora -g fedora -m 755 check /var/lib/xfstests
+./install-sh -o fedora -g fedora -m 644 randomize.awk /var/lib/xfstests
++ sudo mkdir -p /mnt/test
++ sudo mkdir -p /mnt/scratch
++ sudo mkfs.btrfs -f /dev/xvdb
+btrfs-progs v4.14-52-g0c8fe06e
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               0493bca4-c72c-449d-b1b8-8844101422a6
+Node size:          16384
+Sector size:        4096
+Filesystem size:    20.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1    20.00GiB  /dev/xvdb
+
++ cp -v /home/fedora/btrfsqe/local.config /home/fedora/xfstests
+'/home/fedora/btrfsqe/local.config' -> '/home/fedora/xfstests/local.config'
++ sed -i s/fssize=2048/fssize=64/ /home/fedora/xfstests/tests/btrfs/011
++ sed -i s/bs=1M/bs=512K/ /home/fedora/xfstests/tests/btrfs/011
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/078
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/078	 89s
+Ran: btrfs/078
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/079
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/079	 270s
+Ran: btrfs/079
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/080
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/080	 107s
+Ran: btrfs/080
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/081
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/081	 2s
+Ran: btrfs/081
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/082
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/082	 0s
+Ran: btrfs/082
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/083
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/083	 1s
+Ran: btrfs/083
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/084
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/084	 1s
+Ran: btrfs/084
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/085
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/085	 6s
+Ran: btrfs/085
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/086
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/086	 1s
+Ran: btrfs/086
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/087
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/087	 1s
+Ran: btrfs/087
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/088
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/088	 [not run] /sys/kernel/debug/fail_make_request  not found. Seems that CONFIG_FAIL_MAKE_REQUEST kernel config option not enabled
+Not run: btrfs/088
+Passed all 0 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/089
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/089	 1s
+Ran: btrfs/089
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/090
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/090	 3s
+Ran: btrfs/090
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/091
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/091	 1s
+Ran: btrfs/091
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/092
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/092	 0s
+Ran: btrfs/092
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/093
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/093	 1s
+Ran: btrfs/093
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/094
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/094	 1s
+Ran: btrfs/094
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/095
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/095	 3s
+Ran: btrfs/095
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/096
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/096	 0s
+Ran: btrfs/096
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/097
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/097	 0s
+Ran: btrfs/097
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/098
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/098	 2s
+Ran: btrfs/098
+Passed all 1 tests
+
++ for i in {78..99}
++ cd /home/fedora/xfstests
++ sudo ./check tests/btrfs/099
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/099	 2s
+Ran: btrfs/099
+Passed all 1 tests
+
++ cd /home/fedora/xfstests
++ sudo ./check 'tests/btrfs/1??'
+FSTYP         -- btrfs
+PLATFORM      -- Linux/x86_64 ip-172-31-42-213 4.15.0-rc3
+MKFS_OPTIONS  -- /dev/xvdc
+MOUNT_OPTIONS -- -o context=system_u:object_r:root_t:s0 /dev/xvdc /mnt/scratch
+
+btrfs/100	 41s
+btrfs/101	 40s
+btrfs/102	 2s
+btrfs/103	 1s
+btrfs/104	 1s
+btrfs/105	 0s
+btrfs/106	 2s
+btrfs/107	 1s
+btrfs/108	 1s
+btrfs/109	 1s
+btrfs/110	 1s
+btrfs/111	 2s
+btrfs/112	 2s
+btrfs/113	 0s
+btrfs/114	 106s
+btrfs/115	 107s
+btrfs/116	 [not run] FITRIM not supported on /mnt/scratch
+btrfs/117	 2s
+btrfs/118	 3s
+btrfs/119	 4s
+btrfs/120	 2s
+btrfs/121	 1s
+btrfs/122	 17s
+btrfs/123	 2s
+btrfs/124	 182s
+btrfs/125	 31s
+btrfs/126	 2s
+btrfs/127	 1s
+btrfs/128	 1s
+btrfs/129	 0s
+btrfs/130	 [failed, exit status 1]
+btrfs/131	 3s
+btrfs/132	 30s
+btrfs/133	 2s
+btrfs/134	 0s
+btrfs/135	 1s
+btrfs/136	 64s
+btrfs/137	 1s
+btrfs/138	 259s
+btrfs/139	 164s
+btrfs/140	 22s
+btrfs/141	 2s
+btrfs/142	 [not run] /sys/kernel/debug/fail_make_request  not found. Seems that CONFIG_FAIL_MAKE_REQUEST kernel config option not enabled
+btrfs/143	 [not run] /sys/kernel/debug/fail_make_request  not found. Seems that CONFIG_FAIL_MAKE_REQUEST kernel config option not enabled
+btrfs/144	 2s
+btrfs/145	 0s
+btrfs/146	 2s
+btrfs/147	 2s
+btrfs/148	 12s
+btrfs/149	 1s
+btrfs/150	 [not run] /sys/kernel/debug/fail_make_request  not found. Seems that CONFIG_FAIL_MAKE_REQUEST kernel config option not enabled
+btrfs/151	 - output mismatch (see /home/fedora/xfstests/results//btrfs/151.out.bad)
+    --- tests/btrfs/151.out	2017-12-22 06:27:07.562542569 +0000
+    +++ /home/fedora/xfstests/results//btrfs/151.out.bad	2017-12-22 07:07:58.211002954 +0000
+    @@ -1,2 +1 @@
+     QA output created by 151
+    -Data, RAID1
+    ...
+    (Run 'diff -u tests/btrfs/151.out /home/fedora/xfstests/results//btrfs/151.out.bad'  to see the entire diff)
+btrfs/152	 3s
+btrfs/153	 5s
+btrfs/154	 [failed, exit status 1] - output mismatch (see /home/fedora/xfstests/results//btrfs/154.out.bad)
+    --- tests/btrfs/154.out	2017-12-22 06:27:07.562542569 +0000
+    +++ /home/fedora/xfstests/results//btrfs/154.out.bad	2017-12-22 07:08:17.513607166 +0000
+    @@ -6,5 +6,5 @@
+     scan missing dev and write
+     
+     run balance
+    -
+    -mount reconstructed dev only and check md5sum
+    +failed: '/bin/btrfs balance start --full-balance -dconvert=raid1 -mconvert=raid1 /mnt/scratch'
+    +(see /home/fedora/xfstests/results//btrfs/154.full for details)
+    ...
+    (Run 'diff -u tests/btrfs/154.out /home/fedora/xfstests/results//btrfs/154.out.bad'  to see the entire diff)
+btrfs/155	 3s
+btrfs/156	 [not run] FITRIM not supported on /mnt/scratch
+btrfs/157	 - output mismatch (see /home/fedora/xfstests/results//btrfs/157.out.bad)
+    --- tests/btrfs/157.out	2017-12-22 06:27:07.563542548 +0000
+    +++ /home/fedora/xfstests/results//btrfs/157.out.bad	2017-12-22 07:08:25.935434481 +0000
+    @@ -5,6 +5,5 @@
+     XXX Bytes, X ops; XX:XX:XX.X (XXX YYY/sec and XXX ops/sec)
+     wrote 65536/65536 bytes at offset 9437184
+     XXX Bytes, X ops; XX:XX:XX.X (XXX YYY/sec and XXX ops/sec)
+    -0200000 aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa
+    -*
+    -0400000
+    +od: /mnt/scratch/foobar: read error: Input/output error
+    ...
+    (Run 'diff -u tests/btrfs/157.out /home/fedora/xfstests/results//btrfs/157.out.bad'  to see the entire diff)
+Ran: btrfs/100 btrfs/101 btrfs/102 btrfs/103 btrfs/104 btrfs/105 btrfs/106 btrfs/107 btrfs/108 btrfs/109 btrfs/110 btrfs/111 btrfs/112 btrfs/113 btrfs/114 btrfs/115 btrfs/117 btrfs/118 btrfs/119 btrfs/120 btrfs/121 btrfs/122 btrfs/123 btrfs/124 btrfs/125 btrfs/126 btrfs/127 btrfs/128 btrfs/129 btrfs/130 btrfs/131 btrfs/132 btrfs/133 btrfs/134 btrfs/135 btrfs/136 btrfs/137 btrfs/138 btrfs/139 btrfs/140 btrfs/141 btrfs/144 btrfs/145 btrfs/146 btrfs/147 btrfs/148 btrfs/149 btrfs/151 btrfs/152 btrfs/153 btrfs/154 btrfs/155 btrfs/157
+Not run: btrfs/116 btrfs/142 btrfs/143 btrfs/150 btrfs/156
+Failures: btrfs/130 btrfs/151 btrfs/154 btrfs/157
+Failed 4 of 53 tests
+
+
+Script done on 2017-12-22 07:08:26+0000

@@ -1,0 +1,5 @@
+step 1......mkfs.btrfs
+WARNING: metadata has lower redundancy than data!
+
+step 2......simulate bitrot at offset 9437184 of device_4(/dev/xvdf) and offset 9437184 of device_3(/dev/xvde)
+step 3......repair the bitrot

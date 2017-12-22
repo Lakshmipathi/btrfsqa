@@ -1,0 +1,100 @@
+dev1=/dev/xvdc
+dev2=/dev/xvdd
+dev3=/dev/xvde
+
+max_fs_sz=100000000 count=100
+-----Initialize -----
+1+0 records in
+1+0 records out
+# /bin/btrfs filesystem show
+Label: none  uuid: e34a8ead-57d0-485c-bd20-bb4677707972
+	Total devices 3 FS bytes used 1.12MiB
+	devid    1 size 20.00GiB used 2.01GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 2.01GiB path /dev/xvdd
+	devid    3 size 20.00GiB used 2.01GiB path /dev/xvde
+
+Label: none  uuid: 0493bca4-c72c-449d-b1b8-8844101422a6
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+# /bin/btrfs filesystem df /mnt/scratch
+Data, RAID5: total=2.00GiB, used=1.00MiB
+System, RAID5: total=16.00MiB, used=16.00KiB
+Metadata, RAID5: total=2.00GiB, used=112.00KiB
+GlobalReserve, single: total=16.00MiB, used=0.00B
+
+-----Write degraded mount fill upto 100000000 bytes-----
+unmount
+clean btrfs ko
+100+0 records in
+100+0 records out
+# /bin/btrfs filesystem show
+Label: none  uuid: e34a8ead-57d0-485c-bd20-bb4677707972
+	Total devices 3 FS bytes used 2.12MiB
+	devid    1 size 20.00GiB used 2.01GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 2.01GiB path /dev/xvdd
+	devid    3 size 20.00GiB used 2.01GiB path /dev/xvde
+
+Label: none  uuid: 0493bca4-c72c-449d-b1b8-8844101422a6
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+# /bin/btrfs filesystem df /mnt/scratch
+Data, RAID5: total=2.00GiB, used=2.00MiB
+System, RAID5: total=16.00MiB, used=16.00KiB
+Metadata, RAID5: total=2.00GiB, used=112.00KiB
+GlobalReserve, single: total=16.00MiB, used=0.00B
+2f282b84e7e608d5852449ed940bfc51 /mnt/scratch/tf2
+
+-----Mount normal-----
+# /bin/btrfs device scan
+Scanning for Btrfs filesystems
+
+# /bin/btrfs balance start /mnt/scratch
+WARNING:
+
+	Full balance without filters requested. This operation is very
+	intense and takes potentially very long. It is recommended to
+	use the balance filters to narrow down the scope of balance.
+	Use 'btrfs balance start --full-balance' option to skip this
+	warning. The operation will start in 10 seconds.
+	Use Ctrl-C to stop it.
+10 9 8 7 6 5 4 3 2 1
+Starting balance without any filters.
+Done, had to relocate 3 out of 3 chunks
+# /bin/btrfs filesystem show
+Label: none  uuid: e34a8ead-57d0-485c-bd20-bb4677707972
+	Total devices 3 FS bytes used 101.98MiB
+	devid    1 size 20.00GiB used 1.53GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 1.53GiB path /dev/xvdd
+	devid    3 size 20.00GiB used 1.53GiB path /dev/xvde
+
+Label: none  uuid: 0493bca4-c72c-449d-b1b8-8844101422a6
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+# /bin/btrfs filesystem df /mnt/scratch
+Data, RAID5: total=2.00GiB, used=101.75MiB
+System, RAID5: total=64.00MiB, used=16.00KiB
+Metadata, RAID5: total=1.00GiB, used=224.00KiB
+GlobalReserve, single: total=16.00MiB, used=0.00B
+2f282b84e7e608d5852449ed940bfc51 /mnt/scratch/tf2
+
+-----Mount degraded with dev1 missing-----
+# /bin/btrfs filesystem show
+Label: none  uuid: e34a8ead-57d0-485c-bd20-bb4677707972
+	Total devices 3 FS bytes used 101.98MiB
+	devid    2 size 20.00GiB used 1.53GiB path /dev/xvdd
+	devid    3 size 20.00GiB used 1.53GiB path /dev/xvde
+	*** Some devices missing
+
+Label: none  uuid: 0493bca4-c72c-449d-b1b8-8844101422a6
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+# /bin/btrfs filesystem df /mnt/scratch
+Data, RAID5: total=2.00GiB, used=101.75MiB
+System, RAID5: total=64.00MiB, used=16.00KiB
+Metadata, RAID5: total=1.00GiB, used=224.00KiB
+GlobalReserve, single: total=16.00MiB, used=0.00B
+2f282b84e7e608d5852449ed940bfc51 /mnt/scratch/tf2
