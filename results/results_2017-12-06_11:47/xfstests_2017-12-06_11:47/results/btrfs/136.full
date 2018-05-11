@@ -1,0 +1,33 @@
+mke2fs 1.43.4 (31-Jan-2017)
+Creating filesystem with 5242880 4k blocks and 1310720 inodes
+Filesystem UUID: 7fe8199b-5677-42a6-ac38-4f3f112aa0e5
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+	4096000
+
+Allocating group tables:   0/160       done                            
+Writing inode tables:   0/160       done                            
+Creating journal (32768 blocks): done
+Writing superblocks and filesystem accounting information:   0/160       done
+
+Run fsstress -p 20 -n 100 -d /mnt/scratch/ext3_ext4_data/ext3
+tune2fs 1.43.4 (31-Jan-2017)
+e2fsck 1.43.4 (31-Jan-2017)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 3A: Optimizing directories
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+
+/dev/xvdc: ***** FILE SYSTEM WAS MODIFIED *****
+/dev/xvdc: 327/1310720 files (25.4% non-contiguous), 130630/5242880 blocks
+Run fsstress -p 20 -n 100 -d /mnt/scratch/ext3_ext4_data/ext4
+create btrfs filesystem:
+	blocksize: 4096
+	nodesize:  16384
+	features:  extref, skinny-metadata (default)
+creating ext2 image file
+creating btrfs metadata
+copy inodes [o] [        11/       627]
+conversion complete

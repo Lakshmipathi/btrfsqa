@@ -1,0 +1,106 @@
+Script started on Wed 06 Dec 2017 09:52:07 AM UTC
++ echo 'Installing dependencies..'
+Installing dependencies..
++ sudo yum install -q -y unzip wget openssl-devel gcc make libtool automake bc elfutils-libelf-devel
++ echo 'Installing dependencies..done'
+Installing dependencies..done
++ sudo modprobe btrfs
++ wget https://github.com/kdave/btrfs-devel/archive/misc-next.zip
+--2017-12-06 09:52:46--  https://github.com/kdave/btrfs-devel/archive/misc-next.zip
+Resolving github.com (github.com)... 192.30.255.113, 192.30.255.112
+Connecting to github.com (github.com)|192.30.255.113|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://codeload.github.com/kdave/btrfs-devel/zip/misc-next [following]
+--2017-12-06 09:52:46--  https://codeload.github.com/kdave/btrfs-devel/zip/misc-next
+Resolving codeload.github.com (codeload.github.com)... 192.30.255.120, 192.30.255.121
+Connecting to codeload.github.com (codeload.github.com)|192.30.255.120|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/zip]
+Saving to: ‘misc-next.zip’
+
+misc-next.zip                           [<=>                                                                ]       0  --.-KB/s               misc-next.zip                           [ <=>                                                               ]   2.00M  9.21MB/s               misc-next.zip                           [  <=>                                                              ]   4.00M  9.24MB/s               misc-next.zip                           [   <=>                                                             ]   6.00M  8.94MB/s               misc-next.zip                           [    <=>                                                            ]   8.00M  8.85MB/s               misc-next.zip                           [     <=>                                                           ]  10.00M  8.74MB/s               misc-next.zip                           [      <=>                                                          ]  12.00M  8.76MB/s               misc-next.zip                           [       <=>                                                         ]  14.00M  8.77MB/s               misc-next.zip                           [        <=>                                                        ]  16.00M  8.80MB/s               misc-next.zip                           [         <=>                                                       ]  18.00M  8.68MB/s               misc-next.zip                           [          <=>                                                      ]  20.00M  8.57MB/s               misc-next.zip                           [           <=>                                                     ]  22.00M  8.60MB/s               misc-next.zip                           [            <=>                                                    ]  24.00M  8.59MB/s               misc-next.zip                           [             <=>                                                   ]  26.00M  8.64MB/s               misc-next.zip                           [              <=>                                                  ]  28.00M  8.64MB/s               misc-next.zip                           [               <=>                                                 ]  30.00M  8.63MB/s               misc-next.zip                           [                <=>                                                ]  32.00M  8.64MB/s               misc-next.zip                           [                 <=>                                               ]  34.00M  8.65MB/s               misc-next.zip                           [                  <=>                                              ]  36.00M  8.62MB/s               misc-next.zip                           [                   <=>                                             ]  38.00M  8.51MB/s               misc-next.zip                           [                    <=>                                            ]  40.00M  8.48MB/s               misc-next.zip                           [                     <=>                                           ]  42.00M  8.41MB/s               misc-next.zip                           [                      <=>                                          ]  44.00M  8.35MB/s               misc-next.zip                           [                       <=>                                         ]  46.00M  8.33MB/s               misc-next.zip                           [                        <=>                                        ]  48.00M  8.31MB/s               misc-next.zip                           [                         <=>                                       ]  50.00M  8.20MB/s               misc-next.zip                           [                          <=>                                      ]  52.00M  7.87MB/s               misc-next.zip                           [                           <=>                                     ]  54.00M  7.44MB/s               misc-next.zip                           [                            <=>                                    ]  56.00M  7.02MB/s               misc-next.zip                           [                             <=>                                   ]  58.00M  7.03MB/s               misc-next.zip                           [                              <=>                                  ]  60.00M  7.03MB/s               misc-next.zip                           [                               <=>                                 ]  62.00M  7.02MB/s               misc-next.zip                           [                                <=>                                ]  64.00M  6.99MB/s               misc-next.zip                           [                                 <=>                               ]  66.00M  6.95MB/s               misc-next.zip                           [                                  <=>                              ]  68.00M  6.96MB/s               misc-next.zip                           [                                   <=>                             ]  70.00M  6.94MB/s               misc-next.zip                           [                                    <=>                            ]  72.00M  6.90MB/s               misc-next.zip                           [                                     <=>                           ]  74.00M  6.89MB/s               misc-next.zip                           [                                      <=>                          ]  76.00M  6.89MB/s               misc-next.zip                           [                                       <=>                         ]  78.00M  6.89MB/s               misc-next.zip                           [                                        <=>                        ]  80.00M  6.90MB/s               misc-next.zip                           [                                         <=>                       ]  82.00M  6.91MB/s               misc-next.zip                           [                                          <=>                      ]  84.00M  6.90MB/s               misc-next.zip                           [                                           <=>                     ]  86.00M  6.90MB/s               misc-next.zip                           [                                            <=>                    ]  88.00M  6.90MB/s               misc-next.zip                           [                                             <=>                   ]  90.00M  6.96MB/s               misc-next.zip                           [                                              <=>                  ]  92.00M  7.12MB/s               misc-next.zip                           [                                               <=>                 ]  94.00M  7.45MB/s               misc-next.zip                           [                                                <=>                ]  96.00M  7.83MB/s               misc-next.zip                           [                                                 <=>               ]  98.00M  7.79MB/s               misc-next.zip                           [                                                  <=>              ] 100.00M  7.75MB/s               misc-next.zip                           [                                                   <=>             ] 102.00M  7.72MB/s               misc-next.zip                           [                                                    <=>            ] 104.00M  7.70MB/s               misc-next.zip                           [                                                     <=>           ] 106.00M  7.65MB/s               misc-next.zip                           [                                                      <=>          ] 108.00M  7.61MB/s               misc-next.zip                           [                                                       <=>         ] 110.00M  7.60MB/s               misc-next.zip                           [                                                        <=>        ] 112.00M  7.62MB/s               misc-next.zip                           [                                                         <=>       ] 114.00M  7.54MB/s               misc-next.zip                           [                                                          <=>      ] 116.00M  7.56MB/s               misc-next.zip                           [                                                           <=>     ] 118.00M  7.57MB/s               misc-next.zip                           [                                                            <=>    ] 120.00M  7.52MB/s               misc-next.zip                           [                                                             <=>   ] 122.00M  7.45MB/s               misc-next.zip                           [                                                              <=>  ] 124.00M  7.44MB/s               misc-next.zip                           [                                                               <=> ] 126.00M  7.44MB/s               misc-next.zip                           [                                                                <=>] 128.00M  7.41MB/s               misc-next.zip                           [                                                               <=> ] 130.00M  7.43MB/s               misc-next.zip                           [                                                              <=>  ] 132.00M  7.46MB/s               misc-next.zip                           [                                                             <=>   ] 134.00M  7.46MB/s               misc-next.zip                           [                                                            <=>    ] 136.00M  7.48MB/s               misc-next.zip                           [                                                           <=>     ] 138.00M  7.49MB/s               misc-next.zip                           [                                                          <=>      ] 140.00M  7.53MB/s               misc-next.zip                           [                                                         <=>       ] 142.00M  7.52MB/s               misc-next.zip                           [                                                        <=>        ] 144.00M  7.52MB/s               misc-next.zip                           [                                                       <=>         ] 144.00M  7.18MB/s               misc-next.zip                           [                                                      <=>          ] 148.00M  7.45MB/s               misc-next.zip                           [                                                     <=>           ] 150.00M  7.39MB/s               misc-next.zip                           [                                                    <=>            ] 152.00M  7.37MB/s               misc-next.zip                           [                                                   <=>             ] 154.00M  7.43MB/s               misc-next.zip                           [                                                  <=>              ] 156.00M  7.43MB/s               misc-next.zip                           [                                                 <=>               ] 158.00M  7.49MB/s               misc-next.zip                           [                                                <=>                ] 160.00M  7.56MB/s               misc-next.zip                           [                                               <=>                 ] 162.00M  7.57MB/s               misc-next.zip                           [                                              <=>                  ] 164.00M  7.55MB/s               misc-next.zip                           [                                             <=>                   ] 166.00M  7.51MB/s               misc-next.zip                           [                                            <=>                    ] 168.00M  7.52MB/s               misc-next.zip                           [                                           <=>                     ] 170.00M  7.50MB/s               misc-next.zip                           [                                          <=>                      ] 172.00M  7.53MB/s               misc-next.zip                           [                                         <=>                       ] 174.00M  7.56MB/s               misc-next.zip                           [                                        <=>                        ] 176.00M  7.55MB/s               misc-next.zip                           [                                       <=>                         ] 178.00M  7.55MB/s               misc-next.zip                           [                                      <=>                          ] 180.00M  7.53MB/s               misc-next.zip                           [                                     <=>                           ] 182.00M  7.53MB/s               misc-next.zip                           [                                    <=>                            ] 188.31M  8.46MB/s               misc-next.zip                           [                                   <=>                             ] 190.00M  8.29MB/s               misc-next.zip                           [                                  <=>                              ] 191.72M  8.55MB/s    in 25s     
+
+2017-12-06 09:53:12 (7.71 MB/s) - ‘misc-next.zip’ saved [201030571]
+
++ unzip -qq misc-next.zip
++ cp -v /home/fedora/btrfsqe/kernel.config /home/fedora/btrfs-devel-misc-next/.config
+'/home/fedora/btrfsqe/kernel.config' -> '/home/fedora/btrfs-devel-misc-next/.config'
++ cd /home/fedora/btrfs-devel-misc-next/
++ make -s -j8
+.config:4670:warning: override: reassigning to symbol DM_FLAKEY
+.config:4671:warning: override: reassigning to symbol DM_THIN_PROVISIONING
+.config:4672:warning: override: reassigning to symbol DM_SNAPSHOT
+.config:4673:warning: override: reassigning to symbol SCSI_DEBUG
+Warning: synced file at 'tools/objtool/arch/x86/lib/x86-opcode-map.txt' differs from latest kernel version at 'arch/x86/lib/x86-opcode-map.txt'
+Success: decoded and checked 2251434 instructions
+arch/x86/tools/insn_sanity: Success: decoded and checked 1000000 random instructions with 0 errors (seed:0x21015bfb)
++ sudo make modules_install
+  INSTALL arch/x86/crypto/crc32-pclmul.ko
+  INSTALL arch/x86/crypto/crc32c-intel.ko
+  INSTALL arch/x86/crypto/crct10dif-pclmul.ko
+  INSTALL arch/x86/crypto/ghash-clmulni-intel.ko
+  INSTALL arch/x86/events/intel/intel-rapl-perf.ko
+  INSTALL crypto/xor.ko
+  INSTALL drivers/ata/ata_generic.ko
+  INSTALL drivers/ata/pata_acpi.ko
+  INSTALL drivers/block/xen-blkfront.ko
+  INSTALL drivers/char/ppdev.ko
+  INSTALL drivers/char/tpm/tpm.ko
+  INSTALL drivers/char/tpm/tpm_tis.ko
+  INSTALL drivers/char/tpm/tpm_tis_core.ko
+  INSTALL drivers/edac/sb_edac.ko
+  INSTALL drivers/gpu/drm/cirrus/cirrus.ko
+  INSTALL drivers/gpu/drm/drm.ko
+  INSTALL drivers/gpu/drm/drm_kms_helper.ko
+  INSTALL drivers/gpu/drm/ttm/ttm.ko
+  INSTALL drivers/i2c/algos/i2c-algo-bit.ko
+  INSTALL drivers/i2c/busses/i2c-piix4.ko
+  INSTALL drivers/input/serio/serio_raw.ko
+  INSTALL drivers/net/xen-netfront.ko
+  INSTALL drivers/parport/parport.ko
+  INSTALL drivers/parport/parport_pc.ko
+  INSTALL drivers/powercap/intel_rapl.ko
+  INSTALL drivers/xen/tmem.ko
+  INSTALL drivers/xen/xen-privcmd.ko
+  INSTALL fs/btrfs/btrfs.ko
+  INSTALL fs/fat/fat.ko
+  INSTALL fs/fat/msdos.ko
+  INSTALL fs/fat/vfat.ko
+  INSTALL fs/fuse/fuse.ko
+  INSTALL fs/isofs/isofs.ko
+  INSTALL fs/xfs/xfs.ko
+  INSTALL kernel/configs.ko
+  INSTALL lib/raid6/raid6_pq.ko
+  INSTALL lib/xxhash.ko
+  INSTALL lib/zstd/zstd_compress.ko
+  INSTALL lib/zstd/zstd_decompress.ko
+  DEPMOD  4.15.0-rc2
++ sudo make install
+sh ./arch/x86/boot/install.sh 4.15.0-rc2 arch/x86/boot/bzImage \
+	System.map "/boot"
++ grub2-editenv list
+saved_entry=Fedora (4.11.8-300.fc26.x86_64) 26 (Cloud Edition)
++ grubcfg=/etc/grub2.cfg
++ cut -d \' -f2
++ grep '^menuentry' /etc/grub2.cfg
+Fedora (4.15.0-rc2) 26 (Cloud Edition)
+Fedora (4.11.8-300.fc26.x86_64) 26 (Cloud Edition)
+++ head -n1
+++ cut -d \' -f2
+++ grep '^menuentry' /etc/grub2.cfg
++ new_kernel='Fedora (4.15.0-rc2) 26 (Cloud Edition)'
++ sudo grub2-set-default 'Fedora (4.15.0-rc2) 26 (Cloud Edition)'
++ sudo grub2-mkconfig -o /etc/grub2.cfg
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-4.15.0-rc2
+Found initrd image: /boot/initramfs-4.15.0-rc2.img
+Found linux image: /boot/vmlinuz-4.11.8-300.fc26.x86_64
+Found initrd image: /boot/initramfs-4.11.8-300.fc26.x86_64.img
+done
++ grub2-editenv list
+saved_entry=Fedora (4.15.0-rc2) 26 (Cloud Edition)
++ '[' -f /home/fedora/btrfs-devel-misc-next/arch/x86/boot/bzImage ']'
++ touch /home/fedora/btrfsqe/001_btrfsdevel.completed
++ rm -rf /home/fedora/misc-next.zip /home/fedora/btrfs-devel-misc-next
+
+Script done on Wed 06 Dec 2017 10:50:25 AM UTC

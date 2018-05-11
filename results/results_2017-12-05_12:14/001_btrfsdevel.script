@@ -1,0 +1,103 @@
+Script started on Tue 05 Dec 2017 10:19:34 AM UTC
++ echo 'Installing dependencies..'
+Installing dependencies..
++ sudo yum install -q -y unzip wget openssl-devel gcc make libtool automake bc elfutils-libelf-devel
++ echo 'Installing dependencies..done'
+Installing dependencies..done
++ sudo modprobe btrfs
++ wget https://github.com/kdave/btrfs-devel/archive/misc-next.zip
+--2017-12-05 10:20:16--  https://github.com/kdave/btrfs-devel/archive/misc-next.zip
+Resolving github.com (github.com)... 192.30.255.112, 192.30.255.113
+Connecting to github.com (github.com)|192.30.255.112|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://codeload.github.com/kdave/btrfs-devel/zip/misc-next [following]
+--2017-12-05 10:20:17--  https://codeload.github.com/kdave/btrfs-devel/zip/misc-next
+Resolving codeload.github.com (codeload.github.com)... 192.30.255.120, 192.30.255.121
+Connecting to codeload.github.com (codeload.github.com)|192.30.255.120|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 201030620 (192M) [application/zip]
+Saving to: ‘misc-next.zip’
+
+misc-next.zip                         0%[                                                                   ]       0  --.-KB/s               misc-next.zip                         4%[==>                                                                ]   9.02M  44.9MB/s               misc-next.zip                        10%[======>                                                            ]  20.45M  50.1MB/s               misc-next.zip                        17%[==========>                                                        ]  32.92M  54.1MB/s               misc-next.zip                        23%[==============>                                                    ]  45.06M  55.7MB/s               misc-next.zip                        30%[===================>                                               ]  58.50M  58.0MB/s               misc-next.zip                        36%[=======================>                                           ]  70.89M  58.4MB/s               misc-next.zip                        43%[============================>                                      ]  83.61M  58.9MB/s               misc-next.zip                        49%[================================>                                  ]  95.12M  58.6MB/s               misc-next.zip                        56%[====================================>                              ] 108.06M  59.2MB/s               misc-next.zip                        62%[=========================================>                         ] 120.39M  59.2MB/s               misc-next.zip                        69%[=============================================>                     ] 132.64M  59.2MB/s               misc-next.zip                        75%[=================================================>                 ] 145.27M  59.5MB/s               misc-next.zip                        82%[======================================================>            ] 158.72M  60.1MB/s               misc-next.zip                        89%[==========================================================>        ] 170.84M  60.2MB/s               misc-next.zip                        95%[==============================================================>    ] 182.57M  60.1MB/s    eta 0s     misc-next.zip                       100%[==================================================================>] 191.72M  60.3MB/s    in 3.2s    
+
+2017-12-05 10:20:20 (60.3 MB/s) - ‘misc-next.zip’ saved [201030620/201030620]
+
++ unzip -qq misc-next.zip
++ cp -v /home/fedora/btrfsqe/kernel.config /home/fedora/btrfs-devel-misc-next/.config
+'/home/fedora/btrfsqe/kernel.config' -> '/home/fedora/btrfs-devel-misc-next/.config'
++ cd /home/fedora/btrfs-devel-misc-next/
++ make -s -j8
+Warning: synced file at 'tools/objtool/arch/x86/lib/x86-opcode-map.txt' differs from latest kernel version at 'arch/x86/lib/x86-opcode-map.txt'
+Success: decoded and checked 2219564 instructions
+arch/x86/tools/insn_sanity: Success: decoded and checked 1000000 random instructions with 0 errors (seed:0xfa0d6fb3)
++ sudo make modules_install
+  INSTALL arch/x86/crypto/crc32-pclmul.ko
+  INSTALL arch/x86/crypto/crc32c-intel.ko
+  INSTALL arch/x86/crypto/crct10dif-pclmul.ko
+  INSTALL arch/x86/crypto/ghash-clmulni-intel.ko
+  INSTALL arch/x86/events/intel/intel-rapl-perf.ko
+  INSTALL crypto/xor.ko
+  INSTALL drivers/ata/ata_generic.ko
+  INSTALL drivers/ata/pata_acpi.ko
+  INSTALL drivers/block/xen-blkfront.ko
+  INSTALL drivers/char/ppdev.ko
+  INSTALL drivers/char/tpm/tpm.ko
+  INSTALL drivers/char/tpm/tpm_tis.ko
+  INSTALL drivers/char/tpm/tpm_tis_core.ko
+  INSTALL drivers/edac/sb_edac.ko
+  INSTALL drivers/gpu/drm/cirrus/cirrus.ko
+  INSTALL drivers/gpu/drm/drm.ko
+  INSTALL drivers/gpu/drm/drm_kms_helper.ko
+  INSTALL drivers/gpu/drm/ttm/ttm.ko
+  INSTALL drivers/i2c/algos/i2c-algo-bit.ko
+  INSTALL drivers/i2c/busses/i2c-piix4.ko
+  INSTALL drivers/input/serio/serio_raw.ko
+  INSTALL drivers/net/xen-netfront.ko
+  INSTALL drivers/parport/parport.ko
+  INSTALL drivers/parport/parport_pc.ko
+  INSTALL drivers/powercap/intel_rapl.ko
+  INSTALL drivers/xen/tmem.ko
+  INSTALL drivers/xen/xen-privcmd.ko
+  INSTALL fs/btrfs/btrfs.ko
+  INSTALL fs/fat/fat.ko
+  INSTALL fs/fat/msdos.ko
+  INSTALL fs/fat/vfat.ko
+  INSTALL fs/fuse/fuse.ko
+  INSTALL fs/isofs/isofs.ko
+  INSTALL fs/xfs/xfs.ko
+  INSTALL kernel/configs.ko
+  INSTALL lib/libcrc32c.ko
+  INSTALL lib/raid6/raid6_pq.ko
+  INSTALL lib/xxhash.ko
+  INSTALL lib/zstd/zstd_compress.ko
+  INSTALL lib/zstd/zstd_decompress.ko
+  DEPMOD  4.15.0-rc2
++ sudo make install
+sh ./arch/x86/boot/install.sh 4.15.0-rc2 arch/x86/boot/bzImage \
+	System.map "/boot"
++ grub2-editenv list
+saved_entry=Fedora (4.11.8-300.fc26.x86_64) 26 (Cloud Edition)
++ grubcfg=/etc/grub2.cfg
++ cut -d \' -f2
++ grep '^menuentry' /etc/grub2.cfg
+Fedora (4.15.0-rc2) 26 (Cloud Edition)
+Fedora (4.11.8-300.fc26.x86_64) 26 (Cloud Edition)
+++ head -n1
+++ cut -d \' -f2
+++ grep '^menuentry' /etc/grub2.cfg
++ new_kernel='Fedora (4.15.0-rc2) 26 (Cloud Edition)'
++ sudo grub2-set-default 'Fedora (4.15.0-rc2) 26 (Cloud Edition)'
++ sudo grub2-mkconfig -o /etc/grub2.cfg
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-4.15.0-rc2
+Found initrd image: /boot/initramfs-4.15.0-rc2.img
+Found linux image: /boot/vmlinuz-4.11.8-300.fc26.x86_64
+Found initrd image: /boot/initramfs-4.11.8-300.fc26.x86_64.img
+done
++ grub2-editenv list
+saved_entry=Fedora (4.15.0-rc2) 26 (Cloud Edition)
++ '[' -f /home/fedora/btrfs-devel-misc-next/arch/x86/boot/bzImage ']'
++ touch /home/fedora/btrfsqe/001_btrfsdevel.completed
++ rm -rf /home/fedora/misc-next.zip /home/fedora/btrfs-devel-misc-next
+
+Script done on Tue 05 Dec 2017 11:19:02 AM UTC

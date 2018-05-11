@@ -1,0 +1,3 @@
+# /bin/btrfs quota enable /mnt/scratch
+# /bin/btrfs quota rescan -w /mnt/scratch
+# /bin/btrfs qgroup limit 100M 0/5 /mnt/scratch

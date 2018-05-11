@@ -1,0 +1,55 @@
+Script started on 2017-12-06 11:46:33+0000
++ sudo yum install patch -y
+Last metadata expiration check: 1:56:13 ago on Wed 06 Dec 2017 09:50:31 AM UTC.
+Dependencies resolved.
+===============================================================================================================================================
+ Package                        Arch                            Version                                  Repository                       Size
+===============================================================================================================================================
+Installing:
+ patch                          x86_64                          2.7.5-4.fc26                             fedora                          122 k
+
+Transaction Summary
+===============================================================================================================================================
+Install  1 Package
+
+Total download size: 122 k
+Installed size: 227 k
+Downloading Packages:
+patch-2.7.5-4.fc26.x86_64.rpm                         0% [                                                   ] ---  B/s |   0  B     --:-- ETApatch-2.7.5-4.fc26.x86_64.rpm                         0% [                                                   ] ---  B/s |   0  B     --:-- ETApatch-2.7.5-4.fc26.x86_64.rpm                                                                                  204 kB/s | 122 kB     00:00    
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                           64 kB/s | 122 kB     00:01     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                       1/1 
+  Installing       : patch-2.7.5-4.fc26.x86_64 [                                                                                         ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [============                                                                             ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [========================                                                                 ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [=====================================                                                    ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [=================================================                                        ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [==============================================================                           ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [===============================================================                          ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [=====================================================================                    ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [======================================================================                   ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [==================================================================================       ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [===================================================================================      ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64 [======================================================================================== ] 1/1  Installing       : patch-2.7.5-4.fc26.x86_64                                                                                             1/1 
+  Running scriptlet: patch-2.7.5-4.fc26.x86_64                                                                                             1/1 
+  Verifying        : patch-2.7.5-4.fc26.x86_64                                                                                             1/1 
+
+Installed:
+  patch.x86_64 2.7.5-4.fc26                                                                                                                    
+
+Complete!
++ cd /home/fedora/btrfs-progs
++ wget https://patchwork.kernel.org/patch/9583455/raw/
+--2017-12-06 11:46:52--  https://patchwork.kernel.org/patch/9583455/raw/
+Resolving patchwork.kernel.org (patchwork.kernel.org)... 198.145.29.83
+Connecting to patchwork.kernel.org (patchwork.kernel.org)|198.145.29.83|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/x-patch]
+Saving to: ‘index.html’
+
+index.html                              [<=>                                                                ]       0  --.-KB/s               index.html                              [ <=>                                                               ]  13.47K  --.-KB/s    in 0.004s  
+
+2017-12-06 11:46:53 (3.05 MB/s) - ‘index.html’ saved [13794]
+
++ mv index.html /tmp/raid5_scrub_test.diff
++ patch -p1
+patching file tests/misc-tests/020-raid5-datastripe-corruption-parity-check/test.sh
++ chmod +x /home/fedora/btrfs-progs/tests/misc-tests/020-raid5-datastripe-corruption-parity-check/test.sh
++ cp /home/fedora/btrfs-progs/tests/misc-tests-results.txt /home/fedora/btrfs-progs/tests/Misc-tests-results.txt
+cp: cannot stat '/home/fedora/btrfs-progs/tests/misc-tests-results.txt': No such file or directory
+
+Script done on 2017-12-06 11:46:53+0000

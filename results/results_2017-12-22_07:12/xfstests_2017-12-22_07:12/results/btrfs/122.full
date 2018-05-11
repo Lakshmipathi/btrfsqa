@@ -1,0 +1,9 @@
+# /bin/btrfs quota enable /mnt/scratch
+# /bin/btrfs subvolume snapshot /mnt/scratch /mnt/scratch/snaps/empty1
+Create a snapshot of '/mnt/scratch' in '/mnt/scratch/snaps/empty1'
+# /bin/btrfs subvolume snapshot /mnt/scratch /mnt/scratch/snaps/empty2
+Create a snapshot of '/mnt/scratch' in '/mnt/scratch/snaps/empty2'
+# /bin/btrfs subvolume snapshot /mnt/scratch /mnt/scratch/snaps/snap1
+Create a snapshot of '/mnt/scratch' in '/mnt/scratch/snaps/snap1'
+# /bin/btrfs subvolume snapshot /mnt/scratch /mnt/scratch/snaps/snap2
+Create a snapshot of '/mnt/scratch' in '/mnt/scratch/snaps/snap2'

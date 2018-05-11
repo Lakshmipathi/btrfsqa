@@ -1,0 +1,5 @@
+# /bin/btrfs subvolume create /mnt/scratch/subvol
+Create subvolume '/mnt/scratch/subvol'
+# /bin/btrfs quota enable /mnt/scratch
+# /bin/btrfs quota rescan -w /mnt/scratch
+# /bin/btrfs qgroup limit -e 1G /mnt/scratch/subvol

@@ -1,0 +1,64 @@
+
+max_fs_sz=1200000000 count=1200
+-----Initialize -----
+# /bin/btrfs filesystem show
+Label: none  uuid: 98664154-c02d-40ef-a375-280c672ba7d9
+	Total devices 2 FS bytes used 640.00KiB
+	devid    1 size 20.00GiB used 2.01GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 2.01GiB path /dev/xvdd
+
+Label: none  uuid: 0493bca4-c72c-449d-b1b8-8844101422a6
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+1+0 records in
+1+0 records out
+unmount
+clean btrfs ko
+
+-----Write degraded mount fill upto 1200000000 bytes-----
+# /bin/btrfs filesystem show
+Label: none  uuid: 98664154-c02d-40ef-a375-280c672ba7d9
+	Total devices 2 FS bytes used 1.62MiB
+	devid    1 size 20.00GiB used 2.01GiB path /dev/xvdc
+	*** Some devices missing
+
+Label: none  uuid: 0493bca4-c72c-449d-b1b8-8844101422a6
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+1200+0 records in
+1200+0 records out
+8c2297c9abaf3b724f6192f65efe9a89 /mnt/scratch/tf2
+unmount
+
+-----Mount normal-----
+# /bin/btrfs device scan
+Scanning for Btrfs filesystems
+# /bin/btrfs filesystem show
+Label: none  uuid: 98664154-c02d-40ef-a375-280c672ba7d9
+	Total devices 2 FS bytes used 1.17GiB
+	devid    1 size 20.00GiB used 3.29GiB path /dev/xvdc
+	devid    2 size 20.00GiB used 2.01GiB path /dev/xvdd
+
+Label: none  uuid: 0493bca4-c72c-449d-b1b8-8844101422a6
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+
+# /bin/btrfs balance start --full-balance /mnt/scratch
+Done, had to relocate 6 out of 6 chunks
+8c2297c9abaf3b724f6192f65efe9a89 /mnt/scratch/tf2
+
+-----Mount degraded with the other dev -----
+# /bin/btrfs filesystem show
+Label: none  uuid: 98664154-c02d-40ef-a375-280c672ba7d9
+	Total devices 2 FS bytes used 1.17GiB
+	devid    2 size 20.00GiB used 2.28GiB path /dev/xvdd
+	*** Some devices missing
+
+Label: none  uuid: 0493bca4-c72c-449d-b1b8-8844101422a6
+	Total devices 1 FS bytes used 192.00KiB
+	devid    1 size 20.00GiB used 276.00MiB path /dev/xvdb
+
+8c2297c9abaf3b724f6192f65efe9a89 /mnt/scratch/tf2

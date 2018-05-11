@@ -1,0 +1,10 @@
+QA output created by 154
+setup
+
+degraded mount
+
+scan missing dev and write
+
+run balance
+failed: '/bin/btrfs balance start --full-balance -dconvert=raid1 -mconvert=raid1 /mnt/scratch'
+(see /home/fedora/xfstests/results//btrfs/154.full for details)

@@ -1,0 +1,28 @@
+btrfs-progs v4.14-37-g03a44122
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Label:              (null)
+UUID:               c989f00a-436d-4473-8578-a8061e1b82e7
+Node size:          16384
+Sector size:        4096
+Filesystem size:    20.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1    20.00GiB  /dev/xvdc
+
+# /bin/btrfs subvolume snapshot /mnt/scratch /mnt/scratch/snap1
+Create a snapshot of '/mnt/scratch' in '/mnt/scratch/snap1'
+# /bin/btrfs subvolume delete /mnt/scratch/snap1
+Delete subvolume (no-commit): '/mnt/scratch/snap1'
+# /bin/btrfs subvolume snapshot /mnt/scratch /mnt/scratch/testdir/snap2
+Create a snapshot of '/mnt/scratch' in '/mnt/scratch/testdir/snap2'
+# /bin/btrfs subvolume delete /mnt/scratch/testdir/snap2
+Delete subvolume (no-commit): '/mnt/scratch/testdir/snap2'
