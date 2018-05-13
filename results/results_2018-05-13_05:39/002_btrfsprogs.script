@@ -1,0 +1,141 @@
+Script started on Sun 13 May 2018 05:33:08 AM UTC
++ echo 'Installing dependencies..'
+Installing dependencies..
++ sudo yum install -q -y automake e2fsprogs-libs e2fsprogs-devel libblkid-devel zlib-devel lzo-devel asciidoc xmlto which findutils xz gcc make libtool attr libzstd libzstd-devel
+warning: file /usr/share/locale/zh_TW/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/zh_CN/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/vi/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/uk/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/tr/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/sv/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/sl/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ru/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/pt_BR/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/pl/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/nl/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ja/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/it/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/id/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/hu/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/hr/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/gl/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/fr/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/fi/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/eu/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/et/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/es/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/de/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/da/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/cs/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
+warning: file /usr/share/locale/ca/LC_MESSAGES/util-linux.mo: remove failed: No such file or directory
++ echo 'Installing dependencies..done'
+Installing dependencies..done
++ git clone https://github.com/kdave/btrfs-progs.git -b devel
+Cloning into 'btrfs-progs'...
+remote: Counting objects: 20102, done.[K
+remote: Compressing objects:   0% (1/142)   [Kremote: Compressing objects:   1% (2/142)   [Kremote: Compressing objects:   2% (3/142)   [Kremote: Compressing objects:   3% (5/142)   [Kremote: Compressing objects:   4% (6/142)   [Kremote: Compressing objects:   5% (8/142)   [Kremote: Compressing objects:   6% (9/142)   [Kremote: Compressing objects:   7% (10/142)   [Kremote: Compressing objects:   8% (12/142)   [Kremote: Compressing objects:   9% (13/142)   [Kremote: Compressing objects:  10% (15/142)   [Kremote: Compressing objects:  11% (16/142)   [Kremote: Compressing objects:  12% (18/142)   [Kremote: Compressing objects:  13% (19/142)   [Kremote: Compressing objects:  14% (20/142)   [Kremote: Compressing objects:  15% (22/142)   [Kremote: Compressing objects:  16% (23/142)   [Kremote: Compressing objects:  17% (25/142)   [Kremote: Compressing objects:  18% (26/142)   [Kremote: Compressing objects:  19% (27/142)   [Kremote: Compressing objects:  20% (29/142)   [Kremote: Compressing objects:  21% (30/142)   [Kremote: Compressing objects:  22% (32/142)   [Kremote: Compressing objects:  23% (33/142)   [Kremote: Compressing objects:  24% (35/142)   [Kremote: Compressing objects:  25% (36/142)   [Kremote: Compressing objects:  26% (37/142)   [Kremote: Compressing objects:  27% (39/142)   [Kremote: Compressing objects:  28% (40/142)   [Kremote: Compressing objects:  29% (42/142)   [Kremote: Compressing objects:  30% (43/142)   [Kremote: Compressing objects:  31% (45/142)   [Kremote: Compressing objects:  32% (46/142)   [Kremote: Compressing objects:  33% (47/142)   [Kremote: Compressing objects:  34% (49/142)   [Kremote: Compressing objects:  35% (50/142)   [Kremote: Compressing objects:  36% (52/142)   [Kremote: Compressing objects:  37% (53/142)   [Kremote: Compressing objects:  38% (54/142)   [Kremote: Compressing objects:  39% (56/142)   [Kremote: Compressing objects:  40% (57/142)   [Kremote: Compressing objects:  41% (59/142)   [Kremote: Compressing objects:  42% (60/142)   [Kremote: Compressing objects:  43% (62/142)   [Kremote: Compressing objects:  44% (63/142)   [Kremote: Compressing objects:  45% (64/142)   [Kremote: Compressing objects:  46% (66/142)   [Kremote: Compressing objects:  47% (67/142)   [Kremote: Compressing objects:  48% (69/142)   [Kremote: Compressing objects:  49% (70/142)   [Kremote: Compressing objects:  50% (71/142)   [Kremote: Compressing objects:  51% (73/142)   [Kremote: Compressing objects:  52% (74/142)   [Kremote: Compressing objects:  53% (76/142)   [Kremote: Compressing objects:  54% (77/142)   [Kremote: Compressing objects:  55% (79/142)   [Kremote: Compressing objects:  56% (80/142)   [Kremote: Compressing objects:  57% (81/142)   [Kremote: Compressing objects:  58% (83/142)   [Kremote: Compressing objects:  59% (84/142)   [Kremote: Compressing objects:  60% (86/142)   [Kremote: Compressing objects:  61% (87/142)   [Kremote: Compressing objects:  62% (89/142)   [Kremote: Compressing objects:  63% (90/142)   [Kremote: Compressing objects:  64% (91/142)   [Kremote: Compressing objects:  65% (93/142)   [Kremote: Compressing objects:  66% (94/142)   [Kremote: Compressing objects:  67% (96/142)   [Kremote: Compressing objects:  68% (97/142)   [Kremote: Compressing objects:  69% (98/142)   [Kremote: Compressing objects:  70% (100/142)   [Kremote: Compressing objects:  71% (101/142)   [Kremote: Compressing objects:  72% (103/142)   [Kremote: Compressing objects:  73% (104/142)   [Kremote: Compressing objects:  74% (106/142)   [Kremote: Compressing objects:  75% (107/142)   [Kremote: Compressing objects:  76% (108/142)   [Kremote: Compressing objects:  77% (110/142)   [Kremote: Compressing objects:  78% (111/142)   [Kremote: Compressing objects:  79% (113/142)   [Kremote: Compressing objects:  80% (114/142)   [Kremote: Compressing objects:  81% (116/142)   [Kremote: Compressing objects:  82% (117/142)   [Kremote: Compressing objects:  83% (118/142)   [Kremote: Compressing objects:  84% (120/142)   [Kremote: Compressing objects:  85% (121/142)   [Kremote: Compressing objects:  86% (123/142)   [Kremote: Compressing objects:  87% (124/142)   [Kremote: Compressing objects:  88% (125/142)   [Kremote: Compressing objects:  89% (127/142)   [Kremote: Compressing objects:  90% (128/142)   [Kremote: Compressing objects:  91% (130/142)   [Kremote: Compressing objects:  92% (131/142)   [Kremote: Compressing objects:  93% (133/142)   [Kremote: Compressing objects:  94% (134/142)   [Kremote: Compressing objects:  95% (135/142)   [Kremote: Compressing objects:  96% (137/142)   [Kremote: Compressing objects:  97% (138/142)   [Kremote: Compressing objects:  98% (140/142)   [Kremote: Compressing objects:  99% (141/142)   [Kremote: Compressing objects: 100% (142/142)   [Kremote: Compressing objects: 100% (142/142), done.[K
+Receiving objects:   0% (1/20102)   Receiving objects:   1% (202/20102)   Receiving objects:   2% (403/20102)   Receiving objects:   3% (604/20102)   Receiving objects:   4% (805/20102)   Receiving objects:   5% (1006/20102)   Receiving objects:   6% (1207/20102)   Receiving objects:   7% (1408/20102)   Receiving objects:   8% (1609/20102)   Receiving objects:   9% (1810/20102)   Receiving objects:  10% (2011/20102)   Receiving objects:  11% (2212/20102)   Receiving objects:  12% (2413/20102)   Receiving objects:  13% (2614/20102)   Receiving objects:  14% (2815/20102)   Receiving objects:  15% (3016/20102)   Receiving objects:  16% (3217/20102)   Receiving objects:  17% (3418/20102)   Receiving objects:  18% (3619/20102)   Receiving objects:  19% (3820/20102)   Receiving objects:  20% (4021/20102)   Receiving objects:  21% (4222/20102)   Receiving objects:  22% (4423/20102)   Receiving objects:  23% (4624/20102)   Receiving objects:  24% (4825/20102)   Receiving objects:  25% (5026/20102)   Receiving objects:  26% (5227/20102)   Receiving objects:  27% (5428/20102)   Receiving objects:  28% (5629/20102)   Receiving objects:  29% (5830/20102)   Receiving objects:  30% (6031/20102)   Receiving objects:  31% (6232/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  32% (6433/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  33% (6634/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  34% (6835/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  35% (7036/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  36% (7237/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  37% (7438/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  38% (7639/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  39% (7840/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  40% (8041/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  41% (8242/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  42% (8443/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  43% (8644/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  44% (8845/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  45% (9046/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  46% (9247/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  47% (9448/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  48% (9649/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  49% (9850/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  50% (10051/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  51% (10253/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  52% (10454/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  53% (10655/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  54% (10856/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  55% (11057/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  56% (11258/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  57% (11459/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  58% (11660/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  59% (11861/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  60% (12062/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  61% (12263/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  62% (12464/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  63% (12665/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  64% (12866/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  65% (13067/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  66% (13268/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  67% (13469/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  68% (13670/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  69% (13871/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  70% (14072/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  71% (14273/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  72% (14474/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  72% (14599/20102), 4.10 MiB | 8.19 MiB/s   Receiving objects:  73% (14675/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  74% (14876/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  75% (15077/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  76% (15278/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  77% (15479/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  78% (15680/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  79% (15881/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  80% (16082/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  81% (16283/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  82% (16484/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  83% (16685/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  84% (16886/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  85% (17087/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  86% (17288/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  87% (17489/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  88% (17690/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  89% (17891/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  90% (18092/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  91% (18293/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  92% (18494/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  93% (18695/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  94% (18896/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  95% (19097/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  96% (19298/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  97% (19499/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  98% (19700/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects:  99% (19901/20102), 9.59 MiB | 9.59 MiB/s   remote: Total 20102 (delta 195), reused 220 (delta 154), pack-reused 19803[K
+Receiving objects: 100% (20102/20102), 9.59 MiB | 9.59 MiB/s   Receiving objects: 100% (20102/20102), 12.49 MiB | 9.58 MiB/s, done.
+Resolving deltas:   0% (0/13625)   Resolving deltas:   1% (154/13625)   Resolving deltas:   2% (278/13625)   Resolving deltas:   3% (411/13625)   Resolving deltas:   4% (548/13625)   Resolving deltas:   5% (686/13625)   Resolving deltas:   6% (823/13625)   Resolving deltas:   7% (960/13625)   Resolving deltas:   8% (1124/13625)   Resolving deltas:   9% (1228/13625)   Resolving deltas:  10% (1368/13625)   Resolving deltas:  11% (1528/13625)   Resolving deltas:  12% (1695/13625)   Resolving deltas:  13% (1800/13625)   Resolving deltas:  14% (1908/13625)   Resolving deltas:  15% (2047/13625)   Resolving deltas:  16% (2219/13625)   Resolving deltas:  17% (2381/13625)   Resolving deltas:  18% (2453/13625)   Resolving deltas:  20% (2730/13625)   Resolving deltas:  21% (2875/13625)   Resolving deltas:  22% (2999/13625)   Resolving deltas:  23% (3135/13625)   Resolving deltas:  24% (3273/13625)   Resolving deltas:  25% (3411/13625)   Resolving deltas:  26% (3562/13625)   Resolving deltas:  27% (3682/13625)   Resolving deltas:  28% (3816/13625)   Resolving deltas:  29% (4051/13625)   Resolving deltas:  30% (4092/13625)   Resolving deltas:  31% (4234/13625)   Resolving deltas:  32% (4362/13625)   Resolving deltas:  34% (4685/13625)   Resolving deltas:  36% (5014/13625)   Resolving deltas:  37% (5063/13625)   Resolving deltas:  38% (5197/13625)   Resolving deltas:  39% (5417/13625)   Resolving deltas:  41% (5620/13625)   Resolving deltas:  42% (5725/13625)   Resolving deltas:  43% (5878/13625)   Resolving deltas:  47% (6418/13625)   Resolving deltas:  48% (6673/13625)   Resolving deltas:  49% (6688/13625)   Resolving deltas:  50% (6863/13625)   Resolving deltas:  51% (6987/13625)   Resolving deltas:  52% (7085/13625)   Resolving deltas:  53% (7225/13625)   Resolving deltas:  54% (7457/13625)   Resolving deltas:  55% (7564/13625)   Resolving deltas:  56% (7683/13625)   Resolving deltas:  57% (7770/13625)   Resolving deltas:  61% (8324/13625)   Resolving deltas:  62% (8534/13625)   Resolving deltas:  63% (8625/13625)   Resolving deltas:  67% (9178/13625)   Resolving deltas:  70% (9566/13625)   Resolving deltas:  71% (9680/13625)   Resolving deltas:  72% (9823/13625)   Resolving deltas:  72% (9936/13625)   Resolving deltas:  73% (9967/13625)   Resolving deltas:  74% (10162/13625)   Resolving deltas:  75% (10219/13625)   Resolving deltas:  79% (10840/13625)   Resolving deltas:  82% (11202/13625)   Resolving deltas:  83% (11311/13625)   Resolving deltas:  85% (11632/13625)   Resolving deltas:  86% (11736/13625)   Resolving deltas:  87% (11933/13625)   Resolving deltas:  88% (11995/13625)   Resolving deltas:  89% (12221/13625)   Resolving deltas:  90% (12263/13625)   Resolving deltas:  91% (12400/13625)   Resolving deltas:  92% (12537/13625)   Resolving deltas:  93% (12693/13625)   Resolving deltas:  94% (12830/13625)   Resolving deltas:  95% (12944/13625)   Resolving deltas:  96% (13082/13625)   Resolving deltas:  97% (13220/13625)   Resolving deltas:  98% (13354/13625)   Resolving deltas:  99% (13520/13625)   Resolving deltas: 100% (13625/13625)   Resolving deltas: 100% (13625/13625), done.
++ cd /home/fedora/btrfs-progs
++ ./autogen.sh
+
+Generate build-system by:
+   aclocal:    aclocal (GNU automake) 1.15
+   autoconf:   autoconf (GNU Autoconf) 2.69
+   autoheader: autoheader (GNU Autoconf) 2.69
+   automake:   automake (GNU automake) 1.15
+
+Now type './configure' and 'make' to compile.
+
++ ./configure --prefix /usr CFLAGS=-I/usr/include LDFLAGS=-L/usr/lib
+configure: loading site script /usr/share/config.site
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking whether C compiler accepts -std=gnu90... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for an ANSI C-conforming const... yes
+checking for working volatile... yes
+checking whether byte ordering is bigendian... no
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether ln -s works... yes
+checking for ar... ar
+checking for rm... /usr/bin/rm
+checking for rmdir... /usr/bin/rmdir
+checking for openat... yes
+checking for reallocarray... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking execinfo.h usability... yes
+checking execinfo.h presence... yes
+checking for execinfo.h... yes
+checking for backtrace... yes
+checking for backtrace_symbols_fd... yes
+checking for xmlto... /usr/bin/xmlto
+checking for gzip... /usr/bin/gzip
+checking for mv... /usr/bin/mv
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for asciidoc... /usr/bin/asciidoc
+checking for asciidoctor... no
+checking for EXT2FS... yes
+checking for COM_ERR... yes
+checking for REISERFS... no
+checking for FIEMAP_EXTENT_SHARED defined in linux/fiemap.h... yes
+checking for BLKID... yes
+checking for UUID... yes
+checking for ZLIB... yes
+checking for ZSTD... yes
+checking for a Python interpreter with version >= 3.4... python3
+checking for python3... /usr/bin/python3
+checking for python3 version... 3.6
+checking for python3 platform... linux
+checking for python3 script directory... ${prefix}/lib/python3.6/site-packages
+checking for python3 extension module directory... ${exec_prefix}/lib64/python3.6/site-packages
+checking for PYTHON... no
+configure: error: Package requirements (python-3.6) were not met:
+
+Package 'python-3.6', required by 'virtual:world', not found
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables PYTHON_CFLAGS
+and PYTHON_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
++ cd /home/fedora/btrfs-progs
++ make test-fsck
+Makefile:43: *** Makefile.inc not generated, please configure first.  Stop.
++ '[' 2 -eq 0 ']'
+
+Script done on Sun 13 May 2018 05:34:18 AM UTC
